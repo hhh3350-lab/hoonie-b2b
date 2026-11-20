@@ -476,7 +476,6 @@ footer .sim{margin:14px 0 0;padding-top:12px;border-top:1px solid rgba(255,255,2
       <dt>사업자등록번호</dt><dd>421-28-01608 (일반과세자)</dd>
       <dt>주소</dt><dd>강원특별자치도 원주시 단구로 398, 상가동 101호 (단구동)</dd>
       <dt>전화</dt><dd>033-765-1531</dd>
-      <dt>영업시간</dt><dd>매일 07:00 ~ 20:00 (일요일 07:00 ~ 18:00)</dd>
     </dl>
     <p class="sim">
       이 화면은 <b>제작 시안(샘플)</b>입니다. 상품·가격은 2026-11-20 소소마켓 특가 글을 그대로 옮겼고, 실제 결제·배송 접수는 이뤄지지 않습니다.
@@ -1356,7 +1355,7 @@ function showDone(){
 
   var guide = "";
   if (o.zone === "pickup"){
-    guide = "🏪 <b>포장 준비되면 문자로 알려 드려요.</b><br>단구로 398 상가동 101호 · 033-765-1531<br>영업시간 07:00~20:00 (일요일 ~18:00)";
+    guide = "🏪 <b>포장 준비되면 문자로 알려 드려요.</b><br>단구로 398 상가동 101호 · 033-765-1531";
   } else if (o.zone === "city"){
     guide = "🚚 <b>오후 2시 이전 주문은 당일 또는 익일 배달</b>이에요.<br>배달 전에 기사님이 " + esc(o.phone) + "로 연락드려요.";
   } else {
@@ -1368,7 +1367,7 @@ function showDone(){
 
   h += '<div class="cta"><button class="bigbtn" id="doneOk">확인</button>'
     + '<button class="ghostbtn" id="doneAgain">장바구니 다시 보기</button></div>'
-    + '<p class="donefoot">훈이네과일야채 단구점 · ' + STORE.addr + '<br>문의 ' + STORE.tel + ' (07:00~20:00, 일요일 ~18:00)</p>';
+    + '<p class="donefoot">훈이네과일야채 단구점 · ' + STORE.addr + '<br>문의 ' + STORE.tel + '</p>';
 
   $("#doneBody").innerHTML = h;
   showView("done");
