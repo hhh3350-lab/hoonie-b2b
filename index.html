@@ -604,6 +604,19 @@ footer .biz dd{margin:0;color:#C9CEC3}
 
 @media print{ .biz-thumb,.biz-full{display:none} }
 
+/* ═══════════════════════════════════════════════════════════
+   화면 분리 — 거래처용(index.html) / 사장님용(admin.html)
+   ═══════════════════════════════════════════════════════════ */
+.admin-chip{display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 10px;border-radius:999px;
+  background:var(--green-d);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:-.02em}
+.top-link{display:inline-flex;align-items:center;height:30px;padding:0 11px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);color:var(--green-d);font-size:12px;font-weight:800;
+  text-decoration:none;white-space:nowrap}
+.top-link:hover{border-color:var(--green)}
+.foot-links a{color:#C9CEC3;font-size:12px;font-weight:700;text-decoration:none}
+.foot-links a:hover{color:#fff}
+@media print{ .top-link,.admin-chip{display:none} }
+
 </style>
 </head>
 <body>
@@ -617,18 +630,15 @@ footer .biz dd{margin:0;color:#C9CEC3}
       </div>
     </div>
 
-    <nav class="modes" role="tablist" aria-label="이용 메뉴">
+        <nav class="modes" role="tablist" aria-label="이용 메뉴">
       <button role="tab" class="mode" data-act="go" data-route="b2b" id="tabB2B" aria-selected="true" aria-controls="viewB2B">
-        <span class="m-t">발주<small>오늘·내일 단가표</small></span>
+        <span class="m-t">B2B 발주<small>오늘·내일 단가표</small></span>
       </button>
       <button role="tab" class="mode" data-act="go" data-route="orders" id="tabOrders" aria-selected="false" aria-controls="viewOrders">
-        <span class="m-t">주문현황<small>회차·배송</small></span>
+        <span class="m-t">발주 내역<small>회차·배송</small></span>
       </button>
       <button role="tab" class="mode" data-act="go" data-route="stmt" id="tabStmt" aria-selected="false" aria-controls="viewStmt">
         <span class="m-t">거래명세표<small>미수·잔액</small></span>
-      </button>
-      <button role="tab" class="mode" data-act="go" data-route="admin" id="tabAdmin" aria-selected="false" aria-controls="viewAdmin">
-        <span class="m-t">사장님 관리<small>단가확정·거래처</small></span>
       </button>
     </nav>
 
@@ -642,11 +652,12 @@ footer .biz dd{margin:0;color:#C9CEC3}
         <span class="cart-cnt" id="cartCnt" hidden>0</span>
       </button>
     </div>
+        
   </div>
 </header>
 
 <main id="main">
-  <!-- ══════════════ 1. 발주 (단가표) ══════════════ -->
+    <!-- ══════════════ 1. 발주 (단가표) ══════════════ -->
   <section id="viewB2B" class="view" role="tabpanel" aria-labelledby="tabB2B" hidden>
     <div class="wrap">
       <section class="hero">
@@ -682,9 +693,9 @@ footer .biz dd{margin:0;color:#C9CEC3}
       </section>
 
       <p class="fineprint">
-        ⓘ 표시 단가는 <b>시안용 샘플</b>입니다. 사장님이 <b>사장님 관리 → 단가 확정</b>에서 실제 사입 단가로 바꾸면 바로 반영됩니다.<br>
-        ⏰ 배달 <b>1차 08:00 · 2차 11:00 · 3차 13:00~14:00</b> 출발. 원주 시내권만 배달하며, <b>최소 주문 <span id="fineMin">50,000</span>원</b>부터 발주할 수 있고 <b>배송비는 <span id="fineFee">무료</span></b>입니다.<br>
-        🔐 <b>사업자 전용</b> — 사업자등록증을 확인해 승인한 거래처만 발주할 수 있습니다. 결제는 <b>외상 하루치</b>까지이고, <b>미수 잔액이 남아 있으면 다음 발주가 막힙니다</b>. <b>10만 원 이상 주문은 무조건 즉시 결제</b>입니다.
+        🕖 전날 발주한 품목은 <b>매일 아침 7시 확정 단가</b>로 금액이 정해지고, 그 단가로 정산됩니다. 지금 보이는 금액은 어제 기준 <b>참고가</b>입니다.<br>
+        🚚 원주 시내 <b>5만 원 이상 무료배송</b>. 배달은 <b>1차 08:00 · 2차 11:00 · 3차 13:00~14:00</b> 세 번 출발하며, <b>최소 주문 <span id="fineMin">50,000</span>원</b>부터 담을 수 있습니다.<br>
+        🔐 <b>사업자 거래처 전용</b> — 사업자등록증 확인 후 승인된 거래처만 발주할 수 있습니다. 결제는 <b>외상 하루치</b>까지이고, <b>미수 잔액이 남아 있으면 다음 발주가 잠깁니다</b>. <b>10만 원 이상 주문은 즉시 결제</b>입니다.
       </p>
     </div>
   </section>
@@ -733,31 +744,8 @@ footer .biz dd{margin:0;color:#C9CEC3}
       <div id="stmtList"></div>
     </div>
   </section>
-
-  <!-- ══════════════ 5. 사장님 관리 ══════════════ -->
-  <section id="viewAdmin" class="view" role="tabpanel" aria-labelledby="tabAdmin" hidden>
-    <div class="wrap">
-      <div class="admin-head">
-        <h1>사장님 관리</h1>
-        <p>출고 회차별 주문 보드 · 아침 7시 단가 확정 · 거래처 미수·잔액 · 재입고 알림까지 한곳에서 처리합니다.<br>
-        <span class="muted">시안이므로 비밀번호가 없고, 바뀐 값은 이 브라우저(localStorage)에만 저장됩니다.</span></p>
-      </div>
-
-      <nav class="adm-tabs" role="tablist" aria-label="사장님 관리 메뉴">
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="orders" aria-selected="true">주문현황</button>
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="prices" aria-selected="false">아침 7시 단가 확정</button>
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="clients" aria-selected="false">거래처·미수</button>
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="restock" aria-selected="false">재입고 <span class="cnt" id="alertBadge" hidden>0</span></button>
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="settings" aria-selected="false">설정</button>
-      </nav>
-
-      <div class="panel" id="admOrders"></div>
-      <div class="panel" id="admPrices" hidden></div>
-      <div class="panel" id="admClients" hidden></div>
-      <div class="panel" id="admRestock" hidden></div>
-      <div class="panel" id="admSettings" hidden></div>
-    </div>
-  </section>
+  
+  
 </main>
 
 <footer>
@@ -770,10 +758,10 @@ footer .biz dd{margin:0;color:#C9CEC3}
         </div>
         <p style="margin-top:12px;line-height:1.7">원주 시내 식당에 야채·식자재를 배달합니다. 전날 발주하면 다음 날 아침 7시 시세로 단가를 확정해 1차 08:00부터 순서대로 배달합니다.</p>
         <div class="foot-links">
-          <button type="button" data-act="go" data-route="b2b">단가표</button>
-          <button type="button" data-act="go" data-route="orders">주문현황</button>
+                    <button type="button" data-act="go" data-route="b2b">단가표</button>
+          <button type="button" data-act="go" data-route="orders">발주 내역</button>
           <button type="button" data-act="go" data-route="stmt">거래명세표</button>
-          <button type="button" data-act="go" data-route="admin">사장님 관리</button>
+                    
         </div>
       </div>
       <div>
@@ -826,10 +814,18 @@ footer .biz dd{margin:0;color:#C9CEC3}
 <script>
 (function(){
 "use strict";
+var HOONIE_MODE = "client";
 /* ═══════════════════════════════════════════════════════════
    훈이네과일야채 반곡점 — 원주 시내 야채·식자재 B2B 발주 (core)
    저장: localStorage 하나 (사업자 정보·단가·주문·거래처·입금·재입고)
    ═══════════════════════════════════════════════════════════ */
+
+/* ── 화면 모드 ────────────────────────────────────────
+   build.py 가 index.html에는 "client", admin.html에는 "admin"을 넣는다.
+   client = 거래처(식당·마트) 발주 화면 — 사장님 관리 메뉴 없음
+   admin  = 사장님 화면 — 열면 바로 사장님 관리, 거래처 화면 링크만 */
+var MODE = (typeof HOONIE_MODE !== "undefined" ? HOONIE_MODE : "client");
+var IS_ADMIN = MODE === "admin";
 
 /* ── 사업자 정보 기본값 (반곡점) ────────────────────── */
 var STORE_DEFAULT = {
@@ -1248,7 +1244,11 @@ function storeLine() {
 }
 function accountText() {
   var s = state.store;
-  if (!digits(s.account)) return { ok:false, text:"입금 계좌번호 입력 필요 (사장님 관리 > 설정에서 등록)" };
+  if (!digits(s.account)) return {
+    ok:false,
+    text: IS_ADMIN ? "입금 계좌번호 입력 필요 (설정에서 등록)"
+                   : "입금 계좌는 가게(" + (s.phone || "033-765-1531") + ")로 문의해 주세요"
+  };
   return { ok:true, text:(s.bank ? s.bank + " " : "") + s.account + (s.holder ? " (예금주: " + s.holder + ")" : "") };
 }
 
@@ -1722,12 +1722,16 @@ function renderHeader() {
   $$(".mode").forEach(function (b) {
     b.setAttribute("aria-selected", b.getAttribute("data-route") === ui.route ? "true" : "false");
   });
-  var c = currentClient();
-  $("#ccName").textContent = c ? c.name : "거래처";
-  var n = cartCount();
-  var badge = $("#cartCnt");
-  badge.textContent = n;
-  badge.hidden = n <= 0;
+  var ccName = $("#ccName"), badge = $("#cartCnt");
+  if (ccName) {
+    var c = currentClient();
+    ccName.textContent = c ? c.name : "거래처";
+  }
+  if (badge) {
+    var n = cartCount();
+    badge.textContent = n;
+    badge.hidden = n <= 0;
+  }
 }
 
 /* ══════════════ 발주 화면 ══════════════ */
@@ -1847,8 +1851,9 @@ function renderProdList() {
 
 /* ── 하단 바 ────────────────────────────────────────── */
 function renderActionbar() {
-  var show = (ui.route === "b2b" || ui.route === "orders" || ui.route === "stmt") && cartCount() > 0;
   var bar = $("#actionbar");
+  if (!bar) return;   /* 사장님 화면에는 하단 발주 바가 없다 */
+  var show = (ui.route === "b2b" || ui.route === "orders" || ui.route === "stmt") && cartCount() > 0;
   bar.classList.toggle("on", show);
   bar.hidden = !show;
   if (!show) return;
@@ -2611,12 +2616,16 @@ function render() {
    이벤트 · 시작
    ═══════════════════════════════════════════════════════════ */
 
-var VIEWS = { b2b:"viewB2B", checkout:"viewCheckout", orders:"viewOrders", stmt:"viewStmt", admin:"viewAdmin" };
+/* 모드별 화면 — 거래처용에는 사장님 관리 화면·경로 자체가 없다 */
+var VIEWS = IS_ADMIN
+  ? { admin:"viewAdmin" }
+  : { b2b:"viewB2B", checkout:"viewCheckout", orders:"viewOrders", stmt:"viewStmt" };
+var HOME_ROUTE = IS_ADMIN ? "admin" : "b2b";
 
 function setRoute(route, opts) {
   opts = opts || {};
-  if (!VIEWS[route]) route = "b2b";
-  if (route === "checkout" && !cartCount()) route = "b2b";
+  if (!VIEWS[route]) route = HOME_ROUTE;
+  if (route === "checkout" && !cartCount()) route = HOME_ROUTE;
   ui.route = route;
   Object.keys(VIEWS).forEach(function (k) {
     var el = document.getElementById(VIEWS[k]);
@@ -3303,7 +3312,7 @@ function onChange(e) {
   if (fineFee) fineFee.textContent = Number(state.policy.shipFee) ? won(state.policy.shipFee) + "원" : "무료";
 
   ui.listDate = defaultSlot().ymd;
-  setRoute("b2b");
+  setRoute(HOME_ROUTE);
 
   /* 검증·디버그용 (화면에는 영향 없음) */
   window.__hoonie = {
