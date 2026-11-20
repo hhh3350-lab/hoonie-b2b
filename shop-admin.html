@@ -822,6 +822,11 @@ function bind(){
 function init(){
   state.catalog = readCatalog().items;
   state.orders = readOrders();
+  /* 배포본(htmlpreview)에서는 상대 경로가 깨지므로 손님 화면 주소를 직접 계산한다 */
+  var link = document.querySelector(".shoplink");
+  if (link && location.hostname.indexOf("htmlpreview.github.io") > -1){
+    link.href = "https://htmlpreview.github.io/?https://github.com/hhh3350-lab/hoonie-b2b/blob/main/shop.html";
+  }
   tick();
   setInterval(tick, 30000);
   renderOrders();
