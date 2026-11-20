@@ -1083,6 +1083,161 @@ footer .biz dd{margin:0;color:#C9CEC3}
 .mode-client #claimMemo{font-size:16px}
 .mode-client .claim-card .cl-name{font-size:15px}
 
+/* ═══════════════════════════════════════════════════════════
+   v9 — 도매 사장님 핵심 실무 10기능
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── 7. 내 즐겨찾기 (★) ─────────────────────────────── */
+.fav-empty{margin:0 0 10px;font-size:12px;color:var(--muted);background:#F3F1E7;border:1px dashed var(--line2);
+  border-radius:10px;padding:8px 11px;line-height:1.5}
+.fav-head{display:flex;align-items:center;gap:8px;margin:2px 0 7px}
+.fav-head b{font-size:13.5px;color:var(--green-d)}
+.fav-head span{font-size:11px;color:var(--muted)}
+.fav-list{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.fav-list .p-row{border-color:#CFE0C6;background:linear-gradient(180deg,#FBFDF8,#FFF)}
+.fav-btn{width:30px;height:26px;margin-left:auto;border-radius:8px;border:1px solid var(--line2);background:#fff;
+  color:#C9C7BA;font-size:15px;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.fav-btn.on{color:#D79A14;border-color:#EBD6A8;background:var(--amber-l)}
+
+/* ── 9. 품절 대체품 ─────────────────────────────────── */
+.p-row .p-sub{grid-column:1/-1;display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:6px;
+  background:var(--green-l);border:1px dashed #CFE0C6;border-radius:10px;padding:7px 9px}
+.p-sub .sub-lb{font-size:10.5px;font-weight:800;color:#3C6B44}
+.p-sub .sub-nm{font-size:12.5px;font-weight:800;letter-spacing:-.02em}
+.p-sub .sub-go{margin-left:auto;height:32px;min-width:0;padding:0 12px;background:#fff;border-color:#CFE0C6;color:var(--green-d);font-size:13px}
+
+/* ── 5. 단골 이탈(미발주) ───────────────────────────── */
+.idle-bar{display:flex;align-items:center;gap:8px;width:100%;text-align:left;margin:0 0 10px;
+  background:var(--amber-l);border:1px solid var(--amber-line);border-radius:12px;padding:10px 12px;flex-wrap:wrap}
+.idle-bar .ib-k{font-size:12.5px;font-weight:800;color:#7A5308}
+.idle-bar .ib-k b{font-size:14px}
+.idle-bar .ib-nm{font-size:11.5px;color:#7A5308;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.idle-bar .ib-go{font-size:11.5px;font-weight:800;color:#5A3E0B}
+.idle-panel{background:#fff;border:1px solid var(--amber-line);border-radius:var(--r);padding:12px;box-shadow:var(--sh);margin-bottom:12px}
+.idle-line{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--line)}
+.idle-line:first-of-type{border-top:0}
+.idle-line b{font-size:13px;display:block}
+.idle-line span{display:block}
+.idle-card{background:#FBFAF5;border:1px solid var(--line);border-radius:11px;padding:11px;margin-bottom:8px}
+.idle-card .ic-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.idle-card b{font-size:13.5px}
+
+/* ── 1. 상차 피킹표 ─────────────────────────────────── */
+.pk-list{display:flex;flex-direction:column;gap:6px}
+.pk-row{display:grid;grid-template-columns:1fr auto;grid-template-areas:"nm q" "who q";
+  gap:1px 8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+.pk-row .pk-nm{grid-area:nm;font-size:13px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.pk-row .pk-nm b{font-size:13.5px}
+.pk-row .pk-u{font-size:10.5px;font-weight:800;color:var(--green-d);background:var(--green-l);
+  border:1px solid #D3E3CB;border-radius:6px;padding:1px 6px}
+.pk-row .pk-q{grid-area:q;display:flex;align-items:baseline;gap:1px;justify-content:flex-end;min-width:52px}
+.pk-row .pk-q b{font-size:20px;letter-spacing:-.03em;color:var(--green-d)}
+.pk-row .pk-q span{font-size:10.5px;color:var(--muted);font-weight:700}
+.pk-row .pk-who{grid-area:who;font-size:11px;color:var(--muted);line-height:1.45}
+
+/* 피킹표 A4 */
+.pick-sheet,.month-sheet{padding:0 2mm}
+.pk-head{display:flex;justify-content:space-between;align-items:flex-end;gap:6mm;
+  border-bottom:1.2pt solid #000;padding-bottom:2.5mm;margin-bottom:3mm}
+.pk-title h1{font-size:16pt;letter-spacing:-.02em}
+.pk-title span{font-size:8pt;color:#333;display:block;margin-top:1mm}
+.pk-when{text-align:right}
+.pk-when b{font-size:10.5pt;display:block}
+.pk-when span{font-size:8pt;color:#333}
+.pk-table{width:100%;border-collapse:collapse;font-size:8.6pt;table-layout:fixed}
+.pk-table th{border:0.6pt solid #000;background:#EFEFEF;font-size:8pt;padding:1.6mm 1.4mm;text-align:center}
+.pk-table td{border:0.6pt solid #000;padding:1.5mm 1.6mm;vertical-align:middle;word-break:keep-all}
+.pk-table td.c{text-align:center;font-size:8pt;color:#444}
+.pk-table td.pn b{font-size:9.6pt}
+.pk-table td.pn .u{font-size:7.6pt;color:#333}
+.pk-table td.q{text-align:center}
+.pk-table td.q b{font-size:11pt}
+.pk-table td.who{font-size:8pt;line-height:1.4}
+.pk-table td.chk{background:#FCFCFC}
+.pk-table td.n{text-align:right;font-variant-numeric:tabular-nums}
+.pk-table tr.blank td{height:6mm}
+.pk-table tfoot td{border:0.8pt solid #000;background:#F6F6F6;font-weight:800;padding:1.8mm 1.6mm}
+.pk-table tfoot td.n{font-size:9.4pt}
+.pk-foot{display:flex;justify-content:space-between;gap:4mm;margin-top:2.5mm;
+  font-size:7.6pt;color:#333;border-top:0.6pt dashed #666;padding-top:1.8mm}
+
+/* ── 3. 월말 정산 ───────────────────────────────────── */
+.month-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:13px;box-shadow:var(--sh);margin-bottom:12px}
+.mc-head{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.mc-head > b{font-size:14px;letter-spacing:-.02em;flex:1;min-width:110px}
+.mc-head > b span{font-size:11px;color:var(--muted);font-weight:700;margin-left:4px}
+.mc-nums{display:grid;grid-template-columns:1fr 1fr;gap:7px 10px;background:#F8F7F1;border-radius:10px;padding:10px}
+.mc-nums i{display:block;font-style:normal;font-size:10.5px;color:var(--muted);font-weight:700}
+.mc-nums b{font-size:14px;letter-spacing:-.02em}
+.mc-nums .minus{color:var(--red)}
+.mc-nums .bal b{color:var(--red)}
+.mc-foot{font-size:11px;color:var(--muted);margin-top:8px}
+.ms-total{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;background:var(--green-l);border:1px solid #D3E3CB;
+  border-radius:10px;padding:9px 11px;font-size:11px;color:#3C6B44;margin-bottom:9px}
+.ms-total b{font-size:13px;color:var(--green-d);margin-left:3px}
+.ms-list{display:flex;flex-direction:column;gap:6px}
+.ms-line{border-top:1px solid var(--line);padding-top:7px}
+.ms-line:first-child{border-top:0;padding-top:0}
+.ms-nm{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.ms-nm b{font-size:13px}
+.ms-nm span{font-size:10.5px;color:var(--muted)}
+.ms-nums{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;margin-top:3px;font-size:11px;color:var(--muted)}
+.ms-nums b{font-size:12px;color:var(--ink);margin-left:2px}
+.ms-nums .minus{color:var(--red)}
+.ms-nums .bal b{color:var(--red)}
+
+/* ── 4. 정산 안내 복사 ──────────────────────────────── */
+.copy-box{margin-top:11px;background:#F8F7F1;border:1px solid var(--line);border-radius:11px;padding:12px;
+  font-size:13px;line-height:1.65;color:var(--ink);white-space:pre-wrap;word-break:keep-all;user-select:text}
+
+/* ── 6. 거래처별 특별 단가 ──────────────────────────── */
+.sp-list{display:flex;flex-direction:column;gap:6px;margin-top:11px}
+.sp-row{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.sp-row b{font-size:13px;display:block}
+.sp-row span{display:block}
+.sp-row input{width:92px;height:38px;border:1px solid var(--line2);border-radius:9px;text-align:right;
+  padding:0 9px;font-size:13px;font-weight:700;background:#fff;flex:0 0 auto}
+.sp-row input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(46,107,59,.12)}
+
+/* ── 10. 배송 완료 메모 ─────────────────────────────── */
+.dlv-quick{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.dlv-quick .chip{height:36px;font-size:12.5px}
+#dlvMemo{width:100%;height:46px;border:1px solid var(--line2);border-radius:10px;padding:0 12px;font-size:15px;margin-top:8px;background:#fff}
+#dlvMemo:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(46,107,59,.12)}
+.dv-memo{color:var(--green-d)}
+
+/* ── 2. 매입원가 · 마진 ─────────────────────────────── */
+.pm-cost{display:grid;grid-template-columns:1fr 1.25fr;gap:7px;margin-top:7px;align-items:end}
+.pm-margin{display:flex;flex-direction:column;gap:1px;background:var(--green-l);border:1px solid #D3E3CB;
+  border-radius:9px;padding:5px 9px;min-height:38px;justify-content:center}
+.pm-margin.neg{background:var(--red-l);border-color:#F0D3CE}
+.mm-lb{font-size:10px;font-weight:800;color:#3C6B44}
+.pm-margin.neg .mm-lb{color:var(--red)}
+.mm-v{font-size:12.5px;font-weight:800;letter-spacing:-.02em;color:var(--green-d)}
+.mm-v.pos{color:var(--green-d)}
+.mm-v.neg{color:var(--red)}
+.mm-v.none{color:var(--muted);font-weight:600;font-size:11px}
+.pm-sub-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:7px;background:#FBFAF5;
+  border:1px dashed var(--line2);border-radius:9px;padding:7px 9px}
+.pm-sub-row .sub-lb{font-size:10.5px;font-weight:800;color:var(--muted)}
+.pm-sub-row .sub-now{font-size:11px;color:var(--green-d);flex:1 1 150px;font-weight:700}
+.pm-sub-row .btn{margin-left:auto}
+.sub-opts{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.sub-opt{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:#fff;
+  border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-top:6px}
+.sub-opt.on{border-color:var(--green);background:var(--green-l)}
+.sub-opt .so-b{width:20px;height:20px;border-radius:50%;border:1px solid var(--line2);display:flex;
+  align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;background:#fff;flex:0 0 auto}
+.sub-opt.on .so-b{background:var(--green);border-color:var(--green)}
+.sub-opt b{font-size:13.5px;display:block}
+.sub-opt small{font-size:11px;color:var(--muted);display:block}
+
+.bg-head .btn + .btn{margin-left:4px}
+@media(max-width:430px){.pk-table td.who{font-size:7.4pt}}
+@media print{
+  #printRoot .pick-sheet,#printRoot .month-sheet{width:190mm;margin:0;page-break-after:always}
+}
+
 </style>
 </head>
 <body class="mode-client">
@@ -1160,6 +1315,9 @@ footer .biz dd{margin:0;color:#C9CEC3}
       <!-- 어제 주문 그대로 담기 (배달 선택 바로 아래 큰 버튼) -->
       <div id="reorderBox"></div>
 
+      <!-- ★ 내 즐겨찾기 (손님이 고정한 품목 · 맨 위에서 바로 담기) -->
+      <div id="favBox"></div>
+
       <div id="orderBlock"></div>
 
       <!-- 최근 발주 진행 상태 (① 접수 → ② 단가 확정 → ③ 배달 출발 → ④ 배송 완료) -->
@@ -1226,6 +1384,7 @@ footer .biz dd{margin:0;color:#C9CEC3}
         <p><b id="stmtClient">거래처</b> 님의 미수·잔액과 전표입니다. 전표는 <b>A4 용지 그대로</b> 폰에서 보실 수 있습니다.</p>
       </div>
       <div id="stmtBalance"></div>
+      <div id="stmtMonth"></div>
       <div class="row between" style="margin:16px 0 8px">
         <h2 style="font-size:16px">발행 전표</h2>
         <span class="small" id="stmtCount"></span>
@@ -1375,22 +1534,22 @@ var DEFAULT_POLICY = {
    prevPrice = 전날 단가 (어제 확정가가 저장돼 있지 않을 때 ▲▼ 비교 기준) */
 function defaultProducts() {
   return [
-    { id:"v1",  name:"로즈(야채)",  base:"로즈(야채)", grade:"", unitLabel:"1개",   spec:"-",   unit:"ea",  cat:"veg",    ref:23000, prevPrice:23000, emoji:"🥬", stock:12, soldOut:false },
-    { id:"v2",  name:"백오이",      base:"백오이",     grade:"", unitLabel:"1개",   spec:"ea",  unit:"ea",  cat:"veg",    ref:1000,  prevPrice:1000,  emoji:"🥒", stock:60, soldOut:false },
-    { id:"v3",  name:"라디치오",    base:"라디치오",   grade:"", unitLabel:"1개",   spec:"-",   unit:"ea",  cat:"veg",    ref:3000,  prevPrice:3000,  emoji:"🥬", stock:20, soldOut:false },
-    { id:"v4",  name:"피망",        base:"피망",       grade:"", unitLabel:"1박스", spec:"box", unit:"box", cat:"veg",    ref:6900,  prevPrice:8900,  emoji:"🫑", stock:9,  soldOut:false },
-    { id:"v5",  name:"레몬",        base:"레몬",       grade:"", unitLabel:"1개",   spec:"ea",  unit:"ea",  cat:"fruit",  ref:500,   prevPrice:500,   emoji:"🍋", stock:120, soldOut:false },
-    { id:"v6",  name:"양파 15kg",   base:"양파",       grade:"", unitLabel:"15kg",  spec:"box", unit:"box", cat:"season", ref:18500, prevPrice:17000, emoji:"🧅", stock:14, soldOut:false },
-    { id:"v7",  name:"대파 1단",    base:"대파",       grade:"", unitLabel:"1단",   spec:"단",  unit:"단",  cat:"season", ref:2800,  prevPrice:2800,  emoji:"🌿", stock:35, soldOut:false },
-    { id:"v8",  name:"깐마늘 1kg",  base:"깐마늘",     grade:"", unitLabel:"1kg",   spec:"kg",  unit:"kg",  cat:"season", ref:8900,  prevPrice:9500,  emoji:"🧄", stock:18, soldOut:false },
-    { id:"v9",  name:"감자 20kg",   base:"감자",       grade:"", unitLabel:"20kg",  spec:"box", unit:"box", cat:"veg",    ref:24000, prevPrice:24000, emoji:"🥔", stock:10, soldOut:false },
-    { id:"v10", name:"청양고추 1kg", base:"청양고추",  grade:"", unitLabel:"1kg",   spec:"kg",  unit:"kg",  cat:"season", ref:9500,  prevPrice:9500,  emoji:"🌶️", stock:0, soldOut:true },
-    { id:"v11", name:"애호박",      base:"애호박",     grade:"", unitLabel:"1개",   spec:"ea",  unit:"ea",  cat:"veg",    ref:700,   prevPrice:700,   emoji:"🥒", stock:40, soldOut:false },
-    { id:"v12", name:"무 1박스",    base:"무",         grade:"", unitLabel:"1박스", spec:"box", unit:"box", cat:"veg",    ref:11500, prevPrice:10500, emoji:"🥬", stock:6,  soldOut:false },
+    { id:"v1",  name:"로즈(야채)",  base:"로즈(야채)", grade:"", unitLabel:"1개",   spec:"-",   unit:"ea",  cat:"veg",    ref:23000, prevPrice:23000, cost:17800, sub:"", emoji:"🥬", stock:12, soldOut:false },
+    { id:"v2",  name:"백오이",      base:"백오이",     grade:"", unitLabel:"1개",   spec:"ea",  unit:"ea",  cat:"veg",    ref:1000,  prevPrice:1000,  cost:720,   sub:"", emoji:"🥒", stock:60, soldOut:false },
+    { id:"v3",  name:"라디치오",    base:"라디치오",   grade:"", unitLabel:"1개",   spec:"-",   unit:"ea",  cat:"veg",    ref:3000,  prevPrice:3000,  cost:2100,  sub:"", emoji:"🥬", stock:20, soldOut:false },
+    { id:"v4",  name:"피망",        base:"피망",       grade:"", unitLabel:"1박스", spec:"box", unit:"box", cat:"veg",    ref:6900,  prevPrice:8900,  cost:5200,  sub:"", emoji:"🫑", stock:9,  soldOut:false },
+    { id:"v5",  name:"레몬",        base:"레몬",       grade:"", unitLabel:"1개",   spec:"ea",  unit:"ea",  cat:"fruit",  ref:500,   prevPrice:500,   cost:380,   sub:"", emoji:"🍋", stock:120, soldOut:false },
+    { id:"v6",  name:"양파 15kg",   base:"양파",       grade:"", unitLabel:"15kg",  spec:"box", unit:"box", cat:"season", ref:18500, prevPrice:17000, cost:14800, sub:"", emoji:"🧅", stock:14, soldOut:false },
+    { id:"v7",  name:"대파 1단",    base:"대파",       grade:"", unitLabel:"1단",   spec:"단",  unit:"단",  cat:"season", ref:2800,  prevPrice:2800,  cost:2100,  sub:"", emoji:"🌿", stock:35, soldOut:false },
+    { id:"v8",  name:"깐마늘 1kg",  base:"깐마늘",     grade:"", unitLabel:"1kg",   spec:"kg",  unit:"kg",  cat:"season", ref:8900,  prevPrice:9500,  cost:7400,  sub:"", emoji:"🧄", stock:18, soldOut:false },
+    { id:"v9",  name:"감자 20kg",   base:"감자",       grade:"", unitLabel:"20kg",  spec:"box", unit:"box", cat:"veg",    ref:24000, prevPrice:24000, cost:19500, sub:"", emoji:"🥔", stock:10, soldOut:false },
+    { id:"v10", name:"청양고추 1kg", base:"청양고추",  grade:"", unitLabel:"1kg",   spec:"kg",  unit:"kg",  cat:"season", ref:9500,  prevPrice:9500,  cost:8000,  sub:"", emoji:"🌶️", stock:0, soldOut:true },
+    { id:"v11", name:"애호박",      base:"애호박",     grade:"", unitLabel:"1개",   spec:"ea",  unit:"ea",  cat:"veg",    ref:700,   prevPrice:700,   cost:520,   sub:"", emoji:"🥒", stock:40, soldOut:false },
+    { id:"v12", name:"무 1박스",    base:"무",         grade:"", unitLabel:"1박스", spec:"box", unit:"box", cat:"veg",    ref:11500, prevPrice:10500, cost:9000,  sub:"", emoji:"🥬", stock:6,  soldOut:false },
     /* 등급·단위 파생 품목 — 같은 청양고추라도 특/상/1kg은 값이 다르고 따로 담는다 */
-    { id:"v13", name:"청양고추 (특) 1박스", base:"청양고추", grade:"특", unitLabel:"1박스", spec:"box", unit:"box", cat:"season", ref:32000, prevPrice:29000, emoji:"🌶️", stock:7, soldOut:false },
-    { id:"v14", name:"청양고추 (상) 1박스", base:"청양고추", grade:"상", unitLabel:"1박스", spec:"box", unit:"box", cat:"season", ref:27000, prevPrice:28500, emoji:"🌶️", stock:5, soldOut:false },
-    { id:"v15", name:"대파 (특) 1단",       base:"대파",     grade:"특", unitLabel:"1단",   spec:"단",  unit:"단",  cat:"season", ref:3500,  prevPrice:3200,  emoji:"🌿", stock:20, soldOut:false }
+    { id:"v13", name:"청양고추 (특) 1박스", base:"청양고추", grade:"특", unitLabel:"1박스", spec:"box", unit:"box", cat:"season", ref:32000, prevPrice:29000, cost:26500, sub:"", emoji:"🌶️", stock:7, soldOut:false },
+    { id:"v14", name:"청양고추 (상) 1박스", base:"청양고추", grade:"상", unitLabel:"1박스", spec:"box", unit:"box", cat:"season", ref:27000, prevPrice:28500, cost:22800, sub:"", emoji:"🌶️", stock:5, soldOut:false },
+    { id:"v15", name:"대파 (특) 1단",       base:"대파",     grade:"특", unitLabel:"1단",   spec:"단",  unit:"단",  cat:"season", ref:3500,  prevPrice:3200,  cost:2700,  sub:"", emoji:"🌿", stock:20, soldOut:false }
   ];
 }
 /** 단위 배지 글자 — 없으면 규격에서 만든다 (예: box → 1박스) */
@@ -1757,6 +1916,10 @@ function normalize(s) {
       spec:String(p.spec || "-"), unit:String(p.unit || "ea"),
       cat:easyCat(p), ref:Math.max(0, Number(p.ref) || 0),
       prevPrice:(p.prevPrice != null ? Math.max(0, Number(p.prevPrice) || 0) : null),
+      /* 매입가(원가) — 사장님만 보는 값. 아침 단가 확정 탭에서 넣으면 마진이 계산된다. */
+      cost:Math.max(0, Number(p.cost) || 0),
+      /* 품절일 때 손님 화면에 추천할 대체 품목 id (비우면 같은 품목·분류에서 자동) */
+      sub:String(p.sub || ""),
       emoji:p.emoji || "🥬",
       stock:Math.max(0, Number(p.stock) || 0), soldOut:Boolean(p.soldOut)
     };
@@ -1776,7 +1939,10 @@ function normalize(s) {
       bizFile:c.bizFile && c.bizFile.name ? c.bizFile : null,
       signupAt:c.signupAt || null, approvedAt:c.approvedAt || null,
       /* 등급 — 예전 저장값에는 없으므로 일반(1일)으로 본다. 손님 화면에는 안 나간다. */
-      tier:tierKeys().indexOf(c.tier) >= 0 ? c.tier : TIERS[0].key
+      tier:tierKeys().indexOf(c.tier) >= 0 ? c.tier : TIERS[0].key,
+      /* 손님이 직접 고정한 즐겨찾기(★) · 사장님이 정한 거래처별 특별 단가 */
+      favs:Array.isArray(c.favs) ? c.favs.map(String) : [],
+      prices:(c.prices && typeof c.prices === "object") ? c.prices : {}
     };
   }) : out.clients;
   out.orders = Array.isArray(s.orders) ? s.orders.map(function (o) {
@@ -1785,6 +1951,11 @@ function normalize(s) {
     o.payMode = mode;
     o.deposit = mode === PAY.IMMEDIATE ? (o.deposit === DEPOSIT.CONFIRMED ? DEPOSIT.CONFIRMED : DEPOSIT.CLAIMED) : "CREDIT";
     o.claimTotal = Math.max(0, Number(o.claimTotal) || 0);
+    /* v9 — 같은 회차 기존 주문과 합배송 / 배송 완료 시 남긴 납품 위치 메모 */
+    o.combineWith = o.combineWith ? String(o.combineWith) : null;
+    o.combined = Math.max(0, Number(o.combined) || 0);
+    o.deliverMemo = String(o.deliverMemo || "");
+    o.deliveredAt = o.deliveredAt || null;
     return o;
   }) : [];
   if (Number(s.version || 0) < 4) {
@@ -1869,7 +2040,9 @@ var ui = {
   bulkText: "",       /* 영수증 일괄 입력 칸 */
   bulkFile: null,     /* 영수증 사진 (미리보기용) */
   bulkResult: null,   /* 마지막 일괄 적용 결과 */
-  claim: null         /* 반품·클레임 접수 초안 (품목·사유·사진·메모) */
+  claim: null,        /* 반품·클레임 접수 초안 (품목·사유·사진·메모) */
+  pick: null,         /* 상차 피킹표 (날짜 + 회차) */
+  month: null         /* 월말 정산에서 보고 있는 달 (YYYY-MM) */
 };
 
 /* ── 사업자·정책 접근 ───────────────────────────────── */
@@ -1971,11 +2144,11 @@ function slotText(ymd, key) {
 
 /* ── 장바구니 · 금액 ────────────────────────────────── */
 function cartLines(ymd) {
-  var out = [];
+  var out = [], cid = state.currentClientId;
   state.products.forEach(function (p) {
     var qty = Number(cart[p.id]) || 0;
     if (qty <= 0) return;
-    var price = priceOf(p, ymd);
+    var price = priceForClient(p, ymd, cid);
     out.push({ pid:p.id, p:p, name:p.name, spec:p.spec, unit:p.unit, qty:qty, price:price, amount:price * qty });
   });
   return out;
@@ -2079,7 +2252,9 @@ function placeOrder(opts) {
   var lines = cartLines(opts.ymd);
   if (!lines.length) return { ok:false, msg:"담은 품목이 없습니다." };
   var am = calcAmounts(lines);
-  if (!am.meetsMin) return { ok:false, msg:"최소 주문 금액은 " + won(am.minOrder) + "원입니다. " + won(am.shortfall) + "원 더 담아 주세요." };
+  /* 같은 날 같은 회차에 이미 접수된 주문이 있으면 최소 주문 없이 합배송으로 접수 */
+  var combineBase = combineOrderFor(opts.clientId, opts.ymd, opts.round);
+  if (!am.meetsMin && !combineBase) return { ok:false, msg:"최소 주문 금액은 " + won(am.minOrder) + "원입니다. " + won(am.shortfall) + "원 더 담아 주세요." };
 
   /* 규칙 1·2 — 사업자 승인 + 미수 잔액 0원이어야 발주 가능 */
   var cl = getClient(opts.clientId);
@@ -2111,9 +2286,11 @@ function placeOrder(opts) {
     status: confirmed ? STATUS.READY : STATUS.PENDING,
     priceConfirmed: confirmed, priceMode: confirmed ? "fixed" : "ref",
     createdAt: nowIso(), confirmedAt: confirmed ? nowIso() : null,
-    memo: opts.memo || "", stmtNo: confirmed ? nextStmtNo(opts.ymd) : null, history: []
+    memo: opts.memo || "", stmtNo: confirmed ? nextStmtNo(opts.ymd) : null, history: [],
+    combineWith: combineBase ? combineBase.no : null, combined: 0, deliverMemo: "", deliveredAt: null
   };
   state.orders.push(order);
+  if (combineBase) combineBase.combined = (Number(combineBase.combined) || 0) + 1;
   /* 재고 차감 */
   lines.forEach(function (l) {
     var p = findProduct(l.pid);
@@ -2165,7 +2342,9 @@ function confirmDayPrices(ymd, prices) {
     o.items.forEach(function (it) {
       var p = findProduct(it.pid);
       if (!p) return;
-      it.price = Number(prices[p.id] != null ? prices[p.id] : p.ref) || 0;
+      /* 거래처 특별 단가가 있으면 그 값으로 정산한다 (기본 단가 확정은 건너뜀) */
+      var sp = specialPriceOf(o.clientId, p.id);
+      it.price = sp > 0 ? sp : (Number(prices[p.id] != null ? prices[p.id] : p.ref) || 0);
       it.amount = it.price * it.qty;
     });
     o.itemsAmount = o.items.reduce(function (s, it) { return s + it.amount; }, 0);
@@ -2674,6 +2853,400 @@ function applyBulkPrices(text, ymd) {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   v9 — 도매 사장님 핵심 실무 10기능 (데이터·계산)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── 날짜 차이 (일) ─────────────────────────────────── */
+function daysBetween(fromYmd, toYmd) {
+  var a = /^(\d{4})-(\d{2})-(\d{2})$/.exec(fromYmd || "");
+  var b = /^(\d{4})-(\d{2})-(\d{2})$/.exec(toYmd || "");
+  if (!a || !b) return 0;
+  var d1 = Date.UTC(Number(a[1]), Number(a[2]) - 1, Number(a[3]));
+  var d2 = Date.UTC(Number(b[1]), Number(b[2]) - 1, Number(b[3]));
+  return Math.round((d2 - d1) / 86400000);
+}
+
+/* ── 6. 거래처별 고정/특별 단가 (사장님만 정한다 · 손님 화면엔 가격만) ── */
+function specialPricesOf(cid) {
+  var cl = getClient(cid), out = {};
+  if (!cl || !cl.prices || typeof cl.prices !== "object") return out;
+  Object.keys(cl.prices).forEach(function (pid) {
+    var v = Number(cl.prices[pid]) || 0;
+    if (v > 0 && findProduct(pid)) out[pid] = v;
+  });
+  return out;
+}
+function specialPriceOf(cid, pid) {
+  var m = specialPricesOf(cid);
+  return Number(m[pid]) || 0;
+}
+function specialPriceCount(cid) { return Object.keys(specialPricesOf(cid)).length; }
+function setSpecialPrice(cid, pid, price) {
+  var cl = getClient(cid);
+  if (!cl || !findProduct(pid)) return null;
+  cl.prices = specialPricesOf(cid);
+  var v = Math.max(0, Number(digits(price)) || 0);
+  if (v > 0) cl.prices[pid] = v; else delete cl.prices[pid];
+  saveState();
+  return v;
+}
+/** 이 거래처에 이 품목을 파는 가격 — 특별 단가가 있으면 그 값, 없으면 그날 단가 */
+function priceForClient(p, ymd, cid) {
+  if (!p) return 0;
+  var sp = specialPriceOf(cid || state.currentClientId, p.id);
+  return sp > 0 ? sp : priceOf(p, ymd);
+}
+/** 특별 단가가 걸린 품목은 ▲▼ 대신 '내 단가'로 고정 표시 */
+function priceDeltaFor(p, ymd, cid) {
+  var sp = specialPriceOf(cid || state.currentClientId, p.id);
+  if (sp > 0) return { prev:sp, now:sp, delta:0, special:true };
+  return priceDelta(p, ymd);
+}
+
+/* ── 7. 거래처 즐겨찾기 (★) ────────────────────────── */
+function favIds(cid) {
+  var cl = getClient(cid);
+  var list = (cl && Array.isArray(cl.favs)) ? cl.favs : [];
+  return list.filter(function (pid) { return !!findProduct(pid); });
+}
+function isFav(cid, pid) { return favIds(cid).indexOf(pid) >= 0; }
+function toggleFav(cid, pid) {
+  var cl = getClient(cid);
+  if (!cl || !findProduct(pid)) return null;
+  var list = favIds(cid);
+  var at = list.indexOf(pid);
+  if (at >= 0) list.splice(at, 1); else list.unshift(pid);
+  cl.favs = list;
+  saveState();
+  return { on:at < 0, count:list.length, product:findProduct(pid) };
+}
+function favProducts(cid) {
+  return favIds(cid).map(function (pid) { return findProduct(pid); }).filter(Boolean);
+}
+
+/* ── 8. 마감 전 추가 합배송 ──────────────────────────
+   같은 날 같은 회차에 이미 접수된 주문이 있으면, 추가 발주는 최소 주문(5만 원) 없이
+   '기존 주문과 합배송'으로 접수한다. */
+function combineOrderFor(cid, ymd, round) {
+  var list = state.orders.filter(function (o) {
+    return o && o.clientId === cid && o.ymd === ymd && (!round || o.round === round) &&
+      o.status !== STATUS.CANCELED;
+  });
+  if (!list.length) return null;
+  list.sort(function (a, b) { return a.no < b.no ? 1 : -1; });
+  return list[0];
+}
+
+/* ── 9. 품절 대체품 추천 ───────────────────────────── */
+function inStock(p) { return !!p && !p.soldOut && p.stock > 0; }
+/** 품절 품목의 대체품 — 사장님이 지정한 품목 → 같은 품목의 다른 등급·단위 → 같은 분류 */
+function substituteOf(p) {
+  if (!p) return null;
+  if (p.sub) {
+    var fixed = findProduct(p.sub);
+    if (inStock(fixed) && fixed.id !== p.id) return fixed;
+  }
+  var pool = state.products.filter(function (x) { return x.id !== p.id && inStock(x); });
+  function cheap(a, b) { return priceOf(a, todayYmd()) - priceOf(b, todayYmd()); }
+  var same = pool.filter(function (x) { return x.base === p.base; });
+  if (same.length) return same.sort(cheap)[0];
+  var near = pool.filter(function (x) { return x.cat === p.cat; });
+  if (near.length) return near.sort(cheap)[0];
+  return pool.length ? pool.sort(cheap)[0] : null;
+}
+function setSubstitute(pid, subId) {
+  var p = findProduct(pid);
+  if (!p) return null;
+  var s = subId ? findProduct(subId) : null;
+  p.sub = (s && s.id !== p.id) ? s.id : "";
+  saveState();
+  return p;
+}
+
+/* ── 10. 배송 완료 메모 (납품 위치) ────────────────── */
+function completeDelivery(no, memo) {
+  var o = findOrder(no);
+  if (!o || o.status !== STATUS.DISPATCHED) return null;
+  o.status = STATUS.DELIVERED;
+  o.deliveredAt = nowIso();
+  o.deliverMemo = String(memo == null ? "" : memo).replace(/\s+/g, " ").trim().slice(0, 80);
+  o.history = o.history || [];
+  o.history.push({ at:nowIso(), text:"배송 완료" + (o.deliverMemo ? " — " + o.deliverMemo : "") });
+  saveState();
+  return o;
+}
+
+/* ── 1. 회차별 상차·피킹 리스트 ────────────────────── */
+/** 한 회차(또는 하루 전체)에 실을 품목별 총수량 + 거래처별 수량 */
+function pickSheet(ymd, round) {
+  var list = batchOrders(ymd, round);
+  var rows = [], index = {}, clients = [];
+  list.forEach(function (o) {
+    var cl = getClient(o.clientId);
+    if (!clients.some(function (c) { return c.id === cl.id; })) {
+      clients.push({ id:cl.id, name:cl.name, no:o.no });
+    }
+    (o.items || []).forEach(function (it) {
+      var key = String(it.pid || it.name);
+      var row = index[key];
+      if (!row) {
+        var p = findProduct(it.pid);
+        row = index[key] = {
+          pid:it.pid, name:it.name, base:p ? (p.base || p.name) : it.name,
+          grade:p ? p.grade : "", unit:p ? unitLabelOf(p) : (it.spec && it.spec !== "-" ? it.spec : ""),
+          emoji:p ? p.emoji : "🥬", total:0, clients:[]
+        };
+        rows.push(row);
+      }
+      var qty = Number(it.qty) || 0;
+      row.total += qty;
+      var hit = row.clients.filter(function (x) { return x.id === cl.id; })[0];
+      if (hit) hit.qty += qty;
+      else row.clients.push({ id:cl.id, name:cl.name, qty:qty });
+    });
+  });
+  var order = {};
+  state.products.forEach(function (p, i) { order[p.id] = i; });
+  rows.sort(function (a, b) {
+    var ia = order[a.pid] == null ? 99 : order[a.pid];
+    var ib = order[b.pid] == null ? 99 : order[b.pid];
+    return ia - ib;
+  });
+  return {
+    ymd:ymd, round:round || "", label:round ? roundByKey(round).label : "전체",
+    dispatch:round ? roundByKey(round).dispatch : "",
+    rows:rows, clients:clients, orderCount:list.length,
+    totalQty:rows.reduce(function (s, r) { return s + r.total; }, 0),
+    totalAmount:list.reduce(function (s, o) { return s + (Number(o.total) || 0); }, 0)
+  };
+}
+/** 상차 피킹표 A4 — 품목 · 총수량 · 거래처별 수량 · 피킹 체크칸 */
+function pickSheetHTML(sheet) {
+  var s = state.store;
+  var body = sheet.rows.map(function (r, i) {
+    var who = r.clients.map(function (c) { return c.name + " " + c.qty; }).join(" · ");
+    return "<tr>" +
+      '<td class="c">' + (i + 1) + "</td>" +
+      '<td class="pn"><b>' + esc(r.base) + "</b>" + (r.grade ? " (" + esc(r.grade) + ")" : "") +
+        (r.unit ? ' <span class="u">' + esc(r.unit) + "</span>" : "") + "</td>" +
+      '<td class="q"><b>' + r.total + "</b></td>" +
+      '<td class="who">' + esc(who) + "</td>" +
+      '<td class="chk"></td>' +
+      "</tr>";
+  }).join("");
+  var blanks = Math.max(0, 16 - sheet.rows.length);
+  for (var i = 0; i < blanks; i++) {
+    body += '<tr class="blank"><td></td><td></td><td></td><td></td><td></td></tr>';
+  }
+  return '<div class="sheet pick-sheet">' +
+    '<div class="pk-head">' +
+      '<div class="pk-title"><h1>상차 피킹표</h1><span>' + esc(s.name) + " " + esc(s.branch || "") + "</span></div>" +
+      '<div class="pk-when"><b>' + fmtDotDow(sheet.ymd) + " " + esc(sheet.label) + " 배달</b>" +
+        "<span>" + (sheet.dispatch ? "출발 " + esc(sheet.dispatch) + " · " : "") +
+        "거래처 " + sheet.clients.length + "곳 · " + sheet.rows.length + "품목 · 총 " + sheet.totalQty + "</span></div>" +
+    "</div>" +
+    '<table class="pk-table"><colgroup><col style="width:9mm"><col><col style="width:20mm"><col style="width:62mm"><col style="width:14mm"></colgroup>' +
+      "<thead><tr><th>번호</th><th>품목 (등급 · 단위)</th><th>총수량</th><th>거래처별 수량</th><th>피킹</th></tr></thead>" +
+      "<tbody>" + body + "</tbody></table>" +
+    '<div class="pk-foot"><span>품목별 총수량대로 먼저 모으고, 오른쪽 거래처별 수량으로 나눠 담으세요.</span>' +
+      "<span>" + esc(s.phone || "") + "</span></div>" +
+    "</div>";
+}
+
+/* ── 2. 매입원가 · 예상 마진 ───────────────────────── */
+function marginOf(p, sellPrice) {
+  var sell = Math.max(0, Number(sellPrice) || 0);
+  var cost = Math.max(0, Number(p && p.cost) || 0);
+  var margin = sell - cost;
+  return {
+    cost:cost, sell:sell, margin:margin, costKnown:cost > 0,
+    rate:sell > 0 ? (Math.round(Math.abs(margin) / sell * 1000) / 10) * (margin < 0 ? -1 : 1) : 0
+  };
+}
+
+/* ── 3. 월말 정산 · CSV ────────────────────────────── */
+function monthOf(ymd) { return String(ymd || "").slice(0, 7); }
+function thisMonth() { return monthOf(todayYmd()); }
+function monthLabel(ym) {
+  var m = /^(\d{4})-(\d{2})$/.exec(ym || "");
+  return m ? m[1] + "년 " + Number(m[2]) + "월" : (ym || "");
+}
+/** 거래처 한 곳의 그 달 정산 — 출고액 · 반품차감 · 입금액 · 월말 잔액 */
+function monthStat(cid, ym) {
+  var cl = getClient(cid), month = ym || thisMonth();
+  var end = month + "-31";
+  var list = state.orders.filter(function (o) {
+    return o && o.clientId === cid && o.status !== STATUS.CANCELED && monthOf(o.ymd) === month;
+  });
+  var out = 0, claim = 0, paid = 0;
+  list.forEach(function (o) {
+    out += Number(o.total) || 0;
+    claim += Number(o.claimTotal) || 0;
+    if (isImmediate(o)) paid += Number(o.total) || 0;   // 즉시결제는 그날 입금 처리
+  });
+  (cl.payments || []).forEach(function (p) {
+    if (monthOf(p.ymd) === month) paid += Number(p.amount) || 0;
+  });
+  var bal = Number(cl.prevBalance) || 0;
+  state.orders.filter(function (o) {
+    return o && o.clientId === cid && o.status !== STATUS.CANCELED && o.ymd <= end;
+  }).forEach(function (o) {
+    bal += Number(o.total) || 0;
+    if (isImmediate(o)) bal -= Number(o.total) || 0;
+  });
+  (cl.payments || []).forEach(function (p) {
+    if (String(p.ymd || "") <= end) bal -= Number(p.amount) || 0;
+  });
+  return {
+    cid:cid, name:cl.name, bizNo:cl.bizNo || "", ym:month,
+    count:list.length, out:out, claim:claim, paid:paid,
+    balance:Math.max(0, bal), current:buildLedger(cid).balance
+  };
+}
+function monthRows(ym) {
+  return state.clients.filter(function (c) {
+    return (c.status || CLIENT.APPROVED) === CLIENT.APPROVED;
+  }).map(function (c) { return monthStat(c.id, ym); })
+    .filter(function (r) { return r.count > 0 || r.paid > 0 || r.balance > 0; });
+}
+function monthTotals(ym) {
+  var t = { count:0, out:0, claim:0, paid:0, balance:0, clients:0 };
+  monthRows(ym).forEach(function (r) {
+    t.clients++; t.count += r.count; t.out += r.out; t.claim += r.claim; t.paid += r.paid; t.balance += r.balance;
+  });
+  return t;
+}
+function csvCell(v) {
+  var s = String(v == null ? "" : v);
+  return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+}
+function csvLine(arr) { return arr.map(csvCell).join(","); }
+/** 사장님 — 거래처별 월말 정산 CSV (전체 거래처) */
+function monthCsvAll(ym) {
+  var month = ym || thisMonth();
+  var lines = [csvLine(["거래처", "사업자등록번호", "출고건수", "출고액", "반품차감", "입금액", "월말잔액"])];
+  monthRows(month).forEach(function (r) {
+    lines.push(csvLine([r.name, r.bizNo, r.count, r.out, r.claim, r.paid, r.balance]));
+  });
+  var t = monthTotals(month);
+  lines.push(csvLine(["합계", "", t.count, t.out, t.claim, t.paid, t.balance]));
+  return lines.join("\r\n");
+}
+/** 손님 — 내 거래 내역만 CSV (다른 거래처 정보 없음) */
+function monthCsvClient(cid, ym) {
+  var month = ym || thisMonth();
+  var cl = getClient(cid);
+  var lines = [csvLine(["일자", "회차", "주문번호", "출고액", "반품차감", "입금액", "비고"])];
+  state.orders.filter(function (o) {
+    return o && o.clientId === cid && o.status !== STATUS.CANCELED && monthOf(o.ymd) === month;
+  }).sort(function (a, b) { return a.no < b.no ? -1 : 1; }).forEach(function (o) {
+    lines.push(csvLine([
+      o.ymd, roundByKey(o.round).label, o.no, Number(o.total) || 0, Number(o.claimTotal) || 0,
+      isImmediate(o) ? (Number(o.total) || 0) : 0, o.status === STATUS.DELIVERED ? "배송완료" : ""
+    ]));
+  });
+  (cl.payments || []).forEach(function (p) {
+    if (monthOf(p.ymd) === month) {
+      lines.push(csvLine([p.ymd, "입금", p.id || "", 0, 0, Number(p.amount) || 0, p.memo || "입금 기록"]));
+    }
+  });
+  var st = monthStat(cid, month);
+  lines.push("");
+  lines.push(csvLine(["합계", "", st.count + "건", st.out, st.claim, st.paid, "월말잔액 " + st.balance]));
+  return lines.join("\r\n");
+}
+/** CSV 내려받기 — 엑셀에서 바로 열리게 UTF-8 BOM을 붙인다 */
+function downloadCsv(filename, text) {
+  window.__lastCsv = { name:filename, text:text };
+  try {
+    var blob = new Blob(["\ufeff" + text], { type:"text/csv;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url; a.download = filename; a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      try { URL.revokeObjectURL(url); a.parentNode.removeChild(a); } catch (e) {}
+    }, 1200);
+    return true;
+  } catch (e) { return false; }
+}
+/** 월말 정산표 A4 (사장님) */
+function monthSheetHTML(ym) {
+  var month = ym || thisMonth(), s = state.store, T = monthTotals(month);
+  var rows = monthRows(month).map(function (r, i) {
+    return "<tr><td class=\"c\">" + (i + 1) + '</td><td class="pn">' + esc(r.name) + '</td><td class="q">' + r.count +
+      '</td><td class="n">' + won(r.out) + '</td><td class="n">' + (r.claim > 0 ? "−" : "") + won(r.claim) + '</td><td class="n">' + won(r.paid) +
+      '</td><td class="n"><b>' + won(r.balance) + "</b></td></tr>";
+  }).join("");
+  var blanks = Math.max(0, 10 - monthRows(month).length);
+  for (var i = 0; i < blanks; i++) rows += '<tr class="blank"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>';
+  return '<div class="sheet month-sheet">' +
+    '<div class="pk-head"><div class="pk-title"><h1>월말 정산표</h1><span>' + esc(s.name) + " " + esc(s.branch || "") + "</span></div>" +
+      '<div class="pk-when"><b>' + monthLabel(month) + "</b><span>거래처 " + T.clients + "곳 · " + T.count + "건</span></div></div>" +
+    '<table class="pk-table"><colgroup><col style="width:9mm"><col><col style="width:14mm"><col style="width:26mm"><col style="width:24mm"><col style="width:26mm"><col style="width:28mm"></colgroup>' +
+      "<thead><tr><th>번호</th><th>거래처</th><th>출고</th><th>출고액</th><th>반품차감</th><th>입금액</th><th>월말잔액</th></tr></thead>" +
+      "<tbody>" + rows + "</tbody>" +
+      "<tfoot><tr><td></td><td>합계</td><td class=\"q\">" + T.count + '</td><td class="n">' + won(T.out) +
+      '</td><td class="n">' + (T.claim > 0 ? "−" : "") + won(T.claim) + '</td><td class="n">' + won(T.paid) + '</td><td class="n"><b>' + won(T.balance) + "</b></td></tr></tfoot></table>" +
+    '<div class="pk-foot"><span>입금 계좌: ' + esc(accountText().text) + "</span><span>" + esc(s.phone || "") + "</span></div>" +
+    "</div>";
+}
+
+/* ── 4. 미수 · 정산 안내 문구 (카톡/문자 복사) ──────── */
+function settlementMessage(cid) {
+  var cl = getClient(cid);
+  var bal = buildLedger(cid).balance;
+  var acc = digits(state.store.account)
+    ? "계좌: " + [state.store.bank, state.store.account, state.store.holder].filter(Boolean).join(" ")
+    : "입금 계좌는 가게로 문의";
+  return cl.name + " 사장님, " + state.store.name + "입니다. 현재 미수 잔액 " + won(bal) + "원(" + acc + ") 안내드립니다.";
+}
+/** 클립보드 복사 — 최신 브라우저 API + 예전 방식(execCommand) 둘 다 시도 */
+function copyText(text) {
+  window.__lastCopy = text;
+  var ok = false;
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.left = "0";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    if (ta.setSelectionRange) ta.setSelectionRange(0, text.length);
+    ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+  } catch (e) { ok = false; }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { window.__copied = true; }, function () {});
+    }
+  } catch (e) {}
+  return ok;
+}
+
+/* ── 5. 단골 이탈(미발주) ──────────────────────────── */
+/** 승인 거래처 중 마지막 발주가 days일 이상 지난 곳 (발주 이력 없는 신규는 뺀다) */
+function idleClients(days) {
+  var n = Number(days) > 0 ? Number(days) : 3;
+  var t = todayYmd(), out = [];
+  state.clients.forEach(function (c) {
+    if ((c.status || CLIENT.APPROVED) !== CLIENT.APPROVED) return;
+    var last = latestOrderOf(c.id);
+    if (!last) return;
+    var gap = daysBetween(last.ymd, t);
+    if (gap < n) return;
+    out.push({ client:c, last:last, days:gap, phone:c.phone || "", balance:buildLedger(c.id).balance });
+  });
+  out.sort(function (a, b) { return b.days - a.days; });
+  return out;
+}
+
+/* ═══════════════════════════════════════════════════════════
    UI — 화면 렌더링
    ═══════════════════════════════════════════════════════════ */
 
@@ -2903,10 +3476,27 @@ function renderB2B() {
   }
 
   renderReorder();
+  renderFavBox();
   renderListMeta();
   renderCatChips();
   renderProdList();
   renderLiveProgress();
+}
+
+/* ── 7. 내 즐겨찾기 (★ 고정 · 발주하기 맨 위) ───────── */
+function renderFavBox() {
+  var box = $("#favBox");
+  if (!box) return;
+  var cl = currentClient();
+  if (!cl) { box.innerHTML = ""; return; }
+  var list = favProducts(cl.id);
+  if (!list.length) {
+    box.innerHTML = '<p class="fav-empty">★ 를 누르면 <b>내 즐겨찾기</b>에 고정되어 맨 위에서 바로 담을 수 있어요.</p>';
+    return;
+  }
+  var listDate = ui.listDate || currentSlot().ymd;
+  box.innerHTML = '<div class="fav-head"><b>★ 내 즐겨찾기</b><span>' + list.length + '품목 · ★ 다시 누르면 해제</span></div>' +
+    '<div class="fav-list">' + list.map(function (p) { return prodCardHTML(p, listDate, true); }).join("") + "</div>";
 }
 
 /* ── 어제 주문 그대로 담기 (배달 선택 바로 아래 큰 버튼) ── */
@@ -2988,45 +3578,59 @@ function renderProdList() {
       : '<div class="empty"><div class="ei">🥬</div><b>이 분류에 품목이 없습니다</b></div>';
     return;
   }
-  $("#prodList").innerHTML = list.map(function (p) {
-    var qty = Number(cart[p.id]) || 0;
-    var out = p.soldOut || p.stock <= 0;
-    var price = priceOf(p, listDate);
-    var ctl;
-    if (out) {
-      ctl = '<button class="add-btn is-gray" data-act="restock" data-pid="' + p.id + '">재입고 알림</button>';
-    } else if (qty > 0) {
-      ctl = '<div class="stepper">' +
-        '<button data-act="qty" data-pid="' + p.id + '" data-d="-1" aria-label="' + esc(p.name) + ' 줄이기">−</button>' +
-        '<input type="number" inputmode="numeric" data-act="qty-set" data-pid="' + p.id + '" value="' + qty + '" min="0" aria-label="' + esc(p.name) + ' 수량">' +
-        '<button data-act="qty" data-pid="' + p.id + '" data-d="1" aria-label="' + esc(p.name) + ' 늘리기">＋</button>' +
-        "</div>";
-    } else {
-      ctl = '<button class="add-btn" data-act="add" data-pid="' + p.id + '">＋ 담기</button>';
-    }
-    var stockTxt = out ? "품절" : "재고 " + p.stock;
-    var stockCls = out ? "st-out" : (p.stock <= 5 ? "st-low" : "");
-    /* 등급·단위 배지 — 특 · 1박스 / 상 · 1박스 / 1kg 처럼 한 덩어리로 크게 */
-    var badge = '<span class="p-badge' + (p.grade ? " has-grade" : "") + '">' +
-      (p.grade ? "<b>" + esc(p.grade) + "</b> · " : "") + esc(unitLabelOf(p)) + "</span>";
-    var dd = priceDelta(p, listDate);
-    var deltaHTML = (dd && dd.delta)
-      ? '<div class="p-delta ' + (dd.delta < 0 ? "down" : "up") + '">' +
-        (dd.delta < 0 ? "▼" : "▲") + " " + won(Math.abs(dd.delta)) + "원</div>"
-      : "";
-    return '<article class="p-row' + (out ? " out" : "") + '" data-row="' + p.id + '">' +
-      '<div class="p-thumb" aria-hidden="true">' + p.emoji + "</div>" +
-      '<div class="p-main">' +
-        '<div class="p-name">' + esc(p.base || p.name) + "</div>" +
-        '<div class="p-tags">' + badge + '<span class="p-stock ' + stockCls + '">' + stockTxt + "</span></div>" +
-      "</div>" +
-      '<div class="p-side">' +
-        '<div class="p-price"><span class="amt">' + won(price) + "<small>원</small></span></div>" +
-        deltaHTML +
-        ctl +
-      "</div>" +
-      "</article>";
-  }).join("");
+  $("#prodList").innerHTML = list.map(function (p) { return prodCardHTML(p, listDate, false); }).join("");
+}
+
+/** 품목 카드 한 장 — 단가표 · 즐겨찾기에서 같이 쓴다 */
+function prodCardHTML(p, listDate, inFav) {
+  var qty = Number(cart[p.id]) || 0;
+  var out = p.soldOut || p.stock <= 0;
+  var price = priceForClient(p, listDate, state.currentClientId);
+  var ctl;
+  if (out) {
+    ctl = '<button class="add-btn is-gray" data-act="restock" data-pid="' + p.id + '">재입고 알림</button>';
+  } else if (qty > 0) {
+    ctl = '<div class="stepper">' +
+      '<button data-act="qty" data-pid="' + p.id + '" data-d="-1" aria-label="' + esc(p.name) + ' 줄이기">−</button>' +
+      '<input type="number" inputmode="numeric" data-act="qty-set" data-pid="' + p.id + '" value="' + qty + '" min="0" aria-label="' + esc(p.name) + ' 수량">' +
+      '<button data-act="qty" data-pid="' + p.id + '" data-d="1" aria-label="' + esc(p.name) + ' 늘리기">＋</button>' +
+      "</div>";
+  } else {
+    ctl = '<button class="add-btn" data-act="add" data-pid="' + p.id + '">＋ 담기</button>';
+  }
+  var stockTxt = out ? "품절" : "재고 " + p.stock;
+  var stockCls = out ? "st-out" : (p.stock <= 5 ? "st-low" : "");
+  /* 등급·단위 배지 — 특 · 1박스 / 상 · 1박스 / 1kg 처럼 한 덩어리로 크게 */
+  var badge = '<span class="p-badge' + (p.grade ? " has-grade" : "") + '">' +
+    (p.grade ? "<b>" + esc(p.grade) + "</b> · " : "") + esc(unitLabelOf(p)) + "</span>";
+  var dd = priceDeltaFor(p, listDate, state.currentClientId);
+  var deltaHTML = (dd && dd.delta)
+    ? '<div class="p-delta ' + (dd.delta < 0 ? "down" : "up") + '">' +
+      (dd.delta < 0 ? "▼" : "▲") + " " + won(Math.abs(dd.delta)) + "원</div>"
+    : "";
+  var fav = isFav(state.currentClientId, p.id);
+  var star = '<button class="fav-btn' + (fav ? " on" : "") + '" data-act="fav" data-pid="' + p.id + '"' +
+    ' aria-pressed="' + fav + '" aria-label="' + esc(p.name) + ' 즐겨찾기">★</button>';
+  /* 9. 품절이면 대체품 원터치 추천 — "대체 추천: 청양고추 (상) 1박스 [＋ 담기]" */
+  var sub = out ? substituteOf(p) : null;
+  var subHTML = (out && sub)
+    ? '<div class="p-sub"><span class="sub-lb">대체 추천</span>' +
+      '<b class="sub-nm">' + esc(sub.name) + '</b>' +
+      '<button class="add-btn sub-go" data-act="add" data-pid="' + sub.id + '">＋ 담기</button></div>'
+    : "";
+  return '<article class="p-row' + (out ? " out" : "") + '" data-row="' + p.id + '"' + (inFav ? ' data-fav="1"' : '') + '>' +
+    '<div class="p-thumb" aria-hidden="true">' + p.emoji + "</div>" +
+    '<div class="p-main">' +
+      '<div class="p-name">' + esc(p.base || p.name) + "</div>" +
+      '<div class="p-tags">' + badge + '<span class="p-stock ' + stockCls + '">' + stockTxt + "</span>" + star + "</div>" +
+    "</div>" +
+    '<div class="p-side">' +
+      '<div class="p-price"><span class="amt">' + won(price) + "<small>원</small></span></div>" +
+      deltaHTML +
+      ctl +
+    "</div>" +
+    subHTML +
+    "</article>";
 }
 
 /* ── 하단 바 ────────────────────────────────────────── */
@@ -3042,19 +3646,23 @@ function renderActionbar() {
   var am = calcAmounts(lines);
   var gate = clientGate(state.currentClientId);
   var sl = currentSlot();
+  /* 8. 같은 날 같은 회차에 이미 접수된 주문이 있으면 최소 주문 없이 합배송 */
+  var combineBase = isLoggedIn() ? combineOrderFor(state.currentClientId, sl.ymd, sl.round) : null;
   $("#abCnt").textContent = am.kinds + "품목 · " + am.qty + "개";
   $("#abAmt").innerHTML = won(am.itemsAmount) + "<small>원</small>";
   var btn = $("#abBtn");
   var prog = $("#abProgress");
   prog.hidden = false;
   prog.querySelector("i").style.width = (am.minOrder > 0 ? Math.min(100, Math.round(am.itemsAmount / am.minOrder * 100)) : 100) + "%";
-  if (am.meetsMin && !gate.blocked) {
-    $("#abHint").innerHTML = "<b>" + slotText(sl.ymd, sl.round) + " 배달</b> · " +
+  if ((am.meetsMin || combineBase) && !gate.blocked) {
+    $("#abHint").innerHTML = (combineBase
+      ? "<b>기존 주문과 합배송</b> · " + slotText(sl.ymd, sl.round) + " 배달"
+      : "<b>" + slotText(sl.ymd, sl.round) + " 배달</b>") + " · " +
       (Number(state.policy.shipFee) ? "배송비 " + won(state.policy.shipFee) + "원" : "무료배송") +
       (!creditAllowed(currentClient(), am.total) ? " · 10만 원↑ <b>즉시결제</b>" : "");
     prog.querySelector("i").style.background = "var(--green)";
     btn.disabled = false;
-    btn.textContent = "발주하기";
+    btn.textContent = (combineBase && !am.meetsMin) ? "합배송으로 발주" : "발주하기";
   } else if (gate.blocked) {
     $("#abHint").innerHTML = gate.code === "BALANCE"
       ? "미수 <b>" + won(gate.balance) + "원</b> 입금 전 발주 불가"
@@ -3076,6 +3684,8 @@ function renderCartDrawer() {
   var lines = cartLines(listDate);
   var am = calcAmounts(lines);
   var gate = clientGate(state.currentClientId);
+  var slNow = currentSlot();
+  var combineBase = combineOrderFor(state.currentClientId, slNow.ymd, slNow.round);
   var body = lines.length ? lines.map(function (l) {
     return '<div class="cline">' +
       '<div class="ci" aria-hidden="true">' + l.p.emoji + "</div>" +
@@ -3100,11 +3710,12 @@ function renderCartDrawer() {
         '<div class="sum-row"><span class="lb">배송비</span><span class="' + (am.shipFee ? "" : "free") + '">' + (am.shipFee ? won(am.shipFee) + "원" : "무료") + "</span></div>" +
         '<div class="sum-row total"><span>합계</span><span class="amt">' + won(am.total) + "원</span></div>" +
       "</div>" +
-      (am.meetsMin ? "" : '<div class="notice" style="margin-bottom:10px"><span class="ni">!</span><div>최소 주문 <b>' + won(am.minOrder) + "원</b>부터 발주할 수 있어요. <b>" + won(am.shortfall) + "원</b> 더 담아 주세요.</div></div>") +
+      (combineBase ? '<div class="notice green" style="margin-bottom:10px"><span class="ni">🚚</span><div><b>기존 주문과 합배송</b> — 같은 회차 주문(' + esc(combineBase.no) + ')이 있어 최소 주문 없이 바로 접수됩니다.</div></div>'
+        : (am.meetsMin ? "" : '<div class="notice" style="margin-bottom:10px"><span class="ni">!</span><div>최소 주문 <b>' + won(am.minOrder) + "원</b>부터 발주할 수 있어요. <b>" + won(am.shortfall) + "원</b> 더 담아 주세요.</div></div>")) +
       (gate.blocked ? '<div class="notice red" style="margin-bottom:10px"><span class="ni">🔒</span><div>' +
         esc(gate.msg) + "</div></div>" : "") +
-      '<button class="btn btn-primary btn-block" data-act="checkout"' + (lines.length && am.meetsMin && !gate.blocked ? "" : " disabled") + ">" +
-        (gate.blocked ? "발주 불가" : (am.meetsMin ? "발주서 작성" : "최소 주문 " + won(am.minOrder) + "원")) + "</button>" +
+      '<button class="btn btn-primary btn-block" data-act="checkout"' + (lines.length && (am.meetsMin || combineBase) && !gate.blocked ? "" : " disabled") + ">" +
+        (gate.blocked ? "발주 불가" : ((am.meetsMin || combineBase) ? "발주서 작성" : "최소 주문 " + won(am.minOrder) + "원")) + "</button>" +
     "</div>"
   );
 }
@@ -3233,12 +3844,15 @@ function renderCheckout() {
           : '<div class="pay-box" style="margin-top:10px"><b>외상은 하루치까지만 가능합니다.</b> 오늘 출고분은 다음 날 정산되고, 미수 잔액이 남아 있으면 다음 발주가 막힙니다.</div>')) +
     "</div>";
 
-  var canPlace = am.meetsMin && !gate.blocked && (!immediate || co.depositChecked);
+  /* 8. 마감 전 추가 발주 — 같은 날 같은 회차 기존 주문과 합배송이면 최소 주문 없이 접수 */
+  var combineBase = combineOrderFor(clCo.id, co.ymd, co.round);
+  var canSend = am.meetsMin || !!combineBase;
+  var canPlace = canSend && !gate.blocked && (!immediate || co.depositChecked);
   var placeLabel = gate.blocked
     ? (gate.code === "BALANCE" ? "발주 불가 — 미수 " + won(gate.balance) + "원 입금 전" : "발주 불가 — 가입 승인 대기")
-    : (!am.meetsMin ? "최소 주문 " + won(am.minOrder) + "원"
+    : (!canSend ? "최소 주문 " + won(am.minOrder) + "원"
       : (immediate ? (co.depositChecked ? won(am.total) + "원 즉시결제로 접수" : "입금 완료 체크 후 접수 가능")
-        : won(am.total) + "원 외상 발주 확정"));
+        : (combineBase && !am.meetsMin ? won(am.total) + "원 합배송으로 접수" : won(am.total) + "원 외상 발주 확정")));
 
   $("#coBody").innerHTML =
     gateBannerHTML(gate) +
@@ -3262,7 +3876,8 @@ function renderCheckout() {
         '<div class="sum-row"><span class="lb">배송비 <span class="tiny muted">(' + esc(state.policy.area) + ")</span></span><span class=\"" + (am.shipFee ? "" : "free") + "\">" + (am.shipFee ? won(am.shipFee) + "원" : "무료") + "</span></div>" +
         '<div class="sum-row total"><span>합계</span><span class="amt">' + won(am.total) + "원</span></div>" +
       "</div>" +
-      (am.meetsMin ? "" : '<div class="notice" style="margin-top:10px"><span class="ni">!</span><div><b>최소 주문 ' + won(am.minOrder) + "원</b> 미만입니다. <b>" + won(am.shortfall) + "원</b> 더 담아야 발주할 수 있어요.</div></div>") +
+      (combineBase ? '<div class="notice green" style="margin-top:10px" id="combineNotice"><span class="ni">🚚</span><div><b>기존 주문과 합배송</b> — 같은 날 ' + roundByKey(co.round).label + "에 이미 접수된 주문(" + esc(combineBase.no) + ")이 있습니다. 최소 주문 " + won(am.minOrder) + "원 없이 바로 접수되며, 한 번에 배달됩니다.</div></div>"
+        : (am.meetsMin ? "" : '<div class="notice" style="margin-top:10px"><span class="ni">!</span><div><b>최소 주문 ' + won(am.minOrder) + "원</b> 미만입니다. <b>" + won(am.shortfall) + "원</b> 더 담아야 발주할 수 있어요.</div></div>")) +
       '<div class="tiny muted" style="margin-top:8px">' + (deal
         ? "이번 발주는 약정에 따라 <b>외상(미수)</b>으로 잡힐 수 있습니다."
         : "10만 원 이상 주문은 외상(미수)에 잡히지 않고 <b>즉시결제 · 입금확인 대기</b>로 구분됩니다.") + "</div>" +
@@ -3275,7 +3890,7 @@ function renderCheckout() {
         esc(placeLabel) + "</button>" +
       '<p class="small" style="margin-top:8px;text-align:center">' +
         (gate.blocked ? "미수 잔액을 정리하거나 가입 승인을 받은 뒤 발주할 수 있습니다."
-          : (!am.meetsMin ? "5만 원 이상 주문부터 발주할 수 있습니다."
+          : (!canSend ? "5만 원 이상 주문부터 발주할 수 있습니다."
             : (immediate ? (co.depositChecked ? "입금 확인 요청으로 접수됩니다." : "입금 완료를 체크해야 접수됩니다.")
               : (isDayConfirmed(co.ymd) ? "확정 단가로 바로 접수됩니다." : "참고가로 접수되고, " + fmtShort(co.ymd) + " 아침 7시 단가 확정 후 금액이 확정됩니다.")))) +
       "</p>" +
@@ -3349,11 +3964,15 @@ function orderCard(o, admin, ledger) {
           (admin ? "<span>" + esc(cl.phone) + "</span>" : "") +
         "</div>" +
       "</div>" +
-      '<div class="badges">' + badgeOf(o) + payBadge(o) + claimBadgesHTML(o) + "</div>" +
+      '<div class="badges">' + badgeOf(o) + payBadge(o) + claimBadgesHTML(o) +
+        (o.combineWith ? '<span class="badge ok">합배송</span>' : "") +
+        (Number(o.combined) > 0 ? '<span class="badge ok">합배송 ' + Number(o.combined) + "건 더</span>" : "") + "</div>" +
     "</div>" +
     (admin ? "" : '<div class="ocard-steps">' + stepsBarHTML(o) + "</div>") +
     '<div class="ocard-items">' + itemLine(o) + (o.memo ? '<div class="tiny" style="margin-top:4px">요청: ' + esc(o.memo) + "</div>" : "") +
-      (Number(o.claimTotal) > 0 ? '<div class="tiny" style="margin-top:4px;color:var(--red)"><b>반품 차감 −' + won(o.claimTotal) + '원</b> (사장님 승인)</div>' : "") + "</div>" +
+      (Number(o.claimTotal) > 0 ? '<div class="tiny" style="margin-top:4px;color:var(--red)"><b>반품 차감 −' + won(o.claimTotal) + '원</b> (사장님 승인)</div>' : "") +
+      (o.combineWith ? '<div class="tiny" style="margin-top:4px">🚚 기존 주문 ' + esc(o.combineWith) + "과 합배송</div>" : "") +
+      (o.deliverMemo ? '<div class="tiny dv-memo" style="margin-top:4px"><b>납품</b> · ' + esc(o.deliverMemo) + "</div>" : "") + "</div>" +
     '<div class="ocard-foot">' +
       '<div><span class="tot">' + won(o.total) + "<small>원</small></span>" +
         (o.priceConfirmed ? "" : ' <span class="tiny" style="color:var(--amber)">참고가 기준 · 확정 후 변동</span>') +
@@ -3382,6 +4001,8 @@ function renderStmtTab() {
         "<div>입금액 합계<b>" + won(L.totalPaid) + "</b></div>" +
       "</div>" +
     "</div>";
+
+  if ($("#stmtMonth")) $("#stmtMonth").innerHTML = monthCardHTML(cl.id, { ym:thisMonth() });
 
   $("#stmtCount").textContent = mine.length + "건";
   if (!mine.length) {
@@ -3432,6 +4053,7 @@ function renderAdminOrders() {
   var list = state.orders.filter(function (o) { return o.ymd === d && o.status !== STATUS.CANCELED; });
   var amount = list.reduce(function (s, o) { return s + o.total; }, 0);
   var pending = list.filter(function (o) { return o.status === STATUS.PENDING; });
+  var idle = idleClients(3);   /* 5. 최근 3일 이상 발주가 없는 단골 */
 
   var groups = state.rounds.map(function (r) {
     var g = list.filter(function (o) { return o.round === r.key; })
@@ -3442,6 +4064,7 @@ function renderAdminOrders() {
     return '<div class="board-group">' +
       '<div class="bg-head"><b>' + r.label + " 배달</b><span class=\"bg-time\">" + r.dispatch + " 출발 · " + r.cutoff + " 마감</span>" +
         '<span class="bg-cnt">' + g.length + "건 " + won(sum) + "원</span>" +
+        (g.length ? '<button class="btn btn-xs" data-act="pick-open" data-ymd="' + d + '" data-round="' + r.key + '">🚚 피킹표</button>' : "") +
         (g.length ? '<button class="btn btn-xs" data-act="batch-round" data-ymd="' + d + '" data-round="' + r.key + '">A4 ' + g.length + '장 인쇄</button>' : "") +
       "</div>" +
       '<div class="bg-body">' + (g.length ? cards : '<div class="empty" style="padding:16px"><b>주문 없음</b></div>') + "</div>" +
@@ -3457,10 +4080,12 @@ function renderAdminOrders() {
       "</div>" +
       '<div class="row" style="gap:6px;flex-wrap:wrap;align-items:center">' +
         '<span class="badge ' + (isDayConfirmed(d) ? "ok" : "pending") + '">' + (isDayConfirmed(d) ? "단가 확정됨" : "단가 미확정") + "</span>" +
+        '<button class="btn btn-sm" data-act="pick-open" data-ymd="' + d + '" data-round="">🚚 상차 피킹표</button>' +
         '<button class="btn btn-sm btn-primary" data-act="batch-day" data-ymd="' + d + '"' + (list.length ? "" : " disabled") + '>A4 일괄 인쇄 (' + list.length + '건)</button>' +
       "</div>" +
     "</div>" +
     claimsPanelHTML() +
+    idleBarHTML(idle) +
     '<div class="stat-grid">' +
       '<div class="stat"><div class="k">발주 건수</div><div class="v">' + list.length + "<small>건</small></div></div>" +
       '<div class="stat"><div class="k">출고 예정 금액</div><div class="v">' + won(amount) + "<small>원</small></div></div>" +
@@ -3579,6 +4204,24 @@ function bulkPanelHTML(ymd) {
     "</div>";
 }
 
+/* ── 매입가 · 예상 마진 (사장님만 · 손님 화면엔 없음) ── */
+function marginBoxHTML(p, sellPrice) {
+  var m = marginOf(p, sellPrice);
+  if (!m.costKnown) return '<span class="mm-lb">예상 마진</span><b class="mm-v none">매입가를 넣으면 계산됩니다</b>';
+  return '<span class="mm-lb">예상 마진</span>' +
+    '<b class="mm-v' + (m.margin < 0 ? " neg" : (m.margin > 0 ? " pos" : "")) + '">' +
+      (m.margin < 0 ? "−" : "+") + won(Math.abs(m.margin)) + "원 · " + (m.rate < 0 ? "−" : "") + Math.abs(m.rate) + "%</b>";
+}
+function updateMarginBox(p, row) {
+  if (!p || !row) return;
+  var box = row.querySelector('[data-margin="' + p.id + '"]');
+  if (!box) return;
+  var sellInp = row.querySelector('input[data-act="draft"]');
+  var sell = sellInp ? Number(digits(sellInp.value)) : p.ref;
+  box.innerHTML = marginBoxHTML(p, sell);
+  box.className = "pm-margin" + (Number(p.cost) > 0 && sell - Number(p.cost) < 0 ? " neg" : "");
+}
+
 /* ── 품목 한 줄 — 가격·재고·품절·삭제 ──────────────── */
 function productManageHTML(p, draft, fixed) {
   var d = draft[p.id] != null ? draft[p.id] : p.ref;
@@ -3610,7 +4253,41 @@ function productManageHTML(p, draft, fixed) {
       '<button class="pm-out' + (p.soldOut ? " on" : "") + '" data-act="prod-soldout" data-pid="' + p.id + '">' +
         (p.soldOut ? "판매 재개" : "품절") + "</button>" +
     "</div>" +
+    '<div class="pm-cost">' +
+      '<label class="pm-fld"><span>매입가 (원)</span>' +
+        '<input type="number" inputmode="numeric" data-act="cost" data-pid="' + p.id + '" value="' + (Number(p.cost) || 0) + '" aria-label="' + esc(p.name) + ' 매입가"></label>' +
+      '<div class="pm-margin' + (Number(p.cost) > 0 && Number(d) - Number(p.cost) < 0 ? " neg" : "") + '" data-margin="' + p.id + '">' +
+        marginBoxHTML(p, d) + "</div>" +
+    "</div>" +
+    (out ? '<div class="pm-sub-row"><span class="sub-lb">품절 대체품</span>' +
+      '<b class="sub-now">' + esc(substituteOf(p) ? "손님 화면 추천: " + substituteOf(p).name : "추천할 품목 없음") + "</b>" +
+      '<button class="btn btn-xs" data-act="sub-open" data-pid="' + p.id + '">대체품 지정</button></div>' : "") +
     "</div>";
+}
+/** 품절 품목의 대체품을 고르는 모달 — 자동 추천 또는 직접 지정 */
+function openSubstitute(pid) {
+  var p = findProduct(pid);
+  if (!p) return;
+  var auto = substituteOf(p);
+  var rows = state.products.filter(function (x) { return x.id !== p.id; }).map(function (x) {
+    var on = p.sub === x.id;
+    var out = x.soldOut || x.stock <= 0;
+    return '<button class="sub-opt' + (on ? " on" : "") + '" data-act="sub-set" data-pid="' + p.id + '" data-sub="' + x.id + '" aria-pressed="' + on + '">' +
+      '<span class="so-b" aria-hidden="true">' + (on ? "✓" : "") + "</span>" +
+      '<span class="grow"><b>' + esc(x.name) + '</b><small>' + (out ? "품절" : "재고 " + x.stock) + " · " + won(x.ref) + "원</small></span>" +
+      "</button>";
+  }).join("");
+  openModal(
+    '<div class="m-head"><h2 id="modalTitle">품절 대체품 · ' + esc(p.name) + '</h2><button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-body">' +
+      '<div class="notice green"><span class="ni">🔄</span><div>손님 화면에서 이 품목이 품절이면 <b>대체 추천</b>과 <b>＋ 담기</b> 버튼이 뜹니다. 비워 두면 같은 품목·분류에서 자동으로 고릅니다.</div></div>' +
+      '<button class="sub-opt' + (!p.sub ? " on" : "") + '" data-act="sub-set" data-pid="' + p.id + '" data-sub="" aria-pressed="' + (!p.sub) + '">' +
+        '<span class="so-b" aria-hidden="true">' + (!p.sub ? "✓" : "") + "</span>" +
+        '<span class="grow"><b>자동 추천</b><small>' + (auto ? "지금 추천: " + esc(auto.name) : "추천 품목 없음") + "</small></span></button>" +
+      '<div class="sub-opts">' + rows + "</div>" +
+    "</div>" +
+    '<div class="m-foot"><button class="btn btn-primary" data-act="modal-close">닫기</button></div>'
+  );
 }
 
 function renderAdminPrices() {
@@ -3676,6 +4353,8 @@ function bizFileMeta(file) {
 
 function renderAdminClients() {
   var q = (ui.clientQuery || "").trim();
+  var idle = idleClients(3);
+  var ym = ui.month || thisMonth();
   var pending = state.clients.filter(function (c) { return c.status === CLIENT.PENDING; });
   var list = state.clients.filter(function (c) {
     if (c.status !== CLIENT.APPROVED) return false;
@@ -3720,6 +4399,8 @@ function renderAdminClients() {
   ) : "";
 
   $("#admClients").innerHTML =
+    monthSettleCardHTML(ym) +
+    idlePanelHTML(idle) +
     '<div class="stat-grid">' +
       '<div class="stat"><div class="k">거래처</div><div class="v">' + approvedAll.length + "<small>곳</small></div></div>" +
       '<div class="stat warn"><div class="k">미수금 합계</div><div class="v">' + won(totalDue) + "<small>원</small></div></div>" +
@@ -3735,7 +4416,9 @@ function renderAdminClients() {
       var g = s.gate;
       return '<div class="client-card" data-cid="' + c.id + '">' +
         '<div class="cc-top"><div><div class="cc-name">' + esc(c.name) +
-          ' <span class="badge tier">' + esc(s.tier.short) + '</span></div><div class="cc-sub">' + esc(c.owner || "-") + " · " + esc(c.phone || "-") + " · " + esc(c.memo || "") + "</div></div>" +
+          ' <span class="badge tier">' + esc(s.tier.short) + '</span>' +
+          (specialPriceCount(c.id) ? ' <span class="badge ok">특별단가 ' + specialPriceCount(c.id) + "</span>" : "") +
+          '</div><div class="cc-sub">' + esc(c.owner || "-") + " · " + esc(c.phone || "-") + " · " + esc(c.memo || "") + "</div></div>" +
           '<span class="badge ' + (s.balance > 0 ? "pending" : "ok") + '">' + (s.balance > 0 ? "미수" : "완납") + "</span></div>" +
         '<div class="cc-money">' +
           "<div>기초 미수<b>" + won(s.base) + "</b></div>" +
@@ -3761,7 +4444,9 @@ function renderAdminClients() {
         (s.immediatePending ? '<div class="tiny" style="margin-top:6px;color:var(--blue)">즉시결제 입금확인 대기 <b>' + won(s.immediatePending) + "원</b></div>" : "") +
         '<div class="acts" style="margin-top:10px">' +
           (s.balance > 0 ? '<button class="btn btn-sm btn-primary" data-act="pay-full" data-cid="' + c.id + '">전액 입금</button>' : "") +
+          '<button class="btn btn-sm" data-act="settle-copy" data-cid="' + c.id + '">📋 정산 안내 복사</button>' +
           '<button class="btn btn-sm" data-act="payment-open" data-cid="' + c.id + '">입금 기록</button>' +
+          '<button class="btn btn-sm btn-ghost" data-act="special-open" data-cid="' + c.id + '">특별 단가' + (specialPriceCount(c.id) ? " " + specialPriceCount(c.id) : "") + '</button>' +
           '<button class="btn btn-sm btn-ghost" data-act="client-edit" data-cid="' + c.id + '">거래처 정보</button>' +
           '<button class="btn btn-sm btn-ghost" data-act="client-stmt" data-cid="' + c.id + '">전표 보기</button>' +
           '<button class="btn btn-sm btn-ghost" data-act="client-view" data-cid="' + c.id + '">손님 화면으로 보기</button>' +
@@ -3830,6 +4515,205 @@ function renderAdminSettings() {
     "</div>" +
 
     '<button class="btn btn-primary btn-block" style="height:48px" data-act="settings-save">설정 저장</button>';
+}
+
+/* ══════════════ 1. 회차별 상차·피킹표 ══════════════ */
+function openPickSheet(ymd, round) {
+  ui.pick = { ymd: ymd || ui.admDate || todayYmd(), round: round || "" };
+  renderPickModal();
+}
+function renderPickModal() {
+  var r = ui.pick || { ymd: ui.admDate || todayYmd(), round: "" };
+  var sheet = pickSheet(r.ymd, r.round);
+  var tabs = [{ key:"", label:"전체" }].concat(state.rounds.map(function (x) { return { key:x.key, label:x.label }; }));
+  var rows = sheet.rows.length ? sheet.rows.map(function (row) {
+    var us = String(row.unit || "").replace(/^[0-9]+/, "") || "개";
+    return '<div class="pk-row" data-pk="' + esc(row.pid) + '">' +
+      '<div class="pk-nm">' + row.emoji + " <b>" + esc(row.base) + "</b>" +
+        (row.grade ? " (" + esc(row.grade) + ")" : "") +
+        (row.unit ? ' <span class="pk-u">' + esc(row.unit) + "</span>" : "") + "</div>" +
+      '<div class="pk-q"><b>' + row.total + "</b><span>" + esc(us) + "</span></div>" +
+      '<div class="pk-who">' + row.clients.map(function (c) { return esc(c.name) + " " + c.qty; }).join(" · ") + "</div>" +
+    "</div>";
+  }).join("") : '<div class="empty" style="padding:16px"><b>이 회차에 실을 주문이 없습니다</b></div>';
+  openModal(
+    '<div class="m-head"><h2 id="modalTitle">상차 피킹표</h2><button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-body">' +
+      '<div class="datechips" style="margin-bottom:9px" id="pickTabs">' + tabs.map(function (t) {
+        return '<button class="dchip" data-act="pick-tab" data-round="' + t.key + '" aria-pressed="' + (r.round === t.key) + '">' + esc(t.label) + "</button>";
+      }).join("") + "</div>" +
+      '<p class="small" style="margin-bottom:8px"><b>' + fmtDotDow(sheet.ymd) + " " + esc(sheet.label) + " 배달" +
+        (sheet.dispatch ? " · " + esc(sheet.dispatch) + " 출발" : "") + "</b> · 거래처 " + sheet.clients.length +
+        "곳 · " + sheet.rows.length + "품목 · 총 " + sheet.totalQty + "</p>" +
+      '<div class="pk-list">' + rows + "</div>" +
+      '<p class="tiny muted" style="margin-top:9px">품목별 총수량대로 먼저 모으고, 거래처별 수량대로 나눠 담으세요. A4로 인쇄해 들고 다닐 수 있습니다.</p>' +
+    "</div>" +
+    '<div class="m-foot"><button class="btn btn-ghost" data-act="modal-close">닫기</button>' +
+      '<button class="btn btn-primary" data-act="pick-print" data-ymd="' + sheet.ymd + '" data-round="' + sheet.round + '">A4 인쇄</button></div>'
+  );
+}
+function printPickSheet(ymd, round) {
+  var sheet = pickSheet(ymd, round);
+  if (!sheet.orderCount) { toast("인쇄할 주문이 없습니다."); return; }
+  $("#printRoot").innerHTML = pickSheetHTML(sheet);
+  window.print();
+  closeModal();
+  toast(fmtShort(ymd) + " " + sheet.label + " 상차 피킹표 — " + sheet.rows.length + "품목 · 총 " + sheet.totalQty + "개");
+}
+
+/* ══════════════ 3. 월말 정산 · CSV ══════════════ */
+/** 손님 거래명세표 탭 — 내 이번 달 정산 (내 것만) */
+function monthCardHTML(cid, opts) {
+  opts = opts || {};
+  var month = opts.ym || thisMonth();
+  var st = monthStat(cid, month);
+  return '<div class="month-card" id="monthCard">' +
+    '<div class="mc-head"><b>이번 달 정산 <span>' + monthLabel(month) + '</span></b>' +
+      '<button class="btn btn-xs" data-act="month-csv-client" data-cid="' + cid + '" data-ym="' + month + '">CSV 다운로드</button></div>' +
+    '<div class="mc-nums">' +
+      '<div><i>출고액</i><b>' + won(st.out) + '</b></div>' +
+      '<div><i>반품차감</i><b class="minus">' + (st.claim > 0 ? "−" : "") + won(st.claim) + '</b></div>' +
+      '<div><i>입금액</i><b>' + won(st.paid) + '</b></div>' +
+      '<div class="bal"><i>잔액</i><b>' + won(st.balance) + '</b></div>' +
+    '</div>' +
+    '<div class="mc-foot">출고 ' + st.count + '건 · ' + monthLabel(month) + ' 기준 (미수 잔액은 그대로 유지)</div>' +
+  '</div>';
+}
+/** 사장님 거래처·미수 탭 — 거래처별 월말 정산 + CSV + A4 인쇄 */
+function monthSettleCardHTML(ym) {
+  var month = ym || thisMonth();
+  var rows = monthRows(month), T = monthTotals(month);
+  var list = rows.length ? rows.map(function (r) {
+    return '<div class="ms-line" data-ms="' + r.cid + '">' +
+      '<div class="ms-nm"><b>' + esc(r.name) + '</b><span>출고 ' + r.count + '건</span></div>' +
+      '<div class="ms-nums">' +
+        '<span>출고 <b>' + won(r.out) + '</b></span>' +
+        '<span>반품 <b class="minus">' + (r.claim > 0 ? "−" : "") + won(r.claim) + '</b></span>' +
+        '<span>입금 <b>' + won(r.paid) + '</b></span>' +
+        '<span class="bal">잔액 <b>' + won(r.balance) + '</b></span>' +
+      '</div></div>';
+  }).join("") : '<div class="tiny muted">이 달 출고 내역이 없습니다.</div>';
+  return '<div class="month-card" id="monthSettle">' +
+    '<div class="mc-head"><b>월말 정산 <span>' + monthLabel(month) + '</span></b>' +
+      '<button class="btn btn-xs" data-act="month-csv" data-ym="' + month + '">CSV 다운로드</button>' +
+      '<button class="btn btn-xs btn-ghost" data-act="month-print" data-ym="' + month + '">정산표 인쇄</button></div>' +
+    '<div class="ms-total"><span>출고액 <b>' + won(T.out) + '</b></span><span>반품 <b>' + (T.claim > 0 ? "−" : "") + won(T.claim) + '</b></span>' +
+      '<span>입금 <b>' + won(T.paid) + '</b></span><span>잔액 <b>' + won(T.balance) + '</b></span></div>' +
+    '<div class="ms-list">' + list + '</div>' +
+    '<p class="tiny muted" style="margin-top:8px">거래처별 이번 달 출고액 · 반품차감 · 입금액 · 잔액입니다. CSV는 엑셀에서 바로 열립니다.</p>' +
+  '</div>';
+}
+function printMonthSettle(ym) {
+  var month = ym || thisMonth();
+  if (!monthRows(month).length) { toast("이 달 정산 내역이 없습니다."); return; }
+  $("#printRoot").innerHTML = monthSheetHTML(month);
+  window.print();
+  toast(monthLabel(month) + " 월말 정산표를 인쇄합니다 (A4)");
+}
+
+/* ══════════════ 4. 정산 안내 복사 ══════════════ */
+function openSettlementCopy(cid) {
+  var cl = getClient(cid);
+  var msg = settlementMessage(cid);
+  var ok = copyText(msg);
+  openModal(
+    '<div class="m-head"><h2 id="modalTitle">정산 안내 복사</h2><button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-body">' +
+      '<div class="notice green"><span class="ni">✓</span><div><b>' + (ok ? "클립보드에 복사했습니다." : "아래 문구를 길게 눌러 복사해 주세요.") +
+        "</b> 카톡·문자에 그대로 붙여넣으면 됩니다.</div></div>" +
+      '<div class="copy-box" id="copyBox">' + esc(msg) + "</div>" +
+      '<p class="tiny muted" style="margin-top:9px">' + esc(cl.name) + " · 미수 잔액 <b>" + won(buildLedger(cid).balance) + "원</b>" +
+        (digits(state.store.account) ? " · " + esc(state.store.bank + " " + state.store.account) : "") + "</p>" +
+    "</div>" +
+    '<div class="m-foot"><button class="btn btn-ghost" data-act="modal-close">닫기</button>' +
+      '<button class="btn btn-primary" data-act="settle-copy-again" data-cid="' + cid + '">다시 복사</button></div>'
+  );
+  toast(ok ? "정산 안내 문구를 복사했습니다 — 카톡·문자에 붙여넣으세요."
+           : "정산 안내 문구를 화면에 띄웠습니다 — 길게 눌러 복사하세요.");
+}
+
+/* ══════════════ 5. 단골 이탈(미발주) ══════════════ */
+function idleBarHTML(idle) {
+  if (!idle || !idle.length) return "";
+  var names = idle.slice(0, 2).map(function (x) { return esc(x.client.name) + " " + x.days + "일"; }).join(" · ");
+  return '<button class="idle-bar" data-act="idle-open">' +
+    '<span class="ib-k">⚠️ 최근 미발주 <b>' + idle.length + "곳</b></span>" +
+    '<span class="ib-nm">' + names + (idle.length > 2 ? " 외 " + (idle.length - 2) + "곳" : "") + "</span>" +
+    '<span class="ib-go">보기 ›</span></button>';
+}
+function idlePanelHTML(idle) {
+  if (!idle || !idle.length) return "";
+  return '<div class="idle-panel" id="idlePanel">' +
+    '<div class="row between" style="margin:0 0 7px"><b style="font-size:13.5px">⚠️ 최근 미발주 <span class="badge pending">' + idle.length + "곳</span></b>" +
+      '<span class="tiny muted">3일 이상 발주 없음</span></div>' +
+    idle.map(function (x) {
+      return '<div class="idle-line"><div class="grow"><b>' + esc(x.client.name) + '</b>' +
+        '<span class="tiny muted">마지막 발주 ' + fmtShort(x.last.ymd) + '&nbsp;·&nbsp;<b>' + x.days + '일 전</b></span></div>' +
+        '<button class="btn btn-xs" data-act="settle-copy" data-cid="' + x.client.id + '">안내 복사</button></div>';
+    }).join("") +
+  '</div>';
+}
+function openIdleModal() {
+  var idle = idleClients(3);
+  openModal(
+    '<div class="m-head"><h2 id="modalTitle">최근 미발주 거래처</h2><button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-body">' +
+      '<p class="small" style="margin-bottom:9px"><b>3일 이상 발주가 없는 단골 ' + idle.length + "곳</b>입니다. 정산 안내를 보내며 한 번 연락해 보세요.</p>" +
+      (idle.length ? idle.map(function (x) {
+        return '<div class="idle-card"><div class="ic-top"><b>' + esc(x.client.name) + '</b>' +
+          '<span class="badge pending">' + x.days + '일 전</span></div>' +
+          '<div class="tiny muted" style="margin-top:3px">마지막 발주 ' + fmtShort(x.last.ymd) + " " + roundByKey(x.last.round).label +
+            " · " + esc(x.phone || "연락처 없음") + " · 미수 " + won(x.balance) + "원</div>" +
+          '<div class="acts" style="margin-top:8px"><button class="btn btn-xs" data-act="settle-copy" data-cid="' + x.client.id + '">📋 정산 안내 복사</button></div></div>';
+      }).join("") : '<div class="empty" style="padding:20px"><b>미발주 거래처가 없습니다</b><p>모든 단골이 최근 3일 안에 발주했습니다.</p></div>') +
+    "</div>" +
+    '<div class="m-foot"><button class="btn btn-primary" data-act="modal-close">확인</button></div>'
+  );
+}
+
+/* ══════════════ 6. 거래처별 특별 단가 ══════════════ */
+function openSpecialPrices(cid) {
+  var cl = getClient(cid);
+  var t = todayYmd();
+  var rows = state.products.map(function (p) {
+    var sp = specialPriceOf(cid, p.id);
+    return '<div class="sp-row" data-pid="' + p.id + '">' +
+      '<div class="grow"><b>' + esc(p.name) + '</b>' +
+        '<span class="tiny muted">기본 ' + won(priceOf(p, t)) + "원" + (sp ? " · 지금 특별 " + won(sp) + "원" : "") + "</span></div>" +
+      '<input type="number" inputmode="numeric" data-sp="' + p.id + '" value="' + (sp || "") + '" placeholder="기본가" aria-label="' + esc(p.name) + ' 특별 단가"></div>';
+  }).join("");
+  openModal(
+    '<div class="m-head"><h2 id="modalTitle">특별 단가 · ' + esc(cl.name) + '</h2><button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-body">' +
+      '<div class="notice green"><span class="ni">🔒</span><div><b>이 거래처 화면에만 적용됩니다.</b><br>손님 화면에는 이 가격만 보이고, 다른 거래처·사장님 기본 단가표는 그대로입니다. 비우면 기본 단가로 돌아갑니다.</div></div>' +
+      '<div class="sp-list">' + rows + "</div>" +
+    "</div>" +
+    '<div class="m-foot"><button class="btn btn-ghost" data-act="modal-close">취소</button>' +
+      '<button class="btn btn-primary" data-act="special-save" data-cid="' + cid + '">특별 단가 저장</button></div>'
+  );
+}
+
+/* ══════════════ 10. 배송 완료 메모 (납품 위치) ══════════════ */
+function openDeliveredMemo(no) {
+  var o = findOrder(no);
+  if (!o) return;
+  var cl = getClient(o.clientId);
+  var quick = ["뒷문 냉장고 앞", "주방 입구", "1층 카운터", "경비실 맡김"];
+  openModal(
+    '<div class="m-head"><h2 id="modalTitle">배송 완료 처리</h2><button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-body">' +
+      '<p class="small"><b>' + esc(cl.name) + "</b> · " + fmtShort(o.ymd) + " " + roundByKey(o.round).label + " · " + o.no + "</p>" +
+      '<div class="cl-sec" style="margin-top:11px"><b>납품 위치 한 줄 메모</b>' +
+        '<input id="dlvMemo" data-act="dlv-memo" placeholder="예: 뒷문 냉장고 앞" maxlength="80">' +
+        '<div class="dlv-quick">' + quick.map(function (q) {
+          return '<button class="chip" data-act="dlv-chip" data-text="' + esc(q) + '">' + esc(q) + "</button>";
+        }).join("") + "</div>" +
+        '<p class="tiny muted" style="margin-top:7px">거래처 <b>발주 내역</b>에도 같이 표시됩니다. 비워 두고 완료 처리해도 됩니다.</p>' +
+      "</div>" +
+    "</div>" +
+    '<div class="m-foot"><button class="btn btn-ghost" data-act="advance-yes" data-mode="nomemo" data-no="' + o.no + '">메모 없이 완료</button>' +
+      '<button class="btn btn-primary" data-act="advance-yes" data-no="' + o.no + '">완료 처리</button></div>'
+  );
 }
 
 /* ══════════════ 반품·클레임 (손님 접수 · 사장님 승인) ══════════════ */
@@ -4163,6 +5047,7 @@ function cartQty(pid, delta, abs) {
   renderHeader();
   if (ui.route === "b2b") {
     renderProdList();
+    renderFavBox();
     renderActionbar();
   }
   if (ui.drawer) {
@@ -4472,7 +5357,8 @@ function confirmPlacement() {
   var lines = cartLines(co.ymd);
   if (!lines.length) { toast("담은 품목이 없습니다."); return; }
   var am = calcAmounts(lines);
-  if (!am.meetsMin) { toast("최소 주문 " + won(am.minOrder) + "원부터 발주할 수 있어요. " + won(am.shortfall) + "원 더 담아 주세요."); return; }
+  var combineBase = combineOrderFor(co.client.id, co.ymd, co.round);
+  if (!am.meetsMin && !combineBase) { toast("최소 주문 " + won(am.minOrder) + "원부터 발주할 수 있어요. " + won(am.shortfall) + "원 더 담아 주세요."); return; }
   /* 규칙 1·2 — 승인 전 또는 미수 잔액이 있으면 확정 불가 */
   var gate = clientGate(co.client.id);
   if (gate.blocked) { toast(gate.msg); return; }
@@ -4493,6 +5379,7 @@ function confirmPlacement() {
         '<div class="sum-row"><span class="lb">배송비</span><span>' + (am.shipFee ? won(am.shipFee) + "원" : "무료") + "</span></div>" +
         '<div class="sum-row total"><span>합계</span><span class="amt">' + won(am.total) + "원</span></div>" +
         '<div class="sum-row"><span class="lb">결제 방식</span><span><b>' + (payMode === PAY.IMMEDIATE ? "즉시 결제(계좌이체)" : (creditDaysOf(coClient) > 1 ? "외상(약정 기한 내 정산)" : "외상(하루치·다음 날 정산)")) + "</b></span></div>" +
+        (combineBase ? '<div class="sum-row"><span class="lb">합배송</span><span>기존 주문 ' + esc(combineBase.no) + "과 함께 배달</span></div>" : "") +
       "</div>" +
       (payMode === PAY.IMMEDIATE
         ? '<div class="pay-box" style="margin-top:12px"><b>입금 확인 요청으로 접수됩니다.</b> ' + won(am.total) + "원을 <b>" + esc(acc.text) + "</b>로 입금하시고, 사장님이 입금을 확인하면 완료됩니다. 미수금(외상)에는 잡히지 않습니다.</div>"
@@ -4744,8 +5631,11 @@ function onClick(e) {
 
     case "checkout":
       if (!cartCount()) { toast("먼저 품목을 담아 주세요."); break; }
-      var amCheck = calcAmounts(cartLines(ui.listDate || defaultSlot().ymd));
-      if (!amCheck.meetsMin) { toast("최소 주문 " + won(amCheck.minOrder) + "원부터 발주할 수 있어요. " + won(amCheck.shortfall) + "원 더 담아 주세요."); break; }
+      var chkSlot = currentSlot();
+      var amCheck = calcAmounts(cartLines(ui.listDate || chkSlot.ymd));
+      /* 8. 같은 날 같은 회차 기존 주문이 있으면 최소 주문 없이 합배송 */
+      var chkCombine = combineOrderFor(state.currentClientId, chkSlot.ymd, chkSlot.round);
+      if (!amCheck.meetsMin && !chkCombine) { toast("최소 주문 " + won(amCheck.minOrder) + "원부터 발주할 수 있어요. " + won(amCheck.shortfall) + "원 더 담아 주세요."); break; }
       var gateCheck = clientGate(state.currentClientId);
       if (gateCheck.blocked) { toast(gateCheck.msg); break; }
       closeDrawer();
@@ -4768,9 +5658,102 @@ function onClick(e) {
     case "cancel-yes":
       if (cancelOrder(el.getAttribute("data-no"))) { closeModal(); render(); toast("발주를 취소했습니다."); }
       break;
-    case "advance":
-      if (advanceOrder(no)) { render(); toast("주문 상태를 바꿨습니다."); }
+    case "advance": {
+      var advO = findOrder(no);
+      if (!advO) break;
+      /* 10. 배송 완료는 납품 위치 한 줄 메모를 받고 넘긴다 */
+      if (advO.status === STATUS.DISPATCHED) { openDeliveredMemo(no); break; }
+      if (advanceOrder(no)) { render(); toast(advO.status === STATUS.DISPATCHED ? "배달 출발로 바꿨습니다." : "주문 상태를 바꿨습니다."); }
       break;
+    }
+    case "advance-yes": {
+      var dlvDone = el.getAttribute("data-mode") === "nomemo" ? "" : (($("#dlvMemo") || {}).value || "");
+      var dlvO = completeDelivery(no, dlvDone);
+      closeModal();
+      render();
+      if (dlvO) toast(getClient(dlvO.clientId).name + " 배송 완료" +
+        (dlvO.deliverMemo ? " · 납품: " + dlvO.deliverMemo : "") + " — 거래처 발주 내역에도 표시됩니다.");
+      break;
+    }
+    case "dlv-chip": {
+      var dlvInp = $("#dlvMemo");
+      if (dlvInp) { dlvInp.value = el.getAttribute("data-text") || ""; dlvInp.focus(); }
+      break;
+    }
+
+    /* 1. 회차별 상차·피킹표 */
+    case "pick-open": openPickSheet(el.getAttribute("data-ymd"), el.getAttribute("data-round")); break;
+    case "pick-tab":
+      ui.pick = { ymd: (ui.pick && ui.pick.ymd) || ui.admDate || todayYmd(), round: el.getAttribute("data-round") || "" };
+      renderPickModal();
+      break;
+    case "pick-print": printPickSheet(el.getAttribute("data-ymd"), el.getAttribute("data-round")); break;
+
+    /* 3. 월말 정산 · CSV */
+    case "month-csv": {
+      var ymC = el.getAttribute("data-ym") || thisMonth();
+      var csvA = monthCsvAll(ymC);
+      downloadCsv("hoonie-settlement-" + ymC + ".csv", csvA);
+      toast(monthLabel(ymC) + " 거래처별 정산 CSV를 내려받았습니다 (" + (csvA.split("\r\n").length - 2) + "곳)");
+      break;
+    }
+    case "month-csv-client": {
+      var ymCC = el.getAttribute("data-ym") || thisMonth();
+      var cidCC = el.getAttribute("data-cid") || state.currentClientId;
+      downloadCsv("hoonie-my-settlement-" + ymCC + ".csv", monthCsvClient(cidCC, ymCC));
+      toast(monthLabel(ymCC) + " 내 거래 내역 CSV를 내려받았습니다.");
+      break;
+    }
+    case "month-print": printMonthSettle(el.getAttribute("data-ym")); break;
+
+    /* 4. 정산 안내 복사 */
+    case "settle-copy": openSettlementCopy(el.getAttribute("data-cid")); break;
+    case "settle-copy-again": {
+      var cidSc = el.getAttribute("data-cid");
+      var oksc = copyText(settlementMessage(cidSc));
+      toast(oksc ? "정산 안내 문구를 다시 복사했습니다." : "문구를 길게 눌러 복사해 주세요.");
+      break;
+    }
+
+    /* 5. 단골 이탈 */
+    case "idle-open": openIdleModal(); break;
+
+    /* 9. 품절 대체품 — 사장님이 직접 지정 */
+    case "sub-open": openSubstitute(pid); break;
+    case "sub-set": {
+      var subP = setSubstitute(el.getAttribute("data-pid"), el.getAttribute("data-sub") || "");
+      closeModal();
+      renderAdminPrices();
+      if (subP) toast(subP.name + " 품절 대체품 — " + (subP.sub ? findProduct(subP.sub).name : "자동 추천") + "으로 정했습니다.");
+      break;
+    }
+
+    /* 6. 거래처별 특별 단가 */
+    case "special-open": openSpecialPrices(el.getAttribute("data-cid")); break;
+    case "special-save": {
+      var cidSp = el.getAttribute("data-cid");
+      $$("#modalInner input[data-sp]").forEach(function (inp) {
+        setSpecialPrice(cidSp, inp.getAttribute("data-sp"), inp.value);
+      });
+      closeModal();
+      renderAdminClients();
+      var spN = specialPriceCount(cidSp);
+      toast(getClient(cidSp).name + " 특별 단가를 저장했습니다" +
+        (spN ? " (" + spN + "품목 적용)" : " (모두 기본가로 돌아감)") + " — 이 거래처 화면에만 적용됩니다.");
+      break;
+    }
+
+    /* 7. 즐겨찾기 */
+    case "fav": {
+      var fv = toggleFav(state.currentClientId, pid);
+      if (!fv) break;
+      renderFavBox();
+      renderProdList();
+      renderActionbar();
+      if (ui.drawer) { if (cartCount() > 0) renderCartDrawer(); else closeDrawer(); }
+      toast(fv.on ? fv.product.name + " ★ 즐겨찾기에 고정했습니다." : fv.product.name + " 즐겨찾기에서 뻗습니다.");
+      break;
+    }
 
     /* 반품·클레임 — 손님 접수 → 사장님 승인/반려 */
     case "claim-open": {
@@ -5043,8 +6026,18 @@ function onInput(e) {
     if (!ui.priceDraft[ymd]) priceDraftFor(ymd);
     ui.priceDraft[ymd][el.getAttribute("data-pid")] = Number(digits(el.value));
     el.setAttribute("data-dirty", "1");
+    updateMarginBox(findProduct(el.getAttribute("data-pid")), el.closest(".pm-row"));
     return;
   }
+  if (act === "cost") {
+    var cp = findProduct(el.getAttribute("data-pid"));
+    if (!cp) return;
+    cp.cost = Math.max(0, Number(digits(el.value)) || 0);
+    saveState();
+    updateMarginBox(cp, el.closest(".pm-row"));
+    return;
+  }
+  if (act === "dlv-memo") return;
   if (act === "bulk-text") { ui.bulkText = el.value; return; }
   if (el.hasAttribute("data-np")) {
     ui.prodForm = ui.prodForm || {};
@@ -5208,7 +6201,31 @@ function onChange(e) {
     addClaim: addClaim,
     approveClaim: approveClaim,
     rejectClaim: rejectClaim,
-    foundClaim: findClaim
+    foundClaim: findClaim,
+    /* v9 — 사장님 핵심 10기능 */
+    pickSheet: pickSheet,
+    pickSheetHTML: pickSheetHTML,
+    marginOf: marginOf,
+    monthStat: monthStat,
+    monthCsvAll: monthCsvAll,
+    monthCsvClient: monthCsvClient,
+    monthLabel: monthLabel,
+    monthSheetHTML: monthSheetHTML,
+    settlementMessage: settlementMessage,
+    copyText: copyText,
+    idleClients: idleClients,
+    priceForClient: priceForClient,
+    specialPriceOf: specialPriceOf,
+    specialPriceCount: specialPriceCount,
+    setSpecialPrice: setSpecialPrice,
+    favProducts: favProducts,
+    isFav: isFav,
+    toggleFav: toggleFav,
+    combineOrderFor: combineOrderFor,
+    substituteOf: substituteOf,
+    setSubstitute: setSubstitute,
+    completeDelivery: completeDelivery,
+    daysBetween: daysBetween
   };
 })();
 
