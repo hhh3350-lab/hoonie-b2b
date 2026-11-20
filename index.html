@@ -744,10 +744,11 @@ footer .biz dd{margin:0;color:#C9CEC3}
 .mode-client .notice.red{border-width:1.5px}
 
 /* ── 단가표 머리 · 분류 ─────────────────────────────── */
-.mode-client .list-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0 8px}
+.mode-client .list-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0 6px}
 .mode-client .list-head{flex-wrap:nowrap}
-.mode-client .list-head h2{font-size:19px;letter-spacing:-.04em;display:flex;align-items:baseline;gap:5px;white-space:nowrap}
-.mode-client .list-head h2 small{font-size:12.5px;font-weight:700;color:var(--muted2);letter-spacing:-.02em}
+.mode-client .list-head h2{font-size:19px;letter-spacing:-.04em;display:block;white-space:nowrap}
+.mode-client .list-head h2 small{font-size:12.5px;font-weight:700;color:var(--muted2);letter-spacing:-.02em;
+  margin-left:5px;display:inline}
 .mode-client .pmode{margin:0;font-size:13.5px;font-weight:800;padding:6px 10px;border-radius:9px}
 
 .mode-client .chips{display:flex;flex-wrap:wrap;gap:6px;
@@ -757,7 +758,7 @@ footer .biz dd{margin:0;color:#C9CEC3}
   display:flex;align-items:center;justify-content:center;letter-spacing:-.045em;white-space:nowrap}
 .mode-client .chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
 .mode-client .chip .chip-n{font-size:11.5px;margin-left:4px;opacity:.7}
-.mode-client .psearch{margin:10px 0 10px}
+.mode-client .psearch{margin:7px 0 8px}
 .mode-client .psearch input{height:54px;border-radius:14px;border-width:1.5px;padding:0 46px 0 43px;
   font-size:16.5px;font-weight:700}
 .mode-client .psearch .ps-ico{left:15px;font-size:17px;opacity:.6}
@@ -877,6 +878,76 @@ footer .biz dd{margin:0;color:#C9CEC3}
 .mode-client .m-foot .btn{height:52px;font-size:16.5px;border-radius:12px}
 .mode-client .toast{font-size:14.5px;padding:13px 17px}
 
+/* ══════════ 어제 주문 그대로 담기 · 진행 상태 · 등급 배지 · 단가 ▲▼ ══════════ */
+/* 어제 주문 그대로 담기 */
+.reorder{display:flex;align-items:center;gap:10px;width:100%;margin:7px 0 0;padding:8px 13px;
+  border-radius:16px;border:1.5px solid var(--green);background:var(--green);color:#fff;text-align:left;
+  box-shadow:0 4px 14px rgba(46,107,59,.18)}
+.reorder .ro-i{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;
+  align-items:center;justify-content:center;font-size:20px;font-weight:800;flex:0 0 auto}
+.reorder .ro-tx{flex:1;min-width:0;display:block}
+.reorder .ro-tx b{display:block;font-size:16.5px;font-weight:800;letter-spacing:-.03em;line-height:1.25}
+.reorder .ro-tx small{display:block;font-size:12px;font-weight:700;color:#D7E7CF;margin-top:2px;letter-spacing:-.02em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.reorder .ro-go{flex:0 0 auto;height:36px;padding:0 13px;border-radius:11px;background:#fff;color:var(--green-d);
+  font-size:14px;font-weight:800;display:flex;align-items:center}
+.reorder.is-empty{background:var(--card);border:1.5px dashed var(--line2);color:var(--ink2);box-shadow:none}
+.reorder.is-empty .ro-i{background:var(--green-l)}
+.reorder.is-empty .ro-tx b{font-size:15px}
+.reorder.is-empty .ro-tx small{color:var(--muted);white-space:normal}
+
+/* 4단계 진행 상태 — ① 주문 접수 → ② 단가 확정 → ③ 배달 출발 → ④ 배송 완료 */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);list-style:none;margin:0;padding:0}
+.steps li{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px}
+.steps li i{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-style:normal;font-size:13.5px;font-weight:800;background:#F1EFE6;color:var(--muted2);
+  border:1.5px solid var(--line2);position:relative;z-index:1}
+.steps li b{font-size:12px;font-weight:800;color:var(--muted2);letter-spacing:-.04em;white-space:nowrap}
+.steps li:not(:first-child)::before{content:"";position:absolute;top:15px;left:-50%;width:100%;height:2px;
+  background:var(--line2)}
+.steps li.done i{background:var(--green);border-color:var(--green);color:#fff}
+.steps li.done b{color:var(--green-d)}
+.steps li.done:not(:first-child)::before{background:var(--green)}
+.steps li.now i{background:#fff;border-color:var(--green);color:var(--green-d);
+  box-shadow:0 0 0 3px rgba(46,107,59,.15)}
+.steps li.now b{color:var(--ink)}
+.live-card{display:block;width:100%;text-align:left;margin:8px 0 18px;padding:7px 12px 7px;border-radius:15px;
+  border:1.5px solid var(--line2);background:var(--card);box-shadow:var(--sh)}
+.lv-head{display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:nowrap}
+.lv-k{flex:0 0 auto;font-size:11.5px;font-weight:800;color:#3C6B44;background:var(--green-l);padding:2px 7px;
+  border-radius:7px}
+.lv-head b{font-size:13.5px;font-weight:800;letter-spacing:-.035em;white-space:nowrap}
+.lv-amt{margin-left:auto;font-size:14.5px;font-weight:800;letter-spacing:-.03em;white-space:nowrap}
+.lv-go{font-size:19px;color:var(--muted2);line-height:1;margin-left:-2px}
+.lv-foot{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:12px;color:var(--muted)}
+.ocard-steps{margin:11px 0 3px}
+
+/* 등급·단위 배지 · 전일 대비 ▲▼ */
+.p-tags{display:flex;align-items:center;gap:7px;margin-top:4px;flex-wrap:wrap}
+.p-badge{display:inline-block;height:24px;line-height:22px;padding:0 8px;border-radius:8px;
+  background:var(--bg2);color:var(--ink2);font-size:12px;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.p-badge b{font-weight:800;color:var(--ink)}
+.p-badge.has-grade{background:var(--green-l);border:1px solid #CFE0C6;color:var(--green-d)}
+.p-badge.has-grade b{color:var(--green-d)}
+.p-stock{font-size:12px;font-weight:700;color:var(--muted)}
+.p-delta{font-size:12.5px;font-weight:800;letter-spacing:-.03em;margin-top:3px;white-space:nowrap}
+.p-delta.down{color:var(--blue)}
+.p-delta.up{color:var(--red)}
+.mode-client .p-badge{height:28px;padding:0 10px;font-size:14px;border-radius:9px}
+.mode-client .p-badge b{font-size:14px}
+.mode-client .p-tags{margin-top:5px;gap:8px}
+.mode-client .p-stock{font-size:13px}
+.mode-client .p-delta{font-size:14.5px;margin-top:2px}
+.mode-client .live-card .steps li i{width:26px;height:26px;font-size:12.5px}
+.mode-client .live-card .steps li b{font-size:11.5px}
+.mode-client .live-card .steps li:not(:first-child)::before{top:13px}
+.mode-client .ocard-steps .steps li i{width:32px;height:32px;font-size:14px}
+.mode-client .ocard-steps .steps li b{font-size:12.5px}
+.mode-client .ocard-steps .steps li:not(:first-child)::before{top:16px}
+.mode-client .reorder .ro-tx b{font-size:18px}
+.mode-client .reorder .ro-tx small{font-size:12.5px}
+.mode-client .reorder .ro-go{height:40px;font-size:15px}
+
 /* ── 데스크톱 ──────────────────────────────────────── */
 @media(min-width:820px){
   .mode-client .head-in{height:auto;min-height:72px;flex-wrap:nowrap;padding-top:0;padding-bottom:8px}
@@ -978,7 +1049,13 @@ footer .biz dd{margin:0;color:#C9CEC3}
         </div>
       </div>
 
+      <!-- 어제 주문 그대로 담기 (배달 선택 바로 아래 큰 버튼) -->
+      <div id="reorderBox"></div>
+
       <div id="orderBlock"></div>
+
+      <!-- 최근 발주 진행 상태 (① 접수 → ② 단가 확정 → ③ 배달 출발 → ④ 배송 완료) -->
+      <div id="liveProgress"></div>
 
       <div class="list-head">
         <h2 id="listTitle">단가표</h2>
@@ -1179,23 +1256,42 @@ var DEFAULT_POLICY = {
   area: "원주 시내권"
 };
 
-/* ── 품목 (야채·식자재 12종) ──────────────────────────
-   cat 은 손님(식당 사장님)이 바로 알아보는 말만 쓴다 — 야채 / 양념·파·마늘 / 과일 */
+/* ── 품목 (야채·식자재 15종) ──────────────────────────
+   cat 은 손님(식당 사장님)이 바로 알아보는 말만 쓴다 — 야채 / 양념·파·마늘 / 과일
+   사장님 말씀대로 품목은 "청양(특)1박스 · 청양(상)1박스 · 청양 1kg" 처럼
+   같은 품목의 등급·단위별로 갈라진다. 카드에는 이름과 함께 등급·단위 배지가 크게 붙는다.
+   name  = 전표·주문에 찍히는 정식 이름
+   base  = 카드에 크게 보이는 품목 이름 (등급·단위는 배지로 따로)
+   grade = 등급 (특 / 상 / 없음)
+   unitLabel = 단위 배지 (1박스 · 1kg · 15kg · 1단 · 1개)
+   prevPrice = 전날 단가 (어제 확정가가 저장돼 있지 않을 때 ▲▼ 비교 기준) */
 function defaultProducts() {
   return [
-    { id:"v1",  name:"로즈(야채)",  spec:"-",   unit:"ea",  cat:"veg",    ref:23000, emoji:"🥬", stock:12, soldOut:false },
-    { id:"v2",  name:"백오이",      spec:"ea",  unit:"ea",  cat:"veg",    ref:1000, emoji:"🥒", stock:60, soldOut:false },
-    { id:"v3",  name:"라디치오",    spec:"-",   unit:"ea",  cat:"veg",    ref:3000, emoji:"🥬", stock:20, soldOut:false },
-    { id:"v4",  name:"피망",        spec:"box", unit:"box", cat:"veg",    ref:6900, emoji:"🫑", stock:9,  soldOut:false },
-    { id:"v5",  name:"레몬",        spec:"ea",  unit:"ea",  cat:"fruit",  ref:500,  emoji:"🍋", stock:120, soldOut:false },
-    { id:"v6",  name:"양파 15kg",   spec:"box", unit:"box", cat:"season", ref:18500, emoji:"🧅", stock:14, soldOut:false },
-    { id:"v7",  name:"대파 1단",    spec:"단",  unit:"단",  cat:"season", ref:2800, emoji:"🌿", stock:35, soldOut:false },
-    { id:"v8",  name:"깐마늘 1kg",  spec:"kg",  unit:"kg",  cat:"season", ref:8900, emoji:"🧄", stock:18, soldOut:false },
-    { id:"v9",  name:"감자 20kg",   spec:"box", unit:"box", cat:"veg",    ref:24000, emoji:"🥔", stock:10, soldOut:false },
-    { id:"v10", name:"청양고추 1kg", spec:"kg", unit:"kg",  cat:"season", ref:9500, emoji:"🌶️", stock:0, soldOut:true },
-    { id:"v11", name:"애호박",      spec:"ea",  unit:"ea",  cat:"veg",    ref:700,  emoji:"🥒", stock:40, soldOut:false },
-    { id:"v12", name:"무 1박스",    spec:"box", unit:"box", cat:"veg",    ref:11500, emoji:"🥬", stock:6, soldOut:false }
+    { id:"v1",  name:"로즈(야채)",  base:"로즈(야채)", grade:"", unitLabel:"1개",   spec:"-",   unit:"ea",  cat:"veg",    ref:23000, prevPrice:23000, emoji:"🥬", stock:12, soldOut:false },
+    { id:"v2",  name:"백오이",      base:"백오이",     grade:"", unitLabel:"1개",   spec:"ea",  unit:"ea",  cat:"veg",    ref:1000,  prevPrice:1000,  emoji:"🥒", stock:60, soldOut:false },
+    { id:"v3",  name:"라디치오",    base:"라디치오",   grade:"", unitLabel:"1개",   spec:"-",   unit:"ea",  cat:"veg",    ref:3000,  prevPrice:3000,  emoji:"🥬", stock:20, soldOut:false },
+    { id:"v4",  name:"피망",        base:"피망",       grade:"", unitLabel:"1박스", spec:"box", unit:"box", cat:"veg",    ref:6900,  prevPrice:8900,  emoji:"🫑", stock:9,  soldOut:false },
+    { id:"v5",  name:"레몬",        base:"레몬",       grade:"", unitLabel:"1개",   spec:"ea",  unit:"ea",  cat:"fruit",  ref:500,   prevPrice:500,   emoji:"🍋", stock:120, soldOut:false },
+    { id:"v6",  name:"양파 15kg",   base:"양파",       grade:"", unitLabel:"15kg",  spec:"box", unit:"box", cat:"season", ref:18500, prevPrice:17000, emoji:"🧅", stock:14, soldOut:false },
+    { id:"v7",  name:"대파 1단",    base:"대파",       grade:"", unitLabel:"1단",   spec:"단",  unit:"단",  cat:"season", ref:2800,  prevPrice:2800,  emoji:"🌿", stock:35, soldOut:false },
+    { id:"v8",  name:"깐마늘 1kg",  base:"깐마늘",     grade:"", unitLabel:"1kg",   spec:"kg",  unit:"kg",  cat:"season", ref:8900,  prevPrice:9500,  emoji:"🧄", stock:18, soldOut:false },
+    { id:"v9",  name:"감자 20kg",   base:"감자",       grade:"", unitLabel:"20kg",  spec:"box", unit:"box", cat:"veg",    ref:24000, prevPrice:24000, emoji:"🥔", stock:10, soldOut:false },
+    { id:"v10", name:"청양고추 1kg", base:"청양고추",  grade:"", unitLabel:"1kg",   spec:"kg",  unit:"kg",  cat:"season", ref:9500,  prevPrice:9500,  emoji:"🌶️", stock:0, soldOut:true },
+    { id:"v11", name:"애호박",      base:"애호박",     grade:"", unitLabel:"1개",   spec:"ea",  unit:"ea",  cat:"veg",    ref:700,   prevPrice:700,   emoji:"🥒", stock:40, soldOut:false },
+    { id:"v12", name:"무 1박스",    base:"무",         grade:"", unitLabel:"1박스", spec:"box", unit:"box", cat:"veg",    ref:11500, prevPrice:10500, emoji:"🥬", stock:6,  soldOut:false },
+    /* 등급·단위 파생 품목 — 같은 청양고추라도 특/상/1kg은 값이 다르고 따로 담는다 */
+    { id:"v13", name:"청양고추 (특) 1박스", base:"청양고추", grade:"특", unitLabel:"1박스", spec:"box", unit:"box", cat:"season", ref:32000, prevPrice:29000, emoji:"🌶️", stock:7, soldOut:false },
+    { id:"v14", name:"청양고추 (상) 1박스", base:"청양고추", grade:"상", unitLabel:"1박스", spec:"box", unit:"box", cat:"season", ref:27000, prevPrice:28500, emoji:"🌶️", stock:5, soldOut:false },
+    { id:"v15", name:"대파 (특) 1단",       base:"대파",     grade:"특", unitLabel:"1단",   spec:"단",  unit:"단",  cat:"season", ref:3500,  prevPrice:3200,  emoji:"🌿", stock:20, soldOut:false }
   ];
+}
+/** 단위 배지 글자 — 없으면 규격에서 만든다 (예: box → 1박스) */
+var UNIT_LABEL = { ea:"1개", box:"1박스", kg:"1kg", "단":"1단" };
+function unitLabelOf(p) {
+  if (!p) return "";
+  if (p.unitLabel) return p.unitLabel;
+  if (p.spec && p.spec !== "-") return p.spec;
+  return UNIT_LABEL[p.unit] || ("1" + (p.unit || "개"));
 }
 
 /* 손님용 분류 — 쉬운 말 3가지 + 전체 */
@@ -1208,7 +1304,7 @@ var CATS = [
 var CAT_KEYS = CATS.map(function (c) { return c.key; });
 /* v5 이전 분류(leaf·fruit·root·allium)를 품목별로 쉬운 분류로 옮긴다. */
 var LEGACY_CAT = { leaf:"veg", root:"veg", fruit:"veg", allium:"season" };
-var CAT_OF_ID = { v1:"veg", v2:"veg", v3:"veg", v4:"veg", v5:"fruit", v6:"season", v7:"season", v8:"season", v9:"veg", v10:"season", v11:"veg", v12:"veg" };
+var CAT_OF_ID = { v1:"veg", v2:"veg", v3:"veg", v4:"veg", v5:"fruit", v6:"season", v7:"season", v8:"season", v9:"veg", v10:"season", v11:"veg", v12:"veg", v13:"season", v14:"season", v15:"season" };
 function easyCat(p) {
   if (CAT_KEYS.indexOf(p.cat) >= 0) return p.cat;
   return CAT_OF_ID[p.id] || LEGACY_CAT[p.cat] || "veg";
@@ -1323,7 +1419,7 @@ function isoToYmd(iso) {
 function seedState() {
   var t = todayYmd(), tm = addDays(t, 1);
   var s = {
-    version: 6,
+    version: 7,
     store: clone(STORE_DEFAULT),
     policy: clone(DEFAULT_POLICY),
     rounds: clone(DEFAULT_ROUNDS),
@@ -1347,6 +1443,14 @@ function seedState() {
     prices: confirmedToday ? clone(prices) : null
   };
   s.days[tm] = { confirmed: false, confirmedAt: null, prices: null };
+  /* 어제(전일) 확정 단가 — 손님 화면의 ▲/▼ 변동폭 비교 기준 */
+  var y = addDays(t, -1), prevPrices = {};
+  s.products.forEach(function (p) { prevPrices[p.id] = p.prevPrice != null ? p.prevPrice : p.ref; });
+  s.days[y] = {
+    confirmed: true,
+    confirmedAt: new Date(Date.parse(y + "T07:05:00+09:00")).toISOString(),
+    prices: prevPrices
+  };
   s.confirmedToday = confirmedToday;
 
   s.clients = [
@@ -1464,11 +1568,18 @@ function normalize(s) {
   });
   if (Array.isArray(s.products) && s.products.length) out.products = s.products.map(function (p) {
     return {
-      id:p.id, name:String(p.name || "품목"), spec:String(p.spec || "-"), unit:String(p.unit || "ea"),
-      cat:easyCat(p), ref:Math.max(0, Number(p.ref) || 0), emoji:p.emoji || "🥬",
+      id:p.id, name:String(p.name || "품목"), base:String(p.base || p.name || "품목"),
+      grade:String(p.grade || ""), unitLabel:String(p.unitLabel || ""),
+      spec:String(p.spec || "-"), unit:String(p.unit || "ea"),
+      cat:easyCat(p), ref:Math.max(0, Number(p.ref) || 0),
+      prevPrice:(p.prevPrice != null ? Math.max(0, Number(p.prevPrice) || 0) : null),
+      emoji:p.emoji || "🥬",
       stock:Math.max(0, Number(p.stock) || 0), soldOut:Boolean(p.soldOut)
     };
   });
+  /* v7 — 등급·단위 파생 품목(청양 특/상/1kg 등) 15종으로 품목표를 새로 깐다.
+     예전 저장값(12종)을 그대로 쓰면 새 품목이 손님 화면에 안 보인다. */
+  if (Number(s.version || 0) < 7) out.products = defaultProducts();
   out.days = (s.days && typeof s.days === "object") ? s.days : {};
   out.clients = Array.isArray(s.clients) && s.clients.length ? s.clients.map(function (c) {
     return {
@@ -1497,7 +1608,7 @@ function normalize(s) {
       o.total = Number(o.itemsAmount) || 0;
     });
   }
-  out.version = 6;
+  out.version = 7;
   out.alerts = Array.isArray(s.alerts) ? s.alerts : [];
   out.seq = (s.seq && typeof s.seq === "object") ? s.seq : {};
   out.currentClientId = s.currentClientId && out.clients.some(function (c) { return c.id === s.currentClientId; })
@@ -1512,7 +1623,11 @@ function loadState() {
   return normalize(seedState());
 }
 function saveState() {
-  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  try {
+    var raw = JSON.stringify(state);
+    localStorage.setItem(KEY, raw);
+    lastRaw = raw;            /* 내가 쓴 값 — 다른 창의 변경만 골라내려고 */
+  } catch (e) {}
 }
 function loadCart() {
   try {
@@ -1530,6 +1645,7 @@ function saveCart() { try { localStorage.setItem(KEY + "_cart", JSON.stringify(c
 
 var state = loadState();
 var cart = loadCart();
+var lastRaw = "";   /* 마지막으로 읽거나 쓴 저장값 — 손님/사장님 창 실시간 동기화용 */
 var ui = {
   route: "b2b",
   admTab: "orders",
@@ -1579,6 +1695,21 @@ function priceOf(p, ymd) {
   return Number(p.ref) || 0;
 }
 function priceSource(ymd) { return isDayConfirmed(ymd) ? "fixed" : "ref"; }
+/** 전일(어제) 단가 — 어제 확정가가 저장돼 있으면 그것, 없으면 품목의 prevPrice */
+function priceBefore(p, ymd) {
+  if (!p) return null;
+  var d = dayInfo(addDays(ymd, -1));
+  if (d && d.confirmed && d.prices && d.prices[p.id] != null) return Number(d.prices[p.id]);
+  if (p.prevPrice != null) return Number(p.prevPrice);
+  return null;
+}
+/** 전일 대비 변동 — { prev, now, delta }. 비교 기준이 없으면 null */
+function priceDelta(p, ymd) {
+  var prev = priceBefore(p, ymd);
+  if (prev == null) return null;
+  var now = priceOf(p, ymd);
+  return { prev:prev, now:now, delta:now - prev };
+}
 function findProduct(id) { return state.products.filter(function (p) { return p.id === id; })[0] || null; }
 
 /* ── 배달 회차 · 슬롯 ───────────────────────────────── */
@@ -1702,6 +1833,37 @@ function logoutClient() {
   saveCart();
 }
 function ordersOf(cid) { return state.orders.filter(function (o) { return o.clientId === cid; }); }
+/** 그 거래처가 마지막으로 넣은 발주 (취소 제외 · 날짜→주문번호 순) */
+function latestOrderOf(cid) {
+  var list = state.orders.filter(function (o) {
+    return o.clientId === cid && o.status !== STATUS.CANCELED;
+  }).sort(function (a, b) {
+    if (a.ymd !== b.ymd) return a.ymd < b.ymd ? 1 : -1;
+    return a.no < b.no ? 1 : -1;
+  });
+  return list[0] || null;
+}
+/** '어제 주문 그대로 담기' — 직전 발주의 품목·수량을 장바구니에 한 번에 채운다.
+    품절·재고 부족 품목은 건너뛰고 무엇이 빠졌는지 돌려준다. */
+function applyReorder() {
+  var cl = currentClient();
+  var last = cl ? latestOrderOf(cl.id) : null;
+  if (!last) return { ok:false, code:"NONE", msg:"지난 발주가 없습니다. 단가표에서 품목을 담아 첫 발주를 넣어 보세요." };
+  var kinds = 0, qty = 0, skipped = [], capped = [], before = cartCount();
+  last.items.forEach(function (it) {
+    var p = findProduct(it.pid);
+    if (!p) { skipped.push(it.name || it.pid); return; }
+    if (p.soldOut || p.stock <= 0) { skipped.push(p.name); return; }
+    var want = Math.max(1, Number(it.qty) || 1);
+    var q = Math.min(want, p.stock);
+    if (q < want) capped.push(p.name);
+    cart[p.id] = q;
+    kinds++;
+    qty += q;
+  });
+  saveCart();
+  return { ok:true, order:last, kinds:kinds, qty:qty, skipped:skipped, capped:capped, hadCart:before > 0 };
+}
 
 function placeOrder(opts) {
   var slot = findSlot(opts.ymd, opts.round);
@@ -2024,11 +2186,53 @@ function catLabel(key) {
   var c = CATS.filter(function (x) { return x.key === key; })[0];
   return c ? c.label : "기타";
 }
-/** 품목 이름 검색 — 띄어쓰기·대소문자 무시 */
+/** 검색어 정규화 — 띄어쓰기·괄호 무시, 손으로 치는 '1키로'도 '1kg'로 맞춘다 */
+function normSearch(v) {
+  return String(v == null ? "" : v).toLowerCase()
+    .replace(/[\s()\[\]{}（）〔〕·,.\/\-_]/g, "")
+    .replace(/키로|킬로|kilo/g, "kg")
+    .replace(/그램|gram/g, "g");
+}
+/** 품목 하나의 검색용 글자 — 이름·품목명·등급·단위·분류를 모두 담는다 */
+function prodHay(p) {
+  return normSearch([p.name, p.base, p.grade, p.unitLabel, p.spec].join(" "));
+}
+/** 품목 검색 — 공백·괄호 무시 + 여러 낱말 AND.
+    "청양 박스" → 청양고추 (특)/(상) 1박스 / "청양 특" → 특만 / "청양 1키로" → 1kg */
 function matchQuery(p, q) {
-  if (!q) return true;
-  var name = String(p.name || "").replace(/\s+/g, "").toLowerCase();
-  return name.indexOf(String(q).replace(/\s+/g, "").toLowerCase()) >= 0;
+  var raw = String(q == null ? "" : q).trim();
+  if (!raw) return true;
+  var hay = prodHay(p);
+  var toks = raw.split(/\s+/).map(normSearch).filter(Boolean);
+  if (!toks.length) return true;
+  return toks.every(function (t) { return hay.indexOf(t) >= 0; });
+}
+
+/* ── 4단계 진행 상태 (① 주문 접수 → ② 단가 확정 → ③ 배달 출발 → ④ 배송 완료) ── */
+var STEP_DEFS = [
+  { key:"RECEIVED", label:"주문 접수" },
+  { key:"PRICED",   label:"단가 확정" },
+  { key:"SHIPPED",  label:"배달 출발" },
+  { key:"DONE",     label:"배송 완료" }
+];
+/** 지금까지 끝난 단계 수 (0~4) */
+function orderStepsDone(o) {
+  if (!o || o.status === STATUS.CANCELED) return 0;
+  if (o.status === STATUS.DELIVERED) return 4;
+  if (o.status === STATUS.DISPATCHED) return 3;
+  if (o.status === STATUS.READY || o.priceConfirmed) return 2;
+  return 1;
+}
+/** 손님용 4단계 스텝 바 — 지난 단계는 ✓, 지금 단계는 초록 테두리로 크게 */
+function stepsBarHTML(o) {
+  if (!o || o.status === STATUS.CANCELED) return "";
+  var done = orderStepsDone(o);
+  return '<ol class="steps" data-steps="' + esc(o.no) + '" aria-label="배달 진행 상태">' +
+    STEP_DEFS.map(function (st, i) {
+      var cls = i < done ? "done" : (i === done ? "now" : "wait");
+      return '<li class="' + cls + '"><i aria-hidden="true">' + (i < done ? "✓" : String(i + 1)) + "</i>" +
+        "<b>" + st.label + "</b></li>";
+    }).join("") + "</ol>";
 }
 function badgeOf(o) {
   return '<span class="badge ' + (STATUS_CLASS[o.status] || "done") + '">' + (STATUS_LABEL[o.status] || o.status) + "</span>";
@@ -2147,9 +2351,55 @@ function renderB2B() {
       "<b>아직 확정 전</b> — 지금 금액은 참고가이고, <b>아침 7시</b>에 확정 단가로 정산됩니다.</div></div>";
   }
 
+  renderReorder();
   renderListMeta();
   renderCatChips();
   renderProdList();
+  renderLiveProgress();
+}
+
+/* ── 어제 주문 그대로 담기 (배달 선택 바로 아래 큰 버튼) ── */
+function renderReorder() {
+  var box = $("#reorderBox");
+  if (!box) return;
+  var cl = currentClient();
+  if (!cl) { box.innerHTML = ""; return; }
+  var last = latestOrderOf(cl.id);
+  if (!last) {
+    box.innerHTML = '<div class="reorder is-empty">' +
+      '<span class="ro-i" aria-hidden="true">🧺</span>' +
+      '<span class="ro-tx"><b>아직 발주한 적이 없어요</b>' +
+        '<small>많이 찾는 품목부터 담아 보세요 — 청양고추 (특) 1박스 · 대파 1단 · 양파 15kg</small></span>' +
+      "</div>";
+    return;
+  }
+  box.innerHTML = '<button class="reorder" data-act="reorder">' +
+    '<span class="ro-i" aria-hidden="true">↺</span>' +
+    '<span class="ro-tx"><b>어제 주문 그대로 담기</b>' +
+      "<small>" + fmtShort(last.ymd) + " " + roundByKey(last.round).label + " 발주 · " + last.items.length + "품목 " +
+      won(last.total) + "원</small></span>" +
+    '<span class="ro-go">담기</span>' +
+    "</button>";
+}
+
+/* ── 첫 화면 상단 — 최근 발주 진행 상태 요약 ── */
+function renderLiveProgress() {
+  var box = $("#liveProgress");
+  if (!box) return;
+  var cl = currentClient();
+  if (!cl) { box.innerHTML = ""; return; }
+  var last = latestOrderOf(cl.id);
+  if (!last) { box.innerHTML = ""; return; }
+  var r = roundByKey(last.round);
+  box.innerHTML = '<button class="live-card" data-act="go" data-route="orders">' +
+    '<div class="lv-head">' +
+      '<span class="lv-k">최근 발주</span>' +
+      "<b>" + fmtShort(last.ymd) + " " + r.label + "</b>" +
+      '<span class="lv-amt">' + won(last.total) + '원</span>' +
+      '<span class="lv-go">›</span>' +
+    "</div>" +
+    stepsBarHTML(last) +
+    "</button>";
 }
 
 function renderListMeta() {
@@ -2203,17 +2453,25 @@ function renderProdList() {
     } else {
       ctl = '<button class="add-btn" data-act="add" data-pid="' + p.id + '">＋ 담기</button>';
     }
-    var specTxt = p.spec && p.spec !== "-" ? esc(p.spec) : "1" + esc(p.unit);
     var stockTxt = out ? "품절" : "재고 " + p.stock;
     var stockCls = out ? "st-out" : (p.stock <= 5 ? "st-low" : "");
+    /* 등급·단위 배지 — 특 · 1박스 / 상 · 1박스 / 1kg 처럼 한 덩어리로 크게 */
+    var badge = '<span class="p-badge' + (p.grade ? " has-grade" : "") + '">' +
+      (p.grade ? "<b>" + esc(p.grade) + "</b> · " : "") + esc(unitLabelOf(p)) + "</span>";
+    var dd = priceDelta(p, listDate);
+    var deltaHTML = (dd && dd.delta)
+      ? '<div class="p-delta ' + (dd.delta < 0 ? "down" : "up") + '">' +
+        (dd.delta < 0 ? "▼" : "▲") + " " + won(Math.abs(dd.delta)) + "원</div>"
+      : "";
     return '<article class="p-row' + (out ? " out" : "") + '" data-row="' + p.id + '">' +
       '<div class="p-thumb" aria-hidden="true">' + p.emoji + "</div>" +
       '<div class="p-main">' +
-        '<div class="p-name">' + esc(p.name) + "</div>" +
-        '<div class="p-spec">' + specTxt + ' · <span class="' + stockCls + '">' + stockTxt + "</span></div>" +
+        '<div class="p-name">' + esc(p.base || p.name) + "</div>" +
+        '<div class="p-tags">' + badge + '<span class="p-stock ' + stockCls + '">' + stockTxt + "</span></div>" +
       "</div>" +
       '<div class="p-side">' +
         '<div class="p-price"><span class="amt">' + won(price) + "<small>원</small></span></div>" +
+        deltaHTML +
         ctl +
       "</div>" +
       "</article>";
@@ -2534,6 +2792,7 @@ function orderCard(o, admin, ledger) {
       "</div>" +
       '<div class="badges">' + badgeOf(o) + payBadge(o) + "</div>" +
     "</div>" +
+    (admin ? "" : '<div class="ocard-steps">' + stepsBarHTML(o) + "</div>") +
     '<div class="ocard-items">' + itemLine(o) + (o.memo ? '<div class="tiny" style="margin-top:4px">요청: ' + esc(o.memo) + "</div>" : "") + "</div>" +
     '<div class="ocard-foot">' +
       '<div><span class="tot">' + won(o.total) + "<small>원</small></span>" +
@@ -3519,6 +3778,21 @@ function onClick(e) {
       break;
     }
 
+    /* 어제 주문 그대로 담기 — 직전 발주 품목·수량을 한 번에 */
+    case "reorder": {
+      var ro = applyReorder();
+      if (!ro.ok) { toast(ro.msg); break; }
+      renderHeader();
+      renderProdList();
+      renderActionbar();
+      if (ui.drawer) renderCartDrawer();
+      var msg = "지난 발주 " + ro.kinds + "품목(" + ro.qty + "개)을 바구니에 담았어요.";
+      if (ro.skipped.length) msg += " 품절이라 뺀 품목: " + ro.skipped.join(", ") + ".";
+      if (ro.capped.length) msg += " 재고만큼만 담았어요: " + ro.capped.join(", ") + ".";
+      toast(msg);
+      break;
+    }
+
     case "cat": ui.cat = el.getAttribute("data-cat"); renderCatChips(); renderProdList(); break;
     case "list-date": {
       /* 날짜를 고르면 그 날짜의 열린 첫 회차부터 담는다 */
@@ -3801,6 +4075,25 @@ function onChange(e) {
   if (fineMin) fineMin.textContent = won(state.policy.minOrder);
   if (fineFee) fineFee.textContent = Number(state.policy.shipFee) ? won(state.policy.shipFee) + "원" : "무료";
 
+  /* ── 손님/사장님 창 실시간 동기화 ──────────────────────
+     두 화면은 같은 localStorage 를 쓴다. 사장님이 단가 확정 / 배송 시작 / 배송 완료를
+     누르면 손님 화면이 저장값을 다시 읽어 4단계 진행 바와 단가·▲▼를 바로 따라간다. */
+  function syncFromStorage() {
+    var raw = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) { return; }
+    if (!raw || raw === lastRaw) return;
+    var ae = document.activeElement;
+    if (ae && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName)) return;   /* 입력 중이면 다음 차례에 */
+    lastRaw = raw;
+    state = loadState();
+    render();
+  }
+  window.addEventListener("storage", function (e) { if (!e.key || e.key === KEY) syncFromStorage(); });
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) syncFromStorage(); });
+  /* 창을 다시 보면 바로 맞추고, 보고 있는 동안에도 1.2초마다 저장값을 확인한다 */
+  setInterval(syncFromStorage, 1200);
+
+  try { lastRaw = localStorage.getItem(KEY) || ""; } catch (e) {}
   ui.listDate = defaultSlot().ymd;
   setRoute(HOME_ROUTE);
 
