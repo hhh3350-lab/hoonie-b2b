@@ -86,6 +86,9 @@ section.view{padding:14px 0 120px}
   border:1px solid var(--line2);background:#fff;border-radius:999px;font-size:11.5px;font-weight:700;max-width:116px}
 .client-chip .cc-n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .client-chip .cc-i{font-size:12px}
+.client-in{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;
+  background:var(--green);border:1px solid var(--green);color:#fff;font-size:12.5px;font-weight:800}
+.client-in.is-sub{background:#fff;border-color:var(--line2);color:var(--ink2)}
 .cart-btn{position:relative;display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 11px;
   border-radius:999px;background:var(--green-l);border:1px solid #CFE0C6;color:var(--green-d);font-weight:800;font-size:12.5px}
 .cart-cnt{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;
@@ -177,6 +180,41 @@ section.view{padding:14px 0 120px}
 .chip{flex:0 0 auto;height:31px;padding:0 12px;border-radius:999px;border:1px solid var(--line2);
   background:#fff;font-size:12.5px;font-weight:700;color:var(--ink2)}
 .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip .chip-n{font-style:normal;font-size:10.5px;font-weight:800;margin-left:3px;opacity:.65}
+
+/* ── 품목 검색 ─────────────────────────────────────── */
+.psearch{position:relative;display:flex;align-items:center;margin:10px 0 9px}
+.psearch input{width:100%;height:46px;border-radius:13px;border:1px solid var(--line2);background:#fff;
+  padding:0 42px 0 40px;font-size:14.5px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.psearch input::placeholder{color:var(--muted2);font-weight:600}
+.psearch input::-webkit-search-cancel-button{display:none}
+.psearch .ps-ico{position:absolute;left:14px;font-size:15px;opacity:.55;pointer-events:none}
+.psearch .ps-clear{position:absolute;right:7px;width:32px;height:32px;border-radius:50%;background:#F0EEE6;
+  color:var(--muted);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+
+/* ── 손님 로그인 ───────────────────────────────────── */
+.login-card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh);
+  padding:22px 16px 18px;margin:14px 0}
+.login-card .lg-ico{font-size:30px;text-align:center;line-height:1}
+.login-card h1{font-size:20px;text-align:center;margin:8px 0 5px;letter-spacing:-.04em}
+.login-card > p{font-size:13.5px;color:var(--muted);text-align:center;line-height:1.6}
+.login-card > p b{color:var(--ink2)}
+.login-card .fields{margin-top:15px}
+.login-card .lg-alt{margin-top:13px;font-size:13.5px}
+.login-card .lg-alt button{font-weight:800;color:var(--green-d);text-decoration:underline;text-underline-offset:2px}
+
+/* ── 내 가게 (내 정보만) ───────────────────────────── */
+.my-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px}
+.my-card .my-name{font-weight:800;font-size:16px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.my-rows .my-row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-top:1px solid var(--line);font-size:12.5px}
+.my-rows .my-row:first-child{border-top:0}
+.my-rows .my-row span{color:var(--muted);flex:0 0 auto}
+.my-rows .my-row b{font-weight:700;text-align:right;word-break:keep-all}
+.my-bal{margin-top:11px;background:var(--green-l);border:1px solid #D3E3CB;border-radius:14px;padding:13px}
+.my-bal .k{font-size:12.5px;font-weight:800;color:#3C6B44}
+.my-bal .v{font-size:26px;font-weight:800;letter-spacing:-.03em;margin-top:2px}
+.my-bal .v small{font-size:13px;margin-left:2px}
+.my-bal .s{font-size:12px;color:#3C6B44;margin-top:4px;line-height:1.45}
 
 .plist{display:flex;flex-direction:column;gap:8px}
 .p-row{display:grid;grid-template-columns:46px 1fr auto;grid-template-areas:"thumb main price" "thumb ctl ctl";
@@ -633,6 +671,7 @@ footer .biz dd{margin:0;color:#C9CEC3}
 .mode-client .brand-txt span{display:none}
 .mode-client .head-act{order:2;gap:6px}
 .mode-client .client-chip{height:40px;padding:0 12px;font-size:14.5px;max-width:138px;border-radius:999px;gap:5px}
+.mode-client .client-in{height:40px;padding:0 14px;font-size:14.5px;border-radius:999px}
 .mode-client .cart-btn{height:44px;padding:0 11px;border-radius:14px;font-size:15px}
 .mode-client .cart-btn .cart-i{font-size:21px;line-height:1}
 .mode-client .cart-cnt{min-width:20px;height:20px;font-size:12px;top:-6px;right:-6px}
@@ -712,12 +751,22 @@ footer .biz dd{margin:0;color:#C9CEC3}
 .mode-client .list-head h2 small{font-size:12.5px;font-weight:700;color:var(--muted2);letter-spacing:-.02em}
 .mode-client .pmode{margin:0;font-size:13.5px;font-weight:800;padding:6px 10px;border-radius:9px}
 
-.mode-client .chips{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;
+.mode-client .chips{display:flex;flex-wrap:wrap;gap:6px;
   margin:0;padding:0 0 2px;overflow:visible}
-.mode-client .chip{height:46px;padding:0 2px;border-radius:11px;border:1.5px solid var(--line2);
-  font-size:15px;font-weight:800;color:var(--ink2);background:#fff;
+.mode-client .chip{flex:1 1 auto;height:46px;padding:0 9px;border-radius:11px;border:1.5px solid var(--line2);
+  font-size:14.5px;font-weight:800;color:var(--ink2);background:#fff;
   display:flex;align-items:center;justify-content:center;letter-spacing:-.045em;white-space:nowrap}
 .mode-client .chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.mode-client .chip .chip-n{font-size:11.5px;margin-left:4px;opacity:.7}
+.mode-client .psearch{margin:10px 0 10px}
+.mode-client .psearch input{height:54px;border-radius:14px;border-width:1.5px;padding:0 46px 0 43px;
+  font-size:16.5px;font-weight:700}
+.mode-client .psearch .ps-ico{left:15px;font-size:17px;opacity:.6}
+.mode-client .psearch .ps-clear{width:36px;height:36px;font-size:15px}
+.mode-client .login-card{padding:24px 17px 20px;border-radius:18px;margin:16px 0}
+.mode-client .login-card h1{font-size:22px}
+.mode-client .login-card > p{font-size:14px}
+.mode-client .lg-ico{font-size:34px}
 
 /* ── 품목 카드 ─────────────────────────────────────── */
 .mode-client .plist{display:flex;flex-direction:column;gap:9px;margin-top:4px}
@@ -1018,31 +1067,40 @@ var DEFAULT_POLICY = {
   area: "원주 시내권"
 };
 
-/* ── 품목 (야채·식자재 12종) ────────────────────────── */
+/* ── 품목 (야채·식자재 12종) ──────────────────────────
+   cat 은 손님(식당 사장님)이 바로 알아보는 말만 쓴다 — 야채 / 양념·파·마늘 / 과일 */
 function defaultProducts() {
   return [
-    { id:"v1",  name:"로즈(야채)",  spec:"-",   unit:"ea",  cat:"leaf", ref:23000, emoji:"🥬", stock:12, soldOut:false },
-    { id:"v2",  name:"백오이",      spec:"ea",  unit:"ea",  cat:"fruit", ref:1000, emoji:"🥒", stock:60, soldOut:false },
-    { id:"v3",  name:"라디치오",    spec:"-",   unit:"ea",  cat:"leaf", ref:3000, emoji:"🥬", stock:20, soldOut:false },
-    { id:"v4",  name:"피망",        spec:"box", unit:"box", cat:"fruit", ref:6900, emoji:"🫑", stock:9,  soldOut:false },
-    { id:"v5",  name:"레몬",        spec:"ea",  unit:"ea",  cat:"fruit", ref:500,  emoji:"🍋", stock:120, soldOut:false },
-    { id:"v6",  name:"양파 15kg",   spec:"box", unit:"box", cat:"root",  ref:18500, emoji:"🧅", stock:14, soldOut:false },
-    { id:"v7",  name:"대파 1단",    spec:"단",  unit:"단",  cat:"allium", ref:2800, emoji:"🌿", stock:35, soldOut:false },
-    { id:"v8",  name:"깐마늘 1kg",  spec:"kg",  unit:"kg",  cat:"allium", ref:8900, emoji:"🧄", stock:18, soldOut:false },
-    { id:"v9",  name:"감자 20kg",   spec:"box", unit:"box", cat:"root",  ref:24000, emoji:"🥔", stock:10, soldOut:false },
-    { id:"v10", name:"청양고추 1kg", spec:"kg", unit:"kg",  cat:"fruit", ref:9500, emoji:"🌶️", stock:0, soldOut:true },
-    { id:"v11", name:"애호박",      spec:"ea",  unit:"ea",  cat:"fruit", ref:700,  emoji:"🥒", stock:40, soldOut:false },
-    { id:"v12", name:"무 1박스",    spec:"box", unit:"box", cat:"root",  ref:11500, emoji:"🥬", stock:6, soldOut:false }
+    { id:"v1",  name:"로즈(야채)",  spec:"-",   unit:"ea",  cat:"veg",    ref:23000, emoji:"🥬", stock:12, soldOut:false },
+    { id:"v2",  name:"백오이",      spec:"ea",  unit:"ea",  cat:"veg",    ref:1000, emoji:"🥒", stock:60, soldOut:false },
+    { id:"v3",  name:"라디치오",    spec:"-",   unit:"ea",  cat:"veg",    ref:3000, emoji:"🥬", stock:20, soldOut:false },
+    { id:"v4",  name:"피망",        spec:"box", unit:"box", cat:"veg",    ref:6900, emoji:"🫑", stock:9,  soldOut:false },
+    { id:"v5",  name:"레몬",        spec:"ea",  unit:"ea",  cat:"fruit",  ref:500,  emoji:"🍋", stock:120, soldOut:false },
+    { id:"v6",  name:"양파 15kg",   spec:"box", unit:"box", cat:"season", ref:18500, emoji:"🧅", stock:14, soldOut:false },
+    { id:"v7",  name:"대파 1단",    spec:"단",  unit:"단",  cat:"season", ref:2800, emoji:"🌿", stock:35, soldOut:false },
+    { id:"v8",  name:"깐마늘 1kg",  spec:"kg",  unit:"kg",  cat:"season", ref:8900, emoji:"🧄", stock:18, soldOut:false },
+    { id:"v9",  name:"감자 20kg",   spec:"box", unit:"box", cat:"veg",    ref:24000, emoji:"🥔", stock:10, soldOut:false },
+    { id:"v10", name:"청양고추 1kg", spec:"kg", unit:"kg",  cat:"season", ref:9500, emoji:"🌶️", stock:0, soldOut:true },
+    { id:"v11", name:"애호박",      spec:"ea",  unit:"ea",  cat:"veg",    ref:700,  emoji:"🥒", stock:40, soldOut:false },
+    { id:"v12", name:"무 1박스",    spec:"box", unit:"box", cat:"veg",    ref:11500, emoji:"🥬", stock:6, soldOut:false }
   ];
 }
 
+/* 손님용 분류 — 쉬운 말 3가지 + 전체 */
 var CATS = [
   { key:"all",    label:"전체" },
-  { key:"leaf",   label:"엽채류" },
-  { key:"fruit",  label:"과채류" },
-  { key:"root",   label:"근채류" },
-  { key:"allium", label:"양념채소" }
+  { key:"veg",    label:"야채" },
+  { key:"season", label:"양념·파·마늘" },
+  { key:"fruit",  label:"과일" }
 ];
+var CAT_KEYS = CATS.map(function (c) { return c.key; });
+/* v5 이전 분류(leaf·fruit·root·allium)를 품목별로 쉬운 분류로 옮긴다. */
+var LEGACY_CAT = { leaf:"veg", root:"veg", fruit:"veg", allium:"season" };
+var CAT_OF_ID = { v1:"veg", v2:"veg", v3:"veg", v4:"veg", v5:"fruit", v6:"season", v7:"season", v8:"season", v9:"veg", v10:"season", v11:"veg", v12:"veg" };
+function easyCat(p) {
+  if (CAT_KEYS.indexOf(p.cat) >= 0) return p.cat;
+  return CAT_OF_ID[p.id] || LEGACY_CAT[p.cat] || "veg";
+}
 
 var STATUS = { PENDING:"PRICE_PENDING", READY:"READY", DISPATCHED:"DISPATCHED", DELIVERED:"DELIVERED", CANCELED:"CANCELED" };
 var STATUS_LABEL = { PRICE_PENDING:"단가확정 대기", READY:"출고 준비", DISPATCHED:"배송중", DELIVERED:"배송완료", CANCELED:"취소" };
@@ -1153,7 +1211,7 @@ function isoToYmd(iso) {
 function seedState() {
   var t = todayYmd(), tm = addDays(t, 1);
   var s = {
-    version: 5,
+    version: 6,
     store: clone(STORE_DEFAULT),
     policy: clone(DEFAULT_POLICY),
     rounds: clone(DEFAULT_ROUNDS),
@@ -1295,7 +1353,7 @@ function normalize(s) {
   if (Array.isArray(s.products) && s.products.length) out.products = s.products.map(function (p) {
     return {
       id:p.id, name:String(p.name || "품목"), spec:String(p.spec || "-"), unit:String(p.unit || "ea"),
-      cat:p.cat || "leaf", ref:Math.max(0, Number(p.ref) || 0), emoji:p.emoji || "🥬",
+      cat:easyCat(p), ref:Math.max(0, Number(p.ref) || 0), emoji:p.emoji || "🥬",
       stock:Math.max(0, Number(p.stock) || 0), soldOut:Boolean(p.soldOut)
     };
   });
@@ -1327,7 +1385,7 @@ function normalize(s) {
       o.total = Number(o.itemsAmount) || 0;
     });
   }
-  out.version = 5;
+  out.version = 6;
   out.alerts = Array.isArray(s.alerts) ? s.alerts : [];
   out.seq = (s.seq && typeof s.seq === "object") ? s.seq : {};
   out.currentClientId = s.currentClientId && out.clients.some(function (c) { return c.id === s.currentClientId; })
@@ -1369,6 +1427,7 @@ var ui = {
   listDate: null,
   slot: null,
   cat: "all",
+  prodQuery: "",
   co: null,
   orderFilter: "ALL",
   clientQuery: "",
@@ -1512,6 +1571,24 @@ function nextStmtNo(ymd) {
 function findOrder(no) { return state.orders.filter(function (o) { return o.no === no; })[0] || null; }
 function getClient(id) { return state.clients.filter(function (c) { return c.id === id; })[0] || state.clients[0]; }
 function currentClient() { return getClient(state.currentClientId); }
+
+/* ── 손님 로그인 (내 가게 1곳만) ───────────────────────
+   손님 화면에는 거래처 목록이 없다. 로그인하면 내 가게만 메모리에 올라간다.
+   로그아웃 상태는 탭을 닫으면 풀린다(sessionStorage) — 새로 열면 시연용 계정으로 돌아온다. */
+function isLoggedIn() {
+  if (IS_ADMIN || !currentClient()) return false;
+  try { return sessionStorage.getItem(KEY + "_out") !== "1"; } catch (e) { return true; }
+}
+function loginClient(c) {
+  state.currentClientId = c.id;
+  saveState();
+  try { sessionStorage.removeItem(KEY + "_out"); } catch (e) {}
+}
+function logoutClient() {
+  try { sessionStorage.setItem(KEY + "_out", "1"); } catch (e) {}
+  cart = {};
+  saveCart();
+}
 function ordersOf(cid) { return state.orders.filter(function (o) { return o.clientId === cid; }); }
 
 function placeOrder(opts) {
@@ -1835,6 +1912,12 @@ function catLabel(key) {
   var c = CATS.filter(function (x) { return x.key === key; })[0];
   return c ? c.label : "기타";
 }
+/** 품목 이름 검색 — 띄어쓰기·대소문자 무시 */
+function matchQuery(p, q) {
+  if (!q) return true;
+  var name = String(p.name || "").replace(/\s+/g, "").toLowerCase();
+  return name.indexOf(String(q).replace(/\s+/g, "").toLowerCase()) >= 0;
+}
 function badgeOf(o) {
   return '<span class="badge ' + (STATUS_CLASS[o.status] || "done") + '">' + (STATUS_LABEL[o.status] || o.status) + "</span>";
 }
@@ -1882,10 +1965,15 @@ function renderHeader() {
   $$(".mode").forEach(function (b) {
     b.setAttribute("aria-selected", b.getAttribute("data-route") === ui.route ? "true" : "false");
   });
+  var mine = $("#headMine"), guest = $("#headGuest"), nav = $("#navModes");
+  var on = isLoggedIn();
+  if (mine) mine.hidden = !on;
+  if (guest) guest.hidden = on;
+  if (nav) nav.hidden = !on;
   var ccName = $("#ccName"), badge = $("#cartCnt");
   if (ccName) {
     var c = currentClient();
-    ccName.textContent = c ? c.name : "거래처";
+    ccName.textContent = (on && c) ? c.name : "내 가게";
   }
   if (badge) {
     var n = cartCount();
@@ -1954,23 +2042,37 @@ function renderB2B() {
 
 function renderListMeta() {
   var listDate = ui.listDate || currentSlot().ymd;
-  var n = state.products.filter(function (p) { return ui.cat === "all" || p.cat === ui.cat; }).length;
-  $("#listTitle").innerHTML = fmtDotDow(listDate) + " 단가표 <small>" + n + "품목</small>";
+  var q = ui.prodQuery || "";
+  var n = state.products.filter(function (p) {
+    return (ui.cat === "all" || p.cat === ui.cat) && matchQuery(p, q);
+  }).length;
+  $("#listTitle").innerHTML = (q ? "‘" + esc(q.trim()) + "’ 검색" : fmtDotDow(listDate) + " 단가표") +
+    " <small>" + n + "품목</small>";
 }
 
 function renderCatChips() {
+  var q = ui.prodQuery || "";
   $("#catChips").innerHTML = CATS.map(function (c) {
-    var cnt = c.key === "all" ? state.products.length : state.products.filter(function (p) { return p.cat === c.key; }).length;
+    var cnt = state.products.filter(function (p) {
+      return (c.key === "all" || p.cat === c.key) && matchQuery(p, q);
+    }).length;
     return '<button class="chip" data-act="cat" data-cat="' + c.key + '" aria-pressed="' + (ui.cat === c.key) + '">' +
-      c.label + "</button>";
+      c.label + (q ? '<em class="chip-n">' + cnt + "</em>" : "") + "</button>";
   }).join("");
 }
 
 function renderProdList() {
   var listDate = ui.listDate || defaultSlot().ymd;
-  var list = state.products.filter(function (p) { return ui.cat === "all" || p.cat === ui.cat; });
+  var q = ui.prodQuery || "";
+  var list = state.products.filter(function (p) {
+    return (ui.cat === "all" || p.cat === ui.cat) && matchQuery(p, q);
+  });
   if (!list.length) {
-    $("#prodList").innerHTML = '<div class="empty"><div class="ei">🥬</div><b>이 분류에 품목이 없습니다</b></div>';
+    $("#prodList").innerHTML = q
+      ? '<div class="empty"><div class="ei">🔍</div><b>‘' + esc(q.trim()) + '’ 품목이 없습니다</b>' +
+        '<p>품목 이름을 다시 확인하거나, 아래 버튼으로 전체 품목을 보세요.</p>' +
+        '<button class="btn btn-sm" style="margin-top:12px" data-act="prod-clear">전체 품목 보기</button></div>'
+      : '<div class="empty"><div class="ei">🥬</div><b>이 분류에 품목이 없습니다</b></div>';
     return;
   }
   $("#prodList").innerHTML = list.map(function (p) {
@@ -2010,7 +2112,7 @@ function renderProdList() {
 function renderActionbar() {
   var bar = $("#actionbar");
   if (!bar) return;   /* 사장님 화면에는 하단 발주 바가 없다 */
-  var show = (ui.route === "b2b" || ui.route === "orders" || ui.route === "stmt") && cartCount() > 0;
+  var show = isLoggedIn() && (ui.route === "b2b" || ui.route === "orders" || ui.route === "stmt") && cartCount() > 0;
   bar.classList.toggle("on", show);
   bar.hidden = !show;
   if (!show) return;
@@ -2084,6 +2186,42 @@ function renderCartDrawer() {
           : esc(gate.msg)) + "</div></div>" : "") +
       '<button class="btn btn-primary btn-block" data-act="checkout"' + (lines.length && am.meetsMin && !gate.blocked ? "" : " disabled") + ">" +
         (gate.blocked ? "발주 불가" : (am.meetsMin ? "발주서 작성" : "최소 주문 " + won(am.minOrder) + "원")) + "</button>" +
+    "</div>"
+  );
+}
+
+/* ── 내 가게 정보 (내 것만 보인다) ────────────────── */
+function renderMyAccount() {
+  var c = currentClient();
+  if (!c) return;
+  var L = buildLedger(c.id);
+  var g = clientGate(c.id);
+  var rows = [
+    ["상호", c.name],
+    ["사업자등록번호", c.bizNo || "-"],
+    ["대표자", c.owner || "-"],
+    ["연락처", c.phone || "-"],
+    ["사업장 주소", c.addr || "-"]
+  ].map(function (r) {
+    return '<div class="my-row"><span>' + r[0] + "</span><b>" + esc(r[1]) + "</b></div>";
+  }).join("");
+  openDrawer(
+    '<div class="grab"></div>' +
+    '<div class="dr-head"><h2 id="drawerTitle">내 가게</h2><button class="icon-btn" data-act="drawer-close" aria-label="닫기">✕</button></div>' +
+    '<div class="dr-body">' +
+      '<div class="my-card">' +
+        '<div class="my-name">' + esc(c.name) + " " + clientStatusBadge(c) + "</div>" +
+        '<div class="my-rows">' + rows + "</div>" +
+      "</div>" +
+      '<div class="my-bal">' +
+        '<div class="k">미수 잔액</div>' +
+        '<div class="v">' + won(L.balance) + "<small>원</small></div>" +
+        '<div class="s">' + (g.blocked ? esc(g.msg) : "발주할 수 있습니다") + "</div>" +
+      "</div>" +
+      '<p class="tiny muted" style="margin-top:10px">가게 정보가 다르면 사장님(' + esc(state.store.phone) + ')에게 알려 주세요.</p>' +
+    "</div>" +
+    '<div class="dr-foot">' +
+      '<button class="btn btn-ghost btn-block" data-act="logout">로그아웃</button>' +
     "</div>"
   );
 }
@@ -2512,7 +2650,8 @@ function renderAdminClients() {
       '<div class="stat warn"><div class="k">미수금 합계</div><div class="v">' + won(totalDue) + "<small>원</small></div></div>" +
       '<div class="stat ' + (pending.length ? "warn" : "ok") + '"><div class="k">가입 승인 대기</div><div class="v">' + pending.length + "<small>곳</small></div></div>" +
     "</div>" +
-    '<p class="tiny muted" style="margin-top:8px">사업자 전용 — 사업자등록증을 확인해 <b>승인</b>해야 그 거래처가 발주할 수 있습니다. 미수 잔액이 남은 거래처는 입금 처리 전까지 발주가 막힙니다(외상은 하루치까지만).</p>' +
+    '<p class="tiny muted" style="margin-top:8px">사업자 전용 — 사업자등록증을 확인해 <b>승인</b>해야 그 거래처가 발주할 수 있습니다. 미수 잔액이 남은 거래처는 입금 처리 전까지 발주가 막힙니다(외상은 하루치까지만).<br>' +
+    '손님 화면(index.html)에는 <b>이 거래처 목록이 보이지 않습니다</b>. 특정 가게로 손님 화면을 확인하려면 <b>손님 화면으로 보기</b>를 누르세요.</p>' +
     approveHTML +
     '<div class="field" style="margin-top:12px"><input id="clientSearch" data-act="client-search" value="' + esc(q) + '" placeholder="거래처 이름·연락처 검색"></div>' +
     (list.length ? list.map(function (c) {
@@ -2535,6 +2674,7 @@ function renderAdminClients() {
           '<button class="btn btn-sm" data-act="payment-open" data-cid="' + c.id + '">입금 기록</button>' +
           '<button class="btn btn-sm btn-ghost" data-act="client-edit" data-cid="' + c.id + '">거래처 정보</button>' +
           '<button class="btn btn-sm btn-ghost" data-act="client-stmt" data-cid="' + c.id + '">전표 보기</button>' +
+          '<button class="btn btn-sm btn-ghost" data-act="client-view" data-cid="' + c.id + '">손님 화면으로 보기</button>' +
         "</div>" +
         (s.pendingCount ? '<div class="tiny" style="margin-top:8px;color:var(--amber)">단가확정 대기 ' + s.pendingCount + "건 · " + won(s.pendingAmount) + "원</div>" : "") +
         "</div>";
@@ -2691,11 +2831,12 @@ function openStatement(orderNo) {
       '<button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
     '<div class="m-body">' +
       '<div class="stmt-scroll" id="stmtScroll"><div class="stmt-scaler">' + statementSheet(o) + "</div></div>" +
-      '<p class="small" style="margin-top:10px">A4 1장에 <b>공급받는자용</b>과 <b>공급자용</b>이 절취선으로 나뉘어 함께 인쇄됩니다.</p>' +
+      /* 손님 화면 — 전표 보기만. 인쇄 버튼·인쇄 안내 없음 (인쇄는 사장님 화면에서만) */
+      (IS_ADMIN ? '<p class="small" style="margin-top:10px">A4 1장에 <b>공급받는자용</b>과 <b>공급자용</b>이 절취선으로 나뉘어 함께 인쇄됩니다.</p>' : "") +
     "</div>" +
     '<div class="m-foot">' +
-      '<button class="btn btn-ghost" data-act="modal-close">닫기</button>' +
-      '<button class="btn btn-primary" data-act="stmt-print" data-no="' + o.no + '">A4 인쇄</button>' +
+      '<button class="btn btn-ghost" data-act="modal-close">' + (IS_ADMIN ? "닫기" : "확인") + "</button>" +
+      (IS_ADMIN ? '<button class="btn btn-primary" data-act="stmt-print" data-no="' + o.no + '">A4 인쇄</button>' : "") +
     "</div>"
   );
   setTimeout(fitStatement, 30);
@@ -2763,6 +2904,7 @@ function printBatch(ymd, round) {
 /* ══════════════ 공통 렌더 ══════════════ */
 function render() {
   renderHeader();
+  if (ui.route === "login") return;          /* 로그인 화면은 고정 마크업 그대로 */
   if (ui.route === "b2b") renderB2B();
   else if (ui.route === "checkout") renderCheckout();
   else if (ui.route === "orders") renderOrders();
@@ -2775,14 +2917,19 @@ function render() {
    이벤트 · 시작
    ═══════════════════════════════════════════════════════════ */
 
-/* 모드별 화면 — 거래처용에는 사장님 관리 화면·경로 자체가 없다 */
+/* 모드별 화면 — 거래처용에는 사장님 관리 화면·경로 자체가 없다
+   거래처(손님) 화면은 로그인 전까지 로그인 화면만 보인다. */
 var VIEWS = IS_ADMIN
   ? { admin:"viewAdmin" }
-  : { b2b:"viewB2B", checkout:"viewCheckout", orders:"viewOrders", stmt:"viewStmt" };
-var HOME_ROUTE = IS_ADMIN ? "admin" : "b2b";
+  : { login:"viewLogin", b2b:"viewB2B", checkout:"viewCheckout", orders:"viewOrders", stmt:"viewStmt" };
+var HOME_ROUTE = IS_ADMIN ? "admin" : (isLoggedIn() ? "b2b" : "login");
 
 function setRoute(route, opts) {
   opts = opts || {};
+  if (!IS_ADMIN) {
+    if (!isLoggedIn()) route = "login";
+    else if (route === "login") route = "b2b";
+  }
   if (!VIEWS[route]) route = HOME_ROUTE;
   if (route === "checkout" && !cartCount()) route = HOME_ROUTE;
   ui.route = route;
@@ -2824,25 +2971,39 @@ function cartQty(pid, delta, abs) {
 }
 
 /* ── 거래처 선택 ────────────────────────────────────── */
-function openClientPicker() {
-  openDrawer(
-    '<div class="grab"></div>' +
-    '<div class="dr-head"><h2 id="drawerTitle">거래처 선택</h2><button class="icon-btn" data-act="drawer-close">✕</button></div>' +
-    '<div class="dr-body">' +
-      '<button class="btn btn-primary btn-block" data-act="signup-open" style="margin-bottom:10px">+ 신규 거래처 가입 (사업자등록증 필수)</button>' +
-      '<p class="tiny muted" style="margin:0 0 10px">사업자 전용입니다. 사업자등록증을 확인해 승인하면 발주할 수 있어요.</p>' +
-      state.clients.map(function (c) {
-        var L = buildLedger(c.id);
-        var on = c.id === state.currentClientId;
-        var st = c.status || CLIENT.APPROVED;
-        return '<button class="slot-opt" data-act="client-pick" data-cid="' + c.id + '" aria-pressed="' + on + '" style="margin-bottom:7px">' +
-          '<span class="so-radio" aria-hidden="true" style="border-radius:6px"></span>' +
-          '<span class="so-main" style="text-align:left"><b>' + esc(c.name) + (st === CLIENT.PENDING ? ' <span class="badge pending">승인 대기</span>' : (st === CLIENT.REJECTED ? ' <span class="badge cancel">반려</span>' : "")) + "</b><small>" + esc(c.owner || "") + " · " + esc(c.phone || "") +
-          " · 잔액 " + won(L.balance) + "원" + (L.balance > 0 ? " (발주 제한)" : "") + "</small></span></button>";
-      }).join("") +
-      '<p class="small" style="margin-top:10px">시안에서는 로그인 없이 거래처를 바꿔 볼 수 있습니다. 실제 서비스에서는 사업자등록증 승인으로 연결됩니다.</p>' +
-    "</div>"
-  );
+/* ── 손님 로그인 · 로그아웃 ──────────────────────────── */
+/* 손님 화면에는 거래처 목록이 없다. 상호명 + 전화번호가 맞아야 내 가게로 들어간다. */
+function doLogin() {
+  var nameEl = $("#lgName"), phoneEl = $("#lgPhone");
+  var name = (nameEl ? nameEl.value : "").replace(/\s+/g, "");
+  var phone = digits(phoneEl ? phoneEl.value : "");
+  if (!name) { toast("상호명을 입력해 주세요."); if (nameEl) nameEl.focus(); return; }
+  if (phone.length < 9) { toast("전화번호를 정확히 입력해 주세요."); if (phoneEl) phoneEl.focus(); return; }
+  var hit = state.clients.filter(function (c) {
+    var cn = String(c.name || "").replace(/\s+/g, "");
+    return (cn === name || cn.indexOf(name) >= 0) && digits(c.phone) === phone;
+  })[0];
+  if (!hit) { toast("상호명과 전화번호가 맞는 거래처를 찾지 못했습니다."); return; }
+  loginClient(hit);
+  if (nameEl) nameEl.value = "";
+  if (phoneEl) phoneEl.value = "";
+  ui.slot = null; ui.listDate = null; ui.cat = "all"; ui.prodQuery = "";
+  setRoute("b2b");
+  if (hit.status === CLIENT.REJECTED) toast("가입이 반려된 거래처입니다. 사장님께 문의해 주세요.");
+  else if (hit.status === CLIENT.PENDING) toast(hit.name + " · 가입 승인을 기다리는 중입니다.");
+  else toast(hit.name + " 으로 로그인했습니다.");
+}
+
+function doLogout() {
+  logoutClient();
+  closeDrawer();
+  closeModal();
+  ui.cat = "all";
+  ui.prodQuery = "";
+  ui.slot = null;
+  ui.listDate = null;
+  setRoute("login");
+  toast("로그아웃했습니다.");
 }
 
 /* ── 신규 거래처 가입 (사업자 전용 · 사업자등록증 필수) ── */
@@ -2931,6 +3092,7 @@ function saveSignup() {
     phone:fmtPhone(val("suPhone")), manager:val("suOwner"), bizFile:ui.signupFile
   });
   if (!res.ok) { toast(res.msg || "가입 신청을 접수하지 못했습니다."); return; }
+  loginClient(res.client);
   ui.signupFile = null;
   closeDrawer();
   closeModal();
@@ -3189,6 +3351,23 @@ function onClick(e) {
     case "modal-close": closeModal(); break;
     case "scrim": closeDrawer(); closeModal(); break;
 
+    /* 손님 로그인 — 내 가게 1곳만. 거래처 목록은 보이지 않는다. */
+    case "login-open": closeDrawer(); setRoute("login"); break;
+    case "login": doLogin(); break;
+    case "my-open": renderMyAccount(); break;
+    case "logout": doLogout(); break;
+
+    /* 품목 검색 */
+    case "prod-clear": {
+      ui.prodQuery = "";
+      var sInp = $("#prodSearch");
+      if (sInp) { sInp.value = ""; try { sInp.focus(); } catch (e) {} }
+      var clr = $(".ps-clear");
+      if (clr) clr.hidden = true;
+      renderListMeta(); renderCatChips(); renderProdList();
+      break;
+    }
+
     /* 규칙 1 — 사업자 전용 가입 */
     case "signup-open": closeDrawer(); openSignup(); break;
     case "signup-save": saveSignup(); break;
@@ -3290,19 +3469,21 @@ function onClick(e) {
       break;
 
     case "stmt-open": openStatement(no); break;
-    case "stmt-print": printStatement(el.getAttribute("data-no")); break;
+    case "stmt-print": if (IS_ADMIN) printStatement(el.getAttribute("data-no")); break;
     case "batch-round": openBatchPrint(el.getAttribute("data-ymd"), el.getAttribute("data-round")); break;
     case "batch-day": openBatchPrint(el.getAttribute("data-ymd"), ""); break;
     case "batch-print": printBatch(el.getAttribute("data-ymd"), el.getAttribute("data-round")); break;
 
-    case "client-open": openClientPicker(); break;
-    case "client-pick":
-      state.currentClientId = el.getAttribute("data-cid");
+    /* 거래처 전환은 사장님 화면에서만 (손님 화면에는 목록이 없다) */
+    case "client-view": {
+      var cidV = el.getAttribute("data-cid");
+      state.currentClientId = cidV;
       saveState();
-      closeDrawer();
-      render();
-      toast(getClient(state.currentClientId).name + "(으)로 바꿨습니다.");
+      var w = window.open("index.html", "_blank");
+      if (!w) location.href = "index.html";
+      toast(getClient(cidV).name + " 거래처로 손님 화면을 열었습니다.");
       break;
+    }
 
     case "restock": openRestock(pid); break;
     case "restock-save": {
@@ -3410,6 +3591,21 @@ function onInput(e) {
   if (act === "su-biz") {
     var fmt = fmtBizNo(el.value);
     if (el.value !== fmt) el.value = fmt;
+    return;
+  }
+  if (act === "lg-phone") {
+    var fph = fmtPhone(el.value);
+    if (el.value !== fph) el.value = fph;
+    return;
+  }
+  if (act === "prod-search") {
+    ui.prodQuery = el.value;
+    if (el.value.trim() && ui.cat !== "all") ui.cat = "all";
+    var clrBtn = $(".ps-clear");
+    if (clrBtn) clrBtn.hidden = !el.value;
+    renderListMeta();
+    renderCatChips();
+    renderProdList();
     return;
   }
   if (act === "draft") {
