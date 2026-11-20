@@ -368,7 +368,7 @@ a{color:inherit}
 .reorder.cart{margin:14px 0 0;width:100%;height:46px;font-size:14.5px}
 
 /* ── v4 · 주문 진행 단계 ────────────────── */
-.dtrack{display:flex;align-items:center;gap:6px;margin:0 16px 12px}
+.dtrack{display:flex;align-items:center;gap:6px;margin:16px 16px 12px}
 .dtrack span{flex:1 1 0;text-align:center;font-size:12.5px;font-weight:800;color:#9AA0A6;background:var(--bg);border-radius:8px;padding:9px 0;letter-spacing:-.2px}
 .dtrack span.on{background:var(--mint-l);color:var(--mint-d)}
 .dtrack span.on:first-child{background:var(--mint);color:#fff}
@@ -1666,7 +1666,10 @@ function showDone(ord){
     + '<div class="ditems">';
   for (var i=0;i<o.items.length;i++){
     var it = o.items[i];
-    h += '<div class="it"><span>' + esc(it.name) + (it.unit ? ' ' + esc(it.unit) : '') + (it.opt ? ' · ' + esc(it.opt) : '') + ' × ' + it.qty + '</span>'
+    var lineNm = esc(it.name);
+    if (it.opt && it.unit && it.opt.indexOf(it.unit) > -1) lineNm += ' · ' + esc(it.opt);
+    else lineNm += (it.unit ? ' ' + esc(it.unit) : '') + (it.opt ? ' · ' + esc(it.opt) : '');
+    h += '<div class="it"><span>' + lineNm + ' × ' + it.qty + '</span>'
       + '<span>' + money(it.sum) + '원</span></div>';
   }
   h += '</div></div>';

@@ -543,8 +543,9 @@ function orderCardHtml(o){
     + '</div>';
   h += '<div class="oitems">';
   (o.items || []).forEach(function(it){
-    h += '<div class="oit"><span class="n"><b>' + esc(it.name) + '</b> ' + esc(it.unit || '')
-      + (it.opt ? ' · ' + esc(it.opt) : '') + ' × ' + it.qty + '</span>'
+    var unit = esc(it.unit || '');
+    var optTxt = it.opt ? (it.unit && it.opt.indexOf(it.unit) > -1 ? ' · ' + esc(it.opt) : ' ' + unit + ' · ' + esc(it.opt)) : (unit ? ' ' + unit : '');
+    h += '<div class="oit"><span class="n"><b>' + esc(it.name) + '</b>' + optTxt + ' × ' + it.qty + '</span>'
       + '<span class="p">' + money(it.sum) + '원</span></div>';
   });
   h += '</div>';
