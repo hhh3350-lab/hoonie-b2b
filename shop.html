@@ -1293,7 +1293,11 @@ function renderCheckout(){
   h += '<section class="cksec"><h3><span class="num">5</span>결제 금액</h3>'
     + '<div class="sum" style="margin-top:6px;border:0;padding:0">' + sumRowsHtml() + '</div>'
     + '<p class="simnote">' + (state.zone === "pickup"
-        ? (disc > 0 ? "매장 픽업 1,000원 할인이 적용됐어요. 오늘 하루 1번 사용할 수 있어요." : "오늘 픽업 할인은 이미 사용했어요. 내일 다시 사용할 수 있어요.")
+        ? (disc > 0
+            ? (payable() === 0
+                ? "1,000원 픽업 할인으로 결제 금액이 0원이에요. 매장에서 바로 받아 가세요."
+                : "매장 픽업 1,000원 할인이 적용됐어요. 오늘 하루 1번 사용할 수 있어요.")
+            : "오늘 픽업 할인은 이미 사용했어요. 내일 다시 사용할 수 있어요.")
         : z.name + (meetMin() ? " · 무료배달 조건 충족" : " · 최소금액 미달")) + '</p>'
     + '</section>';
 
