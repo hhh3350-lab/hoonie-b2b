@@ -108,3 +108,18 @@
 
 데모용 샘플 데이터입니다. 품목 단가·거래처·미수 내역은 실제 값이 아닙니다.
 손님 화면은 시연 편의를 위해 처음 열면 `쪼끼쪼끼[단관택지]` 가게로 들어간 상태로 시작합니다.
+
+## 단구점 소매몰 `shop.html` · 소매 사장님 페이지 `shop-admin.html` (v4 · 2026-11-21)
+
+위 B2B(거래처 발주)와는 **별개**로, 단구점 매장 손님용 소매 쇼핑몰입니다. 사진·CSS·JS가 각 파일 하나에 들어 있습니다.
+
+| 화면 | 파일 | 내용 |
+|---|---|---|
+| 손님(소매) | `shop.html` | 배민 스타일 45종 메뉴 · 배달/포장 · 받는 시간 선택 · 장바구니 · 결제 · 주문 완료. 포장 주문 하루 1회 1,000원 할인 |
+| 소매 사장님 | `shop-admin.html` | 오늘 들어온 소매 주문(배달/포장·수령 시간·품목·결제 금액) 상태 변경, 45종 가격·품절·남은 수량·사장님 코멘트 즉시 관리 |
+
+- 열어 보기: `https://htmlpreview.github.io/?https://github.com/hhh3350-lab/hoonie-b2b/blob/main/shop.html`
+- 사장님: `https://htmlpreview.github.io/?https://github.com/hhh3350-lab/hoonie-b2b/blob/main/shop-admin.html`
+- 미리보기: `preview-retail-v4.png` · `preview-retail-admin.png`
+- 두 화면은 **같은 브라우저 저장소**(localStorage)를 공유합니다. 같은 주소에서 열면 사장님이 품절·가격·상태를 바꾸는 즉시 손님 화면에 반영됩니다.
+  서버가 없으므로 다른 기기·다른 손님에게는 퍼지지 않습니다(실제 운영에는 DB·알림 연동 필요).
