@@ -2933,7 +2933,7 @@ function renderActionbar() {
   if (am.meetsMin && !gate.blocked) {
     $("#abHint").innerHTML = "<b>" + slotText(sl.ymd, sl.round) + " 배달</b> · " +
       (Number(state.policy.shipFee) ? "배송비 " + won(state.policy.shipFee) + "원" : "무료배송") +
-      (am.total >= PAY_IMMEDIATE_FROM ? " · 10만 원↑ <b>즉시결제</b>" : "");
+      (!creditAllowed(currentClient(), am.total) ? " · 10만 원↑ <b>즉시결제</b>" : "");
     prog.querySelector("i").style.background = "var(--green)";
     btn.disabled = false;
     btn.textContent = "발주하기";
@@ -2984,9 +2984,7 @@ function renderCartDrawer() {
       "</div>" +
       (am.meetsMin ? "" : '<div class="notice" style="margin-bottom:10px"><span class="ni">!</span><div>최소 주문 <b>' + won(am.minOrder) + "원</b>부터 발주할 수 있어요. <b>" + won(am.shortfall) + "원</b> 더 담아 주세요.</div></div>") +
       (gate.blocked ? '<div class="notice red" style="margin-bottom:10px"><span class="ni">🔒</span><div>' +
-        (gate.code === "BALANCE"
-          ? "미수 잔액 <b>" + won(gate.balance) + "원</b> 입금 확인 후 다음 발주가 가능합니다 (외상은 하루치까지만 가능)"
-          : esc(gate.msg)) + "</div></div>" : "") +
+        esc(gate.msg) + "</div></div>" : "") +
       '<button class="btn btn-primary btn-block" data-act="checkout"' + (lines.length && am.meetsMin && !gate.blocked ? "" : " disabled") + ">" +
         (gate.blocked ? "발주 불가" : (am.meetsMin ? "발주서 작성" : "최소 주문 " + won(am.minOrder) + "원")) + "</button>" +
     "</div>"
@@ -3851,7 +3849,8 @@ function stmtCopy(order, kind) {
       '<div class="st-approve"><table class="ap-table"><colgroup><col style="width:5mm"><col style="width:10.5mm"><col style="width:10.5mm"></colgroup><tbody><tr><td class="ap-label" rowspan="2">확<br>인</td><td></td><td></td></tr><tr><td></td><td></td></tr></tbody></table></div>' +
     "</div>" +
     '<div class="st-meta"><span class="date">' + fmtDotDow(order.ymd) + '</span><span class="tel">' + esc(s.phone) + '</span>' +
-      '<span class="paykind">' + (isImmediate(order) ? "즉시결제(입금확인 " + (order.deposit === DEPOSIT.CONFIRMED ? "완료" : "대기") + ")" : "외상(하루치 정산)") + '</span>' +
+      '<span class="paykind">' + (isImmediate(order) ? "즉시결제(입금확인 " + (order.deposit === DEPOSIT.CONFIRMED ? "완료" : "대기") + ")" :
+        (creditDaysOf(cl) > 1 ? "외상(약정 정산)" : "외상(하루치 정산)")) + '</span>' +
       '<span class="serial">' + (order.stmtNo || "-") + "</span></div>" +
     '<div class="st-parties">' +
       '<table class="st-party supplier"><colgroup><col style="width:4.6mm"><col style="width:10.5mm"><col style="width:23mm"><col style="width:5.6mm"><col style="width:18.6mm"></colgroup><tbody>' +
@@ -4561,14 +4560,14 @@ function onClick(e) {
       break;
     }
 
-    /* 규칙 3 — 결제 방식 (10만 원 이상은 즉시결제 고정) */
+    /* 규칙 3 — 결제 방식 (10만 원 이상은 일반 등급만 즉시결제 고정) */
     case "paymode": {
       if (!ui.co) break;
       var mode = el.getAttribute("data-mode");
       var totalNow = calcAmounts(cartLines(ui.co.ymd)).total;
       if (mode === PAY.IMMEDIATE) {
         ui.co.payMode = PAY.IMMEDIATE;
-      } else if (totalNow >= PAY_IMMEDIATE_FROM) {
+      } else if (!creditAllowed(getClient(ui.co.client.id), totalNow)) {
         toast("10만 원 이상 주문은 외상이 불가합니다. 즉시 결제로 진행해 주세요.");
         break;
       } else {
