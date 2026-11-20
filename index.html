@@ -975,6 +975,55 @@ footer .biz dd{margin:0;color:#C9CEC3}
   .mode-client .ab-btn{height:58px;min-width:180px;font-size:18px}
 }
 
+/* ═══════════════════════════════════════════════════
+   품목·단가 관리 — 품목 추가/삭제 · 가격·재고 · 영수증 일괄 입력
+   ═══════════════════════════════════════════════════ */
+.bulk-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.bulk-card h3{font-size:14px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.bulk-lead{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:10px}
+.bulk-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.bulk-grid{grid-template-columns:230px 1fr}}
+.bulk-file-btn{display:flex;align-items:center;justify-content:center;height:42px;border-radius:10px;
+  border:1px dashed var(--line2);background:var(--bg2);font-size:13px;font-weight:800;color:var(--green-d);cursor:pointer}
+.bulk-file-input{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.bulk-photo .biz-file-box{margin-top:8px}
+.bulk-photo .biz-prev img{max-height:190px;object-fit:contain;background:#fff}
+.bulk-label{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.bulk-text textarea{width:100%;min-height:98px;border:1px solid var(--line2);border-radius:9px;padding:9px 11px;
+  font-size:13.5px;line-height:1.55;background:#fff;resize:vertical;font-family:var(--mono);color:var(--ink)}
+.bulk-text textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(46,107,59,.12)}
+.bulk-res{margin-top:11px;background:#F8F7F1;border:1px solid var(--line);border-radius:10px;padding:10px 11px}
+.bulk-res.warn{background:var(--amber-l);border-color:var(--amber-line)}
+.bulk-res-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:5px}
+.bulk-res-h b{font-size:12.5px}
+.bulk-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px 0;border-top:1px solid rgba(0,0,0,.07);font-size:12.5px}
+.bulk-line .bl-n{font-weight:800;flex:1 1 88px;min-width:0;word-break:keep-all}
+.bulk-line .bl-p{font-weight:800;font-variant-numeric:tabular-nums}
+.bulk-line .bl-raw{flex:1 0 100%;font-size:11px;color:var(--muted)}
+.bulk-line .btn{margin-left:auto}
+
+.pm-list{display:flex;flex-direction:column;gap:8px}
+.pm-row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px;box-shadow:var(--sh)}
+.pm-row.out{background:#FAF9F4}
+.pm-h{display:flex;align-items:flex-start;gap:9px}
+.pm-emoji{width:34px;height:34px;border-radius:10px;background:var(--green-l);display:flex;align-items:center;
+  justify-content:center;font-size:17px;flex:0 0 auto}
+.pm-nm{font-weight:800;font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;letter-spacing:-.02em}
+.pm-meta{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+.pm-meta .st-out{color:var(--red)}
+.pm-del{flex:0 0 auto;color:var(--red);border-color:#F0D3CE}
+.pm-f{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:6px;margin-top:10px;align-items:end}
+.pm-fld{display:flex;flex-direction:column;gap:3px;min-width:0}
+.pm-fld > span{font-size:10.5px;font-weight:700;color:var(--muted)}
+.pm-fld input{width:100%;height:38px;border:1px solid var(--line2);border-radius:9px;text-align:right;
+  padding:0 8px;font-size:13px;font-weight:800;background:#fff;font-variant-numeric:tabular-nums;color:var(--ink)}
+.pm-fld input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(46,107,59,.12)}
+.pm-fld input[data-dirty="1"]{border-color:var(--amber);background:var(--amber-l)}
+.pm-fld input:disabled{background:#F1EFE7;color:var(--muted)}
+.pm-out{height:38px;padding:0 10px;border-radius:9px;border:1px solid var(--line2);background:#fff;
+  font-size:12px;font-weight:800;color:var(--ink2);white-space:nowrap}
+.pm-out.on{background:var(--red-l);border-color:#F0D3CE;color:var(--red)}
+
 </style>
 </head>
 <body class="mode-client">
@@ -1076,7 +1125,7 @@ footer .biz dd{margin:0;color:#C9CEC3}
       <p class="fineprint">
         🕖 지금 보이는 금액은 <b>참고가</b>이고, <b>아침 7시 확정 단가</b>로 정산됩니다.<br>
         🚚 원주 시내 <b>5만 원 이상 무료배송</b> · 최소 주문 <b><span id="fineMin">50,000</span>원</b> · 배달 <b>1차 08:00 · 2차 11:00 · 3차 13:00~14:00</b><br>
-        🔐 <b>사업자 전용</b> · 결제는 <b>외상 하루치</b>, <b>10만 원 이상은 즉시결제</b> · 미수 잔액이 있으면 발주가 잠깁니다.
+        🔐 <b>거래처 전용</b> · 사업자등록증 없이 <b>간편 가입</b>, 사장님 <b>승인 후</b> 이용 · 결제는 <b>외상 하루치</b>, <b>10만 원 이상은 즉시결제</b> · 미수 잔액이 있으면 발주가 잠깁니다.
       </p>
     </div>
   </section>
@@ -1150,7 +1199,7 @@ footer .biz dd{margin:0;color:#C9CEC3}
         <ul>
           <li>· 원주 시내권 배달 · 최소 주문 <span id="footMin">50,000</span>원 이상 주문 가능 (<span id="footFee">무료배송</span>)</li>
           <li>· 배달 1차 08:00 · 2차 11:00 · 3차 13:00~14:00 (각 30분 전 마감)</li>
-          <li>· 사업자 전용 · 사업자등록증 확인 후 승인</li>
+          <li>· 사업자등록증 없이 간편 가입 · 사장님 승인 후 이용</li>
           <li>· 결제: 외상 하루치 / 10만 원 이상은 즉시 결제(계좌이체)</li>
           <li>· 전표는 A4 거래명세표로 발행</li>
         </ul>
@@ -1319,7 +1368,7 @@ var PAY = { CREDIT:"CREDIT", IMMEDIATE:"IMMEDIATE" };
 var PAY_LABEL = { CREDIT:"외상(하루치)", IMMEDIATE:"즉시결제" };
 var PAY_IMMEDIATE_FROM = 100000;   // 이 금액 이상이면 외상 잠김 · 즉시 결제만
 var CLIENT = { APPROVED:"APPROVED", PENDING:"PENDING", REJECTED:"REJECTED" };
-var CLIENT_LABEL = { APPROVED:"승인 완료", PENDING:"승인 대기(사업자등록증 확인)", REJECTED:"가입 반려" };
+var CLIENT_LABEL = { APPROVED:"승인 완료", PENDING:"승인 대기(사장님 확인 중)", REJECTED:"가입 반려" };
 var DEPOSIT = { CLAIMED:"CLAIMED", CONFIRMED:"CONFIRMED" };   // 입금확인 대기 / 입금확인 완료
 
 var KEY = "hoonie_b2b_veg_v3";
@@ -1477,7 +1526,7 @@ function seedState() {
       /* 사업자등록증을 올리고 승인을 기다리는 신규 신청 — 사장님 관리 > 거래처·미수에서 승인 1클릭 */
       id:"c4", name:"원주손칼국수", bizNo:"612-34-56789", owner:"장원주",
       addr:"강원특별자치도 원주시 무실로 45, 1층", uptae:"음식점업", jongmok:"칼국수·만두",
-      phone:"010-7788-9900", manager:"장원주", prevBalance:0, payments:[], memo:"사업자등록증 확인 대기",
+      phone:"010-7788-9900", manager:"장원주", prevBalance:0, payments:[], memo:"간편 가입 · 사장님 확인 대기",
       status:CLIENT.PENDING, bizFile:{ name:"사업자등록증_원주손칼국수.jpg", type:"image/jpeg", size:184320, dataUrl:null },
       signupAt:new Date(Date.parse(t + "T09:40:00+09:00")).toISOString(), approvedAt:null
     }
@@ -1661,7 +1710,11 @@ var ui = {
   clientQuery: "",
   modal: null,
   drawer: null,
-  signupFile: null
+  signupFile: null,
+  prodForm: null,     /* 새 품목 추가 폼에 치고 있는 값 */
+  bulkText: "",       /* 영수증 일괄 입력 칸 */
+  bulkFile: null,     /* 영수증 사진 (미리보기용) */
+  bulkResult: null    /* 마지막 일괄 적용 결과 */
 };
 
 /* ── 사업자·정책 접근 ───────────────────────────────── */
@@ -2049,15 +2102,17 @@ function newClientId() {
   });
   return "c" + (max + 1);
 }
-/** 가입 신청 — 사업자등록증 사본이 없으면 접수되지 않는다. */
+/** 가입 신청 — 간편 가입. 사업자등록증은 없어도 접수되고, 사장님 확인·승인 후 발주할 수 있다. */
 function addSignupClient(data) {
-  if (!data || !data.bizFile || !data.bizFile.name) return { ok:false, msg:"사업자등록증 사본을 첨부해야 가입 신청할 수 있습니다." };
+  if (!data || !String(data.name || "").trim()) return { ok:false, msg:"상호를 입력해 주세요." };
+  if (digits(data.phone).length < 9) return { ok:false, msg:"전화번호를 정확히 입력해 주세요." };
+  var hasFile = !!(data.bizFile && data.bizFile.name);
   var cl = {
-    id:newClientId(), name:data.name, bizNo:data.bizNo, owner:data.owner,
-    addr:data.addr, uptae:data.uptae, jongmok:data.jongmok,
-    phone:data.phone, manager:data.manager || data.owner,
-    prevBalance:0, payments:[], memo:"사업자등록증 확인 대기",
-    status:CLIENT.PENDING, bizFile:data.bizFile, signupAt:nowIso(), approvedAt:null
+    id:newClientId(), name:String(data.name).trim(), bizNo:data.bizNo || "", owner:data.owner || "",
+    addr:data.addr || "", uptae:data.uptae || "", jongmok:data.jongmok || "",
+    phone:data.phone || "", manager:data.manager || data.owner || "",
+    prevBalance:0, payments:[], memo:hasFile ? "간편 가입 · 사업자등록증 확인 대기" : "간편 가입 · 사장님 확인 대기",
+    status:CLIENT.PENDING, bizFile:hasFile ? data.bizFile : null, signupAt:nowIso(), approvedAt:null
   };
   state.clients.push(cl);
   state.currentClientId = cl.id;
@@ -2069,7 +2124,7 @@ function approveClient(cid) {
   if (!cl) return false;
   cl.status = CLIENT.APPROVED;
   cl.approvedAt = nowIso();
-  cl.memo = "사업자등록증 확인 · 승인 완료";
+  cl.memo = "사장님 확인 · 승인 완료";
   saveState();
   return true;
 }
@@ -2078,7 +2133,7 @@ function rejectClient(cid) {
   if (!cl) return false;
   cl.status = CLIENT.REJECTED;
   cl.rejectedAt = nowIso();
-  cl.memo = "사업자등록증 확인 후 가입 반려";
+  cl.memo = "가입 반려";
   saveState();
   return true;
 }
@@ -2092,7 +2147,7 @@ function clientGate(cid) {
   var st = cl.status || CLIENT.APPROVED;
   if (st === CLIENT.PENDING) {
     out.blocked = true; out.code = "PENDING";
-    out.msg = "가입 승인 대기 중입니다. 사장님이 사업자등록증을 확인·승인하면 발주할 수 있어요.";
+    out.msg = "가입 승인 대기 중입니다. 사장님이 승인하면 바로 발주할 수 있어요.";
     return out;
   }
   if (st === CLIENT.REJECTED) {
@@ -2138,6 +2193,184 @@ function addAlert(clientId, itemIds) {
   saveState();
 }
 function openAlerts() { return state.alerts.filter(function (a) { return a.status === "WAIT"; }); }
+
+/* ── 품목 관리 (사장님 · 품목 추가/삭제 · 가격·재고 변동) ─────────
+   사장님이 '아침 7시 단가 확정' 탭에서 품목을 직접 늘리고 줄인다.
+   바뀐 품목표는 같은 localStorage에 저장되므로 손님 화면(index.html)에 바로 반영된다. */
+var CAT_EMOJI = { veg:"🥬", season:"🌿", fruit:"🍋" };
+/* 이름만 보고 분류·그림을 짐작한다 (감귤 → 과일 🍊) */
+var CAT_GUESS = [
+  { cat:"fruit",  emoji:"🍊", words:["감귤","귤","오렌지","한라봉","천혜향","레몬","사과","신고배","단감","복숭아","자두","포도","바나나","키위","망고","딸기","수박","참외","블루베리","샤인머스캣","파인애플","체리","무화과","석류","앵두"] },
+  { cat:"season", emoji:"🌶️", words:["고추","대파","쪽파","양파","마늘","생강","깻잎","부추","상추","청양","당근","시래기"] },
+  { cat:"veg",    emoji:"🥬", words:["오이","호박","무","배추","양배추","감자","고구마","피망","파프리카","버섯","로즈","라디치오","도라지","우엉","시금치","브로콜리","토마토","가지"] }
+];
+function guessCat(name) {
+  var n = String(name || "");
+  var hit = null;
+  CAT_GUESS.forEach(function (g) {
+    if (hit) return;
+    g.words.forEach(function (w) { if (!hit && n.indexOf(w) >= 0) hit = g; });
+  });
+  return { cat:hit ? hit.cat : "veg", emoji:hit ? hit.emoji : "🥬" };
+}
+var UNIT_OPTIONS = ["1박스", "1kg", "1단", "1개", "15kg", "20kg"];
+var UNIT_SPEC_MAP = { "1박스":"box", "1kg":"kg", "1단":"단", "1개":"ea", "15kg":"box", "20kg":"box" };
+
+function newProductId() {
+  var max = 0;
+  state.products.forEach(function (p) {
+    var m = /^p(\d+)$/.exec(String(p.id || ""));
+    if (m) max = Math.max(max, Number(m[1]));
+  });
+  return "p" + (max + 1);
+}
+function productNameOf(base, grade, unitLabel) {
+  return String(base).trim() + (grade ? " (" + grade + ")" : "") + " " + unitLabel;
+}
+/** 같은 품목(이름·등급·단위)이 이미 있는지 — 띄어쓰기·괄호 무시 */
+function sameProduct(p, base, grade, unitLabel) {
+  return normSearch(p.base + p.grade + unitLabelOf(p)) === normSearch(base + grade + unitLabel);
+}
+/** 품목 추가 — 품목명·분류·등급·단위·오늘 단가·재고 */
+function addProduct(data) {
+  data = data || {};
+  var base = String(data.base || "").trim();
+  if (!base) return { ok:false, msg:"품목 이름을 입력해 주세요." };
+  var price = Math.max(0, Number(digits(data.price)) || 0);
+  if (!(price > 0)) return { ok:false, msg:"오늘 단가를 입력해 주세요." };
+  var cat = CAT_KEYS.indexOf(data.cat) >= 0 ? data.cat : "veg";
+  var grade = String(data.grade || "").trim();
+  var unitLabel = String(data.unitLabel || "1개").trim() || "1개";
+  var dup = state.products.filter(function (p) { return sameProduct(p, base, grade, unitLabel); })[0];
+  if (dup) return { ok:false, msg:"이미 있는 품목입니다 — " + dup.name };
+
+  var guess = guessCat(base);
+  var spec = UNIT_SPEC_MAP[unitLabel] || "-";
+  var p = {
+    id:newProductId(), name:productNameOf(base, grade, unitLabel), base:base, grade:grade,
+    unitLabel:unitLabel, spec:spec, unit:spec === "-" ? "ea" : spec, cat:cat,
+    ref:price, prevPrice:price, emoji:(guess.cat === cat ? guess.emoji : (CAT_EMOJI[cat] || "🥬")),
+    stock:Math.max(0, Number(digits(data.stock)) || 0), soldOut:false
+  };
+  state.products.push(p);
+  /* 오늘(고른 날짜) 확정가 칸에도 바로 채운다 */
+  var ymd = ui.priceDate || addDays(todayYmd(), 1);
+  if (!ui.priceDraft[ymd]) priceDraftFor(ymd);
+  if (ui.priceDraft[ymd]) ui.priceDraft[ymd][p.id] = price;
+  saveState();
+  return { ok:true, product:p };
+}
+/** 품목 삭제 — 장바구니·날짜별 단가에서도 같이 지운다 */
+function deleteProduct(pid) {
+  var p = findProduct(pid);
+  if (!p) return null;
+  state.products = state.products.filter(function (x) { return x.id !== pid; });
+  if (cart[pid]) { delete cart[pid]; saveCart(); }
+  Object.keys(state.days).forEach(function (d) {
+    var day = state.days[d];
+    if (day && day.prices && day.prices[pid] != null) delete day.prices[pid];
+  });
+  Object.keys(ui.priceDraft).forEach(function (d) {
+    if (ui.priceDraft[d]) delete ui.priceDraft[d][pid];
+  });
+  saveState();
+  return p;
+}
+/** 재고 바꾸기 — 0보다 크게 채우면 품절도 풀린다 */
+function setProductStock(pid, n) {
+  var p = findProduct(pid);
+  if (!p) return null;
+  p.stock = Math.max(0, Math.round(Number(n) || 0));
+  p.soldOut = p.stock <= 0;
+  saveState();
+  return p;
+}
+function toggleSoldOut(pid) {
+  var p = findProduct(pid);
+  if (!p) return null;
+  p.soldOut = !p.soldOut;
+  saveState();
+  return p;
+}
+/** 참고가를 바꾸면 확정가 칸도 따라간다 (손으로 고친 확정가는 그대로 둔다) */
+function setProductRef(pid, n) {
+  var p = findProduct(pid);
+  if (!p) return null;
+  var old = Number(p.ref) || 0;
+  var nv = Math.max(0, Number(digits(n)) || 0);
+  p.ref = nv;
+  if (p.prevPrice == null) p.prevPrice = nv;
+  Object.keys(ui.priceDraft).forEach(function (d) {
+    var draft = ui.priceDraft[d];
+    if (draft && Number(draft[pid]) === old) draft[pid] = nv;
+  });
+  saveState();
+  return p;
+}
+
+/* ── 영수증 / 단가 일괄 입력 ──────────────────────────
+   영수증을 보고 한 줄에 "품목 가격"을 붙여넣으면 매칭되는 품목의 확정가 칸을 채운다.
+   예)  대파 2800 / 양파 18,500 / 청양고추 특 32000 */
+function parsePriceLines(text) {
+  var out = [];
+  String(text == null ? "" : text).split(/\r?\n/).forEach(function (raw) {
+    var line = raw.replace(/\t/g, " ").trim();
+    if (!line) return;
+    /* 가격 = 줄 끝의 숫자(콤마 허용). 없으면 이름만 있는 줄 */
+    var m = /^(.*?)[\s:·\-]*([0-9][0-9,]{1,8})\s*원?\s*$/.exec(line);
+    if (!m) { out.push({ raw:line, name:line, price:null }); return; }
+    var name = m[1].replace(/[\s:·\-]+$/, "").trim();
+    var price = Number(m[2].replace(/,/g, ""));
+    if (!name) { out.push({ raw:line, name:line, price:null }); return; }
+    out.push({ raw:line, name:name, price:price });
+  });
+  return out;
+}
+/** 영수증 한 줄의 품목 이름 → 품목 후보 (정확한 이름 > 등급 일치 > 등급 없는 기본 품목 > 단위 일치) */
+function matchProductsForLine(name) {
+  var q = String(name || "").trim();
+  if (!q) return { list:[], best:null };
+  var toks = q.split(/\s+/).map(normSearch).filter(Boolean);
+  if (!toks.length) return { list:[], best:null };
+  var cands = state.products.filter(function (p) {
+    var hay = prodHay(p);
+    return toks.every(function (t) { return hay.indexOf(t) >= 0; });
+  });
+  if (!cands.length) return { list:[], best:null };
+  var qn = normSearch(q);
+  function score(p) {
+    var s = 0;
+    if (normSearch(p.name) === qn) s += 100;
+    if (p.grade) {
+      if (toks.indexOf(normSearch(p.grade)) >= 0) s += 40; else s -= 20;
+    } else if (!/[특상중]/.test(q)) s += 20;
+    var ul = normSearch(unitLabelOf(p));
+    if (ul && toks.some(function (t) { return ul.indexOf(t) >= 0; })) s += 30;
+    s -= String(p.base || "").length / 100;   /* 기본(등급 없는) 품목을 살짝 앞세운다 */
+    return s;
+  }
+  cands.sort(function (a, b) {
+    var d = score(b) - score(a);
+    if (d) return d;
+    return String(a.id) < String(b.id) ? -1 : 1;
+  });
+  return { list:cands, best:cands[0] };
+}
+/** 일괄 적용 — 매칭된 품목의 확정가를 한꺼번에 채우고, 못 찾은 줄은 따로 돌려준다 */
+function applyBulkPrices(text, ymd) {
+  var day = ymd || ui.priceDate || addDays(todayYmd(), 1);
+  var draft = priceDraftFor(day);
+  var applied = [], unmatched = [], noPrice = [];
+  parsePriceLines(text).forEach(function (r) {
+    if (!(r.price > 0)) { noPrice.push(r); return; }
+    var m = matchProductsForLine(r.name);
+    if (!m.best) { unmatched.push(r); return; }
+    draft[m.best.id] = r.price;
+    applied.push({ pid:m.best.id, name:m.best.name, base:m.best.base, price:r.price, raw:r.raw, candidates:m.list.length });
+  });
+  ui.bulkResult = { ymd:day, applied:applied, unmatched:unmatched, noPrice:noPrice, at:nowIso() };
+  return ui.bulkResult;
+}
 
 /* ═══════════════════════════════════════════════════════════
    UI — 화면 렌더링
@@ -2262,7 +2495,7 @@ function gateBannerHTML(gate) {
   if (gate.code === "PENDING") {
     return '<div class="notice red" id="creditBlock"><span class="ni">📄</span><div>' +
       '<b>' + esc((gate.client && gate.client.name) || "거래처") + ' — 가입 승인 대기 중입니다.</b><br>' +
-      '사업자등록증을 확인 중입니다. 사장님이 <b>승인</b>하면 바로 발주할 수 있어요 (사업자 전용).</div></div>';
+      '사장님이 가입을 확인하고 있습니다. <b>승인</b>하면 바로 발주할 수 있어요.</div></div>';
   }
   if (gate.code === "REJECTED") {
     return '<div class="notice red" id="creditBlock"><span class="ni">✕</span><div><b>가입이 반려된 거래처입니다.</b><br>' +
@@ -2919,6 +3152,137 @@ function priceDraftFor(ymd) {
   return ui.priceDraft[ymd];
 }
 
+/* ── 품목 추가 폼 (사장님이 품목을 직접 늘린다) ────── */
+function newProductFormHTML() {
+  var f = ui.prodForm || {};
+  var cat = CAT_KEYS.indexOf(f.cat) >= 0 ? f.cat : "veg";
+  var unit = f.unitLabel || "1박스";
+  return '<div class="settings-card" id="prodForm">' +
+    '<h3>➕ 새 품목 추가</h3>' +
+    '<div class="fields">' +
+      '<div class="field"><label for="npBase">품목명</label><input id="npBase" data-np="base" value="' + esc(f.base || "") + '" placeholder="예: 깻잎 / 참외"></div>' +
+      '<div class="field"><label for="npCat">분류</label><select id="npCat" data-np="cat">' +
+        CATS.filter(function (c) { return c.key !== "all"; }).map(function (c) {
+          return '<option value="' + c.key + '"' + (c.key === cat ? " selected" : "") + '>' + esc(c.label) + "</option>";
+        }).join("") + "</select></div>" +
+      '<div class="field"><label for="npGrade">등급 (선택)</label><select id="npGrade" data-np="grade">' +
+        ["", "특", "상"].map(function (g) {
+          return '<option value="' + g + '"' + ((f.grade || "") === g ? " selected" : "") + '>' + (g || "없음") + "</option>";
+        }).join("") + "</select></div>" +
+      '<div class="field"><label for="npUnit">단위</label><select id="npUnit" data-np="unitLabel">' +
+        UNIT_OPTIONS.map(function (u) {
+          return '<option value="' + u + '"' + (unit === u ? " selected" : "") + '>' + u + "</option>";
+        }).join("") + "</select></div>" +
+      '<div class="field"><label for="npPrice">오늘 단가 (원)</label><input id="npPrice" data-np="price" inputmode="numeric" value="' + esc(f.price || "") + '" placeholder="예: 2800"></div>' +
+      '<div class="field"><label for="npStock">재고</label><input id="npStock" data-np="stock" inputmode="numeric" value="' + esc(f.stock || "") + '" placeholder="예: 20"></div>' +
+    "</div>" +
+    '<div class="row" style="margin-top:11px;gap:8px;flex-wrap:wrap">' +
+      '<button class="btn btn-primary btn-sm" style="flex:0 0 auto" data-act="prod-add">품목 추가</button>' +
+      '<button class="btn btn-ghost btn-sm" style="flex:0 0 auto" data-act="prod-form-close">취소</button>' +
+      '<span class="tiny muted" style="flex:1 1 140px">추가한 품목은 손님 단가표에 바로 나옵니다.</span>' +
+    "</div>" +
+    "</div>";
+}
+
+/* ── 영수증 / 단가 일괄 입력 ───────────────────────── */
+function bulkPanelHTML(ymd) {
+  var f = ui.bulkFile;
+  var res = ui.bulkResult;
+  var resultHTML = "";
+  if (res && res.ymd === ymd) {
+    resultHTML =
+      (res.applied.length
+        ? '<div class="bulk-res"><div class="bulk-res-h"><b>✓ ' + res.applied.length + '개 품목에 적용</b>' +
+            '<span class="tiny muted">아래 <b>단가 일괄 확정</b>을 누르면 손님 화면에 반영됩니다</span></div>' +
+            res.applied.map(function (r) {
+              return '<div class="bulk-line"><span class="bl-n">' + esc(r.name) + "</span>" +
+                "<span class=\"bl-p\">" + won(r.price) + "원</span>" +
+                "<span class=\"bl-raw\">‘" + esc(r.raw) + "’" + (r.candidates > 1 ? " · 후보 " + r.candidates + "개 중 1개" : "") + "</span></div>";
+            }).join("") + "</div>"
+        : "") +
+      (res.unmatched.length
+        ? '<div class="bulk-res warn"><div class="bulk-res-h"><b>? ' + res.unmatched.length + '줄은 없는 품목입니다</b>' +
+            '<span class="tiny muted">새 품목으로 추가하면 단가가 함께 들어갑니다</span></div>' +
+            res.unmatched.map(function (r, i) {
+              return '<div class="bulk-line"><span class="bl-n">' + esc(r.name) + "</span>" +
+                "<span class=\"bl-p\">" + won(r.price) + "원</span>" +
+                '<button class="btn btn-xs" data-act="bulk-add" data-idx="' + i + '">＋ 새 품목으로 추가</button></div>';
+            }).join("") + "</div>"
+        : "") +
+      (res.noPrice.length
+        ? '<div class="bulk-res warn"><div class="bulk-res-h"><b>!' + " 가격을 못 읽은 줄 " + res.noPrice.length + "개</b>" +
+            '<span class="tiny muted">‘품목 가격’ 순서로 한 줄에 하나씩 넣어 주세요</span></div>' +
+            res.noPrice.map(function (r) {
+              return '<div class="bulk-line"><span class="bl-n">' + esc(r.raw) + "</span></div>";
+            }).join("") + "</div>"
+        : "") +
+      (!res.applied.length && !res.unmatched.length && !res.noPrice.length
+        ? '<div class="notice" style="margin:0"><span class="ni">!</span><div>붙여넣은 줄이 없습니다. 예) <b>대파 2800</b> 처럼 한 줄에 하나씩 넣어 주세요.</div></div>'
+        : "");
+  }
+
+  return '<div class="bulk-card" id="bulkPanel">' +
+    "<h3>🧾 영수증 / 단가 일괄 입력</h3>" +
+    '<p class="bulk-lead">영수증 사진을 올려 두고, <b>한 줄에 품목·가격</b>을 붙여넣은 뒤 <b>단가 일괄 적용</b>을 누르면 아래 확정가 칸이 한꺼번에 채워집니다.</p>' +
+    '<div class="bulk-grid">' +
+      '<div class="bulk-photo">' +
+        '<label class="bulk-file-btn" for="bulkFile">📷 영수증 사진 첨부</label>' +
+        '<input type="file" id="bulkFile" data-act="bulk-file" accept="image/*,application/pdf" class="bulk-file-input">' +
+        '<div class="biz-file-box" id="bulkFileBox">' +
+          (f && f.name ? '<div class="tiny"><b>' + esc(f.name) + "</b>" + (f.size ? " · " + Math.max(1, Math.round(f.size / 1024)) + "KB" : "") + "</div>" : "") +
+          (f && f.dataUrl ? '<div class="biz-prev"><img src="' + f.dataUrl + '" alt="영수증 사진 미리보기"></div>' : "") +
+          (f ? "" : "<span>사진은 확인용입니다 (단가는 아래 칸에 붙여넣기)</span>") +
+        "</div>" +
+      "</div>" +
+      '<div class="bulk-text">' +
+        '<label for="bulkText" class="bulk-label">단가 붙여넣기</label>' +
+        '<textarea id="bulkText" data-act="bulk-text" rows="4" placeholder="' +
+          esc("대파 2800\n양파 18500\n청양고추 특 32000") + '">' + esc(ui.bulkText || "") + "</textarea>" +
+        '<div class="row" style="gap:6px;margin-top:7px;flex-wrap:wrap">' +
+          '<button class="btn btn-primary btn-sm" data-act="bulk-apply" data-ymd="' + ymd + '">단가 일괄 적용</button>' +
+          '<button class="btn btn-ghost btn-sm" data-act="bulk-clear">칸 비우기</button>' +
+        "</div>" +
+      "</div>" +
+    "</div>" +
+    resultHTML +
+    '<div class="notice" style="margin:10px 0 0"><span class="ni">!</span><div>실제 거래처 폰까지 <b>실시간 동기화</b>하려면 서버 DB 연동이 필요합니다 <span class="muted">(현재는 같은 브라우저 테스트)</span>.</div></div>' +
+    "</div>";
+}
+
+/* ── 품목 한 줄 — 가격·재고·품절·삭제 ──────────────── */
+function productManageHTML(p, draft, fixed) {
+  var d = draft[p.id] != null ? draft[p.id] : p.ref;
+  var diff = Number(d) - Number(p.ref);
+  var out = p.soldOut || p.stock <= 0;
+  return '<div class="pm-row' + (out ? " out" : "") + '" data-pid="' + p.id + '">' +
+    '<div class="pm-h">' +
+      '<span class="pm-emoji" aria-hidden="true">' + p.emoji + "</span>" +
+      '<div class="grow">' +
+        '<div class="pm-nm">' + esc(p.base || p.name) +
+          '<span class="p-badge' + (p.grade ? " has-grade" : "") + '">' +
+            (p.grade ? "<b>" + esc(p.grade) + "</b> · " : "") + esc(unitLabelOf(p)) + "</span>" +
+        "</div>" +
+        '<div class="pm-meta">' + esc(catLabel(p.cat)) + " · 재고 " + p.stock +
+          (p.soldOut ? ' · <b class="st-out">품절</b>' : "") +
+          (diff ? ' · 참고가 대비 <b style="color:' + (diff > 0 ? "var(--red)" : "var(--blue)") + '">' +
+            (diff > 0 ? "+" : "−") + won(Math.abs(diff)) + "</b>" : "") +
+        "</div>" +
+      "</div>" +
+      '<button class="btn btn-xs btn-ghost pm-del" data-act="prod-delete" data-pid="' + p.id + '">삭제</button>' +
+    "</div>" +
+    '<div class="pm-f">' +
+      '<label class="pm-fld"><span>참고가</span>' +
+        '<input type="number" inputmode="numeric" data-act="ref" data-pid="' + p.id + '" value="' + p.ref + '" aria-label="' + esc(p.name) + ' 참고가"></label>' +
+      '<label class="pm-fld"><span>확정가</span>' +
+        '<input type="number" inputmode="numeric" data-act="draft" data-pid="' + p.id + '" value="' + d + '"' + (fixed ? " disabled" : "") + ' aria-label="' + esc(p.name) + ' 확정가"></label>' +
+      '<label class="pm-fld"><span>재고</span>' +
+        '<input type="number" inputmode="numeric" data-act="stock" data-pid="' + p.id + '" value="' + p.stock + '" aria-label="' + esc(p.name) + ' 재고"></label>' +
+      '<button class="pm-out' + (p.soldOut ? " on" : "") + '" data-act="prod-soldout" data-pid="' + p.id + '">' +
+        (p.soldOut ? "판매 재개" : "품절") + "</button>" +
+    "</div>" +
+    "</div>";
+}
+
 function renderAdminPrices() {
   var t = todayYmd();
   var ymd = ui.priceDate || addDays(t, 1);
@@ -2927,18 +3291,9 @@ function renderAdminPrices() {
   var fixed = isDayConfirmed(ymd);
   var pending = state.orders.filter(function (o) { return o.ymd === ymd && !o.priceConfirmed && o.status !== STATUS.CANCELED; });
   var pendSum = pending.reduce(function (s, o) { return s + o.total; }, 0);
+  var outCount = state.products.filter(function (p) { return p.soldOut || p.stock <= 0; }).length;
 
-  var rows = state.products.map(function (p) {
-    var d = draft[p.id] != null ? draft[p.id] : p.ref;
-    var diff = Number(d) - Number(p.ref);
-    return "<tr>" +
-      '<td><div class="nm">' + esc(p.name) + '</div><div class="sp">' + esc(p.spec) + " · 1" + esc(p.unit) + "</div></td>" +
-      '<td class="num"><input type="number" inputmode="numeric" data-act="ref" data-pid="' + p.id + '" value="' + p.ref + '" aria-label="' + esc(p.name) + ' 참고가"></td>' +
-      '<td class="num"><input type="number" inputmode="numeric" data-act="draft" data-pid="' + p.id + '" value="' + d + '"' + (fixed ? " disabled" : "") + ' aria-label="' + esc(p.name) + ' 확정가"></td>' +
-      '<td class="num diff" style="font-size:11px;color:' + (diff > 0 ? "var(--red)" : diff < 0 ? "var(--blue)" : "var(--muted)") + '">' +
-        (diff === 0 ? "–" : (diff > 0 ? "+" : "") + won(diff)) + "</td>" +
-      "</tr>";
-  }).join("");
+  var rows = state.products.map(function (p) { return productManageHTML(p, draft, fixed); }).join("");
 
   $("#admPrices").innerHTML =
     '<div class="panel-head">' +
@@ -2949,8 +3304,20 @@ function renderAdminPrices() {
       "</div>" +
       '<span class="badge ' + (fixed ? "ok" : "pending") + '">' + (fixed ? "확정 완료" : "확정 전") + "</span>" +
     "</div>" +
-    '<div class="notice"><span class="ni">!</span><div><b>' + fmtDotDow(ymd) + " 아침 7시 단가 확정.</b> 참고가는 전일 단가이고, 확정가를 입력한 뒤 아래 버튼을 누르면 <b>이 날짜의 미확정 발주 " + pending.length + "건</b>이 새 단가로 다시 계산됩니다.</div></div>" +
-    '<div style="overflow-x:auto"><table class="ptable"><thead><tr><th>품목</th><th class="num">참고가(전일)</th><th class="num">확정가(오늘)</th><th class="num diff">차이</th></tr></thead><tbody>' + rows + "</tbody></table></div>" +
+
+    bulkPanelHTML(ymd) +
+
+    '<div class="panel-head" style="margin-top:2px" id="prodMgrHead">' +
+      '<h2 style="font-size:15px">품목·단가 관리 <span class="badge">' + state.products.length + "종</span>" +
+        (outCount ? ' <span class="badge pending">품절 ' + outCount + "</span>" : "") + "</h2>" +
+      '<button class="btn btn-sm btn-primary" data-act="prod-form-open">＋ 새 품목 추가</button>' +
+    "</div>" +
+
+    (ui.prodForm ? newProductFormHTML() : "") +
+
+    '<div class="pm-list">' + rows + "</div>" +
+
+    '<div class="notice"><span class="ni">!</span><div><b>' + fmtDotDow(ymd) + " 아침 7시 단가 확정.</b> 참고가는 전일 단가이고, 확정가를 넣은 뒤 아래 버튼을 누르면 <b>이 날짜의 미확정 발주 " + pending.length + "건</b>이 새 단가로 다시 계산됩니다.</div></div>" +
     '<div class="price-summary"><span>미확정 발주 <b>' + pending.length + "건</b></span><span>현재 참고가 합계 <b>" + won(pendSum) + "원</b></span></div>" +
     (fixed
       ? '<div class="notice green"><span class="ni ok">✓</span><div><b>' + fmtDotDow(ymd) + " 단가는 확정되었습니다.</b> " + stampLabel((dayInfo(ymd) || {}).confirmedAt) + " 확정 · 단가를 다시 바꾸려면 아래 <b>확정 취소</b> 후 다시 확정하세요.</div></div>" +
@@ -2989,25 +3356,32 @@ function renderAdminClients() {
 
   var approveHTML = pending.length ? (
     '<div class="approve-wrap">' +
-      '<div class="row between" style="margin:2px 0 8px"><h2 style="font-size:15px">승인 대기 <span class="badge pending">' + pending.length + "곳</span></h2>" +
-        '<span class="tiny muted">사업자등록증 확인 후 승인</span></div>' +
+      '<div class="row between" style="margin:2px 0 8px"><h2 style="font-size:15px">가입 승인 대기 <span class="badge pending">' + pending.length + "곳</span></h2>" +
+        '<span class="tiny muted">확인 후 승인 (OK)</span></div>' +
       pending.map(function (c) {
         return '<div class="approve-card" data-cid="' + c.id + '">' +
           '<div class="ac-top">' +
-            '<div><div class="cc-name">' + esc(c.name) + ' <span class="badge pending">승인 대기(사업자등록증 확인)</span></div>' +
-            '<div class="cc-sub">' + esc(c.owner || "-") + " · " + esc(c.phone || "-") + " · " + esc(c.uptae || "-") + "/" + esc(c.jongmok || "-") + "</div></div>" +
+            '<div><div class="cc-name">' + esc(c.name) + ' <span class="badge pending">' + esc(CLIENT_LABEL[c.status] || "승인 대기") + "</span></div>" +
+            '<div class="cc-sub">' + esc(c.owner || "-") + " · " + esc(c.phone || "-") +
+              (c.uptae || c.jongmok ? " · " + esc(c.uptae || "-") + "/" + esc(c.jongmok || "-") : "") + "</div></div>" +
           "</div>" +
           '<div class="ac-rows">' +
             "<div><span>사업자등록번호</span><b>" + esc(c.bizNo || "-") + "</b></div>" +
-            "<div><span>사업장 주소</span><b>" + esc(c.addr || "-") + "</b></div>" +
+            "<div><span>배달 주소</span><b>" + esc(c.addr || "-") + "</b></div>" +
             "<div><span>신청</span><b>" + stampLabel(c.signupAt) + "</b></div>" +
           "</div>" +
-          '<div class="ac-file">' + bizFileThumb(c.bizFile) +
-            '<div class="grow"><div class="tiny"><b>사업자등록증 사본</b></div><div class="tiny muted">' + esc(bizFileMeta(c.bizFile)) + "</div></div>" +
-            '<button class="btn btn-sm" data-act="bizfile-view" data-cid="' + c.id + '">보기</button>' +
-          "</div>" +
+          (c.bizFile
+            ? '<div class="ac-file">' + bizFileThumb(c.bizFile) +
+                '<div class="grow"><div class="tiny"><b>사업자등록증 사본</b></div><div class="tiny muted">' + esc(bizFileMeta(c.bizFile)) + "</div></div>" +
+                '<button class="btn btn-sm" data-act="bizfile-view" data-cid="' + c.id + '">보기</button>' +
+              "</div>"
+            : '<div class="ac-file">' + '<div class="biz-thumb ph" aria-hidden="true">🙂</div>' +
+                '<div class="grow"><div class="tiny"><b>사업자등록증 없음 · 간편 가입</b></div>' +
+                '<div class="tiny muted">상호·담당자·전화·배달 주소만 받았습니다. 확인 후 승인하면 바로 발주할 수 있어요.</div></div>' +
+              "</div>") +
           '<div class="acts" style="margin-top:10px">' +
-            '<button class="btn btn-sm btn-primary" data-act="client-approve" data-cid="' + c.id + '">사업자등록증 확인 · 승인</button>' +
+            '<button class="btn btn-sm btn-primary" data-act="client-approve" data-cid="' + c.id + '">' +
+              (c.bizFile ? "사업자등록증 확인 · 승인" : "승인 (OK)") + "</button>" +
             '<button class="btn btn-sm btn-ghost" data-act="client-reject" data-cid="' + c.id + '">반려</button>' +
           "</div>" +
         "</div>";
@@ -3021,7 +3395,7 @@ function renderAdminClients() {
       '<div class="stat warn"><div class="k">미수금 합계</div><div class="v">' + won(totalDue) + "<small>원</small></div></div>" +
       '<div class="stat ' + (pending.length ? "warn" : "ok") + '"><div class="k">가입 승인 대기</div><div class="v">' + pending.length + "<small>곳</small></div></div>" +
     "</div>" +
-    '<p class="tiny muted" style="margin-top:8px">사업자 전용 — 사업자등록증을 확인해 <b>승인</b>해야 그 거래처가 발주할 수 있습니다. 미수 잔액이 남은 거래처는 입금 처리 전까지 발주가 막힙니다(외상은 하루치까지만).<br>' +
+    '<p class="tiny muted" style="margin-top:8px">거래처는 <b>사업자등록증 없이 간편 가입</b>할 수 있고, 사장님이 확인해 <b>승인 (OK)</b>을 누르면 그때부터 발주할 수 있습니다. 미수 잔액이 남은 거래처는 입금 처리 전까지 발주가 막힙니다(외상은 하루치까지만).<br>' +
     '손님 화면(index.html)에는 <b>이 거래처 목록이 보이지 않습니다</b>. 특정 가게로 손님 화면을 확인하려면 <b>손님 화면으로 보기</b>를 누르세요.</p>' +
     approveHTML +
     '<div class="field" style="margin-top:12px"><input id="clientSearch" data-act="client-search" value="' + esc(q) + '" placeholder="거래처 이름·연락처 검색"></div>' +
@@ -3377,25 +3751,23 @@ function doLogout() {
   toast("로그아웃했습니다.");
 }
 
-/* ── 신규 거래처 가입 (사업자 전용 · 사업자등록증 필수) ── */
+/* ── 거래처 가입 (간편 가입 · 사업자등록증 없어도 됨 · 사장님 승인 후 이용) ── */
 function openSignup() {
   ui.signupFile = null;
   openModal(
-    '<div class="m-head"><h2 id="modalTitle">신규 거래처 가입 (사업자 전용)</h2><button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-head"><h2 id="modalTitle">거래처 가입 (간편 가입)</h2><button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
     '<div class="m-body">' +
-      '<div class="notice green" style="margin:0 0 10px"><span class="ni">📄</span><div><b>사업자만 가입할 수 있습니다.</b> 사업자등록증 사본을 첨부해야 신청이 접수되고, 사장님이 확인·<b>승인</b>하면 발주할 수 있어요.</div></div>' +
+      '<div class="notice green" style="margin:0 0 10px"><span class="ni">✅</span><div><b>사업자등록증은 없어도 됩니다 · 사장님 확인 후 바로 이용 가능.</b><br>상호·담당자·전화번호·배달 주소만 넣으면 신청됩니다. 사장님이 <b>승인</b>하면 바로 발주할 수 있어요.</div></div>' +
       '<div class="fields">' +
-        '<div class="field"><label for="suName">상호 <b style="color:var(--red)">*</b></label><input id="suName" placeholder="예: 원주손칼국수"></div>' +
-        '<div class="field"><label for="suBiz">사업자등록번호 <b style="color:var(--red)">*</b></label><input id="suBiz" data-act="su-biz" inputmode="numeric" placeholder="000-00-00000"></div>' +
-        '<div class="field"><label for="suOwner">대표자명 <b style="color:var(--red)">*</b></label><input id="suOwner" placeholder="대표자 이름"></div>' +
-        '<div class="field"><label for="suUptae">업태 <b style="color:var(--red)">*</b></label><input id="suUptae" placeholder="예: 음식점업"></div>' +
-        '<div class="field"><label for="suJongmok">종목 <b style="color:var(--red)">*</b></label><input id="suJongmok" placeholder="예: 한식 일반 음식점"></div>' +
-        '<div class="field"><label for="suAddr">사업장 주소 (원주 시내) <b style="color:var(--red)">*</b></label><input id="suAddr" placeholder="예: 원주시 무실로 45, 1층"></div>' +
-        '<div class="field"><label for="suPhone">담당자 연락처 <b style="color:var(--red)">*</b></label><input id="suPhone" inputmode="tel" placeholder="010-0000-0000"></div>' +
+        '<div class="field"><label for="suName">상호 <b style="color:var(--red)">*</b></label><input id="suName" placeholder="예: 원주손칼국수" autocomplete="organization"></div>' +
+        '<div class="field"><label for="suOwner">대표자 · 담당자 <b style="color:var(--red)">*</b></label><input id="suOwner" placeholder="예: 장원주" autocomplete="name"></div>' +
+        '<div class="field"><label for="suPhone">전화번호 <b style="color:var(--red)">*</b></label><input id="suPhone" data-act="su-phone" inputmode="tel" placeholder="010-0000-0000" autocomplete="tel"></div>' +
+        '<div class="field"><label for="suAddr">배달 주소 (원주 시내) <b style="color:var(--red)">*</b></label><input id="suAddr" placeholder="예: 원주시 무실로 45, 1층" autocomplete="street-address"></div>' +
+        '<div class="field"><label for="suBiz">사업자등록번호 (선택)</label><input id="suBiz" data-act="su-biz" inputmode="numeric" placeholder="000-00-00000"></div>' +
       "</div>" +
-      '<div class="field" style="margin-top:11px"><label for="suFile">사업자등록증 사본 (이미지/PDF) <b style="color:var(--red)">*</b></label>' +
+      '<div class="field" style="margin-top:11px"><label for="suFile">사업자등록증 사본 (선택 · 이미지/PDF)</label>' +
         '<input type="file" id="suFile" data-act="su-file" accept="image/*,application/pdf">' +
-        '<div id="suFileBox" class="biz-file-box">아직 첨부하지 않았습니다. 사업자등록증 사본을 올려 주세요.</div>' +
+        '<div id="suFileBox" class="biz-file-box">사업자등록증이 있으면 올려 주세요. <b>없어도 가입됩니다.</b></div>' +
       "</div>" +
     "</div>" +
     '<div class="m-foot"><button class="btn btn-ghost" data-act="modal-close">취소</button>' +
@@ -3407,7 +3779,7 @@ function onSignupFile(input) {
   var box = $("#suFileBox");
   ui.signupFile = null;
   var f = input.files && input.files[0];
-  if (!f) { if (box) box.innerHTML = "아직 첨부하지 않았습니다. 사업자등록증 사본을 올려 주세요."; return; }
+  if (!f) { if (box) box.innerHTML = "사업자등록증이 있으면 올려 주세요. <b>없어도 가입됩니다.</b>"; return; }
   var isImg = /^image\//.test(f.type || "");
   var isPdf = /pdf/i.test(f.type || "") || /\.pdf$/i.test(f.name);
   if (!isImg && !isPdf) {
@@ -3437,11 +3809,30 @@ function onSignupFile(input) {
   }
 }
 
+/* ── 영수증 사진 (미리보기용) ─────────────────────── */
+function onBulkFile(input) {
+  var f = input.files && input.files[0];
+  ui.bulkFile = null;
+  if (!f) { renderAdminPrices(); return; }
+  var isImg = /^image\//.test(f.type || "");
+  var meta = { name:f.name, type:f.type || "", size:f.size || 0, dataUrl:null };
+  ui.bulkFile = meta;
+  renderAdminPrices();
+  if (isImg) {
+    var r = new FileReader();
+    r.onload = function () {
+      meta.dataUrl = (f.size || 0) <= 900 * 1024 ? String(r.result) : null;
+      if (ui.route === "admin") renderAdminPrices();
+    };
+    r.readAsDataURL(f);
+  }
+}
+
 function saveSignup() {
   var val = function (id) { var el = $("#" + id); return el ? el.value.trim() : ""; };
   var need = [
-    ["suName", "상호"], ["suBiz", "사업자등록번호"], ["suOwner", "대표자명"],
-    ["suUptae", "업태"], ["suJongmok", "종목"], ["suAddr", "사업장 주소"], ["suPhone", "담당자 연락처"]
+    ["suName", "상호"], ["suOwner", "대표자·담당자"],
+    ["suPhone", "전화번호"], ["suAddr", "배달 주소"]
   ];
   for (var i = 0; i < need.length; i++) {
     if (!val(need[i][0])) {
@@ -3450,16 +3841,18 @@ function saveSignup() {
       return;
     }
   }
-  if (digits(val("suBiz")).length !== 10) { toast("사업자등록번호 10자리를 정확히 입력해 주세요."); $("#suBiz").focus(); return; }
-  if (digits(val("suPhone")).length < 9) { toast("담당자 연락처를 정확히 입력해 주세요."); $("#suPhone").focus(); return; }
+  if (digits(val("suPhone")).length < 9) { toast("전화번호를 정확히 입력해 주세요."); $("#suPhone").focus(); return; }
+  if (val("suBiz") && digits(val("suBiz")).length !== 10) {
+    toast("사업자등록번호는 10자리입니다. 비워 두어도 가입됩니다.");
+    $("#suBiz").focus(); return;
+  }
   if (val("suAddr").indexOf("원주") < 0) {
-    toast("원주 시내만 배달합니다. 사업장 주소에 '원주'를 포함해 주세요.");
+    toast("원주 시내만 배달합니다. 배달 주소에 '원주'를 포함해 주세요.");
     $("#suAddr").focus(); return;
   }
-  if (!ui.signupFile) { toast("사업자등록증 사본을 첨부해야 가입 신청할 수 있습니다."); return; }
   var res = addSignupClient({
     name:val("suName"), bizNo:fmtBizNo(val("suBiz")), owner:val("suOwner"),
-    uptae:val("suUptae"), jongmok:val("suJongmok"), addr:val("suAddr"),
+    uptae:"", jongmok:"", addr:val("suAddr"),
     phone:fmtPhone(val("suPhone")), manager:val("suOwner"), bizFile:ui.signupFile
   });
   if (!res.ok) { toast(res.msg || "가입 신청을 접수하지 못했습니다."); return; }
@@ -3468,7 +3861,7 @@ function saveSignup() {
   closeDrawer();
   closeModal();
   setRoute("b2b");
-  toast(res.client.name + " 가입 신청이 접수되었습니다. 사장님이 사업자등록증을 확인하면 발주할 수 있어요.");
+  toast(res.client.name + " 가입 신청이 접수되었습니다. 사장님이 확인해 승인하면 바로 발주할 수 있어요.");
 }
 
 function openBizFile(cid) {
@@ -3544,6 +3937,31 @@ function openRestock(pid) {
     "</div>" +
     '<div class="m-foot"><button class="btn btn-ghost" data-act="modal-close">취소</button>' +
       '<button class="btn btn-primary" data-act="restock-save" data-pid="' + pid + '">알림 신청</button></div>'
+  );
+}
+
+/* ── 품목 관리 (추가·삭제) · 영수증 일괄 입력 ───────── */
+function readProdForm() {
+  var out = {};
+  $$("#prodForm [data-np]").forEach(function (el) { out[el.getAttribute("data-np")] = el.value; });
+  return out;
+}
+function openDeleteProduct(pid) {
+  var p = findProduct(pid);
+  if (!p) return;
+  var used = state.orders.filter(function (o) {
+    return o.status !== STATUS.CANCELED && (o.items || []).some(function (it) { return it.pid === pid; });
+  }).length;
+  openModal(
+    '<div class="m-head"><h2 id="modalTitle">품목 삭제</h2><button class="icon-btn" data-act="modal-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-body">' +
+      '<p class="small">이 품목을 단가표에서 뺄까요? 손님 화면에서도 바로 사라집니다.</p>' +
+      '<div class="ocard-items" style="margin-top:10px">' + p.emoji + " <b>" + esc(p.name) + "</b> · " +
+        won(p.ref) + "원 · 재고 " + p.stock + "</div>" +
+      (used ? '<div class="notice" style="margin-top:10px"><span class="ni">!</span><div>이 품목으로 받은 발주 <b>' + used + "건</b>이 있습니다. 지난 전표·주문 내역은 그대로 남습니다.</div></div>" : "") +
+    "</div>" +
+    '<div class="m-foot"><button class="btn btn-ghost" data-act="modal-close">그만두기</button>' +
+      '<button class="btn btn-primary" style="background:var(--red);border-color:var(--red)" data-act="prod-delete-yes" data-pid="' + p.id + '">삭제</button></div>'
   );
 }
 
@@ -3890,6 +4308,63 @@ function onClick(e) {
     case "price-confirm": doPriceConfirm(el.getAttribute("data-ymd")); break;
     case "price-unconfirm": doPriceUnconfirm(el.getAttribute("data-ymd")); break;
 
+    /* 품목 추가 · 삭제 · 품절 · 영수증 일괄 입력 */
+    case "prod-form-open":
+      if (!ui.prodForm) ui.prodForm = { cat:"veg", unitLabel:"1박스", grade:"" };
+      renderAdminPrices();
+      var pf = $("#prodForm");
+      if (pf) pf.scrollIntoView({ block:"center" });
+      break;
+    case "prod-form-close": ui.prodForm = null; renderAdminPrices(); break;
+    case "prod-add": {
+      var res = addProduct(readProdForm());
+      if (!res.ok) { toast(res.msg); break; }
+      ui.prodForm = null;
+      if (ui.bulkText) applyBulkPrices(ui.bulkText, ui.priceDate);   /* 영수증 줄과 이름이 맞으면 그 단가도 */
+      renderAdminPrices();
+      toast(res.product.name + " 품목을 추가했습니다 · " + won(res.product.ref) + "원 · 재고 " + res.product.stock);
+      break;
+    }
+    case "prod-delete": openDeleteProduct(el.getAttribute("data-pid")); break;
+    case "prod-delete-yes": {
+      var gone = deleteProduct(el.getAttribute("data-pid"));
+      closeModal();
+      renderAdminPrices();
+      if (gone) toast(gone.name + " 품목을 뺐습니다. 손님 단가표에서도 사라졌습니다.");
+      break;
+    }
+    case "prod-soldout": {
+      var ps = toggleSoldOut(el.getAttribute("data-pid"));
+      renderAdminPrices();
+      if (ps) toast(ps.name + (ps.soldOut ? " — 품절로 바꿨습니다." : " — 다시 판매합니다."));
+      break;
+    }
+    case "bulk-apply": {
+      var txt = ($("#bulkText") || {}).value;
+      if (txt != null) ui.bulkText = txt;
+      if (!String(ui.bulkText || "").trim()) { toast("붙여넣은 단가가 없습니다. 예) 대파 2800"); break; }
+      var br = applyBulkPrices(ui.bulkText, el.getAttribute("data-ymd") || ui.priceDate);
+      renderAdminPrices();
+      toast(br.applied.length
+        ? br.applied.length + "개 품목의 확정가를 채웠습니다." + (br.unmatched.length ? " 없는 품목 " + br.unmatched.length + "줄은 아래에서 추가할 수 있어요." : "")
+        : "맞는 품목이 없습니다. 품목 이름을 확인하거나 새 품목으로 추가해 주세요.");
+      break;
+    }
+    case "bulk-clear":
+      ui.bulkText = ""; ui.bulkResult = null;
+      renderAdminPrices();
+      break;
+    case "bulk-add": {
+      var r = (ui.bulkResult && ui.bulkResult.unmatched[Number(el.getAttribute("data-idx"))]) || null;
+      if (!r) break;
+      ui.prodForm = { base:r.name, price:r.price, cat:guessCat(r.name).cat, unitLabel:"1박스", grade:"", stock:"" };
+      renderAdminPrices();
+      var nf = $("#prodForm");
+      if (nf) nf.scrollIntoView({ block:"center" });
+      toast("새 품목으로 추가할 내용을 확인하고 ‘품목 추가’를 눌러 주세요.");
+      break;
+    }
+
     case "payment-open": openPayment(el.getAttribute("data-cid")); break;
     case "pay-full": {
       var cidF = el.getAttribute("data-cid");
@@ -4001,6 +4476,17 @@ function onInput(e) {
     el.setAttribute("data-dirty", "1");
     return;
   }
+  if (act === "bulk-text") { ui.bulkText = el.value; return; }
+  if (el.hasAttribute("data-np")) {
+    ui.prodForm = ui.prodForm || {};
+    ui.prodForm[el.getAttribute("data-np")] = el.value;
+    return;
+  }
+  if (act === "su-phone") {
+    var sph = fmtPhone(el.value);
+    if (el.value !== sph) el.value = sph;
+    return;
+  }
   if (act === "client-search") {
     ui.clientQuery = el.value;
     renderAdminClients();
@@ -4022,6 +4508,7 @@ function onChange(e) {
     return;
   }
   if (act === "su-file") { onSignupFile(el); return; }
+  if (act === "bulk-text") { ui.bulkText = el.value; return; }
   if (act === "deposit-check") {
     if (!ui.co) return;
     ui.co.depositChecked = !!el.checked;
@@ -4033,13 +4520,19 @@ function onChange(e) {
     if (!p) return;
     var nv = Number(digits(el.value));
     if (!(nv > 0)) { toast("참고가는 0보다 커야 합니다."); renderAdminPrices(); return; }
-    p.ref = nv;
-    saveState();
-    ui.priceDraft[ui.priceDate] = null;
+    setProductRef(p.id, nv);
     renderAdminPrices();
-    toast(p.name + " 참고가를 " + won(nv) + "원으로 바꿨습니다.");
+    toast(p.name + " 참고가를 " + won(nv) + "원으로 바꿨습니다 (손님 화면에도 반영).");
     return;
   }
+  if (act === "stock") {
+    var sp = setProductStock(el.getAttribute("data-pid"), el.value);
+    if (!sp) return;
+    renderAdminPrices();
+    toast(sp.name + " 재고를 " + sp.stock + "개로 바꿨습니다." + (sp.stock === 0 ? " — 품절로 표시됩니다." : ""));
+    return;
+  }
+  if (act === "bulk-file") { onBulkFile(el); return; }
   if (el.hasAttribute("data-store") && (el.getAttribute("data-store") === "bizNo")) {
     el.value = fmtBizNo(el.value);
     return;
