@@ -1024,6 +1024,65 @@ footer .biz dd{margin:0;color:#C9CEC3}
   font-size:12px;font-weight:800;color:var(--ink2);white-space:nowrap}
 .pm-out.on{background:var(--red-l);border-color:#F0D3CE;color:var(--red)}
 
+/* ══════════ 반품·클레임 · 거래처 등급 ══════════ */
+.badge.claim{background:var(--blue-l);color:var(--blue);border:1px solid #CFDEEC}
+.badge.tier{background:#F3F1E7;color:#5C6455;border:1px solid #E2DFD2}
+
+.claim-wrap{margin:2px 0 10px}
+.claim-card{background:#fff;border:1px solid var(--line2);border-left:4px solid var(--blue);
+  border-radius:var(--r);padding:12px;box-shadow:var(--sh);margin-bottom:9px}
+.claim-card.is-done{border-left-color:var(--line2);background:#FCFBF6}
+.claim-card .cl-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.claim-card .cl-name{font-weight:800;font-size:14.5px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.claim-card .cl-amt{font-weight:800;font-size:15.5px;color:var(--red);white-space:nowrap;letter-spacing:-.02em}
+.claim-card .cl-amt small{font-size:11px;margin-left:1px}
+.claim-card.is-done .cl-amt{color:var(--muted)}
+.claim-card .cl-items{margin-top:8px;background:#F7F6F0;border-radius:9px;padding:8px 10px;font-size:12.5px;line-height:1.55}
+.claim-card .cl-meta{margin-top:6px;font-size:12px;color:var(--ink2);display:flex;flex-direction:column;gap:2px}
+.claim-card .cl-meta b{color:var(--ink)}
+.cl-photos{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.cl-photos img{width:66px;height:66px;object-fit:cover;border-radius:10px;border:1px solid var(--line2);background:#fff;display:block}
+.cl-thumb{padding:0;border:0;background:none;border-radius:10px;line-height:0}
+.cl-thumb:active{transform:scale(.97)}
+.cl-photo{position:relative;display:inline-block;line-height:0}
+.cl-photo .del{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;
+  background:var(--red);color:#fff;font-size:12px;font-weight:800;border:2px solid #fff;line-height:1}
+.claim-photo-add{display:flex;align-items:center;justify-content:center;gap:6px;height:44px;margin-top:4px;
+  border-radius:11px;border:1px dashed var(--line2);background:#F8F7F1;font-size:13.5px;font-weight:800;color:var(--green-d);cursor:pointer}
+.claim-photo-add:active{background:var(--green-l)}
+
+.cl-sec{margin-top:14px}
+.cl-sec > b{display:block;font-size:13.5px;margin-bottom:7px}
+.cl-opts{display:grid;gap:7px}
+.cl-opt{display:flex;align-items:center;gap:10px;border:1px solid var(--line2);border-radius:11px;
+  padding:10px 12px;background:#fff;font-size:14px;text-align:left;width:100%}
+.cl-opt[aria-pressed="true"]{border-color:var(--green);background:var(--green-l);box-shadow:0 0 0 1px var(--green) inset}
+.cl-opt .cb{width:20px;height:20px;border-radius:6px;border:2px solid var(--line2);flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:800}
+.cl-opt[aria-pressed="true"] .cb{background:var(--green);border-color:var(--green)}
+.cl-opt b{font-weight:800;font-size:14px;display:block}
+.cl-opt .cl-sub{font-size:11.5px;color:var(--muted);display:block;margin-top:2px}
+.cl-reasons{display:flex;flex-wrap:wrap;gap:7px}
+.cl-reason-btn{height:36px;padding:0 13px;border-radius:999px;border:1px solid var(--line2);background:#fff;
+  font-size:13px;font-weight:800;color:var(--ink2)}
+.cl-reason-btn[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+#claimMemo{width:100%;min-height:74px;border:1px solid var(--line2);border-radius:10px;padding:9px 11px;
+  font-size:14px;background:#fff;font-family:inherit;resize:vertical}
+#claimMemo:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(46,107,59,.12)}
+
+.tier-sel{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px;
+  background:#F8F7F1;border:1px solid var(--line);border-radius:9px;padding:6px 9px}
+.tier-sel label{font-size:11px;font-weight:700;color:var(--muted)}
+.tier-sel select{height:34px;border:1px solid var(--line2);border-radius:8px;background:#fff;
+  font-size:12.5px;font-weight:800;padding:0 8px;max-width:200px;color:var(--ink)}
+
+.mode-client .cl-opt{padding:12px;font-size:15px}
+.mode-client .cl-opt b{font-size:15px}
+.mode-client .cl-reason-btn{height:42px;font-size:14px;padding:0 15px}
+.mode-client .cl-sec > b{font-size:14.5px}
+.mode-client #claimMemo{font-size:16px}
+.mode-client .claim-card .cl-name{font-size:15px}
+
 </style>
 </head>
 <body class="mode-client">
@@ -1125,7 +1184,7 @@ footer .biz dd{margin:0;color:#C9CEC3}
       <p class="fineprint">
         🕖 지금 보이는 금액은 <b>참고가</b>이고, <b>아침 7시 확정 단가</b>로 정산됩니다.<br>
         🚚 원주 시내 <b>5만 원 이상 무료배송</b> · 최소 주문 <b><span id="fineMin">50,000</span>원</b> · 배달 <b>1차 08:00 · 2차 11:00 · 3차 13:00~14:00</b><br>
-        🔐 <b>거래처 전용</b> · 사업자등록증 없이 <b>간편 가입</b>, 사장님 <b>승인 후</b> 이용 · 결제는 <b>외상 하루치</b>, <b>10만 원 이상은 즉시결제</b> · 미수 잔액이 있으면 발주가 잠깁니다.
+        🔐 <b>거래처 전용</b> · 사업자등록증 없이 <b>간편 가입</b>, 사장님 <b>승인 후</b> 이용 · 결제는 <b>외상 또는 즉시결제</b> · 미수 잔액이 오래 남으면 발주가 잠깁니다.
       </p>
     </div>
   </section>
@@ -1200,7 +1259,7 @@ footer .biz dd{margin:0;color:#C9CEC3}
           <li>· 원주 시내권 배달 · 최소 주문 <span id="footMin">50,000</span>원 이상 주문 가능 (<span id="footFee">무료배송</span>)</li>
           <li>· 배달 1차 08:00 · 2차 11:00 · 3차 13:00~14:00 (각 30분 전 마감)</li>
           <li>· 사업자등록증 없이 간편 가입 · 사장님 승인 후 이용</li>
-          <li>· 결제: 외상 하루치 / 10만 원 이상은 즉시 결제(계좌이체)</li>
+          <li>· 결제: 외상 또는 즉시 결제(계좌이체) · 거래처 약정에 따름</li>
           <li>· 전표는 A4 거래명세표로 발행</li>
         </ul>
       </div>
@@ -1371,6 +1430,45 @@ var CLIENT = { APPROVED:"APPROVED", PENDING:"PENDING", REJECTED:"REJECTED" };
 var CLIENT_LABEL = { APPROVED:"승인 완료", PENDING:"승인 대기(사장님 확인 중)", REJECTED:"가입 반려" };
 var DEPOSIT = { CLAIMED:"CLAIMED", CONFIRMED:"CONFIRMED" };   // 입금확인 대기 / 입금확인 완료
 
+/* ── 거래처 등급 (사장님만 본다 · 손님 화면에는 절대 안 보인다) ──────
+   등급이 높을수록 외상(미수)을 오래 줄 수 있다 — 호텔·식장은 15일 결제.
+   일반 1일 / 우수 7일 / VIP·호텔·식장 15일. 기한이 지난(연체) 미수가 있을 때만
+   다음 발주가 막힌다. 10만 원 이상 즉시결제 규칙도 '일반' 등급에만 적용된다. */
+var TIERS = [
+  { key:"NORMAL", label:"일반",            days:1,  short:"일반 (1일)" },
+  { key:"GOOD",   label:"우수",            days:7,  short:"우수 (7일)" },
+  { key:"VIP",    label:"VIP·호텔·식장",   days:15, short:"VIP·호텔·식장 (15일)" }
+];
+function tierOf(cl) {
+  var key = (cl && cl.tier) || TIERS[0].key;
+  var hit = TIERS.filter(function (t) { return t.key === key; })[0];
+  return hit || TIERS[0];
+}
+function tierKeys() { return TIERS.map(function (t) { return t.key; }); }
+function creditDaysOf(cl) { return tierOf(cl).days; }
+function tierShort(cl) { return tierOf(cl).short; }
+/** 이 거래처가 이 금액을 외상으로 낼 수 있는가 — 일반 등급만 10만 원 이상 즉시결제 */
+function creditAllowed(cl, total) {
+  if (creditDaysOf(cl) > 1) return true;
+  return Number(total) < PAY_IMMEDIATE_FROM;
+}
+function setClientTier(cid, key) {
+  var cl = getClient(cid);
+  if (!cl || tierKeys().indexOf(key) < 0) return null;
+  cl.tier = key;
+  saveState();
+  return cl;
+}
+
+/* ── 반품·클레임 ──────────────────────────────────────
+   손님이 배송중·배송완료 주문에서 문제 품목 + 사유 + 증빙 사진을 올려 접수하면
+   사장님 화면 주문현황 맨 위에 뜬다. 승인하면 그 품목 금액만큼 주문 합계(→미수)가 줄어든다. */
+var CLAIM = { OPEN:"OPEN", APPROVED:"APPROVED", REJECTED:"REJECTED" };
+var CLAIM_BADGE = { OPEN:"클레임 접수됨(확인중)", APPROVED:"반품 승인 · 금액 차감", REJECTED:"반품 반려" };
+var CLAIM_CLASS = { OPEN:"claim", APPROVED:"disp", REJECTED:"cancel" };
+var CLAIM_REASONS = ["신선도/파손", "수량 부족", "오배송", "기타"];
+var CLAIM_PHOTOS_MAX = 3;
+
 var KEY = "hoonie_b2b_veg_v3";
 var WEEK = ["일","월","화","수","목","금","토"];
 
@@ -1467,8 +1565,10 @@ function isoToYmd(iso) {
 /* ── 기본 데이터 ────────────────────────────────────── */
 function seedState() {
   var t = todayYmd(), tm = addDays(t, 1);
+  var d10 = addDays(t, -10);                     /* 호텔 거래처의 10일 전 외상 발주 */
+  var vipNo = "B2B-" + d10.slice(2, 4) + d10.slice(5, 7) + d10.slice(8, 10) + "-001";
   var s = {
-    version: 7,
+    version: 8,
     store: clone(STORE_DEFAULT),
     policy: clone(DEFAULT_POLICY),
     rounds: clone(DEFAULT_ROUNDS),
@@ -1477,6 +1577,7 @@ function seedState() {
     clients: [],
     orders: [],
     alerts: [],
+    claims: [],
     seq: {},
     currentClientId: "c1"
   };
@@ -1507,20 +1608,20 @@ function seedState() {
       id:"c1", name:"쪼끼쪼끼[단관택지]", bizNo:"234-56-78901", owner:"김단관",
       addr:"강원특별자치도 원주시 단관길 21, 1층", uptae:"음식점업", jongmok:"한식 일반 음식점",
       phone:"010-2233-4455", manager:"김단관", prevBalance:388600, payments:[], memo:"단관택지 상가 · 1차 배달",
-      status:CLIENT.APPROVED, bizFile:null, approvedAt:null
+      status:CLIENT.APPROVED, bizFile:null, approvedAt:null, tier:"NORMAL"
     },
     {
       id:"c2", name:"정담식당", bizNo:"123-45-67890", owner:"박정담",
       addr:"강원특별자치도 원주시 반곡길 8, 1층", uptae:"음식점업", jongmok:"한식 일반 음식점",
       phone:"010-5566-7788", manager:"박정담", prevBalance:124000,
       payments:[{ id:"pay1", ymd:t, amount:100000, memo:"10월분 일부 입금", at:new Date(Date.parse(t + "T10:00:00+09:00")).toISOString() }],
-      memo:"반곡동 · 2차 배달", status:CLIENT.APPROVED, bizFile:null, approvedAt:null
+      memo:"반곡동 · 2차 배달", status:CLIENT.APPROVED, bizFile:null, approvedAt:null, tier:"NORMAL"
     },
     {
       id:"c3", name:"진미분식", bizNo:"345-67-89012", owner:"이진미",
       addr:"강원특별자치도 원주시 진미길 5, 1층", uptae:"음식점업", jongmok:"분식",
       phone:"010-9911-2233", manager:"이진미", prevBalance:0, payments:[], memo:"3차 배달",
-      status:CLIENT.APPROVED, bizFile:null, approvedAt:null
+      status:CLIENT.APPROVED, bizFile:null, approvedAt:null, tier:"NORMAL"
     },
     {
       /* 사업자등록증을 올리고 승인을 기다리는 신규 신청 — 사장님 관리 > 거래처·미수에서 승인 1클릭 */
@@ -1528,7 +1629,16 @@ function seedState() {
       addr:"강원특별자치도 원주시 무실로 45, 1층", uptae:"음식점업", jongmok:"칼국수·만두",
       phone:"010-7788-9900", manager:"장원주", prevBalance:0, payments:[], memo:"간편 가입 · 사장님 확인 대기",
       status:CLIENT.PENDING, bizFile:{ name:"사업자등록증_원주손칼국수.jpg", type:"image/jpeg", size:184320, dataUrl:null },
-      signupAt:new Date(Date.parse(t + "T09:40:00+09:00")).toISOString(), approvedAt:null
+      signupAt:new Date(Date.parse(t + "T09:40:00+09:00")).toISOString(), approvedAt:null, tier:"NORMAL"
+    },
+    {
+      /* 호텔·식장은 15일 결제 — 사장님이 거래처·미수 탭에서 등급을 VIP로 두고 운용한다.
+         손님 화면에는 등급이 보이지 않고, 15일이 지난 미수가 있을 때만 발주가 막힌다. */
+      id:"c5", name:"원주그랜드호텔 연회팀", bizNo:"220-81-12345", owner:"최호텔",
+      addr:"강원특별자치도 원주시 기업도시로 200, 호텔 1층 연회장", uptae:"숙박업", jongmok:"호텔·연회장 식음",
+      phone:"010-4455-6677", manager:"최호텔", prevBalance:0, payments:[],
+      memo:"연회장 주방 · 15일 결제",
+      status:CLIENT.APPROVED, bizFile:null, approvedAt:null, tier:"VIP"
     }
   ];
 
@@ -1580,6 +1690,31 @@ function seedState() {
       createdAt:new Date(Date.parse(t + "T06:55:00+09:00")).toISOString(),
       confirmedAt:confirmedToday ? new Date(Date.parse(t + "T07:02:00+09:00")).toISOString() : null,
       memo:"", stmtNo:confirmedToday ? "10-1/1" : null, history:[]
+    },
+    {
+      /* 호텔 연회팀 — 10일 전 166,000원 외상 발주. 15일 기한 안이라 발주가 열려 있다. */
+      no:vipNo, ymd:d10, round:"R1", clientId:"c5",
+      items:[
+        { pid:"v1",  name:"로즈(야채)", spec:"-",   qty:2, price:23000, amount:46000 },
+        { pid:"v13", name:"청양고추 (특) 1박스", spec:"box", qty:3, price:32000, amount:96000 },
+        { pid:"v9",  name:"감자 20kg",   spec:"box", qty:1, price:24000, amount:24000 }
+      ],
+      itemsAmount:166000, shipFee:0, total:166000, claimTotal:0,
+      status:"DELIVERED", priceConfirmed:true, priceMode:"fixed",
+      createdAt:new Date(Date.parse(d10 + "T06:30:00+09:00")).toISOString(),
+      confirmedAt:new Date(Date.parse(d10 + "T07:02:00+09:00")).toISOString(),
+      memo:"연회 200명 · 오전 8시 전 납품", stmtNo:"8-1/1", history:[],
+      payMode:PAY.CREDIT, deposit:"CREDIT", depositAt:null
+    }
+  ];
+  /* 접수된 반품·클레임 — 사장님 주문현황 맨 위에 뜨고, 승인하면 감자 24,000원이 차감된다. */
+  s.claims = [
+    {
+      id:"cl1", orderNo:vipNo, clientId:"c5",
+      items:[{ pid:"v9", name:"감자 20kg", qty:1, price:24000, amount:24000 }],
+      reason:"신선도/파손", memo:"감자 20kg 박스 윗부분이 무르고 싹이 났습니다. 연회 11/19 사용분입니다.",
+      photos:[], amount:24000, status:CLAIM.OPEN,
+      createdAt:new Date(Date.parse(d10 + "T09:20:00+09:00")).toISOString(), decidedAt:null
     }
   ];
   s.seq["stmt-" + t] = confirmedToday ? 10 : 0;
@@ -1639,7 +1774,9 @@ function normalize(s) {
       /* 가입 상태 — 저장값이 없던 거래처는 승인 완료로 본다. */
       status:(c.status === CLIENT.PENDING || c.status === CLIENT.REJECTED) ? c.status : CLIENT.APPROVED,
       bizFile:c.bizFile && c.bizFile.name ? c.bizFile : null,
-      signupAt:c.signupAt || null, approvedAt:c.approvedAt || null
+      signupAt:c.signupAt || null, approvedAt:c.approvedAt || null,
+      /* 등급 — 예전 저장값에는 없으므로 일반(1일)으로 본다. 손님 화면에는 안 나간다. */
+      tier:tierKeys().indexOf(c.tier) >= 0 ? c.tier : TIERS[0].key
     };
   }) : out.clients;
   out.orders = Array.isArray(s.orders) ? s.orders.map(function (o) {
@@ -1647,6 +1784,7 @@ function normalize(s) {
     var mode = o.payMode === PAY.IMMEDIATE ? PAY.IMMEDIATE : PAY.CREDIT;
     o.payMode = mode;
     o.deposit = mode === PAY.IMMEDIATE ? (o.deposit === DEPOSIT.CONFIRMED ? DEPOSIT.CONFIRMED : DEPOSIT.CLAIMED) : "CREDIT";
+    o.claimTotal = Math.max(0, Number(o.claimTotal) || 0);
     return o;
   }) : [];
   if (Number(s.version || 0) < 4) {
@@ -1657,8 +1795,24 @@ function normalize(s) {
       o.total = Number(o.itemsAmount) || 0;
     });
   }
-  out.version = 7;
+  out.version = 8;
   out.alerts = Array.isArray(s.alerts) ? s.alerts : [];
+  /* 반품·클레임 — 저장값이 없는 예전 데이터에는 빈 목록 */
+  out.claims = Array.isArray(s.claims) ? s.claims.filter(function (c) {
+    return c && c.orderNo;
+  }).map(function (c) {
+    return {
+      id:String(c.id || ("cl" + Math.random().toString(36).slice(2, 8))),
+      orderNo:String(c.orderNo), clientId:c.clientId || "",
+      items:Array.isArray(c.items) ? c.items : [],
+      reason:CLAIM_REASONS.indexOf(c.reason) >= 0 ? c.reason : (c.reason || "기타"),
+      memo:String(c.memo || ""),
+      photos:Array.isArray(c.photos) ? c.photos.filter(function (p) { return p && p.dataUrl; }) : [],
+      amount:Math.max(0, Number(c.amount) || 0),
+      status:(c.status === CLAIM.APPROVED || c.status === CLAIM.REJECTED) ? c.status : CLAIM.OPEN,
+      createdAt:c.createdAt || null, decidedAt:c.decidedAt || null
+    };
+  }) : [];
   out.seq = (s.seq && typeof s.seq === "object") ? s.seq : {};
   out.currentClientId = s.currentClientId && out.clients.some(function (c) { return c.id === s.currentClientId; })
     ? s.currentClientId : out.clients[0].id;
@@ -1714,7 +1868,8 @@ var ui = {
   prodForm: null,     /* 새 품목 추가 폼에 치고 있는 값 */
   bulkText: "",       /* 영수증 일괄 입력 칸 */
   bulkFile: null,     /* 영수증 사진 (미리보기용) */
-  bulkResult: null    /* 마지막 일괄 적용 결과 */
+  bulkResult: null,   /* 마지막 일괄 적용 결과 */
+  claim: null         /* 반품·클레임 접수 초안 (품목·사유·사진·메모) */
 };
 
 /* ── 사업자·정책 접근 ───────────────────────────────── */
@@ -1931,8 +2086,8 @@ function placeOrder(opts) {
   var gate = clientGate(cl.id);
   if (gate.blocked) return { ok:false, code:gate.code, msg:gate.msg };
 
-  /* 규칙 3 — 10만 원 이상은 외상 불가 · 즉시결제(입금 확인 체크)만 */
-  var forced = am.total >= PAY_IMMEDIATE_FROM;
+  /* 규칙 3 — 10만 원 이상은 외상 불가 · 즉시결제(입금 확인 체크)만 (일반 등급한) */
+  var forced = !creditAllowed(cl, am.total);
   var payMode = forced ? PAY.IMMEDIATE : (opts.payMode === PAY.IMMEDIATE ? PAY.IMMEDIATE : PAY.CREDIT);
   if (forced && opts.payMode === PAY.CREDIT) {
     return { ok:false, code:"PAY", msg:"10만 원 이상 주문은 외상이 불가합니다. 즉시 결제(계좌이체)로 진행해 주세요." };
@@ -1949,7 +2104,7 @@ function placeOrder(opts) {
       return { pid:l.pid, name:l.name, spec:l.spec, qty:l.qty, price:l.price, amount:l.amount };
     }),
     itemsOut: lines.reduce(function (s, l) { return s + l.qty; }, 0),
-    itemsAmount: am.itemsAmount, shipFee: am.shipFee, total: am.total,
+    itemsAmount: am.itemsAmount, shipFee: am.shipFee, total: am.total, claimTotal: 0,
     payMode: payMode,
     deposit: payMode === PAY.IMMEDIATE ? DEPOSIT.CLAIMED : "CREDIT",
     depositAt: null,
@@ -2015,7 +2170,7 @@ function confirmDayPrices(ymd, prices) {
     });
     o.itemsAmount = o.items.reduce(function (s, it) { return s + it.amount; }, 0);
     o.shipFee = feeFor(o.itemsAmount);
-    o.total = o.itemsAmount + o.shipFee;
+    o.total = Math.max(0, o.itemsAmount + o.shipFee - (Number(o.claimTotal) || 0));
     o.priceConfirmed = true;
     o.priceMode = "fixed";
     o.confirmedAt = nowIso();
@@ -2072,6 +2227,9 @@ function clientSummary(cid) {
     pendingAmount:pending.reduce(function (s, o) { return s + o.total; }, 0),
     immediatePending:immediatePendingOf(cid),
     gate:clientGate(cid),
+    tier:tierOf(cl),
+    aging:creditAging(cid),
+    nextDue:nextDueYmd(cid),
     orders:ordersOf(cid).length,
     ledger:L
   };
@@ -2138,12 +2296,75 @@ function rejectClient(cid) {
   return true;
 }
 
-/* ── 발주 가능 여부 (사업자 승인 · 외상 하루치) ──────── */
+/* ── 외상 기한 계산 (거래처 등급별) ──────────────────
+   입금은 오래된 미수부터 갚은 것으로 본다(FIFO). 기초 미수는 날짜가 없으니
+   가장 오래된 미수로 놓고, 그 위에 외상 주문을 날짜 순으로 쌓는다.
+   기한 = 미수 발생일 + 등급별 일수(1/7/15). 오늘이 기한을 지났으면 연체.
+   즉시결제 주문은 그날 입금 처리되므로 미수로 잡지 않는다. */
+function creditAging(cid) {
+  var cl = getClient(cid);
+  var days = creditDaysOf(cl);
+  var t = todayYmd();
+  var charges = [];
+  var base = Number(cl.prevBalance) || 0;
+  if (base > 0) charges.push({ ymd:"0000-01-01", name:"기초 미수", amount:base });
+  state.orders.forEach(function (o) {
+    if (!o || o.clientId !== cid || o.status === STATUS.CANCELED || isImmediate(o)) return;
+    var amt = Number(o.total) || 0;
+    if (amt > 0) charges.push({ ymd:o.ymd, name:o.no, amount:amt });
+  });
+  charges.sort(function (a, b) {
+    if (a.ymd !== b.ymd) return a.ymd < b.ymd ? -1 : 1;
+    return a.name < b.name ? -1 : 1;
+  });
+  var paid = (cl.payments || []).reduce(function (s, p) { return s + (Number(p.amount) || 0); }, 0);
+  var left = paid, rest = [];
+  charges.forEach(function (c) {
+    var use = Math.min(left, c.amount);
+    left -= use;
+    var remain = c.amount - use;
+    if (remain > 0) rest.push({ ymd:c.ymd, name:c.name, amount:remain });
+  });
+  var out = { days:days, balance:0, overdue:0, due:0, items:[], overdueItems:[], oldestLate:null };
+  rest.forEach(function (c) {
+    out.balance += c.amount;
+    var dueYmd = c.ymd === "0000-01-01" ? "" : addDays(c.ymd, days);
+    var late = !dueYmd || t > dueYmd;
+    var it = { ymd:c.ymd, name:c.name, amount:c.amount, dueYmd:dueYmd, late:late };
+    out.items.push(it);
+    if (late) {
+      out.overdue += c.amount;
+      out.overdueItems.push(it);
+      if (!out.oldestLate || (it.ymd !== "0000-01-01" && (out.oldestLate.ymd === "0000-01-01" || it.ymd < out.oldestLate.ymd))) out.oldestLate = it;
+    } else {
+      out.due += c.amount;
+    }
+  });
+  return out;
+}
+/** 기한 안에 있는 미수 중 가장 빨리 돌아오는 날 */
+function nextDueYmd(cid) {
+  var a = creditAging(cid);
+  var list = a.items.filter(function (it) { return !it.late && it.dueYmd; })
+    .sort(function (x, y) { return x.dueYmd < y.dueYmd ? -1 : 1; });
+  return list.length ? list[0].dueYmd : "";
+}
+/** 발주가 막혔을 때 손님에게 보여 줄 말 — 등급명·기한 일수는 안 나간다. */
+function gateBalanceMsg(cl, bal, age) {
+  if (age.days <= 1) {
+    return "미수 잔액 " + won(bal) + "원 입금 확인 후 다음 발주가 가능합니다 (외상은 하루치까지만 가능)";
+  }
+  return "미수 잔액 " + won(bal) + "원 중 약정 기한이 지난 " + won(age.overdue) + "원이 있어 발주가 막혔습니다";
+}
+
+/* ── 발주 가능 여부 (사업자 승인 · 등급별 외상 기한) ──────── */
 /* 발주 화면·체크아웃·placeOrder가 모두 이 한 곳을 본다. */
 function clientGate(cid) {
   var cl = getClient(cid);
-  var out = { blocked:false, code:"OK", client:cl, balance:0, msg:"" };
+  var out = { blocked:false, code:"OK", client:cl, balance:0, overdue:0, due:0, days:1, msg:"" };
   if (!cl) { out.blocked = true; out.code = "NOCLIENT"; out.msg = "거래처를 선택해주세요."; return out; }
+  out.tier = tierOf(cl).key;
+  out.days = creditDaysOf(cl);
   var st = cl.status || CLIENT.APPROVED;
   if (st === CLIENT.PENDING) {
     out.blocked = true; out.code = "PENDING";
@@ -2155,17 +2376,19 @@ function clientGate(cid) {
     out.msg = "가입이 반려된 거래처입니다. 사장님께 문의해 주세요.";
     return out;
   }
-  var bal = buildLedger(cid).balance;
-  out.balance = bal;
-  if (bal > 0) {
+  var age = creditAging(cid);
+  out.balance = age.balance;
+  out.overdue = age.overdue;
+  out.due = age.due;
+  if (age.overdue > 0) {
     out.blocked = true; out.code = "BALANCE";
-    out.msg = "미수 잔액 " + won(bal) + "원 입금 확인 후 다음 발주가 가능합니다 (외상은 하루치까지만 가능)";
+    out.msg = gateBalanceMsg(cl, age.balance, age);
   }
   return out;
 }
-/** 10만 원 이상이면 무조건 즉시결제, 그 아래는 외상/즉시결제 선택. */
-function payModeFor(total) { return Number(total) >= PAY_IMMEDIATE_FROM ? PAY.IMMEDIATE : PAY.CREDIT; }
-function creditOpenAt(total) { return Number(total) < PAY_IMMEDIATE_FROM; }
+/** 10만 원 이상이면 즉시결제 — 단, 약정 거래처(우수·VIP)는 기한 안이면 외상 가능. */
+function payModeFor(total, cl) { return creditAllowed(cl || currentClient(), total) ? PAY.CREDIT : PAY.IMMEDIATE; }
+function creditOpenAt(total, cl) { return creditAllowed(cl || currentClient(), total); }
 /** 즉시결제 중 아직 입금 확인 전인 금액 */
 function immediatePendingOf(cid) {
   return state.orders.filter(function (o) {
@@ -2193,6 +2416,84 @@ function addAlert(clientId, itemIds) {
   saveState();
 }
 function openAlerts() { return state.alerts.filter(function (a) { return a.status === "WAIT"; }); }
+
+/* ── 반품·클레임 처리 ────────────────────────────────── */
+/** 배송중·배송완료 주문만 반품·클레임을 낼 수 있다 */
+function canClaim(o) {
+  return !!o && (o.status === STATUS.DISPATCHED || o.status === STATUS.DELIVERED);
+}
+function claimsOf(orderNo) {
+  return (state.claims || []).filter(function (c) { return c.orderNo === orderNo; });
+}
+function openClaims() {
+  return (state.claims || []).filter(function (c) { return c.status === CLAIM.OPEN; });
+}
+function findClaim(id) {
+  return (state.claims || []).filter(function (c) { return c.id === id; })[0] || null;
+}
+/** 고른 품목들의 주문 금액 합 */
+function claimAmountFor(o, pids) {
+  if (!o) return 0;
+  return (o.items || []).filter(function (it) { return pids.indexOf(it.pid) >= 0; })
+    .reduce(function (s, it) { return s + (Number(it.amount) || 0); }, 0);
+}
+/** 손님 접수 — 품목·사유·증빙 사진·메모 */
+function addClaim(data) {
+  var o = data && findOrder(data.orderNo);
+  if (!o) return { ok:false, msg:"발주를 찾지 못했습니다." };
+  if (!canClaim(o)) return { ok:false, msg:"배송중·배송완료 주문만 반품·클레임을 낼 수 있습니다." };
+  var pids = (data.items || []).filter(function (pid) {
+    return (o.items || []).some(function (it) { return it.pid === pid; });
+  });
+  if (!pids.length) return { ok:false, msg:"문제가 있는 품목을 골라 주세요." };
+  var reason = String(data.reason || "");
+  if (CLAIM_REASONS.indexOf(reason) < 0) return { ok:false, msg:"사유를 골라 주세요." };
+  var photos = (data.photos || []).filter(function (p) { return p && p.dataUrl; }).slice(0, CLAIM_PHOTOS_MAX);
+  if (!photos.length) return { ok:false, msg:"증빙 사진을 1장 이상 올려 주세요." };
+  var c = {
+    id:"cl" + Date.now().toString(36),
+    orderNo:o.no, clientId:o.clientId,
+    items:(o.items || []).filter(function (it) { return pids.indexOf(it.pid) >= 0; })
+      .map(function (it) { return { pid:it.pid, name:it.name, qty:it.qty, price:it.price, amount:it.amount }; }),
+    reason:reason, memo:String(data.memo || "").slice(0, 300),
+    photos:photos, amount:claimAmountFor(o, pids),
+    status:CLAIM.OPEN, createdAt:nowIso(), decidedAt:null
+  };
+  state.claims = state.claims || [];
+  state.claims.unshift(c);
+  o.history = o.history || [];
+  o.history.push({ at:nowIso(), text:"반품·클레임 접수 — " + reason + " · " + won(c.amount) + "원" });
+  saveState();
+  return { ok:true, claim:c, order:o };
+}
+/** 사장님 승인 — 그 품목 금액만큼 주문 합계(→미수 잔액)에서 차감 */
+function approveClaim(id) {
+  var c = findClaim(id);
+  if (!c || c.status !== CLAIM.OPEN) return null;
+  var o = findOrder(c.orderNo);
+  if (!o) return null;
+  c.status = CLAIM.APPROVED;
+  c.decidedAt = nowIso();
+  o.claimTotal = (Number(o.claimTotal) || 0) + c.amount;
+  o.total = Math.max(0, (Number(o.itemsAmount) || 0) + (Number(o.shipFee) || 0) - o.claimTotal);
+  o.history = o.history || [];
+  o.history.push({ at:nowIso(), text:"반품 승인 — " + won(c.amount) + "원 차감 (합계 " + won(o.total) + "원)" });
+  saveState();
+  return { claim:c, order:o, amount:c.amount };
+}
+function rejectClaim(id) {
+  var c = findClaim(id);
+  if (!c || c.status !== CLAIM.OPEN) return null;
+  c.status = CLAIM.REJECTED;
+  c.decidedAt = nowIso();
+  var o = findOrder(c.orderNo);
+  if (o) {
+    o.history = o.history || [];
+    o.history.push({ at:nowIso(), text:"반품 반려 — " + c.reason });
+  }
+  saveState();
+  return { claim:c, order:o };
+}
 
 /* ── 품목 관리 (사장님 · 품목 추가/삭제 · 가격·재고 변동) ─────────
    사장님이 '아침 7시 단가 확정' 탭에서 품목을 직접 늘리고 줄인다.
@@ -2482,7 +2783,19 @@ function payBadge(o) {
     var done = o.deposit === DEPOSIT.CONFIRMED;
     return '<span class="badge ' + (done ? "disp" : "pay") + '">즉시결제 · ' + (done ? "입금확인 완료" : "입금확인 대기") + "</span>";
   }
-  return '<span class="badge credit">외상(하루치)</span>';
+  return '<span class="badge credit">' + (creditDaysOf(getClient(o.clientId)) > 1 ? "외상(약정)" : "외상(하루치)") + "</span>";
+}
+/** 반품·클레임 상태 배지 — 손님·사장님 같은 말 */
+function claimBadgesHTML(o) {
+  var list = claimsOf(o.no);
+  if (!list.length) return "";
+  var open = list.filter(function (c) { return c.status === CLAIM.OPEN; }).length;
+  var last = list[0];
+  var html = "";
+  if (open) html += '<span class="badge claim">' + CLAIM_BADGE[CLAIM.OPEN] + "</span>";
+  if (last.status === CLAIM.APPROVED) html += '<span class="badge disp">' + CLAIM_BADGE[CLAIM.APPROVED] + "</span>";
+  if (last.status === CLAIM.REJECTED) html += '<span class="badge cancel">' + CLAIM_BADGE[CLAIM.REJECTED] + "</span>";
+  return html;
 }
 function clientStatusBadge(cl) {
   var st = (cl && cl.status) || CLIENT.APPROVED;
@@ -2502,9 +2815,14 @@ function gateBannerHTML(gate) {
       esc(gate.msg) + '</div></div>';
   }
   if (gate.code === "BALANCE") {
+    var late = Number(gate.days) > 1;
     return '<div class="notice red" id="creditBlock"><span class="ni">🔒</span><div>' +
-      '미수 잔액 <b>' + won(gate.balance) + '원</b> 입금 확인 후 다음 발주가 가능합니다 (외상은 하루치까지만 가능)<br>' +
-      '<span class="tiny">사장님이 입금을 확인하면 바로 다시 발주할 수 있어요. 10만 원 이상은 즉시 결제만 됩니다.</span></div></div>';
+      (late
+        ? '미수 잔액 <b>' + won(gate.balance) + '원</b> 중 <b>약정 기한이 지난 ' + won(gate.overdue) + '원</b>이 있어 발주가 막혔습니다<br>' +
+          '<span class="tiny">기한 안의 미수 ' + won(gate.due) + '원은 그대로 두고 발주할 수 있습니다. 연체분을 입금 처리하면 바로 다시 발주할 수 있습니다.</span>'
+        : '미수 잔액 <b>' + won(gate.balance) + '원</b> 입금 확인 후 다음 발주가 가능합니다 (외상은 하루치까지만 가능)<br>' +
+          '<span class="tiny">사장님이 입금을 확인하면 바로 다시 발주할 수 있어요. 10만 원 이상은 즉시 결제만 됩니다.</span>') +
+      "</div></div>";
   }
   return '<div class="notice red"><span class="ni">!</span><div>' + esc(gate.msg) + "</div></div>";
 }
@@ -2867,8 +3185,11 @@ function renderCheckout() {
   var gate = clientGate(state.currentClientId);
   var slots = slotList().filter(function (s) { return s.phase === "OPEN"; }).slice(0, 5);
 
-  /* 규칙 3 — 10만 원 이상이면 외상 선택 불가 · 즉시결제 고정 */
-  var forcedImmediate = am.total >= PAY_IMMEDIATE_FROM;
+  /* 규칙 3 — 10만 원 이상이면 외상 선택 불가 · 즉시결제 고정 (일반 등급한)
+     약정 거래처(우수·VIP)는 10만 원 이상도 기한 안이면 외상으로 발주한다. */
+  var clCo = currentClient();
+  var deal = creditDaysOf(clCo) > 1;
+  var forcedImmediate = !creditAllowed(clCo, am.total);
   if (forcedImmediate) co.payMode = PAY.IMMEDIATE;
   else if (co.payMode !== PAY.IMMEDIATE) co.payMode = PAY.CREDIT;
   if (co.payMode !== PAY.IMMEDIATE) co.depositChecked = false;
@@ -2892,10 +3213,12 @@ function renderCheckout() {
     '<div class="co-card" id="payCard"><h3><span class="num">4</span>결제 방식</h3>' +
       (forcedImmediate
         ? '<div class="notice red" style="margin:0 0 10px" id="payLockNotice"><span class="ni">🔒</span><div><b>10만 원 이상 주문은 외상이 불가합니다.</b><br>즉시 결제(계좌이체 입금 확인)로만 접수됩니다.</div></div>'
-        : '<div class="notice green" style="margin:0 0 10px"><span class="ni">✓</span><div>5만 원~10만 원 미만은 <b>외상(하루치)</b> 또는 <b>즉시 결제</b>를 고를 수 있어요. <b>10만 원 이상은 즉시 결제만</b> 가능합니다.</div></div>') +
+        : (deal
+          ? '<div class="notice green" style="margin:0 0 10px"><span class="ni">✓</span><div>약정에 따라 <b>외상(미수)</b>으로 접수할 수 있습니다. 기한이 지난 미수가 쌓이면 다음 발주가 막힙니다.</div></div>'
+          : '<div class="notice green" style="margin:0 0 10px"><span class="ni">✓</span><div>5만 원~10만 원 미만은 <b>외상(하루치)</b> 또는 <b>즉시 결제</b>를 고를 수 있어요. <b>10만 원 이상은 즉시 결제만</b> 가능합니다.</div></div>')) +
       '<div class="slots">' +
-        payOptionHTML(PAY.CREDIT, "외상 (하루치 · 다음 날 정산)",
-          forcedImmediate ? "10만 원 이상은 선택할 수 없습니다" : "미수 잔액 0원 · 하루치까지", co.payMode === PAY.CREDIT, forcedImmediate) +
+        payOptionHTML(PAY.CREDIT, deal ? "외상 (약정 기한 내 정산)" : "외상 (하루치 · 다음 날 정산)",
+          forcedImmediate ? "10만 원 이상은 선택할 수 없습니다" : (deal ? "기한이 지난 미수가 없으면 발주 가능" : "미수 잔액 0원 · 하루치까지"), co.payMode === PAY.CREDIT, forcedImmediate) +
         payOptionHTML(PAY.IMMEDIATE, "즉시 결제 (계좌이체)",
           "오늘 바로 입금 · 다음 발주에 영향 없음", immediate, false) +
       "</div>" +
@@ -2907,7 +3230,9 @@ function renderCheckout() {
             '<label class="pay-check"><input type="checkbox" data-act="deposit-check"' + (co.depositChecked ? " checked" : "") + "> 입금 완료(결제 확인 요청)</label>" +
             '<div class="pg-slot">카드·간편결제(PG) 결제위젯 자리 — 준비 중 (시안에서는 계좌이체로 접수)</div>' +
           "</div>"
-        : '<div class="pay-box" style="margin-top:10px"><b>외상은 하루치까지만 가능합니다.</b> 오늘 출고분은 다음 날 정산되고, 미수 잔액이 남아 있으면 다음 발주가 막힙니다.</div>') +
+        : (deal
+          ? '<div class="pay-box" style="margin-top:10px"><b>약정 기한에 따라 외상으로 접수됩니다.</b> 기한이 지난 미수가 있으면 다음 발주가 막힙니다.</div>'
+          : '<div class="pay-box" style="margin-top:10px"><b>외상은 하루치까지만 가능합니다.</b> 오늘 출고분은 다음 날 정산되고, 미수 잔액이 남아 있으면 다음 발주가 막힙니다.</div>')) +
     "</div>";
 
   var canPlace = am.meetsMin && !gate.blocked && (!immediate || co.depositChecked);
@@ -2940,7 +3265,9 @@ function renderCheckout() {
         '<div class="sum-row total"><span>합계</span><span class="amt">' + won(am.total) + "원</span></div>" +
       "</div>" +
       (am.meetsMin ? "" : '<div class="notice" style="margin-top:10px"><span class="ni">!</span><div><b>최소 주문 ' + won(am.minOrder) + "원</b> 미만입니다. <b>" + won(am.shortfall) + "원</b> 더 담아야 발주할 수 있어요.</div></div>") +
-      '<div class="tiny muted" style="margin-top:8px">10만 원 이상 주문은 외상(미수)에 잡히지 않고 <b>즉시결제 · 입금확인 대기</b>로 구분됩니다.</div>' +
+      '<div class="tiny muted" style="margin-top:8px">' + (deal
+        ? "이번 발주는 약정에 따라 <b>외상(미수)</b>으로 잡힐 수 있습니다."
+        : "10만 원 이상 주문은 외상(미수)에 잡히지 않고 <b>즉시결제 · 입금확인 대기</b>로 구분됩니다.") + "</div>" +
     "</div>" +
 
     payCard +
@@ -3003,6 +3330,7 @@ function orderCard(o, admin, ledger) {
   var canStmt = o.status !== STATUS.CANCELED;
   var acts = "";
   if (canStmt) acts += '<button class="btn btn-sm" data-act="stmt-open" data-no="' + o.no + '">거래명세표</button>';
+  if (!admin && canClaim(o)) acts += '<button class="btn btn-sm" data-act="claim-open" data-no="' + o.no + '">반품·클레임</button>';
   if (!admin && canCancel) acts += '<button class="btn btn-sm btn-ghost" data-act="cancel" data-no="' + o.no + '">발주 취소</button>';
   if (admin) {
     if (o.status === STATUS.PENDING) acts += '<span class="badge pending">아침 7시 확정 대기</span>';
@@ -3023,10 +3351,11 @@ function orderCard(o, admin, ledger) {
           (admin ? "<span>" + esc(cl.phone) + "</span>" : "") +
         "</div>" +
       "</div>" +
-      '<div class="badges">' + badgeOf(o) + payBadge(o) + "</div>" +
+      '<div class="badges">' + badgeOf(o) + payBadge(o) + claimBadgesHTML(o) + "</div>" +
     "</div>" +
     (admin ? "" : '<div class="ocard-steps">' + stepsBarHTML(o) + "</div>") +
-    '<div class="ocard-items">' + itemLine(o) + (o.memo ? '<div class="tiny" style="margin-top:4px">요청: ' + esc(o.memo) + "</div>" : "") + "</div>" +
+    '<div class="ocard-items">' + itemLine(o) + (o.memo ? '<div class="tiny" style="margin-top:4px">요청: ' + esc(o.memo) + "</div>" : "") +
+      (Number(o.claimTotal) > 0 ? '<div class="tiny" style="margin-top:4px;color:var(--red)"><b>반품 차감 −' + won(o.claimTotal) + '원</b> (사장님 승인)</div>' : "") + "</div>" +
     '<div class="ocard-foot">' +
       '<div><span class="tot">' + won(o.total) + "<small>원</small></span>" +
         (o.priceConfirmed ? "" : ' <span class="tiny" style="color:var(--amber)">참고가 기준 · 확정 후 변동</span>') +
@@ -3088,6 +3417,8 @@ function renderAdmin() {
   var badge = $("#alertBadge");
   badge.textContent = n;
   badge.hidden = n <= 0;
+  var cb = $("#claimBadge"), cn = openClaims().length;
+  if (cb) { cb.textContent = cn; cb.hidden = cn <= 0; }
 
   if (ui.admTab === "orders") renderAdminOrders();
   else if (ui.admTab === "prices") renderAdminPrices();
@@ -3131,6 +3462,7 @@ function renderAdminOrders() {
         '<button class="btn btn-sm btn-primary" data-act="batch-day" data-ymd="' + d + '"' + (list.length ? "" : " disabled") + '>A4 일괄 인쇄 (' + list.length + '건)</button>' +
       "</div>" +
     "</div>" +
+    claimsPanelHTML() +
     '<div class="stat-grid">' +
       '<div class="stat"><div class="k">발주 건수</div><div class="v">' + list.length + "<small>건</small></div></div>" +
       '<div class="stat"><div class="k">출고 예정 금액</div><div class="v">' + won(amount) + "<small>원</small></div></div>" +
@@ -3395,24 +3727,39 @@ function renderAdminClients() {
       '<div class="stat warn"><div class="k">미수금 합계</div><div class="v">' + won(totalDue) + "<small>원</small></div></div>" +
       '<div class="stat ' + (pending.length ? "warn" : "ok") + '"><div class="k">가입 승인 대기</div><div class="v">' + pending.length + "<small>곳</small></div></div>" +
     "</div>" +
-    '<p class="tiny muted" style="margin-top:8px">거래처는 <b>사업자등록증 없이 간편 가입</b>할 수 있고, 사장님이 확인해 <b>승인 (OK)</b>을 누르면 그때부터 발주할 수 있습니다. 미수 잔액이 남은 거래처는 입금 처리 전까지 발주가 막힙니다(외상은 하루치까지만).<br>' +
+    '<p class="tiny muted" style="margin-top:8px">거래처는 <b>사업자등록증 없이 간편 가입</b>할 수 있고, 사장님이 확인해 <b>승인 (OK)</b>을 누르면 그때부터 발주할 수 있습니다.<br>' +
+    '<b>거래처 등급</b>으로 외상 기한을 정합니다 — <b>일반(1일) · 우수(7일) · VIP·호텔·식장(15일)</b>. 기한이 지난 미수가 있을 때만 발주가 막히고, 10만 원 이상 즉시결제는 일반 등급에만 적용됩니다. 등급은 <b>손님 화면에 보이지 않습니다</b>.<br>' +
     '손님 화면(index.html)에는 <b>이 거래처 목록이 보이지 않습니다</b>. 특정 가게로 손님 화면을 확인하려면 <b>손님 화면으로 보기</b>를 누르세요.</p>' +
     approveHTML +
     '<div class="field" style="margin-top:12px"><input id="clientSearch" data-act="client-search" value="' + esc(q) + '" placeholder="거래처 이름·연락처 검색"></div>' +
     (list.length ? list.map(function (c) {
       var s = clientSummary(c.id);
       var g = s.gate;
-      return '<div class="client-card">' +
-        '<div class="cc-top"><div><div class="cc-name">' + esc(c.name) + '</div><div class="cc-sub">' + esc(c.owner || "-") + " · " + esc(c.phone || "-") + " · " + esc(c.memo || "") + "</div></div>" +
+      return '<div class="client-card" data-cid="' + c.id + '">' +
+        '<div class="cc-top"><div><div class="cc-name">' + esc(c.name) +
+          ' <span class="badge tier">' + esc(s.tier.short) + '</span></div><div class="cc-sub">' + esc(c.owner || "-") + " · " + esc(c.phone || "-") + " · " + esc(c.memo || "") + "</div></div>" +
           '<span class="badge ' + (s.balance > 0 ? "pending" : "ok") + '">' + (s.balance > 0 ? "미수" : "완납") + "</span></div>" +
         '<div class="cc-money">' +
           "<div>기초 미수<b>" + won(s.base) + "</b></div>" +
           "<div>출고액<b>" + won(s.totalOut) + "</b></div>" +
           '<div class="due">잔액<b>' + won(s.balance) + "</b></div>" +
         "</div>" +
+        '<div class="tier-sel"><label for="tier-' + c.id + '">거래처 등급 (손님 화면엔 안 보임)</label>' +
+          '<select id="tier-' + c.id + '" data-act="client-tier" data-cid="' + c.id + '">' +
+            TIERS.map(function (t) {
+              return '<option value="' + t.key + '"' + (t.key === s.tier.key ? " selected" : "") + '>' + esc(t.short) + "</option>";
+            }).join("") +
+          "</select></div>" +
         '<div class="cc-gate ' + (g.blocked ? "warn" : "ok") + '">' +
-          (g.blocked ? "🔒 " + esc(g.msg) : "✓ 발주 가능 (미수 잔액 0원)") +
+          (g.blocked
+            ? "🔒 " + esc(g.msg)
+            : (s.balance > 0
+              ? "✓ 발주 가능 · 미수 " + won(s.balance) + "원은 기한 안" + (s.nextDue ? " (" + fmtShort(s.nextDue) + "까지)" : "")
+              : "✓ 발주 가능 (미수 잔액 0원)")) +
         "</div>" +
+        (s.aging.overdue
+          ? '<div class="tiny" style="margin-top:6px;color:var(--red)">연체 <b>' + won(s.aging.overdue) + "원</b> · 기한 안 " + won(s.aging.due) + "원</div>"
+          : (s.aging.due ? '<div class="tiny" style="margin-top:6px;color:var(--muted)">기한 안 미수 <b>' + won(s.aging.due) + "원</b> · 연체 없음</div>" : "")) +
         (s.immediatePending ? '<div class="tiny" style="margin-top:6px;color:var(--blue)">즉시결제 입금확인 대기 <b>' + won(s.immediatePending) + "원</b></div>" : "") +
         '<div class="acts" style="margin-top:10px">' +
           (s.balance > 0 ? '<button class="btn btn-sm btn-primary" data-act="pay-full" data-cid="' + c.id + '">전액 입금</button>' : "") +
@@ -3487,6 +3834,111 @@ function renderAdminSettings() {
     '<button class="btn btn-primary btn-block" style="height:48px" data-act="settings-save">설정 저장</button>';
 }
 
+/* ══════════════ 반품·클레임 (손님 접수 · 사장님 승인) ══════════════ */
+function claimDraftFor(orderNo) {
+  if (!ui.claim || ui.claim.orderNo !== orderNo) {
+    ui.claim = { orderNo:orderNo, items:[], reason:"", memo:"", photos:[] };
+  }
+  return ui.claim;
+}
+/** 손님 반품·클레임 접수 모달 — 품목 · 사유 · 증빙 사진 · 메모 */
+function renderClaimModal() {
+  var d = ui.claim;
+  if (!d) return;
+  var o = findOrder(d.orderNo);
+  if (!o) { closeModal(); return; }
+  var amount = claimAmountFor(o, d.items);
+  var rows = (o.items || []).map(function (it) {
+    var on = d.items.indexOf(it.pid) >= 0;
+    return '<button class="cl-opt" data-act="claim-item" data-pid="' + it.pid + '" aria-pressed="' + on + '">' +
+      '<span class="cb" aria-hidden="true">' + (on ? "✓" : "") + "</span>" +
+      '<span class="grow"><b>' + esc(it.name) + '</b><small class="cl-sub">' + it.qty + "개 · " + won(it.amount) + "원</small></span>" +
+      "</button>";
+  }).join("");
+  var reasons = CLAIM_REASONS.map(function (r) {
+    return '<button class="cl-reason-btn" data-act="claim-reason" data-reason="' + esc(r) + '" aria-pressed="' + (d.reason === r) + '">' + esc(r) + "</button>";
+  }).join("");
+  var photos = d.photos.map(function (p, i) {
+    return '<span class="cl-photo"><img src="' + p.dataUrl + '" alt="증빙 사진 ' + (i + 1) + '">' +
+      '<button class="del" data-act="claim-photo-del" data-idx="' + i + '" aria-label="사진 빼기">✕</button></span>';
+  }).join("");
+  openModal(
+    '<div class="m-head"><h2 id="modalTitle">반품·클레임 접수</h2><button class="icon-btn" data-act="claim-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-body">' +
+      '<p class="small" style="margin-bottom:2px"><b>' + fmtShort(o.ymd) + " " + roundByKey(o.round).label + " 발주</b> · " + o.no + "</p>" +
+      '<div class="cl-sec"><b>1. 문제가 있는 품목</b><div class="cl-opts">' + rows + "</div></div>" +
+      '<div class="cl-sec"><b>2. 사유</b><div class="cl-reasons">' + reasons + "</div></div>" +
+      '<div class="cl-sec"><b>3. 증빙 사진 (1장 이상)</b>' +
+        '<div class="cl-photos">' + photos + "</div>" +
+        (d.photos.length >= CLAIM_PHOTOS_MAX
+          ? '<p class="tiny muted" style="margin-top:6px">사진은 ' + CLAIM_PHOTOS_MAX + "장까지 올릴 수 있습니다.</p>"
+          : '<label class="claim-photo-add" for="claimPhoto">📷 사진 찍기 · 앨범에서 고르기</label>') +
+        '<input type="file" id="claimPhoto" data-act="claim-photo" accept="image/*" multiple class="bulk-file-input">' +
+        '<p class="tiny muted" style="margin-top:6px">상한 제품·파손·수량 부족이 보이게 찍어 주세요.</p>' +
+      "</div>" +
+      '<div class="cl-sec"><b>4. 상세 메모 (자유롭게)</b>' +
+        '<textarea id="claimMemo" data-act="claim-memo" rows="3" placeholder="예: 오이 절반이 물러서 못 썼습니다. 확인 부탁드려요.">' + esc(d.memo || "") + "</textarea>" +
+      "</div>" +
+      '<div class="notice" style="margin-top:12px"><span class="ni">✓</span><div>사장님이 확인하면 <b>승인</b> 또는 <b>반려</b>합니다. 승인되면 ' +
+        (amount > 0 ? "고른 품목 금액 <b>" + won(amount) + "원</b>이" : "고른 품목 금액이") +
+        " 이 발주 합계(미수)에서 차감됩니다.</div></div>" +
+    "</div>" +
+    '<div class="m-foot"><button class="btn btn-ghost" data-act="claim-close">그만두기</button>' +
+      '<button class="btn btn-primary" data-act="claim-save">반품·클레임 접수</button></div>'
+  );
+}
+/** 사진 크게 보기 (손님·사장님 공통) */
+function openClaimPhoto(src, caption) {
+  openModal(
+    '<div class="m-head"><h2 id="modalTitle">증빙 사진</h2><button class="icon-btn" data-act="claim-photo-close" aria-label="닫기">✕</button></div>' +
+    '<div class="m-body"><img class="biz-full" src="' + src + '" alt="증빙 사진 크게 보기">' +
+      (caption ? '<p class="tiny muted" style="margin-top:8px">' + esc(caption) + "</p>" : "") + "</div>" +
+    '<div class="m-foot"><button class="btn btn-primary" data-act="claim-photo-close">닫기</button></div>'
+  );
+}
+/** 사장님 — 접수된 반품·클레임 카드 (사진 썸네일 · 승인/반려) */
+function claimCardHTML(c) {
+  var o = findOrder(c.orderNo);
+  var cl = getClient(c.clientId);
+  var items = (c.items || []).map(function (it) {
+    return esc(it.name) + " " + it.qty + "개 · " + won(it.amount) + "원";
+  }).join(" / ");
+  var thumbs = (c.photos || []).map(function (p, i) {
+    return '<button class="cl-thumb" data-act="claim-photo-open" data-id="' + c.id + '" data-idx="' + i + '" aria-label="증빙 사진 ' + (i + 1) + ' 크게 보기">' +
+      '<img src="' + p.dataUrl + '" alt="증빙 사진 ' + (i + 1) + '"></button>';
+  }).join("");
+  return '<div class="claim-card ' + (c.status === CLAIM.OPEN ? "is-open" : "is-done") + '" data-claim="' + c.id + '">' +
+    '<div class="cl-head"><div><div class="cl-name">' + esc(cl.name) + ' <span class="badge ' + (CLAIM_CLASS[c.status] || "done") + '">' + CLAIM_BADGE[c.status] + "</span></div>" +
+      '<div class="tiny muted">' + (o ? fmtShort(o.ymd) + " " + roundByKey(o.round).label + " · " : "") + c.orderNo + " · 접수 " + stampLabel(c.createdAt) + "</div></div>" +
+      '<div class="cl-amt">−' + won(c.amount) + '<small>원</small></div></div>' +
+    '<div class="cl-items">' + items + '</div>' +
+    '<div class="cl-meta"><span>사유 <b>' + esc(c.reason) + "</b></span>" + (c.memo ? "<span>" + esc(c.memo) + "</span>" : "") + "</div>" +
+    (thumbs ? '<div class="cl-photos">' + thumbs + "</div>" : '<div class="tiny muted" style="margin-top:8px">증빙 사진 없음</div>') +
+    (c.status === CLAIM.OPEN
+      ? '<div class="acts" style="margin-top:10px">' +
+          '<button class="btn btn-sm btn-primary" data-act="claim-approve" data-id="' + c.id + '">승인 (금액 차감)</button>' +
+          '<button class="btn btn-sm btn-ghost" data-act="claim-reject" data-id="' + c.id + '">반려</button>' +
+        "</div>"
+      : '<div class="tiny muted" style="margin-top:8px">처리 완료 · ' + stampLabel(c.decidedAt) +
+        (c.status === CLAIM.APPROVED ? " · 주문 합계에서 " + won(c.amount) + "원 차감" : " · 금액 변동 없음") + "</div>") +
+    "</div>";
+}
+function claimsPanelHTML() {
+  var list = (state.claims || []).slice().sort(function (a, b) {
+    if (a.status !== b.status) return a.status === CLAIM.OPEN ? -1 : 1;
+    return String(a.createdAt) < String(b.createdAt) ? 1 : -1;
+  });
+  if (!list.length) return "";
+  var open = openClaims().length;
+  return '<div class="claim-wrap" id="claimWrap">' +
+    '<div class="row between" style="margin:0 0 8px;align-items:center;flex-wrap:wrap">' +
+      '<h2 style="font-size:15px">반품·클레임 <span class="badge ' + (open ? "claim" : "done") + '">' + (open ? "접수 " + open + "건" : "모두 처리") + "</span></h2>" +
+      '<span class="tiny muted">승인하면 그 품목 금액만큼 주문 합계·미수에서 차감</span>' +
+    "</div>" +
+    list.map(claimCardHTML).join("") +
+    "</div>";
+}
+
 /* ══════════════ 거래명세표 (A4) ══════════════ */
 function stmtCopy(order, kind) {
   var cl = getClient(order.clientId);
@@ -3501,8 +3953,13 @@ function stmtCopy(order, kind) {
   if (order.shipFee > 0) {
     rows += "<tr><td class=\"pname\">배송비  -  " + esc(state.policy.area) + "</td><td class=\"c\">1</td><td class=\"n\">" + won(order.shipFee) + "</td><td class=\"n\">" + won(order.shipFee) + "</td><td></td></tr>";
   }
+  /* 사장님이 승인한 반품·클레임 — 품목 금액만큼 빼서 합계를 맞춘다 */
+  var claimTotal = Number(order.claimTotal) || 0;
+  if (claimTotal > 0) {
+    rows += "<tr><td class=\"pname\">반품 차감  -  클레임 승인</td><td class=\"c\"></td><td class=\"n\"></td><td class=\"n\">−" + won(claimTotal) + "</td><td></td></tr>";
+  }
   rows += "<tr class=\"yiheo\"><td>======이하여백======</td><td class=\"rest\"></td><td class=\"rest\"></td><td class=\"rest\"></td><td class=\"rest\"></td></tr>";
-  var blanks = Math.max(0, 8 - order.items.length - (order.shipFee > 0 ? 1 : 0));
+  var blanks = Math.max(0, 8 - order.items.length - (order.shipFee > 0 ? 1 : 0) - (claimTotal > 0 ? 1 : 0));
   for (var i = 0; i < blanks; i++) rows += '<tr class="blank"><td></td><td></td><td></td><td></td><td></td></tr>';
   var totalQty = order.items.reduce(function (a, it) { return a + it.qty; }, 0) + (order.shipFee > 0 ? 1 : 0);
 
@@ -3965,6 +4422,47 @@ function openDeleteProduct(pid) {
   );
 }
 
+/* ── 반품·클레임 증빙 사진 — 1000px 이하로 줄여 dataURL 로 저장 ── */
+function readClaimPhoto(file, cb) {
+  var r = new FileReader();
+  r.onload = function () {
+    var raw = String(r.result);
+    var img = new Image();
+    img.onload = function () {
+      try {
+        var max = 1000;
+        var scale = Math.min(1, max / Math.max(img.width, img.height));
+        var cv = document.createElement("canvas");
+        cv.width = Math.max(1, Math.round(img.width * scale));
+        cv.height = Math.max(1, Math.round(img.height * scale));
+        cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+        cb(cv.toDataURL("image/jpeg", 0.72));
+      } catch (e) { cb(raw); }
+    };
+    img.onerror = function () { cb(raw); };
+    img.src = raw;
+  };
+  r.onerror = function () { cb(null); };
+  r.readAsDataURL(file);
+}
+function addClaimPhotos(input) {
+  var d = ui.claim;
+  if (!d) return;
+  var files = Array.prototype.slice.call((input && input.files) || []);
+  if (input) input.value = "";
+  if (!files.length) return;
+  var room = CLAIM_PHOTOS_MAX - d.photos.length;
+  if (room <= 0) { toast("사진은 " + CLAIM_PHOTOS_MAX + "장까지 올릴 수 있습니다."); return; }
+  files.slice(0, room).forEach(function (f) {
+    if (!/^image\//.test(f.type || "")) { toast("사진(이미지) 파일만 올릴 수 있습니다."); return; }
+    readClaimPhoto(f, function (dataUrl) {
+      if (!dataUrl) return;
+      d.photos.push({ name:f.name, dataUrl:dataUrl });
+      if (ui.claim === d && ui.modal) renderClaimModal();
+    });
+  });
+}
+
 /* ── 발주 확정 ──────────────────────────────────────── */
 function confirmPlacement() {
   var co = ui.co;
@@ -3979,8 +4477,9 @@ function confirmPlacement() {
   /* 규칙 1·2 — 승인 전 또는 미수 잔액이 있으면 확정 불가 */
   var gate = clientGate(co.client.id);
   if (gate.blocked) { toast(gate.msg); return; }
-  /* 규칙 3 — 10만 원 이상은 즉시결제만 */
-  var forced = am.total >= PAY_IMMEDIATE_FROM;
+  /* 규칙 3 — 10만 원 이상은 즉시결제만 (일반 등급한) */
+  var coClient = getClient(co.client.id);
+  var forced = !creditAllowed(coClient, am.total);
   var payMode = forced ? PAY.IMMEDIATE : (co.payMode === PAY.IMMEDIATE ? PAY.IMMEDIATE : PAY.CREDIT);
   if (payMode === PAY.IMMEDIATE && !co.depositChecked) { toast("입금 완료(결제 확인 요청)에 체크해야 접수됩니다."); return; }
   var acc = accountText();
@@ -3994,11 +4493,13 @@ function confirmPlacement() {
         '<div class="sum-row"><span class="lb">상품 합계</span><span>' + won(am.itemsAmount) + "원</span></div>" +
         '<div class="sum-row"><span class="lb">배송비</span><span>' + (am.shipFee ? won(am.shipFee) + "원" : "무료") + "</span></div>" +
         '<div class="sum-row total"><span>합계</span><span class="amt">' + won(am.total) + "원</span></div>" +
-        '<div class="sum-row"><span class="lb">결제 방식</span><span><b>' + (payMode === PAY.IMMEDIATE ? "즉시 결제(계좌이체)" : "외상(하루치·다음 날 정산)") + "</b></span></div>" +
+        '<div class="sum-row"><span class="lb">결제 방식</span><span><b>' + (payMode === PAY.IMMEDIATE ? "즉시 결제(계좌이체)" : (creditDaysOf(coClient) > 1 ? "외상(약정 기한 내 정산)" : "외상(하루치·다음 날 정산)")) + "</b></span></div>" +
       "</div>" +
       (payMode === PAY.IMMEDIATE
         ? '<div class="pay-box" style="margin-top:12px"><b>입금 확인 요청으로 접수됩니다.</b> ' + won(am.total) + "원을 <b>" + esc(acc.text) + "</b>로 입금하시고, 사장님이 입금을 확인하면 완료됩니다. 미수금(외상)에는 잡히지 않습니다.</div>"
-        : '<div class="pay-box" style="margin-top:12px"><b>외상(하루치)으로 접수됩니다.</b> 오늘 출고분은 다음 날 정산됩니다. 미수 잔액이 남아 있으면 다음 발주가 막힙니다.</div>') +
+        : (creditDaysOf(coClient) > 1
+          ? '<div class="pay-box" style="margin-top:12px"><b>약정에 따라 외상(미수)으로 접수됩니다.</b> 기한이 지난 미수가 쌓이면 다음 발주가 막힙니다.</div>'
+          : '<div class="pay-box" style="margin-top:12px"><b>외상(하루치)으로 접수됩니다.</b> 오늘 출고분은 다음 날 정산됩니다. 미수 잔액이 남아 있으면 다음 발주가 막힙니다.</div>')) +
       '<div class="notice" style="margin-top:12px"><span class="ni">' + (isDayConfirmed(co.ymd) ? "✓" : "🌅") + "</span><div>" +
         (isDayConfirmed(co.ymd)
           ? "확정 단가로 접수됩니다."
@@ -4081,7 +4582,7 @@ function doPriceUnconfirm(ymd) {
     });
     o.itemsAmount = o.items.reduce(function (s, it) { return s + it.amount; }, 0);
     o.shipFee = feeFor(o.itemsAmount);
-    o.total = o.itemsAmount + o.shipFee;
+    o.total = Math.max(0, o.itemsAmount + o.shipFee - (Number(o.claimTotal) || 0));
     o.priceConfirmed = false;
     o.priceMode = "ref";
     o.status = STATUS.PENDING;
@@ -4137,7 +4638,7 @@ function onClick(e) {
       break;
     case "cart-open": renderCartDrawer(); break;
     case "drawer-close": case "cart-close": closeDrawer(); break;
-    case "modal-close": closeModal(); break;
+    case "modal-close": ui.claim = null; closeModal(); break;
     case "scrim": closeDrawer(); closeModal(); break;
 
     /* 손님 로그인 — 내 가게 1곳만. 거래처 목록은 보이지 않는다. */
@@ -4271,6 +4772,69 @@ function onClick(e) {
     case "advance":
       if (advanceOrder(no)) { render(); toast("주문 상태를 바꿨습니다."); }
       break;
+
+    /* 반품·클레임 — 손님 접수 → 사장님 승인/반려 */
+    case "claim-open": {
+      var coO = findOrder(no);
+      if (!coO) break;
+      if (!canClaim(coO)) { toast("배송중·배송완료 주문만 반품·클레임을 낼 수 있습니다."); break; }
+      ui.claim = { orderNo:no, items:[], reason:"", memo:"", photos:[] };
+      renderClaimModal();
+      break;
+    }
+    case "claim-close": ui.claim = null; closeModal(); break;
+    case "claim-item": {
+      var cid2 = el.getAttribute("data-pid");
+      var cDraft = ui.claim;
+      if (!cDraft) break;
+      var at = cDraft.items.indexOf(cid2);
+      if (at >= 0) cDraft.items.splice(at, 1); else cDraft.items.push(cid2);
+      renderClaimModal();
+      break;
+    }
+    case "claim-reason":
+      if (!ui.claim) break;
+      ui.claim.reason = el.getAttribute("data-reason");
+      renderClaimModal();
+      break;
+    case "claim-photo-del":
+      if (!ui.claim) break;
+      ui.claim.photos.splice(Number(el.getAttribute("data-idx")), 1);
+      renderClaimModal();
+      break;
+    case "claim-save": {
+      var cres = addClaim(ui.claim);
+      if (!cres.ok) { toast(cres.msg); break; }
+      ui.claim = null;
+      closeModal();
+      render();
+      toast("반품·클레임을 접수했습니다. 사장님이 확인해 \"승인/반려\"하면 알려 드릴게요.");
+      break;
+    }
+    case "claim-photo-close": closeModal(); break;
+    case "claim-photo-open": {
+      var cOpen = findClaim(el.getAttribute("data-id"));
+      var ix = Number(el.getAttribute("data-idx"));
+      if (!cOpen || !cOpen.photos[ix]) break;
+      openClaimPhoto(cOpen.photos[ix].dataUrl,
+        getClient(cOpen.clientId).name + " · " + cOpen.orderNo + " · " + cOpen.reason);
+      break;
+    }
+    case "claim-approve": {
+      var okc = approveClaim(el.getAttribute("data-id"));
+      if (!okc) { toast("이미 처리된 클레임입니다."); break; }
+      render();
+      toast(getClient(okc.order.clientId).name + " 반품 승인 — " + won(okc.amount) + "원 차감 (미수 " +
+        won(buildLedger(okc.order.clientId).balance) + "원)");
+      break;
+    }
+    case "claim-reject": {
+      var no2 = rejectClaim(el.getAttribute("data-id"));
+      if (!no2) { toast("이미 처리된 클레임입니다."); break; }
+      render();
+      toast(getClient(no2.claim.clientId).name + " 반품 클레임을 반려했습니다 (금액 변동 없음).");
+      break;
+    }
 
     case "stmt-open": openStatement(no); break;
     case "stmt-print": if (IS_ADMIN) printStatement(el.getAttribute("data-no")); break;
@@ -4454,6 +5018,7 @@ function onInput(e) {
     }
     return;
   }
+  if (act === "claim-memo") { if (ui.claim) ui.claim.memo = el.value; return; }
   if (act === "su-biz") {
     var fmt = fmtBizNo(el.value);
     if (el.value !== fmt) el.value = fmt;
@@ -4510,6 +5075,13 @@ function onChange(e) {
     var pid = el.getAttribute("data-pid");
     var v = Number(digits(el.value));
     cartQty(pid, 0, v);
+    return;
+  }
+  if (act === "claim-photo") { addClaimPhotos(el); return; }
+  if (act === "client-tier") {
+    var tcl = setClientTier(el.getAttribute("data-cid"), el.value);
+    renderAdminClients();
+    if (tcl) toast(tcl.name + " 거래처 등급을 " + tierShort(tcl) + "로 바꿨습니다 · 손님 화면에는 표시되지 않습니다.");
     return;
   }
   if (act === "su-file") { onSignupFile(el); return; }
@@ -4625,7 +5197,19 @@ function onChange(e) {
     pendingClients: pendingClients,
     confirmDeposit: confirmDeposit,
     PAY: PAY,
-    CLIENT: CLIENT
+    CLIENT: CLIENT,
+    TIERS: TIERS,
+    tierOf: tierOf,
+    setClientTier: setClientTier,
+    creditAging: creditAging,
+    creditDaysOf: creditDaysOf,
+    canClaim: canClaim,
+    claimsOf: claimsOf,
+    openClaims: openClaims,
+    addClaim: addClaim,
+    approveClaim: approveClaim,
+    rejectClaim: rejectClaim,
+    foundClaim: findClaim
   };
 })();
 
