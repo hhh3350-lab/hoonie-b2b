@@ -888,7 +888,8 @@ function renderGrid(){
        +   '</div>'
        +   '<div class="cbody">'
        +     '<p class="org">' + esc(p.origin || "&nbsp;") + '</p>'
-       +     '<h3>' + esc(p.name) + ' <span class="unit">' + esc(p.unit) + '</span></h3>'
+       +     '<h3>' + esc(p.name) + '</h3>'
+       +     '<div class="unit">' + esc(p.unit) + '</div>'
        +     '<p class="dsc">' + esc(p.desc || "") + '</p>'
        +     '<div class="prow">' + priceHtml
        +       '<button class="add" data-add="' + p.id + '" aria-label="' + esc(p.name) + ' 담기">+</button>'
