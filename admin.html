@@ -618,9 +618,247 @@ footer .biz dd{margin:0;color:#C9CEC3}
 .foot-links a:hover{color:#fff}
 @media print{ .top-link,.admin-chip{display:none} }
 
+/* ═══════════════════════════════════════════════════════════
+   거래처(손님) 화면 — 40~60대 식당 사장님 눈높이
+   큰 글씨 · 큰 버튼 · 첫 화면에 바로 품목
+   (body.mode-client 에만 적용 → admin.html 은 그대로)
+   ═══════════════════════════════════════════════════════════ */
+.mode-client{font-size:16px}
+.mode-client .wrap{padding:0 14px}
+
+/* ── 상단 ───────────────────────────────────────────── */
+.mode-client .head-in{gap:8px;padding-top:4px}
+.mode-client .brand-mark{width:38px;height:38px;border-radius:12px;font-size:19px}
+.mode-client .brand-txt strong{font-size:17.5px;letter-spacing:-.04em}
+.mode-client .brand-txt span{display:none}
+.mode-client .head-act{order:2;gap:6px}
+.mode-client .client-chip{height:40px;padding:0 12px;font-size:14.5px;max-width:138px;border-radius:999px;gap:5px}
+.mode-client .cart-btn{height:44px;padding:0 11px;border-radius:14px;font-size:15px}
+.mode-client .cart-btn .cart-i{font-size:21px;line-height:1}
+.mode-client .cart-cnt{min-width:20px;height:20px;font-size:12px;top:-6px;right:-6px}
+
+.mode-client .modes{order:3;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
+  width:100%;overflow:visible;margin:0;padding:6px 0 7px}
+.mode-client .mode{height:48px;flex-direction:row;gap:4px;padding:0 4px;border-radius:12px;
+  border:1.5px solid var(--line2);background:#fff;color:var(--ink2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;letter-spacing:-.035em;white-space:nowrap;box-shadow:none}
+.mode-client .mode i{font-style:normal;font-size:14px;line-height:1}
+.mode-client .mode .m-t{font-size:16px;font-weight:800}
+.mode-client .mode[aria-selected="true"]{background:var(--green);border-color:var(--green);color:#fff}
+@media(max-width:400px){
+  .mode-client .brand-mark{width:34px;height:34px;border-radius:11px;font-size:17px}
+  .mode-client .brand-txt strong{font-size:16px}
+  .mode-client .client-chip{max-width:110px;height:38px;font-size:13.5px;padding:0 10px}
+  .mode-client .cart-btn{height:40px;padding:0 9px}
+  .mode-client .cart-btn .cart-i{font-size:19px}
+}
+@media(max-width:344px){
+  .mode-client .mode{font-size:14.5px}
+  .mode-client .mode i{display:none}
+}
+
+/* ── 배달 선택 (날짜 · 회차) ────────────────────────── */
+.mode-client .setup{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh);
+  padding:10px 12px 9px;margin-top:8px;display:flex;flex-direction:column;gap:8px}
+.mode-client .su-block{display:flex;align-items:center;gap:9px}
+.mode-client .su-label{flex:0 0 auto;width:44px;margin:0;font-size:12.5px;font-weight:800;
+  color:var(--muted);letter-spacing:-.03em;line-height:1.3;word-break:keep-all}
+.mode-client .su-dates{flex:1;min-width:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mode-client .su-date{height:50px;border-radius:12px;border:1.5px solid var(--line2);background:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink2);
+  transition:background .12s ease,box-shadow .12s ease}
+.mode-client .su-date b{font-size:16.5px;font-weight:800;letter-spacing:-.035em;line-height:1.3}
+.mode-client .su-date span{font-size:12px;font-weight:700;color:var(--muted);line-height:1.3}
+.mode-client .su-date[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff;
+  box-shadow:0 3px 10px rgba(46,107,59,.22)}
+.mode-client .su-date[aria-pressed="true"] span{color:#CFE3C6}
+.mode-client .su-date[disabled]{background:#F3F1E9;border-color:var(--line);color:var(--muted2)}
+.mode-client .su-date[disabled] span{color:var(--red);font-weight:800}
+
+.mode-client .su-rounds{flex:1;min-width:0;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.mode-client .su-round{height:54px;border-radius:12px;border:1.5px solid var(--line2);background:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink2);
+  transition:background .12s ease,box-shadow .12s ease}
+.mode-client .su-round b{font-size:13px;font-weight:800;color:var(--muted);line-height:1.3}
+.mode-client .su-round span{font-size:17px;font-weight:800;letter-spacing:-.04em;line-height:1.3}
+.mode-client .su-round[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff;
+  box-shadow:0 3px 10px rgba(46,107,59,.22)}
+.mode-client .su-round[aria-pressed="true"] b{color:#CFE3C6}
+.mode-client .su-round[disabled]{background:#F3F1E9;border-color:var(--line)}
+.mode-client .su-round[disabled] b{color:var(--muted2)}
+.mode-client .su-round[disabled] span{font-size:14px;color:var(--muted2)}
+
+.mode-client .su-foot{display:flex;align-items:center;gap:8px;border-top:1px dashed var(--line2);padding-top:8px}
+.mode-client .su-note{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--ink2);
+  line-height:1.35;letter-spacing:-.03em}
+.mode-client .su-note b{color:var(--green-d)}
+.mode-client .su-signup{flex:0 0 auto;height:38px;padding:0 11px;border-radius:11px;
+  border:1.5px solid #CFE0C6;background:var(--green-l);
+  font-size:14px;font-weight:800;color:var(--green-d);white-space:nowrap}
+
+/* ── 차단 배너 (미수 · 승인 대기) ── */
+.mode-client .notice{font-size:14.5px;line-height:1.45;padding:11px 12px;border-radius:14px}
+.mode-client .notice .ni{font-size:18px}
+.mode-client .notice .tiny{font-size:12.5px;line-height:1.4;display:block;margin-top:3px}
+.mode-client .notice.one{font-size:13.5px;padding:10px 12px;margin-top:9px;gap:7px;align-items:center}
+.mode-client .notice.one .ni{font-size:16px}
+.mode-client .notice.red{border-width:1.5px}
+
+/* ── 단가표 머리 · 분류 ─────────────────────────────── */
+.mode-client .list-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0 8px}
+.mode-client .list-head{flex-wrap:nowrap}
+.mode-client .list-head h2{font-size:19px;letter-spacing:-.04em;display:flex;align-items:baseline;gap:5px;white-space:nowrap}
+.mode-client .list-head h2 small{font-size:12.5px;font-weight:700;color:var(--muted2);letter-spacing:-.02em}
+.mode-client .pmode{margin:0;font-size:13.5px;font-weight:800;padding:6px 10px;border-radius:9px}
+
+.mode-client .chips{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;
+  margin:0;padding:0 0 2px;overflow:visible}
+.mode-client .chip{height:46px;padding:0 2px;border-radius:11px;border:1.5px solid var(--line2);
+  font-size:15px;font-weight:800;color:var(--ink2);background:#fff;
+  display:flex;align-items:center;justify-content:center;letter-spacing:-.045em;white-space:nowrap}
+.mode-client .chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+
+/* ── 품목 카드 ─────────────────────────────────────── */
+.mode-client .plist{display:flex;flex-direction:column;gap:9px;margin-top:4px}
+.mode-client .p-row{display:grid;grid-template-columns:48px 1fr auto;grid-template-areas:none;
+  gap:10px;align-items:center;padding:11px 12px;border-radius:14px}
+.mode-client .p-row .p-thumb{grid-area:auto;width:48px;height:48px;border-radius:14px;font-size:24px}
+.mode-client .p-row .p-main{grid-area:auto}
+.mode-client .p-row .p-side{grid-area:auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.mode-client .p-name{font-size:18px;line-height:1.25;letter-spacing:-.04em;font-weight:800}
+.mode-client .p-spec{font-size:13.5px;font-weight:600;color:var(--muted);margin-top:2px;line-height:1.35}
+.mode-client .p-spec .st-low{color:var(--red);font-weight:800}
+.mode-client .p-spec .st-out{color:var(--muted2);font-weight:800}
+.mode-client .p-price{text-align:right;min-width:0}
+.mode-client .p-price .amt{font-size:20px;font-weight:800;letter-spacing:-.04em;line-height:1.15}
+.mode-client .p-price .amt small{font-size:13px;font-weight:700;margin-left:1px}
+.mode-client .add-btn{height:46px;min-width:90px;padding:0 13px;border-radius:12px;
+  border:1px solid var(--green);background:var(--green);color:#fff;
+  font-size:16px;font-weight:800;letter-spacing:-.02em;
+  display:flex;align-items:center;justify-content:center}
+.mode-client .add-btn:active{background:var(--green-d)}
+.mode-client .add-btn.is-gray{background:#F3F1E9;border-color:var(--line2);color:var(--muted);font-size:13.5px}
+.mode-client .stepper{height:46px;border-radius:12px}
+.mode-client .stepper button{width:40px;height:44px;font-size:21px;font-weight:700}
+.mode-client .stepper input{width:42px;height:44px;font-size:17px;font-weight:800}
+.mode-client .p-row.out{background:#F7F6F0}
+.mode-client .p-row.out .p-name{color:var(--muted)}
+
+.mode-client .fineprint{font-size:13px;line-height:1.65;margin-top:14px;padding:12px 13px;border-radius:12px}
+.mode-client .empty b{font-size:16px}
+.mode-client .empty p{font-size:14px}
+
+/* ── 하단 발주 바 ──────────────────────────────────── */
+.mode-client .actionbar{padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+.mode-client .ab-inner{gap:10px}
+.mode-client .ab-cnt{font-size:13px}
+.mode-client .ab-amt{font-size:24px;display:block;line-height:1.15}
+.mode-client .ab-amt small{font-size:13.5px}
+.mode-client .ab-hint{font-size:12.5px;line-height:1.35;margin-top:2px}
+.mode-client .ab-prog{height:4px;margin-top:6px}
+.mode-client .ab-btn{height:58px;padding:0 18px;border-radius:14px;font-size:17.5px;min-width:124px}
+.mode-client .ab-btn[disabled]{background:#B9C6B7}
+
+/* ── 발주서 · 내역 · 명세표 (손님 화면 글씨) ───────── */
+.mode-client .ph-inner{padding:10px 14px;gap:11px}
+.mode-client .ph-inner h1{font-size:19px;letter-spacing:-.04em}
+.mode-client .ph-inner p{font-size:13px;margin-top:2px}
+.mode-client .back-btn{width:46px;height:46px;border-radius:13px;font-size:20px}
+.mode-client .co-card{padding:14px}
+.mode-client .co-card h3{font-size:16.5px;margin-bottom:11px;gap:8px}
+.mode-client .co-card h3 .num{width:24px;height:24px;font-size:13px}
+.mode-client .slot-opt{min-height:64px;padding:11px 12px;gap:11px;border-width:1.5px}
+.mode-client .slot-opt .so-date{font-size:16px;min-width:76px;letter-spacing:-.03em}
+.mode-client .slot-opt .so-main b{font-size:16px;word-break:keep-all;line-height:1.3}
+.mode-client .slot-opt .so-main small{font-size:12.5px;margin-top:2px;word-break:keep-all;line-height:1.4}
+.mode-client .pay-box,.mode-client .notice,.mode-client .su-note,.mode-client .p-spec,
+.mode-client .admin-head p,.mode-client .ocard-meta,.mode-client .ocard-items,
+.mode-client .fineprint,.mode-client .ab-hint,.mode-client .stmt-row .sm{word-break:keep-all}
+.mode-client .slot-opt .so-radio{width:22px;height:22px}
+.mode-client .fields{gap:11px}
+.mode-client .field label{font-size:13px;margin-bottom:1px}
+.mode-client .field input,.mode-client .field select,.mode-client .field textarea{height:48px;font-size:16px}
+.mode-client .field textarea{min-height:74px}
+.mode-client .sum-row{font-size:15px}
+.mode-client .sum-row.total{font-size:17.5px;padding-top:11px}
+.mode-client .sum-row.total .amt{font-size:24px}
+.mode-client .pay-box{font-size:13.5px;line-height:1.6;padding:12px 13px}
+.mode-client .pay-check{font-size:15px;padding:12px}
+.mode-client .pay-check input{width:22px;height:22px}
+
+.mode-client .admin-head{margin-top:10px}
+.mode-client .admin-head h1{font-size:24px}
+.mode-client .admin-head p{font-size:14px;line-height:1.6}
+.mode-client .stat .k{font-size:13px}
+.mode-client .stat .v{font-size:23px}
+.mode-client .stat .v small{font-size:13px}
+.mode-client .badge{font-size:12px;padding:4px 9px;border-radius:8px}
+.mode-client .ocard{padding:14px;border-radius:15px}
+.mode-client .ocard-h .no{font-size:12.5px}
+.mode-client .ocard-h .cli{font-size:16px}
+.mode-client .ocard-meta{font-size:13px;gap:5px 10px}
+.mode-client .ocard-items{font-size:13.5px;line-height:1.6;padding:9px 11px}
+.mode-client .ocard-foot .tot{font-size:20px}
+.mode-client .btn-sm{height:40px;font-size:14.5px;padding:0 13px;border-radius:10px}
+.mode-client .balance-card{padding:17px;border-radius:17px}
+.mode-client .balance-card h2{font-size:14.5px}
+.mode-client .balance-card .big{font-size:35px}
+.mode-client .balance-card .big small{font-size:16px}
+.mode-client .bal-grid div{font-size:12.5px}
+.mode-client .bal-grid b{font-size:16px;margin-top:3px}
+.mode-client .stmt-row{padding:12px;gap:12px;border-radius:14px}
+.mode-client .stmt-ico{width:48px;height:48px;font-size:13px;border-radius:12px}
+.mode-client .stmt-row .sm{font-size:12.5px;line-height:1.45}
+.mode-client .stmt-row .amt{font-size:17px}
+
+/* ── 바구니 · 가입 모달 (손님 화면) ────────────────── */
+.mode-client .dr-head h2{font-size:19px}
+.mode-client .dr-head{padding:16px 16px 12px}
+.mode-client .dr-foot .btn{height:52px;font-size:16.5px}
+.mode-client .drawer .btn{height:50px;font-size:15.5px}
+.mode-client .cline{padding:12px 0;gap:11px}
+.mode-client .cline .ci{width:44px;height:44px;font-size:21px;border-radius:12px}
+.mode-client .cline .cn{font-size:16px}
+.mode-client .cline .cs{font-size:12.5px}
+.mode-client .cline .ca{font-size:16px;min-width:78px}
+.mode-client .cline .stepper{height:42px}
+.mode-client .cline .stepper button{width:36px;height:40px}
+.mode-client .m-head h2{font-size:17.5px}
+.mode-client .m-body{padding:16px}
+.mode-client .m-foot .btn{height:52px;font-size:16.5px;border-radius:12px}
+.mode-client .toast{font-size:14.5px;padding:13px 17px}
+
+/* ── 데스크톱 ──────────────────────────────────────── */
+@media(min-width:820px){
+  .mode-client .head-in{height:auto;min-height:72px;flex-wrap:nowrap;padding-top:0;padding-bottom:8px}
+  .mode-client .brand-txt span{display:block;font-size:12px}
+  .mode-client .brand-txt strong{font-size:19px}
+  .mode-client .modes{order:1;display:flex;width:auto;margin:0 0 0 10px;padding:0;gap:6px}
+  .mode-client .mode{flex:0 0 auto;height:46px;padding:0 18px;font-size:16px;gap:6px}
+  .mode-client .mode i{font-size:16px}
+  .mode-client .head-act{order:2}
+  .mode-client .setup{max-width:760px;flex-direction:row;align-items:flex-end;gap:14px;padding:14px}
+  .mode-client .su-block{flex:1;min-width:0;display:block}
+  .mode-client .su-label{width:auto;margin-bottom:5px}
+  .mode-client .su-block:last-of-type{flex:1.2}
+  .mode-client .su-foot{flex:0 0 auto;flex-direction:column;align-items:flex-start;gap:8px;
+    border-top:0;padding-top:0;border-left:1px dashed var(--line2);
+    padding-left:14px;width:232px}
+  .mode-client .su-note{flex:0 0 auto;font-size:13px}
+  .mode-client .su-signup{height:42px;padding:0 14px;font-size:14.5px}
+  .mode-client .list-head{margin-top:18px}
+  .mode-client .list-head h2{font-size:21px}
+  .mode-client .p-name{font-size:19px}
+  .mode-client .p-price .amt{font-size:21px}
+  .mode-client .plist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .mode-client .actionbar{padding:12px 0}
+  .mode-client .ab-btn{height:58px;min-width:180px;font-size:18px}
+}
+
 </style>
 </head>
-<body>
+<body class="mode-admin">
 <header class="head" id="head">
   <div class="wrap head-in">
     <div class="brand">
@@ -1129,6 +1367,7 @@ var ui = {
   priceDate: null,
   priceDraft: {},
   listDate: null,
+  slot: null,
   cat: "all",
   co: null,
   orderFilter: "ALL",
@@ -1194,6 +1433,22 @@ function openSlots() { return slotList().filter(function (s) { return s.phase ==
 function defaultSlot() {
   var open = openSlots();
   return open.length ? open[0] : { ymd:addDays(todayYmd(), 1), round:state.rounds[0], phase:"OPEN", confirmed:isDayConfirmed(addDays(todayYmd(), 1)) };
+}
+/* 지금 화면에서 고른 배달(날짜+회차). 마감됐으면 열린 첫 회차로 대체. */
+function currentSlot() {
+  var s = ui && ui.slot;
+  if (s && s.ymd && s.round) {
+    var f = findSlot(s.ymd, s.round);
+    if (f && f.phase === "OPEN") return { ymd: s.ymd, round: s.round };
+    var o = openRoundsFor(s.ymd);
+    if (o.length) return { ymd: s.ymd, round: o[0].key };
+  }
+  var d = defaultSlot();
+  return { ymd: d.ymd, round: d.round.key };
+}
+/* 그 날짜에 아직 열린 회차 */
+function openRoundsFor(ymd) {
+  return state.rounds.filter(function (r) { return slotPhase(ymd, r) === "OPEN"; });
 }
 function findSlot(ymd, key) {
   var l = slotList().filter(function (s) { return s.ymd === ymd && s.round.key === key; });
@@ -1642,56 +1897,55 @@ function renderHeader() {
 /* ══════════════ 발주 화면 ══════════════ */
 function renderB2B() {
   var t = todayYmd();
-  var listDate = ui.listDate || defaultSlot().ymd;
-  ui.listDate = listDate;
+  var slot = currentSlot();
+  ui.slot = { ymd: slot.ymd, round: slot.round };
+  ui.listDate = slot.ymd;
+  var listDate = slot.ymd;
   var fixed = isDayConfirmed(listDate);
 
-  /* 히어로 회차 */
-  $("#heroRounds").innerHTML = state.rounds.map(function (r) {
-    var ph = slotPhase(t, r);
-    var cls = "round" + (ph === "OPEN" ? " is-now" : " is-closed");
-    return '<div class="' + cls + '"><b>' + r.label + " 배달</b><strong>" + r.dispatch + "</strong><small>" +
-      (ph === "OPEN" ? r.cutoff + " 마감" : "오늘 마감") + "</small></div>";
+  /* 날짜 — 오늘 / 내일 큰 버튼 */
+  var dates = [t, addDays(t, 1)];
+  $("#dateChips").innerHTML = dates.map(function (d) {
+    var open = openRoundsFor(d);
+    var on = d === listDate;
+    var name = dayLabel(d) + " " + fmtShort(d).replace(/\(.*\)/, "");
+    if (!open.length) {
+      return '<button class="su-date" data-act="list-date" data-ymd="' + d + '" aria-pressed="' + on + '" disabled>' +
+        '<b>' + name + '</b><span>마감</span></button>';
+    }
+    return '<button class="su-date" data-act="list-date" data-ymd="' + d + '" aria-pressed="' + on + '">' +
+      '<b>' + name + '</b><span>' + (isDayConfirmed(d) ? "확정 단가" : "참고가") + "</span></button>";
   }).join("");
 
-  /* 정책 facts */
-  $("#b2bFacts").innerHTML = [
-    '<span class="fact">배달 <b>' + esc(state.policy.area) + "</b></span>" +
-    '<span class="fact">최소 주문 <b>' + won(state.policy.minOrder) + "원 이상</b></span>" +
-    '<span class="fact">배송비 <b>' + (Number(state.policy.shipFee) ? won(state.policy.shipFee) + "원" : "무료배송") + "</b></span>" +
-    '<span class="fact">가입 <b>사업자 전용</b></span>' +
-    '<span class="fact">결제 <b>외상 하루치 · 10만 원↑ 즉시결제</b></span>' +
-    '<span class="fact">전표 <b>A4 거래명세서</b></span>'
-  ].join("");
+  /* 배달 회차 — 1차 / 2차 / 3차 큰 터치 버튼 */
+  $("#orderRounds").innerHTML = state.rounds.map(function (r) {
+    var ph = slotPhase(listDate, r);
+    var on = r.key === slot.round;
+    if (ph !== "OPEN") {
+      return '<button class="su-round" data-act="round" data-round="' + r.key + '" aria-pressed="false" disabled>' +
+        '<b>' + r.label + '</b><span>마감</span></button>';
+    }
+    return '<button class="su-round" data-act="round" data-round="' + r.key + '" aria-pressed="' + on + '">' +
+      '<b>' + r.label + '</b><span>' + r.dispatch.split("~")[0] + "</span></button>";
+  }).join("");
 
-  /* 규칙 2 — 미수 잔액 · 승인 전에는 발주 화면 상단에 차단 배너 */
+  /* 한 줄 핵심 조건 */
+  $("#suNote").innerHTML = won(state.policy.minOrder) + "원 이상 " +
+    (Number(state.policy.shipFee) ? won(state.policy.shipFee) + "원 배송" : "<b>무료배송</b>") +
+    " · 아침 <b>7시</b> 단가 확정";
+
+  /* 규칙 2 — 미수 잔액 · 승인 전에는 발주 화면 상단에 큰 차단 배너 */
   $("#orderBlock").innerHTML = gateBannerHTML(clientGate(state.currentClientId));
 
-  /* 날짜 칩 */
-  var dates = [t, addDays(t, 1), addDays(t, 2)];
-  $("#dateChips").innerHTML = dates.map(function (d) {
-    return '<button class="dchip" data-act="list-date" data-ymd="' + d + '" aria-pressed="' +
-      (d === listDate) + '">' + dayLabel(d) + " " + fmtShort(d).replace(/\(.*\)/, "") + "</button>";
-  }).join("");
-
   $("#priceMode").className = "pmode " + (fixed ? "fixed" : "ref");
-  $("#priceMode").innerHTML = fixed ? "✓ 확정가" : "◷ 참고가 · 아침 7시 확정";
+  $("#priceMode").innerHTML = fixed ? "✓ 확정가" : "◷ 참고가";
 
-  var di = dayInfo(listDate);
   if (fixed) {
-    $("#priceNotice").innerHTML = '<div class="notice green"><span class="ni ok">✓</span><div><b>' + fmtDotDow(listDate) +
-      " 단가는 확정되었습니다.</b> " + (di && di.confirmedAt ? stampLabel(di.confirmedAt) + " 확정" : "") +
-      " 표시 단가 그대로 발주·정산됩니다.</div></div>";
+    $("#priceNotice").innerHTML = "";
   } else {
-    $("#priceNotice").innerHTML = '<div class="notice"><span class="ni">!</span><div><b>' + fmtDotDow(listDate) +
-      " 단가는 아직 확정 전입니다.</b> 지금 보이는 금액은 <b>참고가(전일 단가)</b>이고, 아침 <b>7시 시장 시세</b>로 단가를 확정하면 발주 금액이 새 단가로 다시 계산됩니다. 품목·수량만 미리 담아 두세요.</div></div>";
+    $("#priceNotice").innerHTML = '<div class="notice one"><span class="ni">◷</span><div>' +
+      "<b>아직 확정 전</b> — 지금 금액은 참고가이고, <b>아침 7시</b>에 확정 단가로 정산됩니다.</div></div>";
   }
-
-  /* 지금 담는 배달 회차 안내 */
-  var def = defaultSlot();
-  $("#b2bBanner").innerHTML = '<div class="notice green" style="margin-top:8px"><span class="ni">▸</span><div>지금 담으면 <b>' +
-    slotText(def.ymd, def.round.key) + "</b> 배달로 발주됩니다. " +
-    (isDayConfirmed(def.ymd) ? "이 날짜 단가는 확정가예요." : "이 날짜 단가는 참고가로 담기고 아침 7시에 확정됩니다.") + "</div></div>";
 
   renderListMeta();
   renderCatChips();
@@ -1699,17 +1953,16 @@ function renderB2B() {
 }
 
 function renderListMeta() {
-  var listDate = ui.listDate || defaultSlot().ymd;
-  var n = state.products.length;
-  $("#listTitle").textContent = fmtDotDow(listDate) + " 단가표";
-  $("#listSub").textContent = n + "품목 · 박스·단·kg·ea 단위 · " + (isDayConfirmed(listDate) ? "확정가" : "참고가");
+  var listDate = ui.listDate || currentSlot().ymd;
+  var n = state.products.filter(function (p) { return ui.cat === "all" || p.cat === ui.cat; }).length;
+  $("#listTitle").innerHTML = fmtDotDow(listDate) + " 단가표 <small>" + n + "품목</small>";
 }
 
 function renderCatChips() {
   $("#catChips").innerHTML = CATS.map(function (c) {
     var cnt = c.key === "all" ? state.products.length : state.products.filter(function (p) { return p.cat === c.key; }).length;
     return '<button class="chip" data-act="cat" data-cat="' + c.key + '" aria-pressed="' + (ui.cat === c.key) + '">' +
-      c.label + " " + cnt + "</button>";
+      c.label + "</button>";
   }).join("");
 }
 
@@ -1726,7 +1979,7 @@ function renderProdList() {
     var price = priceOf(p, listDate);
     var ctl;
     if (out) {
-      ctl = '<button class="btn btn-xs" data-act="restock" data-pid="' + p.id + '">재입고 알림</button>';
+      ctl = '<button class="add-btn is-gray" data-act="restock" data-pid="' + p.id + '">재입고 알림</button>';
     } else if (qty > 0) {
       ctl = '<div class="stepper">' +
         '<button data-act="qty" data-pid="' + p.id + '" data-d="-1" aria-label="' + esc(p.name) + ' 줄이기">−</button>' +
@@ -1734,22 +1987,21 @@ function renderProdList() {
         '<button data-act="qty" data-pid="' + p.id + '" data-d="1" aria-label="' + esc(p.name) + ' 늘리기">＋</button>' +
         "</div>";
     } else {
-      ctl = '<button class="add-btn" data-act="add" data-pid="' + p.id + '">담기 ＋</button>';
+      ctl = '<button class="add-btn" data-act="add" data-pid="' + p.id + '">＋ 담기</button>';
     }
-    var stockTag = out ? '<span class="tag out">품절</span>'
-      : (p.stock <= 5 ? '<span class="tag low">재고 ' + p.stock + "</span>" : '<span class="tag">재고 ' + p.stock + "</span>");
+    var specTxt = p.spec && p.spec !== "-" ? esc(p.spec) : "1" + esc(p.unit);
+    var stockTxt = out ? "품절" : "재고 " + p.stock;
+    var stockCls = out ? "st-out" : (p.stock <= 5 ? "st-low" : "");
     return '<article class="p-row' + (out ? " out" : "") + '" data-row="' + p.id + '">' +
       '<div class="p-thumb" aria-hidden="true">' + p.emoji + "</div>" +
       '<div class="p-main">' +
-        '<div class="p-name">' + esc(p.name) + " " + stockTag + "</div>" +
-        '<div class="p-spec">' + catLabel(p.cat) + " · 규격 " + esc(p.spec) + " · 1" + esc(p.unit) + " 단가</div>" +
+        '<div class="p-name">' + esc(p.name) + "</div>" +
+        '<div class="p-spec">' + specTxt + ' · <span class="' + stockCls + '">' + stockTxt + "</span></div>" +
       "</div>" +
-      '<div class="p-price">' +
-        '<div class="amt">' + won(price) + "<small>원</small></div>" +
-        '<div class="per">/ ' + esc(p.unit) + "</div>" +
-        (isDayConfirmed(listDate) ? "" : '<div class="ref">참고가</div>') +
+      '<div class="p-side">' +
+        '<div class="p-price"><span class="amt">' + won(price) + "<small>원</small></span></div>" +
+        ctl +
       "</div>" +
-      '<div class="p-ctl">' + ctl + "</div>" +
       "</article>";
   }).join("");
 }
@@ -1762,10 +2014,11 @@ function renderActionbar() {
   bar.classList.toggle("on", show);
   bar.hidden = !show;
   if (!show) return;
-  var listDate = ui.listDate || defaultSlot().ymd;
+  var listDate = ui.listDate || currentSlot().ymd;
   var lines = cartLines(listDate);
   var am = calcAmounts(lines);
   var gate = clientGate(state.currentClientId);
+  var sl = currentSlot();
   $("#abCnt").textContent = am.kinds + "품목 · " + am.qty + "개";
   $("#abAmt").innerHTML = won(am.itemsAmount) + "<small>원</small>";
   var btn = $("#abBtn");
@@ -1773,11 +2026,12 @@ function renderActionbar() {
   prog.hidden = false;
   prog.querySelector("i").style.width = (am.minOrder > 0 ? Math.min(100, Math.round(am.itemsAmount / am.minOrder * 100)) : 100) + "%";
   if (am.meetsMin && !gate.blocked) {
-    $("#abHint").innerHTML = "<b>최소 주문 충족</b> · " + (Number(state.policy.shipFee) ? "배송비 " + won(state.policy.shipFee) + "원" : "무료배송") +
+    $("#abHint").innerHTML = "<b>" + slotText(sl.ymd, sl.round) + " 배달</b> · " +
+      (Number(state.policy.shipFee) ? "배송비 " + won(state.policy.shipFee) + "원" : "무료배송") +
       (am.total >= PAY_IMMEDIATE_FROM ? " · 10만 원↑ <b>즉시결제</b>" : "");
     prog.querySelector("i").style.background = "var(--green)";
     btn.disabled = false;
-    btn.textContent = "발주서 작성";
+    btn.textContent = "발주하기";
   } else if (gate.blocked) {
     $("#abHint").innerHTML = gate.code === "BALANCE"
       ? "미수 <b>" + won(gate.balance) + "원</b> 입금 전 발주 불가"
@@ -1802,7 +2056,8 @@ function renderCartDrawer() {
   var body = lines.length ? lines.map(function (l) {
     return '<div class="cline">' +
       '<div class="ci" aria-hidden="true">' + l.p.emoji + "</div>" +
-      '<div class="grow"><div class="cn">' + esc(l.name) + '</div><div class="cs">' + esc(l.spec) + " · " + won(l.price) + "원/" + esc(l.unit) + "</div></div>" +
+      '<div class="grow"><div class="cn">' + esc(l.name) + '</div><div class="cs">' +
+        (l.spec && l.spec !== "-" ? esc(l.spec) + " · " : "") + won(l.price) + "원/" + esc(l.unit) + "</div></div>" +
       '<div class="stepper">' +
         '<button data-act="qty" data-pid="' + l.pid + '" data-d="-1">−</button>' +
         '<input type="number" data-act="qty-set" data-pid="' + l.pid + '" value="' + l.qty + '">' +
@@ -1836,9 +2091,9 @@ function renderCartDrawer() {
 /* ══════════════ 발주서 (체크아웃) ══════════════ */
 function ensureCo() {
   if (!ui.co) {
-    var d = defaultSlot();
+    var d = currentSlot();
     ui.co = {
-      ymd: d.ymd, round: d.round.key,
+      ymd: d.ymd, round: d.round,
       client: clone(currentClient()),
       memo: "",
       payMode: PAY.CREDIT,
@@ -1855,7 +2110,6 @@ function payOptionHTML(mode, title, sub, on, locked) {
     '<span class="so-radio" aria-hidden="true"></span>' +
     '<span class="so-main" style="text-align:left"><b>' + esc(title) + (locked ? ' <span class="lock">🔒 잠김</span>' : "") +
     "</b><small>" + esc(sub) + "</small></span>" +
-    (locked ? "" : '<span class="so-date" style="text-align:right;font-size:12px;color:' + (on ? "var(--green-d)" : "var(--muted)") + '">' + (on ? "선택" : "") + "</span>") +
     "</button>";
 }
 
@@ -1863,8 +2117,8 @@ function renderCheckout() {
   var co = ensureCo();
   var slot = findSlot(co.ymd, co.round);
   if (!slot || slot.phase !== "OPEN") {
-    var d = defaultSlot();
-    co.ymd = d.ymd; co.round = d.round.key;
+    var d = currentSlot();
+    co.ymd = d.ymd; co.round = d.round;
   }
   var lines = cartLines(co.ymd);
   var am = calcAmounts(lines);
@@ -1901,7 +2155,7 @@ function renderCheckout() {
       '<div class="slots">' +
         payOptionHTML(PAY.CREDIT, "외상 (하루치 · 다음 날 정산)",
           forcedImmediate ? "10만 원 이상은 선택할 수 없습니다" : "미수 잔액 0원 · 하루치까지", co.payMode === PAY.CREDIT, forcedImmediate) +
-        payOptionHTML(PAY.IMMEDIATE, "즉시 결제 (계좌이체 입금 확인)",
+        payOptionHTML(PAY.IMMEDIATE, "즉시 결제 (계좌이체)",
           "오늘 바로 입금 · 다음 발주에 영향 없음", immediate, false) +
       "</div>" +
       (immediate
@@ -2975,11 +3229,32 @@ function onClick(e) {
     }
 
     case "cat": ui.cat = el.getAttribute("data-cat"); renderCatChips(); renderProdList(); break;
-    case "list-date":
-      ui.listDate = el.getAttribute("data-ymd");
+    case "list-date": {
+      /* 날짜를 고르면 그 날짜의 열린 첫 회차부터 담는다 */
+      var ymd = el.getAttribute("data-ymd");
+      var opens = openRoundsFor(ymd);
+      if (!opens.length) { toast(dayLabel(ymd) + " 배달은 이미 마감됐습니다."); break; }
+      var keep = ui.slot && ui.slot.ymd === ymd && opens.filter(function (r) { return r.key === ui.slot.round; }).length;
+      ui.slot = { ymd: ymd, round: keep ? ui.slot.round : opens[0].key };
+      ui.listDate = ymd;
       ui.cat = "all";
       renderB2B();
+      renderActionbar();
       break;
+    }
+
+    case "round": {
+      var rk = el.getAttribute("data-round");
+      var sl = currentSlot();
+      var f = findSlot(sl.ymd, rk);
+      if (!f || f.phase !== "OPEN") { toast(sl.ymd === todayYmd() ? "오늘 " + roundByKey(rk).label + " 배달은 마감됐습니다." : "마감된 배달입니다."); break; }
+      ui.slot = { ymd: sl.ymd, round: rk };
+      ui.listDate = sl.ymd;
+      renderB2B();
+      renderActionbar();
+      if (ui.drawer) renderCartDrawer();
+      break;
+    }
 
     case "add": cartQty(pid, 1); break;
     case "qty": cartQty(pid, Number(el.getAttribute("data-d"))); break;
@@ -2998,6 +3273,8 @@ function onClick(e) {
     case "slot":
       ui.co.ymd = el.getAttribute("data-ymd");
       ui.co.round = el.getAttribute("data-round");
+      ui.slot = { ymd: ui.co.ymd, round: ui.co.round };
+      ui.listDate = ui.co.ymd;
       renderCheckout();
       break;
     case "place": confirmPlacement(); break;
