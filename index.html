@@ -2868,7 +2868,9 @@ function daysBetween(fromYmd, toYmd) {
 
 /* ── 6. 거래처별 고정/특별 단가 (사장님만 정한다 · 손님 화면엔 가격만) ── */
 function specialPricesOf(cid) {
-  var cl = getClient(cid), out = {};
+  /* cid가 비었거나 없는 거래처면 특별 단가 없음 — 다른 거래처 단가가 새지 않게 */
+  var cl = cid ? state.clients.filter(function (c) { return c.id === cid; })[0] : null;
+  var out = {};
   if (!cl || !cl.prices || typeof cl.prices !== "object") return out;
   Object.keys(cl.prices).forEach(function (pid) {
     var v = Number(cl.prices[pid]) || 0;
