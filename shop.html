@@ -678,6 +678,29 @@ function pushCatalog(){
     body: JSON.stringify([{ key: SB_CATALOG, value: doc, updated_at: new Date().toISOString() }])
   }).catch(function(){});
 }
+/* 주문으로 줄어든 남은 수량만 올린다.
+   서버의 최신 문서 위에 얹어 쓰기 때문에 사장님이 고른 가격·코멘트·등급을 덮지 않는다. */
+function pushStockPatch(patch){
+  if (!sbOn()) return Promise.resolve();
+  return sbCall("app_state?key=eq." + SB_CATALOG + "&select=value").then(function(rows){
+    var remote = rows && rows[0] && rows[0].value;
+    var doc = (remote && remote.items) ? remote : catalogDoc();
+    doc.items = doc.items || {};
+    for (var pid in patch){
+      var it = doc.items[pid] || {};
+      it.stock = patch[pid];
+      doc.items[pid] = it;
+    }
+    doc.updatedAt = Date.now();
+    writeCatalogDoc(doc);
+    loadCatalog();
+    return sbCall("app_state", {
+      method: "POST",
+      headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+      body: JSON.stringify([{ key: SB_CATALOG, value: doc, updated_at: new Date().toISOString() }])
+    });
+  }).catch(function(){});
+}
 function pullCatalog(){
   if (!sbOn()) return Promise.resolve();
   return sbCall("app_state?key=eq." + SB_CATALOG + "&select=value").then(function(rows){
@@ -2106,7 +2129,7 @@ function pay(){
 /* 주문된 만큼 남은 수량 줄이기 — 사장님 페이지에 바로 반영 */
 function decStock(){
   loadCatalog();
-  var changed = false;
+  var changed = false, patch = {};
   for (var i=0;i<state.cart.length;i++){
     var l = state.cart[i], p = byId(l.pid);
     var s = stockOf(p);
@@ -2114,6 +2137,7 @@ function decStock(){
     var o = state.catalog[p.id] || {};
     o.stock = Math.max(0, s - l.qty);
     state.catalog[p.id] = o;
+    patch[p.id] = o.stock;
     changed = true;
   }
   if (!changed) return;
@@ -2122,7 +2146,7 @@ function decStock(){
     d.items = state.catalog; d.updatedAt = Date.now();
     localStorage.setItem(CATALOG_KEY, JSON.stringify(d));
   } catch(e){}
-  pushCatalog();            /* 줄어든 수량을 사장님 화면과 공용 DB에 같이 알린다 */
+  pushStockPatch(patch);    /* 줄어든 수량을 사장님 화면과 공용 DB에 같이 알린다 */
 }
 
 /* ────────────────────────────────────────────────

@@ -1574,10 +1574,15 @@ function sbPull() {
     var cur = "";
     try { cur = JSON.stringify(state); } catch (e) { return; }
     if (cur !== lastRaw) return;              /* 입력 중·미저장 변경은 덮지 않는다 */
+    var myCid = state && state.currentClientId;   /* '내 가게'는 기기마다 다르므로 지킨다 */
     try { localStorage.setItem(KEY, JSON.stringify(v.data)); } catch (e) { return; }
     sbSyncAt = at;
     try { localStorage.setItem(SYNC_AT_KEY, String(at)); } catch (e) {}
     state = loadState();
+    if (myCid && state.clients.some(function (c) { return c.id === myCid; })) {
+      state.currentClientId = myCid;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    }
     lastRaw = JSON.stringify(state);
     render();
   }).catch(function () {});
@@ -6126,7 +6131,7 @@ function onChange(e) {
   /* 창을 다시 보면 바로 맞추고, 보고 있는 동안에도 1.2초마다 저장값을 확인한다 */
   setInterval(syncFromStorage, 1200);
 
-  try { lastRaw = localStorage.getItem(KEY) || ""; } catch (e) {}
+  try { lastRaw = localStorage.getItem(KEY) || JSON.stringify(state); } catch (e) { lastRaw = ""; }
 
   /* 다른 기기의 거래처·사장님 화면과 공용 DB로 맞추기 (5초마다) */
   sbStart();
