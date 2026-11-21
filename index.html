@@ -1631,6 +1631,96 @@ var CLAIM_PHOTOS_MAX = 3;
 var KEY = "hoonie_b2b_veg_v3";
 var WEEK = ["일","월","화","수","목","금","토"];
 
+/* ── 공용 저장소 (Supabase) ─────────────────────────────────
+   이 기기 저장소(localStorage)는 빠른 캐시로 그대로 두고, 거래처 화면과
+   사장님 화면이 서로 다른 기기·브라우저여도 같은 주문·단가를 보도록 공용 DB에 함께 저장한다.
+   인터넷이 없거나 file:// 로 열면 예전처럼 이 기기 저장소만으로 동작한다.
+   장바구니(KEY + "_cart")는 기기별 값이므로 공용으로 올리지 않는다. */
+var SB_URL  = "https://hiulxicbowkffoxjtvye.supabase.co";
+var SB_KEY  = "sb_publishable_89p69vS6pSVQBJfImjKMrw__mvxKVg3";
+var SB_STATE = "b2b_state";        // app_state.key
+var SB_POLL_MS = 5000;
+var SYNC_AT_KEY = KEY + "_synced_at";
+var sbSyncAt = 0;          // 마지막으로 주고받은 원격 저장 시각(ms)
+var sbTimer = null, sbPushTimer = null, sbReady = false, sbPending = false, sbPushing = false;
+
+try { sbSyncAt = Number(localStorage.getItem(SYNC_AT_KEY) || 0) || 0; } catch (e) {}
+
+function sbOn() {
+  return !!(window.fetch && window.JSON && /^https?:$/.test(location.protocol));
+}
+function sbHead(extra) {
+  var h = { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY, "Content-Type": "application/json" };
+  if (extra) for (var k in extra) h[k] = extra[k];
+  return h;
+}
+function sbCall(path, opt) {
+  opt = opt || {};
+  opt.headers = sbHead(opt.headers);
+  return fetch(SB_URL + "/rest/v1/" + path, opt).then(function (r) {
+    if (!r.ok) throw new Error("supabase " + r.status);
+    if (r.status === 204) return null;
+    var ct = r.headers.get("content-type") || "";
+    return ct.indexOf("json") > -1 ? r.json() : null;
+  });
+}
+
+/* 올리기 — 저장할 때마다 바로 쏘지 않고 0.4초 모아서 보낸다 */
+function sbPushNow() {
+  if (!sbOn()) return;
+  if (!sbReady) { sbPending = true; return; }
+  var at = Date.now();
+  sbSyncAt = at;
+  try { localStorage.setItem(SYNC_AT_KEY, String(at)); } catch (e) {}
+  sbPushing = true;
+  sbCall("app_state", {
+    method: "POST",
+    headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+    body: JSON.stringify([{ key: SB_STATE, value: { data: state, updatedAt: at }, updated_at: new Date(at).toISOString() }])
+  }).catch(function () {}).then(function () { sbPushing = false; });
+}
+function sbPush() {
+  if (!sbOn()) return;
+  clearTimeout(sbPushTimer);
+  sbPushTimer = setTimeout(sbPushNow, 400);
+}
+
+/* 받아오기 — 이 기기에서 방금 고친 값이 있으면 그 회차는 건너뛴다 */
+function sbPull() {
+  if (!sbOn() || document.hidden || sbPushing) return Promise.resolve();
+  return sbCall("app_state?key=eq." + SB_STATE + "&select=value").then(function (rows) {
+    var v = rows && rows[0] && rows[0].value;
+    if (!v || !v.data) return;
+    var at = Number(v.updatedAt || 0);
+    if (at <= sbSyncAt) return;
+    var cur = "";
+    try { cur = JSON.stringify(state); } catch (e) { return; }
+    if (cur !== lastRaw) return;              /* 입력 중·미저장 변경은 덮지 않는다 */
+    try { localStorage.setItem(KEY, JSON.stringify(v.data)); } catch (e) { return; }
+    sbSyncAt = at;
+    try { localStorage.setItem(SYNC_AT_KEY, String(at)); } catch (e) {}
+    state = loadState();
+    lastRaw = JSON.stringify(state);
+    render();
+  }).catch(function () {});
+}
+
+function sbSyncAll() {
+  sbPull().then(function () {
+    sbReady = true;
+    if (sbPending) { sbPending = false; sbPushNow(); }
+  });
+}
+function sbStart() {
+  if (!sbOn()) return;
+  sbSyncAll();
+  clearInterval(sbTimer);
+  sbTimer = setInterval(sbSyncAll, SB_POLL_MS);
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) sbSyncAll(); });
+  window.addEventListener("online", sbSyncAll);
+}
+
+
 /* ── 유틸 ───────────────────────────────────────────── */
 var $ = function (sel, root) { return (root || document).querySelector(sel); };
 var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
@@ -2002,6 +2092,7 @@ function saveState() {
     localStorage.setItem(KEY, raw);
     lastRaw = raw;            /* 내가 쓴 값 — 다른 창의 변경만 골라내려고 */
   } catch (e) {}
+  sbPush();                 /* 공용 DB에도 올려 다른 기기의 화면에 바로 보이게 */
 }
 function loadCart() {
   try {
@@ -6158,6 +6249,10 @@ function onChange(e) {
   setInterval(syncFromStorage, 1200);
 
   try { lastRaw = localStorage.getItem(KEY) || ""; } catch (e) {}
+
+  /* 다른 기기의 거래처·사장님 화면과 공용 DB로 맞추기 (5초마다) */
+  sbStart();
+
   ui.listDate = defaultSlot().ymd;
   setRoute(HOME_ROUTE);
 

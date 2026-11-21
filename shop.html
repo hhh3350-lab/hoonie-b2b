@@ -624,6 +624,154 @@ var ORDERS_KEY   = "hoonie_retail_orders_v1";    // 접수된 주문 (사장님 
 var CUSTOMER_KEY = "hoonie_retail_customer_v1";  // 최근 주문자 이름·연락처·배달 주소
 var CLAIM_KEY    = "hoonie_retail_claims_v1";    // 사진 접수 (사장님이 보상완료/반려)
 
+/* ── 공용 저장소 (Supabase) ────────────────────────────────────────
+   위 기기 저장소(localStorage)는 빠른 캐시로 그대로 두고, 사장님 화면과
+   손님 화면이 서로 다른 기기·브라우저여도 같은 데이터를 보도록 공용 DB에 함께 저장한다.
+   인터넷이 없거나 file:// 로 열면 예전처럼 이 기기 저장소만으로 동작한다. */
+var SB_URL  = "https://hiulxicbowkffoxjtvye.supabase.co";
+var SB_KEY  = "sb_publishable_89p69vS6pSVQBJfImjKMrw__mvxKVg3";
+var SB_CATALOG = "retail_catalog";   // app_state.key
+var SB_POLL_MS = 5000;
+var sbTimer = null;
+
+function sbOn(){
+  return !!(window.fetch && window.JSON && /^https?:$/.test(location.protocol));
+}
+function sbHead(extra){
+  var h = { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY, "Content-Type": "application/json" };
+  if (extra) for (var k in extra) h[k] = extra[k];
+  return h;
+}
+function sbCall(path, opt){
+  opt = opt || {};
+  opt.headers = sbHead(opt.headers);
+  return fetch(SB_URL + "/rest/v1/" + path, opt).then(function(r){
+    if (!r.ok) throw new Error("supabase " + r.status);
+    if (r.status === 204) return null;
+    var ct = r.headers.get("content-type") || "";
+    return ct.indexOf("json") > -1 ? r.json() : null;
+  });
+}
+function sbQuoted(list){
+  return list.map(function(s){ return '"' + String(s).replace(/"/g, '') + '"'; }).join(",");
+}
+
+/* ── 상품 정보(가격·품절·수량·코멘트·등급) 공유 ── */
+function catalogDoc(){
+  try {
+    var d = JSON.parse(localStorage.getItem(CATALOG_KEY) || "{}");
+    if (d && d.items) return d;
+  } catch(e){}
+  return { items:{}, updatedAt: 0 };
+}
+function writeCatalogDoc(doc){
+  try { localStorage.setItem(CATALOG_KEY, JSON.stringify(doc)); } catch(e){}
+  state.catalog = doc.items || {};
+}
+function pushCatalog(){
+  if (!sbOn()) return Promise.resolve();
+  var doc = catalogDoc();
+  if (!doc.updatedAt) doc.updatedAt = Date.now();
+  return sbCall("app_state", {
+    method: "POST",
+    headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+    body: JSON.stringify([{ key: SB_CATALOG, value: doc, updated_at: new Date().toISOString() }])
+  }).catch(function(){});
+}
+function pullCatalog(){
+  if (!sbOn()) return Promise.resolve();
+  return sbCall("app_state?key=eq." + SB_CATALOG + "&select=value").then(function(rows){
+    var v = rows && rows[0] && rows[0].value;
+    if (!v || !v.items) return;
+    var local = catalogDoc();
+    if (Number(v.updatedAt || 0) <= Number(local.updatedAt || 0)) return;
+    writeCatalogDoc(v);
+    renderAll();
+    if (state.view === "cart") renderCart();
+  }).catch(function(){});
+}
+
+/* ── 주문 ── */
+function pushOrder(o){
+  if (!sbOn()) return Promise.resolve();
+  return sbCall("retail_orders", {
+    method: "POST",
+    headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+    body: JSON.stringify([{
+      id: o.no, data: o, status: o.status || "received",
+      created_at: new Date(o.at || Date.now()).toISOString(),
+      updated_at: new Date().toISOString()
+    }])
+  }).catch(function(){});
+}
+/* 내 기기에 있는 주문의 상태만 사장님 화면에서 바뀐 값으로 맞춘다.
+   (다른 손님 주문은 이 화면으로 끌어오지 않는다) */
+function pullOrderStatus(){
+  if (!sbOn() || !state.orders.length) return Promise.resolve();
+  var ids = state.orders.slice(0, 20).map(function(o){ return o.no; });
+  return sbCall("retail_orders?select=id,status&id=in.(" + encodeURIComponent(sbQuoted(ids)) + ")").then(function(rows){
+    if (!rows || !rows.length) return;
+    var byNo = {};
+    rows.forEach(function(r){ byNo[r.id] = r.status; });
+    var changed = false;
+    state.orders.forEach(function(o){
+      var st = byNo[o.no];
+      if (st && st !== (o.status || "received")){ o.status = st; o.statusAt = Date.now(); changed = true; }
+    });
+    if (!changed) return;
+    saveOrders();
+    renderOrderStrip();
+    if (state.view === "done" && state.order) showDone(state.order);
+  }).catch(function(){});
+}
+
+/* ── 사진 접수 ── */
+function pushClaim(c){
+  if (!sbOn()) return Promise.resolve();
+  return sbCall("retail_claims", {
+    method: "POST",
+    headers: { "Prefer": "resolution=merge-duplicates,return=minimal" },
+    body: JSON.stringify([{
+      id: c.no, data: c, status: c.status || "checking",
+      created_at: new Date(c.at || Date.now()).toISOString()
+    }])
+  }).catch(function(){});
+}
+function pullClaimStatus(){
+  var list = loadClaims();
+  if (!sbOn() || !list.length) return Promise.resolve();
+  var ids = list.slice(0, 12).map(function(c){ return c.no; });
+  return sbCall("retail_claims?select=id,status&id=in.(" + encodeURIComponent(sbQuoted(ids)) + ")").then(function(rows){
+    if (!rows || !rows.length) return;
+    var byNo = {};
+    rows.forEach(function(r){ byNo[r.id] = r.status; });
+    var changed = false;
+    list.forEach(function(c){
+      var st = byNo[c.no];
+      if (st && st !== (c.status || "checking")){ c.status = st; c.statusAt = Date.now(); changed = true; }
+    });
+    if (!changed) return;
+    saveClaims(list);
+    renderClaimBadge();
+    if (state.view === "cart") renderCart();
+  }).catch(function(){});
+}
+
+function syncPullAll(){
+  if (!sbOn() || document.hidden) return;
+  pullCatalog();
+  pullOrderStatus();
+  pullClaimStatus();
+}
+function syncStart(){
+  if (!sbOn()) return;
+  syncPullAll();
+  clearInterval(sbTimer);
+  sbTimer = setInterval(syncPullAll, SB_POLL_MS);
+  document.addEventListener("visibilitychange", syncPullAll);
+  window.addEventListener("online", syncPullAll);
+}
+
 /* ── 과일 4단계 등급 ──
    A급 = 품질보증 · 가정용 = 실속 가정용 · B급 = 알뜰 못난이 · C급 = 당일소진 초특가
    C급처럼 낮은 등급도 불량·떨이 같은 말 대신 쓰임새로 설명한다. */
@@ -1682,6 +1830,7 @@ function sendClaim(){
   var list = loadClaims();
   list.unshift(rec);
   if (!saveClaims(list)){ toast("사진 저장 공간이 부족해요 · 장수를 줄여 주세요"); return; }
+  pushClaim(rec);            /* 공용 DB에 올려 사장님 화면에 바로 보이게 */
   claim.saved = rec;
   claim.stage = "done";
   renderClaim();
@@ -1947,6 +2096,7 @@ function pay(){
     state.order = ord;
     state.orders.unshift(ord);
     saveOrders();
+    pushOrder(ord);          /* 공용 DB에 올려 사장님 화면에 바로 보이게 */
     saveRecent();
     decStock();
     if (usedCoupon) markCouponUsed();
@@ -1972,6 +2122,7 @@ function decStock(){
     d.items = state.catalog; d.updatedAt = Date.now();
     localStorage.setItem(CATALOG_KEY, JSON.stringify(d));
   } catch(e){}
+  pushCatalog();            /* 줄어든 수량을 사장님 화면과 공용 DB에 같이 알린다 */
 }
 
 /* ────────────────────────────────────────────────
@@ -2290,6 +2441,8 @@ function init(){
       if (state.view === "checkout") renderCheckout();
     }
   });
+  /* 다른 기기의 사장님·손님 화면과 공용 DB로 맞추기 (5초마다) */
+  syncStart();
 }
 
 init();
