@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#2AC1BC">
 <title>훈이네과일야채 단구점 | 배달 · 포장 주문</title>
-<meta name="description" content="원주 단구점 훈이네과일야채 소매 주문. 오늘 입고한 딸기·귤·사과·채소·계란을 배달(시내 3만원↑) 또는 포장(1,000원 할인)으로.">
+<meta name="description" content="원주 단구점 훈이네과일야채 소매 주문. 오늘 입고한 딸기·귤·사과·채소·계란을 배달(시내 3만원↑) 또는 포장(1만5천원↑ 1,000원 쿠폰)으로.">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
@@ -383,6 +383,70 @@ a{color:inherit}
 .ordstrip .os.done{background:var(--bg);color:var(--ink2)}
 .ordstrip button{flex:0 0 auto;height:32px;padding:0 10px;border-radius:8px;border:1px solid var(--line);font-size:12.5px;font-weight:800;color:var(--ink2);background:#fff}
 
+/* ── v5 · 과일 4단계 등급 ─────────────────── */
+.gchip{display:inline-flex;align-items:center;font-size:11.5px;font-weight:800;line-height:1.4;padding:2px 7px;border-radius:6px;letter-spacing:-.3px;white-space:nowrap;vertical-align:middle}
+.gchip.ga{background:#EAF3FF;color:#22589C}
+.gchip.gh{background:#EDF6EF;color:#26714B}
+.gchip.gb{background:#FFF3E2;color:#8A5400}
+.gchip.gc{background:#FDECEF;color:#A43148}
+.gchip.sm{font-size:11px;padding:1px 6px;margin-left:5px}
+.gguide{margin:14px 16px 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.gguide .gg-h{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.gguide .gg-h b{font-size:14.5px;font-weight:800;letter-spacing:-.3px}
+.gguide .gg-h span{font-size:11.5px;color:var(--ink3);font-weight:700;letter-spacing:-.2px}
+.gguide ul{list-style:none;margin:9px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.gguide li{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;line-height:1.45;letter-spacing:-.2px}
+.gguide li .gd{flex:1 1 auto;color:var(--ink2);min-width:0}
+.gguide .gg-note{margin:10px 0 0;padding-top:9px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--ink3);letter-spacing:-.2px;line-height:1.55}
+
+/* ── v5 · 포장 1,000원 할인 쿠폰 (티켓) ────── */
+.ticket{display:flex;align-items:center;gap:11px;margin:14px 16px 0;background:#FFFDF6;border:1.5px dashed #E7A93C;border-radius:12px;padding:12px 14px}
+.ticket.live{background:#FFF8E8;border-color:#D99420}
+.ticket.used{background:#FBFBFC;border:1.5px dashed #DDE1E4}
+.ticket .tk-ico{font-size:24px;line-height:1;flex:0 0 auto}
+.ticket .tk-t{flex:1 1 auto;min-width:0}
+.ticket b{display:block;font-size:15px;font-weight:800;letter-spacing:-.3px;line-height:1.3}
+.ticket small{display:block;margin-top:2px;font-size:12px;color:var(--ink3);letter-spacing:-.2px;line-height:1.4}
+.ticket .tk-s{margin:5px 0 0;font-size:12.5px;font-weight:800;letter-spacing:-.2px;line-height:1.4}
+.ticket .tk-s.on{color:var(--mint-d)}
+.ticket .tk-s.need{color:var(--amber)}
+.ticket .tk-s.used{color:var(--ink3)}
+.ticket .tk-r{flex:0 0 auto;display:flex;align-items:center}
+.tk-chip{display:inline-flex;align-items:center;height:32px;padding:0 10px;border-radius:8px;font-size:12.5px;font-weight:800;letter-spacing:-.2px;white-space:nowrap}
+.tk-chip.on{background:var(--mint);color:#fff}
+.tk-chip.used{background:#E9EBED;color:#6B7075}
+.tk-chip.need{background:#FFF7E8;color:var(--amber)}
+.tk-chip.btn{border:1.5px solid var(--mint);background:#fff;color:var(--mint-d)}
+
+/* ── v5 · 사진 접수 ────────────────────────── */
+.gbadge{cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:7px 10px;align-items:start}
+.gbadge .gi{align-self:start;line-height:1.2}
+.gbadge .gb-t{min-width:0}
+.gbadge .gb-cl{display:block;margin-top:4px;font-size:11.5px;color:var(--mint-d);font-weight:800;letter-spacing:-.2px}
+.gbtn{grid-column:1 / -1;width:100%;height:40px;border-radius:9px;background:var(--mint);color:#fff;font-size:13.5px;font-weight:800;letter-spacing:-.2px;white-space:nowrap;margin-top:2px}
+.gbtn:active{background:var(--mint-d)}
+.clintro{background:var(--mint-l2);border:1px solid #CFEFED;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#0B7C77;font-weight:700;line-height:1.55;letter-spacing:-.2px}
+.cfield{margin-top:13px}
+.cfield>label{display:block;font-size:13px;font-weight:800;color:var(--ink2);margin-bottom:6px;letter-spacing:-.2px}
+.cfield select,.cfield input[type=text],.cfield input[type=tel]{width:100%;height:48px;border:1.5px solid #E4E6E8;border-radius:10px;padding:0 12px;font-size:15px;background:#fff;outline:none;letter-spacing:-.2px;-webkit-appearance:none;appearance:none}
+.cfield textarea{width:100%;height:76px;border:1.5px solid #E4E6E8;border-radius:10px;padding:11px 12px;font-size:14.5px;line-height:1.45;background:#fff;outline:none;resize:none;letter-spacing:-.2px}
+.crow2{display:flex;gap:8px}
+.crow2 .cfield{flex:1 1 0;margin-top:13px}
+.creasons{display:flex;gap:6px;flex-wrap:wrap}
+.creasons button{height:38px;padding:0 12px;border-radius:999px;border:1.5px solid #DDE1E4;background:#fff;font-size:13px;font-weight:800;color:var(--ink2);letter-spacing:-.2px}
+.creasons button.on{border-color:var(--mint);background:var(--mint-l);color:var(--mint-d)}
+.cphotos{display:flex;gap:8px;flex-wrap:wrap}
+.cph{position:relative;width:84px;height:84px;border-radius:10px;overflow:hidden;background:var(--bg);border:1px solid var(--line)}
+.cph img{width:100%;height:100%;object-fit:cover}
+.cph .x{position:absolute;right:3px;top:3px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.62);color:#fff;font-size:11px;display:grid;place-items:center}
+.cadd{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:84px;height:84px;border-radius:10px;border:1.5px dashed #B9E7E4;background:var(--mint-l2);color:var(--mint-d);font-size:11.5px;font-weight:800;line-height:1.3;letter-spacing:-.2px}
+.cadd .ci{font-size:20px;line-height:1}
+.cdone{text-align:center;padding:16px 4px 10px}
+.cdone .em{font-size:40px;display:block;margin-bottom:8px}
+.cdone b{display:block;font-size:18px;font-weight:800;letter-spacing:-.4px}
+.cdone p{margin:9px 0 0;font-size:13.5px;color:var(--ink2);line-height:1.65;letter-spacing:-.2px}
+.cdone .no{display:inline-block;margin-top:11px;padding:6px 12px;border-radius:8px;background:var(--mint-l);color:var(--mint-d);font-weight:800;font-size:13.5px}
+
 /* ── 토스트 ───────────────────────────────── */
 .toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,12px);z-index:90;background:rgba(34,34,34,.94);color:#fff;font-size:14.5px;font-weight:800;padding:12px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:86vw;text-align:center;letter-spacing:-.3px}
 .toast.on{opacity:1;transform:translate(-50%,0)}
@@ -409,6 +473,7 @@ a{color:inherit}
 
   <div class="ordstrip" id="ordStrip" hidden></div>
 
+  <section class="store">
     <h1 class="store-name">훈이네과일야채 <span>단구점</span></h1>
     <p class="store-sub">원주 단구로 398 · 오늘 입고한 과일과 채소</p>
     <ul class="facts">
@@ -439,10 +504,8 @@ a{color:inherit}
       다른 이름으로 검색하거나 <b style="display:inline">전체</b> 카테고리를 눌러 보세요.<br>
       <span style="font-size:12.5px;color:#8F8F8F">예: 딸기 · 귤 · 사과 · 계란 · 절임배추</span>
     </div>
-    <div class="gbadge"><span class="gi">🛡</span><div>
-      <b>상했으면 사진만 보내세요 · 100% 교환/환불</b>
-      <small>받은 날 사진 한 장이면 바로 교환·환불해 드려요 · 문의 033-765-1531</small>
-    </div></div>
+    <div id="gradeGuide"></div>
+    <div id="menuClaim"></div>
   </section>
 
   <div class="band"></div>
@@ -455,7 +518,7 @@ a{color:inherit}
       <dt>주소</dt><dd>강원특별자치도 원주시 단구로 398, 상가동 101호 (단구동)</dd>
       <dt>전화</dt><dd>033-765-1531</dd>
       <dt>배달</dt><dd>원주 시내권 30,000원↑ · 기업도시·태장·우산동 50,000원↑ 무료배달</dd>
-      <dt>포장</dt><dd>최소주문 없음 · 포장 주문 시 1,000원 할인 (하루 1회)</dd>
+      <dt>포장</dt><dd>최소주문 없음 · 15,000원 이상 포장 시 1,000원 할인 쿠폰 (하루 1회)</dd>
       <dt>마감</dt><dd>오후 2시 · 절임배추는 최소 4일 전 예약</dd>
     </dl>
     <p class="sim">
@@ -511,6 +574,17 @@ a{color:inherit}
   </div>
 </div>
 
+<!-- 사진 접수 (v5) -->
+<div class="sheet claim" id="sheetClaim" aria-hidden="true">
+  <div class="dim" data-close="claim"></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-label="사진 접수">
+    <div class="shead"><b>📷 사진 접수 · 이상 상품 알리기</b><button class="x" data-close="claim" aria-label="닫기">✕</button></div>
+    <div class="sbody" id="claimBody"></div>
+    <input type="file" id="claimFile" accept="image/*" multiple hidden>
+    <div class="sfoot" id="claimFoot"></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 </div>
 
@@ -539,14 +613,31 @@ var ZONES = {
     hint:"50,000원 이상 무료배달 · 전날 발주 → 다음날 오전배송", eta:"전날 주문 → 다음날 오전 배송" }
 };
 
-/* 포장(매장픽업) 하루 1회 1,000원 할인 */
+/* 포장(매장픽업) 하루 1회 1,000원 할인 쿠폰 — 15,000원 이상 주문에만 */
 var PICKUP_DISCOUNT = 1000;
+var PICKUP_MIN = 15000;
 var COUPON_KEY = "hoonie_retail_pickup_coupon_v1";
 
 /* 소매몰 ↔ 사장님 페이지가 함께 쓰는 저장소 (같은 주소에서 열면 바로 연동) */
-var CATALOG_KEY  = "hoonie_retail_catalog_v1";   // 사장님이 고친 가격·품절·남은 수량·코멘트
+var CATALOG_KEY  = "hoonie_retail_catalog_v1";   // 사장님이 고친 가격·품목·남은 수량·코멘트·등급
 var ORDERS_KEY   = "hoonie_retail_orders_v1";    // 접수된 주문 (사장님 페이지가 상태 변경)
 var CUSTOMER_KEY = "hoonie_retail_customer_v1";  // 최근 주문자 이름·연락처·배달 주소
+var CLAIM_KEY    = "hoonie_retail_claims_v1";    // 사진 접수 (사장님이 보상완료/반려)
+
+/* ── 과일 4단계 등급 ──
+   A급 = 품질보증 · 가정용 = 실속 가정용 · B급 = 알뜰 못난이 · C급 = 당일소진 초특가
+   C급처럼 낮은 등급도 불량·떨이 같은 말 대신 쓰임새로 설명한다. */
+var GRADES = {
+  A:    {key:"A",    name:"A급",   tag:"품질보증",       cls:"ga",
+         why:"엄선해서 고른 알찬 상품 · 선물에도 좋아요"},
+  home: {key:"home", name:"가정용", tag:"실속 가정용",     cls:"gh",
+         why:"모양보다 맛·가성비 · 집에서 먹기 좋아요"},
+  B:    {key:"B",    name:"B급",   tag:"알뜰 못난이",     cls:"gb",
+         why:"크기·모양이 조금씩 달라도 맛은 그대로예요"},
+  C:    {key:"C",    name:"C급",   tag:"당일소진 초특가", cls:"gc",
+         why:"바로 드실 분께 추천 · 숙성·겉흠집 있어 특가"}
+};
+var GRADE_ORDER = ["A", "home", "B", "C"];
 
 var IMG = {
   strawberry: "data:image/webp;base64,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",
@@ -595,31 +686,32 @@ var PRODUCTS = [
      opts:[{label:"배송", sub:"집 앞까지", price:43000}, {label:"픽업", sub:"단구점에서 수령", price:40000}],
      warn:"절임배추는 최소 4일 전 주문, 매주 금요일 배송·픽업만 가능하며 주문 후 환불이 어렵습니다. 배송 43,000원 / 픽업 40,000원."}),
 
-  P({id:"banana-deal", name:"바나나", unit:"1송이", cats:["deal"], img:"banana",
+  P({id:"banana-deal", name:"바나나", unit:"1송이", cats:["deal"], img:"banana", grade:"C",
      badges:[["행사","hot"]], origin:"필리핀산", desc:"오늘만 이 가격 · 1인 1송이", price:1000, stock:8,
      tip:"노랗게 익으면 냉장 보관하세요", tags:["행사 바나나"]}),
 
-  P({id:"pineapple-deal", name:"감숙왕 파인애플", unit:"3개", cats:["deal"], img:"pineapple",
+  P({id:"pineapple-deal", name:"감숙왕 파인애플", unit:"3개", cats:["deal"], img:"pineapple", grade:"home",
      badges:[["행사","hot"]], origin:"필리핀산", desc:"달콤한 감숙왕 3통", price:9900, tags:["파인애플"],
      tip:"뒤집어 하루 두면 더 달아져요"}),
 
-  P({id:"goldkiwi-10", name:"골드키위", unit:"10개", cats:["deal"], img:"kiwi",
+  P({id:"goldkiwi-10", name:"골드키위", unit:"10개", cats:["deal"], img:"kiwi", grade:"home",
      badges:[["국내산","dom"],["행사","hot"]], origin:"국내산", desc:"10개 묶음 특가", price:5000, tags:["키위"]}),
 
-  P({id:"jujube", name:"사과대추", unit:"3팩", cats:["deal"], img:"jujube",
-     badges:[["떨이","dd"]], origin:"국내산", desc:"떨이 특가 · 소진 시 종료", price:9900, tags:["대추"]}),
+  P({id:"jujube", name:"사과대추", unit:"3팩", cats:["deal"], img:"jujube", grade:"C",
+     badges:[["당일소진","dd"]], origin:"국내산", desc:"당일소진 특가 · 소진 시 종료", price:9900, tags:["대추"]}),
 
-  P({id:"daebong-15", name:"대봉감", unit:"15알", cats:["deal"], img:"daebong",
+  P({id:"daebong-15", name:"대봉감", unit:"15알", cats:["deal"], img:"daebong", grade:"C",
      badges:[["행사","hot"]], origin:"국내산", desc:"15알 행사 · 익혀 드세요", price:9900, tags:["감"]}),
 
-  P({id:"byeongma", name:"병마", unit:"1kg", cats:["deal"], img:"chestnut",
+  P({id:"byeongma", name:"병마", unit:"1kg", cats:["deal"], img:"chestnut", grade:"B",
      badges:[["행사","hot"]], desc:"1kg 행사 물량 · 알밤", price:3000, tags:["밤"]}),
 
-  P({id:"blueberry", name:"블루베리", unit:"3팩", cats:["deal"], img:"blueberry",
+  P({id:"blueberry", name:"블루베리", unit:"3팩", cats:["deal"], img:"blueberry", grade:"home",
      badges:[["행사","hot"]], origin:"칠레산", desc:"3팩 묶음 특가", price:9900, stock:4, tags:["베리"]}),
 
   /* ── 과일 ── */
-  P({id:"strawberry", name:"딸기", unit:"1팩", cats:["fruit"], img:"strawberry",
+  P({id:"strawberry", name:"딸기", unit:"1팩", cats:["fruit"], img:"strawberry", grade:"A",
+     ogrades:["home","A","A"],
      badges:[["오늘입고","fresh"]], origin:"국내산", desc:"향·당도 좋은 생딸기", stock:5,
      tip:"냉장 2시간 뒤 드시면 더 달아요",
      opts:[{label:"4x5 · 1팩", sub:"가장 많이 담기는 사이즈", price:8500},
@@ -627,23 +719,24 @@ var PRODUCTS = [
            {label:"3x4 · 1팩", sub:"선물용 큰 알", price:13800}],
      tags:["딸기"]}),
 
-  P({id:"fig", name:"무화과", unit:"1kg", cats:["fruit"], img:"fig",
-     badges:[["상","dom"]], origin:"국내산", desc:"[상] 등급 · 달콤한 무화과", price:7900, tags:["무화과"],
+  P({id:"fig", name:"무화과", unit:"1kg", cats:["fruit"], img:"fig", grade:"A",
+     badges:[["국내산","dom"]], origin:"국내산", desc:"엄선한 품질보증 · 달콤한 무화과", price:7900, tags:["무화과"],
      tip:"냉장 1~2일 안에 드세요"}),
 
-  P({id:"mango", name:"골드망고", unit:"4개", cats:["fruit"], img:"mango",
+  P({id:"mango", name:"골드망고", unit:"4개", cats:["fruit"], img:"mango", grade:"home",
      badges:[], origin:"태국산", desc:"4개 한 세트", price:9900, tags:["망고"]}),
 
-  P({id:"persimmon", name:"단감", unit:"15알", cats:["fruit"], img:"persimmon",
+  P({id:"persimmon", name:"단감", unit:"15알", cats:["fruit"], img:"persimmon", grade:"home",
      badges:[["정품","fresh"]], origin:"국내산", desc:"아삭한 단감 15알", price:7900, tags:["감"]}),
 
-  P({id:"daebong-gift", name:"대봉감", unit:"4kg", cats:["fruit"], img:"daebong",
+  P({id:"daebong-gift", name:"대봉감", unit:"4kg", cats:["fruit"], img:"daebong", grade:"A",
      badges:[["선물용","gift"]], origin:"국내산", desc:"선물용 박스 포장", price:15000, tags:["감"]}),
 
-  P({id:"hwanggeumhyang", name:"황금향", unit:"3kg", cats:["fruit"], img:"goldenhwang",
+  P({id:"hwanggeumhyang", name:"황금향", unit:"3kg", cats:["fruit"], img:"goldenhwang", grade:"A",
      badges:[], origin:"제주산", desc:"새콤달콤 황금향", price:16800, tags:["귤 감귤"]}),
 
-  P({id:"tangerine", name:"제주 귤", unit:"5kg", cats:["fruit"], img:"tangerine",
+  P({id:"tangerine", name:"제주 귤", unit:"5kg", cats:["fruit"], img:"tangerine", grade:"home",
+     ogrades:["home","A","A","B","B","B"],
      badges:[], origin:"제주산", desc:"사이즈·품종 골라 담기", stock:3,
      tip:"한두 알 껍질을 벗겨 두었다 드세요",
      opts:[{label:"2L · 5kg", price:12800},
@@ -654,50 +747,52 @@ var PRODUCTS = [
            {label:"맛좋은 B급 M · 5kg", price:16800}],
      tags:["귤 감귤"]}),
 
-  P({id:"emperor", name:"중문 황제귤", unit:"5kg · M", cats:["fruit"], img:"tangerine",
+  P({id:"emperor", name:"중문 황제귤", unit:"5kg · M", cats:["fruit"], img:"tangerine", grade:"A",
      badges:[["프리미엄","gift"]], origin:"제주 중문", desc:"중문 명품 귤 M 사이즈", price:45000, tags:["귤 감귤"]}),
 
-  P({id:"newstein", name:"윤홍희 뉴스틴 포도", unit:"2kg", cats:["fruit"], img:"shine",
+  P({id:"newstein", name:"윤홍희 뉴스틴 포도", unit:"2kg", cats:["fruit"], img:"shine", grade:"A",
      badges:[], origin:"국내산", desc:"망고스틴 식감 · 당도 보증", price:15000, tags:["포도 샤인"]}),
 
-  P({id:"campbell", name:"켐벨포도", unit:"3kg", cats:["fruit"], img:"campbell",
+  P({id:"campbell", name:"켐벨포도", unit:"3kg", cats:["fruit"], img:"campbell", grade:"A",
      badges:[], origin:"국내산", desc:"3kg 한 상자", price:20000, tags:["포도"]}),
 
-  P({id:"bansee", name:"반시", unit:"2.5kg · M", cats:["fruit"], img:"persimmon",
+  P({id:"bansee", name:"반시", unit:"2.5kg · M", cats:["fruit"], img:"persimmon", grade:"C",
      badges:[], origin:"국내산", desc:"M 사이즈 2.5kg", price:5000, tags:["감 홍시"]}),
 
-  P({id:"shine", name:"샤인머스켓", unit:"송이", cats:["fruit"], img:"shine",
+  P({id:"shine", name:"샤인머스켓", unit:"송이", cats:["fruit"], img:"shine", grade:"home",
+     ogrades:["home","A","A"],
      badges:[], origin:"국내산", desc:"수·중량 골라 담기", tip:"씻지 말고 먹기 직전에 씻으세요",
      opts:[{label:"2kg · 4수", price:7900},
            {label:"3kg · A급", price:20000},
            {label:"4kg · 6수", price:20000}],
      tags:["포도 샤인머스켓"]}),
 
-  P({id:"banana", name:"바나나", unit:"1송이", cats:["fruit"], img:"banana",
+  P({id:"banana", name:"바나나", unit:"1송이", cats:["fruit"], img:"banana", grade:"home",
      badges:[], origin:"필리핀산", desc:"매일 들어오는 바나나", price:3500, tags:["바나나"]}),
 
-  P({id:"pineapple", name:"파인애플", unit:"1통", cats:["fruit"], img:"pineapple",
+  P({id:"pineapple", name:"파인애플", unit:"1통", cats:["fruit"], img:"pineapple", grade:"home",
      badges:[], origin:"필리핀산", desc:"1통 그대로", price:7500, tags:["파인애플"]}),
 
-  P({id:"pomegranate", name:"석류", unit:"1통", cats:["fruit"], img:"pomegranate",
+  P({id:"pomegranate", name:"석류", unit:"1통", cats:["fruit"], img:"pomegranate", grade:"home",
      badges:[], origin:"미국산", desc:"알 굵은 석류", price:5000, tags:["석류"]}),
 
-  P({id:"apple", name:"안동 부사사과", unit:"15개", cats:["fruit"], img:"apple",
+  P({id:"apple", name:"안동 부사사과", unit:"15개", cats:["fruit"], img:"apple", grade:"home",
+     ogrades:["home","A"],
      badges:[], origin:"안동", desc:"아삭한 안동 부사", stock:4, tip:"흐르는 물에 씻어 껍질째 드세요",
      opts:[{label:"15개", sub:"가정용", price:9900},
            {label:"10kg", sub:"한 상자", price:25000}],
      tags:["사과 부사"]}),
 
-  P({id:"orange", name:"오렌지", unit:"1봉지", cats:["fruit"], img:"orange",
+  P({id:"orange", name:"오렌지", unit:"1봉지", cats:["fruit"], img:"orange", grade:"home",
      badges:[], origin:"호주산", desc:"1봉지 특가", price:9900, tags:["오렌지"]}),
 
-  P({id:"greenkiwi", name:"그린키위", unit:"1팩", cats:["fruit"], img:"kiwi",
+  P({id:"greenkiwi", name:"그린키위", unit:"1팩", cats:["fruit"], img:"kiwi", grade:"home",
      badges:[], origin:"뉴질랜드산", desc:"새콤한 그린키위", price:8000, tags:["키위"]}),
 
-  P({id:"goldkiwi", name:"골드키위", unit:"1팩", cats:["fruit"], img:"kiwi",
+  P({id:"goldkiwi", name:"골드키위", unit:"1팩", cats:["fruit"], img:"kiwi", grade:"A",
      badges:[], origin:"뉴질랜드산", desc:"달콤한 골드키위", price:9000, tags:["키위"]}),
 
-  P({id:"tomato", name:"토마토", unit:"5kg · 1번", cats:["fruit"], img:"tomato",
+  P({id:"tomato", name:"토마토", unit:"5kg · 1번", cats:["fruit"], img:"tomato", grade:"home",
      badges:[], origin:"국내산", desc:"완숙 토마토 1번과", price:15000, tags:["토마토"],
      tip:"상온에서 하루 두면 더 익어요"}),
 
@@ -819,6 +914,19 @@ function isSold(p){
   return s !== null && s <= 0;
 }
 function commentOf(p){ var c = ov(p.id).comment; return c ? String(c).trim() : ""; }
+/* ── 과일 등급 (사장님이 고친 등급이 있으면 그걸 우선) ── */
+function gradeOf(p, oi){
+  if (!p) return null;
+  var o = ov(p.id);
+  if (o.grade && GRADES[o.grade]) return o.grade;
+  if (oi !== undefined && oi !== null && p.ogrades && p.ogrades[oi]) return p.ogrades[oi];
+  return p.grade || null;
+}
+function gradeChipHtml(p, oi, small){
+  var k = gradeOf(p, oi), g = k ? GRADES[k] : null;
+  if (!g) return "";
+  return '<span class="gchip ' + g.cls + (small ? ' sm' : '') + '">' + g.name + ' · ' + g.tag + '</span>';
+}
 function unitWord(p){
   var u = String(p.unit || "");
   var ws = ["팩","단","봉지","판","송이","알","박스","통","망"];
@@ -901,13 +1009,22 @@ function todayStr(){
   return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
 }
 function couponUsedToday(){ return state.couponDate === todayStr(); }
-/* 이번 주문에 적용되는 포장 할인 (포장 + 오늘 미사용 + 1,000원 이상) */
+/* 15,000원까지 남은 금액 */
+function couponGap(){ return Math.max(0, PICKUP_MIN - subtotal()); }
+/* 쿠폰 상태: used(오늘 사용) / delivery(배달) / empty(빈 장바구니) / need(금액 부족) / on(사용 가능) */
+function couponState(){
+  if (couponUsedToday()) return "used";
+  if (state.mode !== "pickup") return "delivery";
+  if (!state.cart.length) return "empty";
+  return subtotal() >= PICKUP_MIN ? "on" : "need";
+}
+/* 이번 주문에 적용되는 포장 할인 (포장 + 오늘 미사용 + 15,000원 이상) */
 function pickupDiscount(){
   if (state.mode !== "pickup") return 0;
   if (!state.cart.length) return 0;
   if (couponUsedToday()) return 0;
   var sub = subtotal();
-  if (sub < PICKUP_DISCOUNT) return 0;
+  if (sub < PICKUP_MIN) return 0;
   return Math.min(PICKUP_DISCOUNT, sub);
 }
 function payable(){ return Math.max(0, subtotal() - pickupDiscount()); }
@@ -978,12 +1095,23 @@ function renderMode(){
   });
   var el = $("#modeBanner");
   if (state.mode === "pickup") {
-    var used = couponUsedToday();
-    el.innerHTML = '<div class="banner pick' + (used ? ' used' : '') + '">'
-      + '<b><span class="bn-ico">' + (used ? '🗓️' : '🎁') + '</span>'
-      + (used ? '오늘 포장 할인 사용 완료' : '포장 주문 시 1,000원 할인') + '</b>'
-      + '<small>' + (used ? '내일 다시 1,000원 할인돼요 · 포장은 최소주문 없이 바로'
-                            : '오늘 하루 1회 · 주문 금액에서 자동으로 빠져요') + '</small>'
+    var cs = couponState(), ico, title, sub;
+    if (cs === "used"){
+      ico = "🗓️"; title = "오늘 쿠폰 사용 완료";
+      sub = "내일 다시 1,000원 할인 쿠폰을 쓸 수 있어요 · 포장은 최소주문 없이 바로";
+    } else if (cs === "need"){
+      ico = "🎟️"; title = money(couponGap()) + "원 더 담으면 포장 1,000원 쿠폰 사용 가능";
+      sub = "15,000원 이상 포장 주문 · 오늘 하루 1회";
+    } else if (cs === "on"){
+      ico = "🎟️"; title = "포장 1,000원 할인 쿠폰 적용 중";
+      sub = "이번 주문에서 1,000원 빠져요 · 오늘 하루 1회";
+    } else {
+      ico = "🎟️"; title = "포장 1,000원 할인 쿠폰";
+      sub = "15,000원 이상 포장 주문에 1,000원 · 오늘 하루 1회";
+    }
+    el.innerHTML = '<div class="banner pick' + (cs === "used" ? ' used' : '') + '">'
+      + '<b><span class="bn-ico">' + ico + '</span>' + title + '</b>'
+      + '<small>' + sub + '</small>'
       + slotBoxHtml(true)
       + '</div>';
   } else {
@@ -1038,7 +1166,7 @@ function rowAction(p){
 }
 function rowHtml(p){
   var sold = isSold(p);
-  var badges = "";
+  var badges = gradeChipHtml(p);
   var bs = (p.badges || []).slice(0, 2);
   for (var i=0;i<bs.length;i++) badges += '<span class="bdg ' + bs[i][1] + '">' + bs[i][0] + '</span>';
   var meta = (p.origin ? esc(p.origin) + " · " : "") + esc(p.unit);
@@ -1176,11 +1304,61 @@ function hasSold(){
   for (var i=0;i<state.cart.length;i++){ var p = byId(state.cart[i].pid); if (p && isSold(p)) return p; }
   return null;
 }
+/* ── 사진 접수 (v5) ── */
+var CLAIM_REASONS = ["상해서 왔어요", "눌리거나 터졌어요", "덜 익었어요", "너무 익었어요", "크기가 달라요", "수량이 달라요"];
+var claim = null;
+
+function loadClaims(){
+  try { var d = JSON.parse(localStorage.getItem(CLAIM_KEY) || "[]"); return Array.isArray(d) ? d : []; }
+  catch(e){ return []; }
+}
+function saveClaims(list){
+  list = list.slice(0, 12);
+  try { localStorage.setItem(CLAIM_KEY, JSON.stringify(list)); return true; } catch(e){}
+  /* 사진 때문에 저장 공간이 모자라면 오래된 접수부터 사진을 줄여 다시 시도 */
+  for (var i=list.length-1;i>0;i--){
+    list[i].photos = (list[i].photos || []).slice(0,1);
+    try { localStorage.setItem(CLAIM_KEY, JSON.stringify(list)); return true; } catch(e2){}
+  }
+  return false;
+}
+function claimStatusLabel(c){
+  if (!c) return "";
+  if (c.status === "done") return "보상 완료";
+  if (c.status === "rejected") return "확인 완료";
+  return "사장님 확인 중";
+}
+function claimBadgeLine(){
+  var list = loadClaims();
+  if (!list.length) return "";
+  return "접수한 사진 " + list.length + "건 · " + claimStatusLabel(list[0]);
+}
 function gbadgeHtml(){
-  return '<div class="gbadge"><span class="gi">🛡</span><div>'
-    + '<b>상했으면 사진만 보내세요 · 100% 교환/환불</b>'
-    + '<small>받은 날 사진 한 장이면 바로 교환·환불 · 문의 033-765-1531</small>'
-    + '</div></div>';
+  var line = claimBadgeLine();
+  return '<div class="gbadge" data-claim="1" role="button" tabindex="0">'
+    + '<span class="gi">🛡</span>'
+    + '<div class="gb-t"><b>수령 당일 이상 시 사진 접수 · 확인 후 보상</b>'
+    + '<small>사진 한 장 올려 주시면 사장님이 확인하고 부분환불·교환으로 보상해 드려요 · 문의 033-765-1531</small>'
+    + (line ? '<span class="gb-cl">📷 ' + esc(line) + '</span>' : '')
+    + '</div>'
+    + '<button class="gbtn" data-claim="1">📷 사진 접수</button></div>';
+}
+function renderClaimBadge(){
+  var el = $("#menuClaim");
+  if (el) el.innerHTML = gbadgeHtml();
+}
+/* 과일 등급 안내 — 네 단계를 한눈에 */
+function renderGradeGuide(){
+  var el = $("#gradeGuide");
+  if (!el) return;
+  var h = '<div class="gguide"><div class="gg-h"><b>🍓 과일 등급 안내</b><span>4단계로 골라 드세요</span></div><ul>';
+  for (var i=0;i<GRADE_ORDER.length;i++){
+    var g = GRADES[GRADE_ORDER[i]];
+    h += '<li><span class="gchip ' + g.cls + '">' + g.name + ' · ' + g.tag + '</span>'
+      + '<span class="gd">' + g.why + '</span></li>';
+  }
+  h += '</ul><p class="gg-note">등급은 크기·모양 기준이에요. 어느 등급이든 맛은 사장님이 확인하고 보내 드리고, 이상하면 수령 당일 사진 접수로 보상해 드려요.</p></div>';
+  el.innerHTML = h;
 }
 /* 무료배달까지 남은 금액을 채울 채소 추천 */
 function fillCardHtml(){
@@ -1219,25 +1397,29 @@ function reqChipsHtml(){
   return h + '</div>';
 }
 function couponCardHtml(){
-  var used = couponUsedToday();
-  if (state.mode === "pickup"){
-    return '<div class="cpcard"><span class="cpi">🎁</span><div class="cpt">'
-      + '<b>포장 1,000원 할인</b>'
-      + '<small>' + (used ? "오늘은 이미 사용했어요 · 내일 다시 할인" : "오늘 하루 1회 · 자동 적용") + '</small>'
-      + '</div><div class="cpr"><span class="chip ' + (used ? 'muted' : 'on') + '">' + (used ? '사용 완료' : '적용됨') + '</span></div></div>';
-  }
-  return '<div class="cpcard"><span class="cpi">🎁</span><div class="cpt">'
-    + '<b>포장 주문하면 1,000원 할인</b>'
-    + '<small>' + (used ? "오늘 할인은 사용했어요 · 내일 다시" : "포장으로 바꾸면 1,000원 할인") + '</small>'
-    + '</div><div class="cpr">'
-    + (used ? '<span class="chip muted">사용 완료</span>' : '<button class="chip btn" data-mode="pickup">포장으로 변경</button>')
-    + '</div></div>';
+  var st = couponState(), gap = couponGap();
+  var h = '<div class="ticket' + (st === "on" ? ' live' : (st === "used" ? ' used' : '')) + '" id="cpTicket">'
+    + '<span class="tk-ico">🎟️</span>'
+    + '<div class="tk-t"><b>포장 1,000원 할인 쿠폰</b>'
+    + '<small>15,000원 이상 포장 주문 · 오늘 하루 1회</small>';
+  if (st === "on")        h += '<p class="tk-s on">이번 주문에 적용됐어요 · -1,000원</p>';
+  else if (st === "used")  h += '<p class="tk-s used">오늘 쿠폰 사용 완료 · 내일 다시 쓸 수 있어요</p>';
+  else if (st === "need")  h += '<p class="tk-s need">' + money(gap) + '원 더 담으면 포장 1,000원 쿠폰 사용 가능</p>';
+  else if (st === "delivery") h += '<p class="tk-s need">포장으로 바꾸면 바로 쓸 수 있어요</p>';
+  else                     h += '<p class="tk-s need">포장 주문에 담으면 바로 쓸 수 있어요</p>';
+  h += '</div><div class="tk-r">';
+  if (st === "on")            h += '<span class="tk-chip on">적용됨</span>';
+  else if (st === "used")      h += '<span class="tk-chip used">사용 완료</span>';
+  else if (st === "delivery")  h += '<button class="tk-chip btn" data-mode="pickup">포장으로 변경</button>';
+  else                         h += '<span class="tk-chip need">15,000원</span>';
+  return h + '</div></div>';
 }
 function sumRowsHtml(){
   var sub = subtotal(), disc = pickupDiscount();
   var h = '<div class="srow"><span>상품 금액</span><b>' + money(sub) + '원</b></div>';
-  if (disc > 0) h += '<div class="srow disc"><span>🎁 포장 할인</span><b>- ' + money(disc) + '원</b></div>';
-  else if (state.mode === "pickup" && couponUsedToday()) h += '<div class="srow muted"><span>🎁 포장 할인</span><b>오늘 사용 완료</b></div>';
+  if (disc > 0) h += '<div class="srow disc"><span>🎟️ 포장 할인 쿠폰</span><b>- ' + money(disc) + '원</b></div>';
+  else if (state.mode === "pickup" && couponUsedToday()) h += '<div class="srow muted"><span>🎟️ 포장 할인 쿠폰</span><b>오늘 쿠폰 사용 완료</b></div>';
+  else if (state.mode === "pickup" && sub < PICKUP_MIN) h += '<div class="srow muted"><span>🎟️ 포장 할인 쿠폰</span><b>' + money(couponGap()) + '원 더 담으면 사용</b></div>';
   if (state.mode === "delivery") h += '<div class="srow"><span>배달비</span><b>' + (meetMin() ? "0원 (무료배달)" : "무료배달 조건 미달") + '</b></div>';
   h += '<div class="srow total"><span>결제 금액</span><span class="v">' + money(payable()) + '원</span></div>';
   return h;
@@ -1268,7 +1450,7 @@ function renderCart(){
   if (state.mode === "delivery" && remaining() > 0){
     var z = zoneInfo();
     h += '<div class="mincard"><b>' + z.short + ' 배달까지 ' + money(remaining()) + '원 남았어요</b>'
-      + '<p>' + money(z.min) + '원부터 배달돼요. 포장은 최소주문 없이 1,000원 할인!</p>'
+      + '<p>' + money(z.min) + '원부터 배달돼요. 포장은 최소주문 없이, 15,000원 넘으면 1,000원 쿠폰!</p>'
       + '<button data-mode="pickup">🏪 포장으로 변경하기</button></div>';
     h += fillCardHtml();
   }
@@ -1280,7 +1462,7 @@ function renderCart(){
   h += '<div class="sumcard">' + sumRowsHtml() + '</div>';
   h += gbadgeHtml();
   if (lastOrder()) h += '<button class="reorder cart" id="reorderCart">🔁 지난번 시킨 거 그대로 담기</button>';
-  h += '<p class="note">시안 화면이라 실제 결제·배달은 이뤄지지 않아요. 포장 할인은 기기 저장소에 오늘 날짜로 기록돼 하루 1회만 적용됩니다.</p>';
+  h += '<p class="note">시안 화면이라 실제 결제·배달은 이뤄지지 않아요. 포장 1,000원 할인 쿠폰은 15,000원 이상 주문에 하루 1회만 적용됩니다.</p>';
   body.innerHTML = h;
 
   var re = remaining(), soldP = hasSold();
@@ -1318,7 +1500,7 @@ function renderOpt(){
     var op = p.opts[i];
     h += '<button class="obtn' + (i===o.oi ? ' on' : '') + '" data-oi="' + i + '" role="radio" aria-checked="' + (i===o.oi) + '">'
       + '<span class="rad"></span>'
-      + '<span class="ol">' + esc(op.label) + (op.sub ? '<span class="os">' + esc(op.sub) + '</span>' : '') + '</span>'
+      + '<span class="ol">' + esc(op.label) + gradeChipHtml(p, i, true) + (op.sub ? '<span class="os">' + esc(op.sub) + '</span>' : '') + '</span>'
       + '<span class="op">' + money(op.price) + '원</span></button>';
   }
   h += '</div>';
@@ -1344,6 +1526,169 @@ function closeSheet(){
   document.body.style.overflow = "";
 }
 
+/* ── 사진 접수 모달 ── */
+function myOrderItems(){
+  var o = lastOrder(), out = [];
+  if (o && o.items){
+    for (var i=0;i<o.items.length;i++){
+      var it = o.items[i];
+      out.push({pid: it.pid, orderNo: o.no,
+        label: it.name + (it.opt ? " · " + it.opt : (it.unit ? " · " + it.unit : ""))});
+    }
+  }
+  return out;
+}
+function openClaim(pid){
+  closeSheet();
+  var items = myOrderItems();
+  claim = {
+    stage: "form", items: items,
+    pid: (pid && byId(pid)) ? pid : (items.length ? items[0].pid : ""),
+    orderNo: "", reason: "", memo: "", photos: [],
+    name: (state.recent && state.recent.name) || state.form.name || "",
+    phone: (state.recent && state.recent.phone) || state.form.phone || ""
+  };
+  for (var i=0;i<items.length;i++) if (items[i].pid === claim.pid){ claim.orderNo = items[i].orderNo; break; }
+  var fi = $("#claimFile");
+  if (fi) fi.value = "";
+  var el = $("#sheetClaim");
+  el.classList.add("open");
+  el.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  renderClaim();
+}
+function closeClaim(){
+  var el = $("#sheetClaim");
+  if (!el) return;
+  el.classList.remove("open");
+  el.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  claim = null;
+}
+function claimItemLabel(pid){
+  var p = byId(pid);
+  return p ? (p.name + " " + p.unit) : "상품";
+}
+function renderClaim(){
+  if (!claim) return;
+  var body = $("#claimBody"), foot = $("#claimFoot");
+  if (!body || !foot) return;
+  if (claim.stage === "done"){
+    var s = claim.saved;
+    body.innerHTML = '<div class="cdone"><span class="em">✅</span><b>사진 접수됐어요</b>'
+      + '<p><b>' + esc(s.name) + '</b>님, <b>' + esc(s.itemLabel) + '</b> 건으로 접수했어요.<br>'
+      + '사장님이 사진을 확인한 뒤 <b>부분환불·교환</b>으로 보상해 드려요.</p>'
+      + '<span class="no">접수번호 ' + esc(s.no) + '</span>'
+      + '<p style="margin-top:13px;font-size:12.5px;color:#8F8F8F">확인되는 대로 연락드려요 · 급하면 033-765-1531</p></div>';
+    foot.innerHTML = '<button class="cta" data-close="claim">닫기</button>';
+    return;
+  }
+  var sel = '<option value=""' + (!claim.pid ? ' selected' : '') + '>상품을 골라 주세요</option>', seen = {}, i, j;
+  if (claim.items.length){
+    sel += '<optgroup label="최근 주문 상품">';
+    for (i=0;i<claim.items.length;i++){
+      var it = claim.items[i];
+      if (seen[it.pid]) continue;
+      seen[it.pid] = 1;
+      sel += '<option value="' + esc(it.pid) + '"' + (it.pid === claim.pid ? ' selected' : '') + '>' + esc(it.label) + '</option>';
+    }
+    sel += '</optgroup>';
+  }
+  sel += '<optgroup label="전체 상품">';
+  for (j=0;j<PRODUCTS.length;j++){
+    var p = PRODUCTS[j];
+    if (seen[p.id]) continue;
+    sel += '<option value="' + esc(p.id) + '"' + (p.id === claim.pid ? ' selected' : '') + '>' + esc(p.name) + ' · ' + esc(p.unit) + '</option>';
+  }
+  sel += '</optgroup>';
+
+  var rea = "";
+  for (i=0;i<CLAIM_REASONS.length;i++){
+    var r = CLAIM_REASONS[i];
+    rea += '<button class="' + (claim.reason === r ? 'on' : '') + '" data-reason="' + esc(r) + '">' + esc(r) + '</button>';
+  }
+  var ph = '<div class="cphotos">';
+  for (i=0;i<claim.photos.length;i++){
+    ph += '<div class="cph"><img src="' + claim.photos[i] + '" alt="접수 사진 ' + (i+1) + '">'
+      + '<button class="x" data-photo-del="' + i + '" aria-label="사진 빼기">✕</button></div>';
+  }
+  if (claim.photos.length < 3) ph += '<button class="cadd" data-photo-add><span class="ci">📷</span>사진 올리기</button>';
+  ph += '</div>';
+
+  body.innerHTML = '<div class="clintro">받으신 날 찍은 사진을 올려 주세요. 사장님이 보고 <b>부분환불·교환</b>으로 보상해 드려요.</div>'
+    + '<div class="cfield"><label for="claimItem">어떤 상품인가요?</label><select id="claimItem">' + sel + '</select></div>'
+    + '<div class="cfield"><label>어떤 점이 문제인가요? (하나 선택)</label><div class="creasons">' + rea + '</div></div>'
+    + '<div class="cfield"><label>사진 (최대 3장 · 한 장 이상 꼭)</label>' + ph + '</div>'
+    + '<div class="cfield"><label for="claimMemo">자세한 설명 (선택)</label>'
+    + '<textarea id="claimMemo" placeholder="예: 딸기 두 알이 물러서 왔어요">' + esc(claim.memo) + '</textarea></div>'
+    + '<div class="crow2"><div class="cfield"><label for="claimName">이름</label>'
+    + '<input type="text" id="claimName" value="' + esc(claim.name) + '" placeholder="홍길동"></div>'
+    + '<div class="cfield"><label for="claimPhone">연락처</label>'
+    + '<input type="tel" id="claimPhone" inputmode="tel" value="' + esc(claim.phone) + '" placeholder="010-0000-0000"></div></div>'
+    + '<p style="margin:12px 0 4px;font-size:11.5px;color:#8F8F8F;line-height:1.6">수령 당일 접수해 주시면 바로 확인해 드릴 수 있어요. 상품은 버리지 말고 사진만 남겨 주세요.</p>';
+  foot.innerHTML = '<button class="cta" id="claimSend">사진 접수하기</button>';
+}
+function addClaimPhotos(files){
+  if (!claim) return;
+  var list = Array.prototype.slice.call(files || []);
+  var room = 3 - claim.photos.length;
+  if (room <= 0){ toast("사진은 3장까지 올릴 수 있어요"); return; }
+  list = list.slice(0, room);
+  if (!list.length) return;
+  var left = list.length;
+  function done(){ if (left === 0) renderClaim(); }
+  list.forEach(function(f){
+    if (!/^image\//.test(f.type || "")){ left--; done(); return; }
+    var rd = new FileReader();
+    rd.onload = function(){
+      var img = new Image();
+      img.onload = function(){
+        try {
+          var max = 900, w = img.width || max, h = img.height || max;
+          var sc = Math.min(1, max / Math.max(w, h));
+          var cv = document.createElement("canvas");
+          cv.width = Math.round(w * sc); cv.height = Math.round(h * sc);
+          cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+          claim.photos.push(cv.toDataURL("image/jpeg", 0.72));
+        } catch(e){}
+        left--; done();
+      };
+      img.onerror = function(){ left--; done(); };
+      img.src = rd.result;
+    };
+    rd.onerror = function(){ left--; done(); };
+    rd.readAsDataURL(f);
+  });
+}
+function sendClaim(){
+  if (!claim || claim.stage !== "form") return;
+  if (!claim.pid || !byId(claim.pid)){ toast("어떤 상품인지 골라 주세요"); return; }
+  if (!claim.photos.length){ toast("사진을 한 장 올려 주세요"); return; }
+  if (!claim.reason){ toast("어떤 점이 문제인지 골라 주세요"); return; }
+  if (!String(claim.name).trim()){ toast("이름을 적어 주세요"); return; }
+  if (String(claim.phone).replace(/[^0-9]/g, "").length < 9){ toast("연락처를 확인해 주세요"); return; }
+  var now = new Date();
+  var no = "CL" + now.getFullYear() + String(now.getMonth()+1).padStart(2,"0") + String(now.getDate()).padStart(2,"0")
+         + "-" + String(Math.floor(Math.random()*9000)+1000);
+  var rec = {
+    no: no, at: now.getTime(),
+    time: String(now.getHours()).padStart(2,"0") + ":" + String(now.getMinutes()).padStart(2,"0"),
+    pid: claim.pid, itemLabel: claimItemLabel(claim.pid), orderNo: claim.orderNo || "",
+    reason: claim.reason, memo: String(claim.memo).trim(),
+    photos: claim.photos.slice(0),
+    name: String(claim.name).trim(), phone: String(claim.phone).trim(),
+    status: "checking", statusAt: now.getTime()
+  };
+  var list = loadClaims();
+  list.unshift(rec);
+  if (!saveClaims(list)){ toast("사진 저장 공간이 부족해요 · 장수를 줄여 주세요"); return; }
+  claim.saved = rec;
+  claim.stage = "done";
+  renderClaim();
+  renderClaimBadge();
+  toast("사진 접수 완료 · 사장님 확인 중");
+}
+
 /* ────────────────────────────────────────────────
    12. 화면 전환
    ──────────────────────────────────────────────── */
@@ -1367,6 +1712,8 @@ function goCheckout(){
 function renderAll(){
   renderMode();
   renderMenu();
+  renderGradeGuide();
+  renderClaimBadge();
   renderBar();
   renderCart();
   renderOrderStrip();
@@ -1445,7 +1792,7 @@ function renderCheckout(){
   if (state.mode === "delivery"){
     h += zoneChipsHtml();
     if (remaining() > 0) h += '<div class="mincard" style="margin:12px 0 0"><b>' + z.short + ' 배달까지 ' + money(remaining()) + '원 남았어요</b>'
-      + '<p>' + money(z.min) + '원부터 배달돼요. 포장은 최소주문 없이 1,000원 할인!</p>'
+      + '<p>' + money(z.min) + '원부터 배달돼요. 포장은 최소주문 없이, 15,000원 넘으면 1,000원 쿠폰!</p>'
       + '<button data-mode="pickup">🏪 포장으로 변경하기</button></div>';
     h += '<div class="field" id="fAddr" style="margin-top:12px"><label for="ckAddr">배달 주소</label>'
       + '<input id="ckAddr" value="' + esc(f.addr) + '" placeholder="예: 단구동 ○○아파트 101동 1001호" autocomplete="street-address">'
@@ -1497,8 +1844,10 @@ function renderCheckout(){
     + '<div class="sumcard" style="margin:0">' + sumRowsHtml() + '</div>'
     + '<p class="simnote">🕒 받는 시간: <b>' + curSlot().label + '</b><br>' + (state.mode === "pickup"
         ? (pickupDiscount() > 0
-            ? (payable() === 0 ? "1,000원 포장 할인으로 결제 금액이 0원이에요. 매장에서 바로 받아 가세요." : "포장 1,000원 할인이 적용됐어요. 오늘 하루 1번 사용할 수 있어요.")
-            : "오늘 포장 할인은 이미 사용했어요. 내일 다시 사용할 수 있어요.")
+            ? "포장 1,000원 할인 쿠폰이 적용됐어요. 오늘 하루 1번 사용할 수 있어요."
+            : (couponUsedToday()
+                ? "오늘 쿠폰은 사용 완료했어요. 내일 다시 쓸 수 있어요."
+                : "15,000원 이상 주문이면 포장 1,000원 쿠폰을 쓸 수 있어요 · " + money(couponGap()) + "원 남았어요."))
         : z.name + (meetMin() ? " · 무료배달 조건 충족" : " · 최소금액 미달")) + '</p>'
     + '</section>';
 
@@ -1661,7 +2010,7 @@ function showDone(ord){
     + '<div class="drow"><span>진행 상태</span><b id="liveStatus">' + statusLabel(live) + '</b></div>'
     + '<div class="drow"><span>결제 수단</span><b>' + esc(o.pay) + ' (시안)</b></div>'
     + '<div class="drow"><span>상품 금액</span><b>' + money(o.sub) + '원</b></div>'
-    + (o.disc > 0 ? '<div class="drow disc"><span>🎁 포장 할인</span><b>- ' + money(o.disc) + '원</b></div>' : '')
+    + (o.disc > 0 ? '<div class="drow disc"><span>🎟️ 포장 할인 쿠폰</span><b>- ' + money(o.disc) + '원</b></div>' : '')
     + '<div class="drow big"><span>결제 금액</span><b>' + money(o.total) + '원</b></div>'
     + '<div class="ditems">';
   for (var i=0;i<o.items.length;i++){
@@ -1677,7 +2026,7 @@ function showDone(ord){
   var guide = "";
   if (o.mode === "pickup"){
     guide = "🏪 <b>포장 준비되면 문자로 알려 드려요.</b><br>단구로 398 상가동 101호 · 033-765-1531";
-    if (o.disc > 0) guide += "<br>1,000원 포장 할인은 오늘 하루 1번 사용할 수 있어요.";
+    if (o.disc > 0) guide += "<br>1,000원 포장 할인 쿠폰은 오늘 하루 1번 사용할 수 있어요.";
   } else if (o.zone === "city"){
     guide = "🛵 <b>오후 2시 이전 주문은 당일 또는 익일 배달</b>이에요.<br>배달 전에 기사님이 " + esc(o.phone) + "로 연락드려요.";
   } else {
@@ -1687,6 +2036,7 @@ function showDone(ord){
   if (o.memo) guide += "<br><br>📝 요청사항: " + esc(o.memo);
   guide += "<br><br>📦 사장님이 주문을 확인하면 위 진행 상태가 바뀌어요.";
   h += '<div class="dguide">' + guide + '</div>'
+    + '<button class="ghost" id="doneClaim">📷 받은 상품 이상하면 사진 접수</button>'
     + '<button class="cta" id="doneOk">확인</button>'
     + '<button class="ghost" id="doneAgain">장바구니 다시 보기</button>'
     + '<p class="dfoot">훈이네과일야채 단구점 · ' + STORE.addr + '<br>문의 ' + STORE.tel + '</p>';
@@ -1694,6 +2044,11 @@ function showDone(ord){
   $("#doneBody").innerHTML = h;
   showView("done");
   window.scrollTo(0,0);
+  var dc = $("#doneClaim");
+  if (dc) dc.addEventListener("click", function(){
+    var first = (o.items && o.items.length) ? o.items[0].pid : "";
+    openClaim(first);
+  });
   $("#doneOk").addEventListener("click", function(){
     state.cart = [];
     state.form = {name: state.form.name, phone: state.form.phone, addr: "", memo: "", pay: state.form.pay, agree: false};
@@ -1822,8 +2177,49 @@ function bind(){
     closeSheet();
   });
   document.addEventListener("click", function(e){
+    var cl = e.target.closest("[data-claim]");
+    if (cl){
+      var want = cl.getAttribute("data-claim");
+      openClaim(want && want !== "1" ? want : "");
+      return;
+    }
     var c = e.target.closest("[data-close]");
-    if (c) closeSheet();
+    if (c){
+      if (c.getAttribute("data-close") === "claim") closeClaim();
+      else closeSheet();
+    }
+  });
+
+  /* 사진 접수 */
+  var cf = $("#claimFile");
+  if (cf) cf.addEventListener("change", function(){ addClaimPhotos(cf.files); });
+  $("#claimBody").addEventListener("click", function(e){
+    var rs = e.target.closest("[data-reason]");
+    if (rs && claim){ claim.reason = rs.getAttribute("data-reason"); renderClaim(); return; }
+    if (e.target.closest("[data-photo-add]")){
+      var f = $("#claimFile");
+      if (f) f.click();
+      return;
+    }
+    var del = e.target.closest("[data-photo-del]");
+    if (del && claim){ claim.photos.splice(Number(del.getAttribute("data-photo-del")), 1); renderClaim(); return; }
+  });
+  $("#claimBody").addEventListener("change", function(e){
+    if (e.target.id === "claimItem" && claim){
+      claim.pid = e.target.value;
+      claim.orderNo = "";
+      for (var i=0;i<claim.items.length;i++) if (claim.items[i].pid === claim.pid) claim.orderNo = claim.items[i].orderNo || "";
+    }
+  });
+  $("#claimBody").addEventListener("input", function(e){
+    if (!claim) return;
+    var t = e.target;
+    if (t.id === "claimMemo") claim.memo = t.value;
+    else if (t.id === "claimName") claim.name = t.value;
+    else if (t.id === "claimPhone") claim.phone = t.value;
+  });
+  $("#claimFoot").addEventListener("click", function(e){
+    if (e.target.closest("#claimSend")) sendClaim();
   });
 
   /* 결제 · 로그인 */
@@ -1856,7 +2252,7 @@ function bind(){
   });
 
   document.addEventListener("keydown", function(e){
-    if (e.key === "Escape") closeSheet();
+    if (e.key === "Escape"){ closeSheet(); closeClaim(); }
   });
 }
 
@@ -1872,6 +2268,8 @@ function init(){
   renderCats();
   renderMode();
   renderMenu();
+  renderGradeGuide();
+  renderClaimBadge();
   renderBar();
   renderCart();
   renderOrderStrip();
@@ -1886,6 +2284,10 @@ function init(){
     } else if (e.key === ORDERS_KEY){
       loadOrders(); renderOrderStrip();
       if (state.view === "done" && state.order) showDone(state.order);
+    } else if (e.key === CLAIM_KEY){
+      renderClaimBadge();
+      if (state.view === "cart") renderCart();
+      if (state.view === "checkout") renderCheckout();
     }
   });
 }
