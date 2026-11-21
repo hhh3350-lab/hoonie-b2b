@@ -112,18 +112,19 @@
 데모용 샘플 데이터입니다. 품목 단가·거래처·미수 내역은 실제 값이 아닙니다.
 손님 화면은 시연 편의를 위해 처음 열면 `쪼끼쪼끼[단관택지]` 가게로 들어간 상태로 시작합니다.
 
-## 단구점 소매몰 `shop.html` · 소매 사장님 페이지 `shop-admin.html` (v4 · 2026-11-21)
+## 단구점 소매몰 `shop.html` · 소매 사장님 페이지 `shop-admin.html` (v6 · 2026-11-22)
 
 위 B2B(거래처 발주)와는 **별개**로, 단구점 매장 손님용 소매 쇼핑몰입니다. 사진·CSS·JS가 각 파일 하나에 들어 있습니다.
 
 | 화면 | 파일 | 내용 |
 |---|---|---|
-| 손님(소매) | `shop.html` | 배민 스타일 45종 메뉴 · 배달/포장 · 받는 시간 선택 · 장바구니 · 결제 · 주문 완료. 포장 주문 하루 1회 1,000원 할인 |
+| 손님(소매) | `shop.html` | 배민 스타일 45종 메뉴 · 배달/포장 · 받는 시간 선택 · 장바구니 · 결제 · 주문 완료. 포장 주문 하루 1회 1,000원 할인. **하단 사업자 정보 푸터 + 이용약관·개인정보처리방침·배송 및 교환·환불 정책(모달)** |
 | 소매 사장님 | `shop-admin.html` | 오늘 들어온 소매 주문(배달/포장·수령 시간·품목·결제 금액) 상태 변경, 45종 가격·품절·남은 수량·사장님 코멘트 즉시 관리 |
 
-- 열어 보기: `https://htmlpreview.github.io/?https://github.com/hhh3350-lab/hoonie-b2b/blob/main/shop.html`
-- 사장님: `https://htmlpreview.github.io/?https://github.com/hhh3350-lab/hoonie-b2b/blob/main/shop-admin.html`
-- 미리보기: `preview-retail-v4.png` · `preview-retail-admin.png`
+- 열어 보기: `https://hhh3350-lab.github.io/hoonie-b2b/shop.html` (임시 미리보기: `https://htmlpreview.github.io/?https://github.com/hhh3350-lab/hoonie-b2b/blob/main/shop.html`)
+- 사장님: `https://hhh3350-lab.github.io/hoonie-b2b/shop-admin.html`
+- 미리보기: `preview-retail-pg-footer.png` · `preview-retail-pg-policy.png` · `preview-retail-pg-checkout.png` · `preview-retail-v4.png`
+- **PG(카드사) 심사용** — 푸터에 상호 `훈이네과일야채` · 대표자 `황관훈` · `421-28-01608` · `강원특별자치도 원주시 단구로 398, 상가동2동 1층 101호` · 고객센터 `010-9142-1531` · `hhh3350@naver.com` · 통신판매업 신고번호 `발급 진행 중` 을 사업자등록증과 같이 적었습니다. 결제 수단은 `신용·체크카드` 가 기본입니다.
 - 두 화면은 **공용 DB(Supabase)** 를 함께 씁니다. 사장님이 품절·가격·상태를 바꾸면 **다른 기기의 손님 화면에도** 5초 안에 반영됩니다.
   주문은 `retail_orders`, 사진 접수는 `retail_claims`, 상품 가격·품절·남은 수량·코멘트·등급은 `app_state`(`retail_catalog`)에 저장됩니다.
   손님 화면은 **그 기기에서 넣은 주문만** 봅니다(다른 손님 주문·연락처는 보이지 않음).
