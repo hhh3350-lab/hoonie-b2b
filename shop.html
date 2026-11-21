@@ -623,6 +623,7 @@ var CATALOG_KEY  = "hoonie_retail_catalog_v1";   // 사장님이 고친 가격·
 var ORDERS_KEY   = "hoonie_retail_orders_v1";    // 접수된 주문 (사장님 페이지가 상태 변경)
 var CUSTOMER_KEY = "hoonie_retail_customer_v1";  // 최근 주문자 이름·연락처·배달 주소
 var CLAIM_KEY    = "hoonie_retail_claims_v1";    // 사진 접수 (사장님이 보상완료/반려)
+var MINE_KEY     = "hoonie_retail_my_orders_v1"; // 이 기기에서 넣은 주문번호 (다른 손님 주문은 보지 않게)
 
 /* ── 공용 저장소 (Supabase) ────────────────────────────────────────
    위 기기 저장소(localStorage)는 빠른 캐시로 그대로 두고, 사장님 화면과
@@ -1133,9 +1134,21 @@ function slotBoxHtml(inBanner){
 }
 
 /* ── 주문 저장소 (사장님 페이지와 공유) ── */
+function myOrderNos(){
+  try { var d = JSON.parse(localStorage.getItem(MINE_KEY) || "[]"); return Array.isArray(d) ? d : []; }
+  catch(e){ return []; }
+}
+function rememberMyOrder(no){
+  var list = myOrderNos();
+  if (list.indexOf(no) < 0) list.unshift(no);
+  try { localStorage.setItem(MINE_KEY, JSON.stringify(list.slice(0, 50))); } catch(e){}
+}
 function loadOrders(){
   try { var d = JSON.parse(localStorage.getItem(ORDERS_KEY) || "[]"); state.orders = Array.isArray(d) ? d : []; }
   catch(e){ state.orders = []; }
+  /* 이 화면은 손님용 — 사장님이 같은 브라우저로 열어 받아 둔 다른 손님 주문은 보여주지 않는다 */
+  var mine = myOrderNos();
+  if (mine.length) state.orders = state.orders.filter(function(o){ return mine.indexOf(o.no) > -1; });
 }
 function saveOrders(){
   try { localStorage.setItem(ORDERS_KEY, JSON.stringify(state.orders)); } catch(e){}
@@ -2118,6 +2131,7 @@ function pay(){
     };
     state.order = ord;
     state.orders.unshift(ord);
+    rememberMyOrder(ord.no);
     saveOrders();
     pushOrder(ord);          /* 공용 DB에 올려 사장님 화면에 바로 보이게 */
     saveRecent();
