@@ -128,3 +128,20 @@
 - 두 화면은 **공용 DB(Supabase)** 를 함께 씁니다. 사장님이 품절·가격·상태를 바꾸면 **다른 기기의 손님 화면에도** 5초 안에 반영됩니다.
   주문은 `retail_orders`, 사진 접수는 `retail_claims`, 상품 가격·품절·남은 수량·코멘트·등급은 `app_state`(`retail_catalog`)에 저장됩니다.
   손님 화면은 **그 기기에서 넣은 주문만** 봅니다(다른 손님 주문·연락처는 보이지 않음).
+
+## 과일 완전도매 `fruit-wholesale.html` · 사장님 `fruit-wholesale-admin.html` (2026-11-22)
+
+과일 박스**만** 모은 도매 발주 화면입니다(위 두 시스템과 별개). 두 파일 모두 사진·CSS·JS가 한 파일에 들어 있습니다.
+
+| 화면 | 파일 | 내용 |
+|---|---|---|
+| 손님(거래처) | `fruit-wholesale.html` | 과일 12종 박스 · 카테고리 5개(전체/딸기·베리/감귤·만감/사과·배·감/포도·수입과일) · `−/＋` 수량 · **최소 20만 원** 하단 바 · 발주서 · 발주내역 조회 |
+| 사장님 | `fruit-wholesale-admin.html` | 들어온 발주 확인 · 상태(접수→준비중→배송중→완료) · 품목별 박스 단가·품절·최소주문금액 저장 |
+
+- 열어 보기: `https://hhh3350-lab.github.io/hoonie-b2b/fruit-wholesale.html`
+- 사장님: `https://hhh3350-lab.github.io/hoonie-b2b/fruit-wholesale-admin.html`
+- 미리보기: `preview-fruit-wholesale.png`(모바일 손님) · `preview-fruit-wholesale-admin.png`(모바일 사장님) · `preview-fruit-wholesale-desktop.png`
+- **최소 배송 200,000원** — 하단 고정 바에 `상품 O종 · Okg` / `총액` 과 `OO,OOO원 더 담으면 배송 가능` 이 뜨고, 넘으면 초록 배지로 바뀌며 `발주하기` 가 열립니다.
+- 발주서: 상호 · 담당자 연락처 · 배송 주소 · 희망 배송일 · 요청 메모 · 결제방식(계좌이체 / 거래처 정산 협의) → 접수번호 `FW20261122-4821`.
+- 공용 DB는 `app_state` 의 `fruit_wholesale_catalog`(단가·품절·최소주문) · `fruit_wholesale_orders`(발주서) 키를 씁니다. 사장님 화면은 발주 전부를, 손님 화면은 **이 기기에서 넣은 발주만** 봅니다.
+- 사장님 화면은 로그인이 없습니다(주소를 아는 사람이 열 수 있음). 발주서에 상호·연락처·주소가 들어가므로 필요하면 비밀번호를 붙이는 것을 권합니다.
