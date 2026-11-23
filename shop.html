@@ -81,6 +81,10 @@ a{color:inherit}
 .banner.pick.used small{color:var(--ink3)}
 .banner.deliv{background:var(--mint-l2);border:1px solid #D6F1EF;color:#0B7C77}
 .banner.deliv small{color:#2C7F7A}
+.banner.closed{background:#FFF4E8;border:1.5px solid #F6C98E;color:#8A4B00}
+.banner.closed b{color:#8A4B00}
+.banner.closed small{color:#8A4B00}
+.banner.closed .chips button{border-color:#F0B678;background:#fff;color:#8A4B00}
 .bn-ico{font-size:18px;line-height:1.15;margin-right:5px}
 .chips{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
 .chips button{height:38px;padding:0 12px;border-radius:999px;border:1.5px solid #DDE1E4;background:#fff;font-size:13px;font-weight:800;color:var(--ink2);display:inline-flex;align-items:center;gap:5px;letter-spacing:-.2px}
@@ -256,6 +260,7 @@ a{color:inherit}
 .field.bad input{border-color:#E88E7E;background:#FFF7F5}
 .field .err{display:none;font-size:12.5px;color:var(--red);margin-top:4px;font-weight:700}
 .field.bad .err{display:block}
+.field .fhint{display:block;margin-top:5px;font-size:12px;color:var(--ink3);font-weight:700;letter-spacing:-.2px}
 .two{display:grid;gap:9px}
 @media(min-width:520px){.two{grid-template-columns:1fr 1fr}}
 .snb{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
@@ -267,6 +272,11 @@ a{color:inherit}
 .pays{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .paybtn{height:54px;border-radius:10px;border:1.5px solid #E4E6E8;background:#fff;font-size:15px;font-weight:800;color:var(--ink2);display:flex;align-items:center;justify-content:center;gap:6px;letter-spacing:-.3px}
 .paybtn.on{border-color:var(--mint);background:var(--mint-l);color:var(--mint-d)}
+.rcpt{margin-top:12px;border:1.5px solid #E4E6E8;border-radius:12px;padding:12px 12px 10px;background:#fff}
+.rcpt-h b{display:block;font-size:14px;font-weight:800;letter-spacing:-.3px;color:var(--ink)}
+.rcpt-h small{display:block;margin-top:2px;font-size:12px;color:var(--ink3);font-weight:700;letter-spacing:-.2px}
+.rcpt .chips{margin-top:9px}
+.rcpt .field{margin-top:10px;margin-bottom:0}
 .agree{display:flex;gap:10px;align-items:flex-start;margin-top:12px;padding:12px 13px;border:1.5px solid #E4E6E8;border-radius:10px;font-size:13.5px;color:var(--ink2);line-height:1.55;letter-spacing:-.2px}
 .agree input{width:24px;height:24px;margin:0;accent-color:var(--mint);flex:0 0 auto}
 .agree.bad{border-color:#E88E7E;background:#FFF7F5}
@@ -511,7 +521,7 @@ a{color:inherit}
       <li><span class="f-ico">🛵</span><div><b>시내 배달</b><br>최소주문 30,000원</div></li>
       <li><span class="f-ico">🚛</span><div><b>기업·태장·우산</b><br>최소주문 50,000원</div></li>
       <li><span class="f-ico">🏪</span><div><b>포장</b><br>최소주문 없음</div></li>
-      <li class="f-close"><span class="f-ico">⏰</span><div><b>오후 2시 마감</b><br>당일·익일 배달</div></li>
+      <li class="f-close"><span class="f-ico">⏰</span><div><b>낮 12시 마감</b><br>지난 뒤엔 내일 오전 배달</div></li>
     </ul>
   </section>
 
@@ -546,10 +556,10 @@ a{color:inherit}
       <dt>전화</dt><dd><a href="tel:0337651531">033-765-1531</a></dd>
       <dt>배달</dt><dd>원주 시내권 30,000원↑ · 기업도시·태장·우산동 50,000원↑ 무료배달</dd>
       <dt>포장</dt><dd>최소주문 없음 · 15,000원 이상 포장 시 1,000원 할인 쿠폰 (하루 1회)</dd>
-      <dt>마감</dt><dd>오후 2시 · 절임배추는 최소 4일 전 예약</dd>
+      <dt>마감</dt><dd>낮 12시 · 절임배추는 최소 4일 전 예약</dd>
     </dl>
     <p class="sim">
-      이 화면은 <b>제작 시안(샘플)</b>입니다. 상품·가격은 2026-11-20 소소마켓 특가 글을 그대로 옮겼고, 카드·간편결제는 PG·가맹점 키를 붙이기 전이라 실제 승인·출금은 이뤄지지 않습니다.
+      가격은 오늘 입고 기준이며, 신선식품은 시세에 따라 달라질 수 있습니다. 주문하신 시점의 가격이 적용됩니다.
       사진은 상품 이해를 돕기 위한 예시이며, 실제 입고 상품과 다를 수 있습니다.
     </p>
   </section>
@@ -563,7 +573,7 @@ a{color:inherit}
       <dt>사업자등록번호</dt><dd>421-28-01608</dd>
       <dt>사업장 주소</dt><dd>강원특별자치도 원주시 단구로 398, 상가동2동 1층 101호</dd>
       <dt>고객센터</dt><dd><a href="tel:+821091421531">010-9142-1531</a> · <a href="mailto:hhh3350@naver.com">hhh3350@naver.com</a></dd>
-      <dt>통신판매업 신고번호</dt><dd class="pending">발급 진행 중 (신고 완료 즉시 기재)</dd>
+      <dt>통신판매업 신고번호</dt><dd class="pending">신고 진행 중 (20261123-31137180)</dd>
     </dl>
     <div class="pf-links" id="policyLinks">
       <button type="button" data-policy="terms">이용약관</button>
@@ -593,7 +603,7 @@ a{color:inherit}
     <span class="ph-step">주문 정보 입력</span>
   </header>
   <div id="ckBody"></div>
-  <div class="pfoot"><button class="cta" id="payBtn">0원 결제하기</button></div>
+  <div class="pfoot"><button class="cta" id="payBtn">0원 주문하기</button></div>
 </main>
 
 <!-- ══ 주문 완료 ═════════════════════════════ -->
@@ -660,14 +670,14 @@ var STORE = {
   email: "hhh3350@naver.com",
   owner: "황관훈",
   biz: "421-28-01608",
-  mailorder: "발급 진행 중"
+  mailorder: "신고 진행 중 (20261123-31137180)"
 };
 
 var ZONES = {
   pickup: { key:"pickup", name:"포장(매장픽업)", short:"포장", icon:"🏪", min:0,
     hint:"단구로 398, 상가동2동 1층 101호 · 최소주문 없음", eta:"준비되면 바로 수령 (보통 30분 이내)" },
   city:   { key:"city", name:"원주 시내권 배달", short:"원주 시내권", icon:"🛵", min:30000,
-    hint:"30,000원 이상 무료배달 · 오후 2시 마감", eta:"오후 2시 이전 주문 → 당일 또는 익일 배달" },
+    hint:"30,000원 이상 무료배달 · 낮 12시 마감", eta:"낮 12시 이전 주문 → 당일 또는 익일 배달" },
   outer:  { key:"outer", name:"기업도시·태장·우산동 배달", short:"기업·태장·우산동", icon:"🚛", min:50000,
     hint:"50,000원 이상 무료배달 · 전날 발주 → 다음날 오전배송", eta:"전날 주문 → 다음날 오전 배송" }
 };
@@ -925,12 +935,6 @@ var PRODUCTS = [
      badges:[["행사","hot"]], origin:"필리핀산", desc:"달콤한 감숙왕 3통", price:9900, tags:["파인애플"],
      tip:"뒤집어 하루 두면 더 달아져요"}),
 
-  P({id:"goldkiwi-10", name:"골드키위", unit:"10개", cats:["deal"], img:"kiwi", grade:"home",
-     badges:[["국내산","dom"],["행사","hot"]], origin:"국내산", desc:"10개 묶음 특가", price:5000, tags:["키위"]}),
-
-  P({id:"jujube", name:"사과대추", unit:"3팩", cats:["deal"], img:"jujube", grade:"C",
-     badges:[["당일소진","dd"]], origin:"국내산", desc:"당일소진 특가 · 소진 시 종료", price:9900, tags:["대추"]}),
-
   P({id:"daebong-15", name:"대봉감", unit:"15알", cats:["deal"], img:"daebong", grade:"C",
      badges:[["행사","hot"]], origin:"국내산", desc:"15알 행사 · 익혀 드세요", price:9900, tags:["감"]}),
 
@@ -945,13 +949,13 @@ var PRODUCTS = [
      ogrades:["home","A","A"],
      badges:[["오늘입고","fresh"]], origin:"국내산", desc:"향·당도 좋은 생딸기", stock:5,
      tip:"냉장 2시간 뒤 드시면 더 달아요",
-     opts:[{label:"4x5 · 1팩", sub:"가장 많이 담기는 사이즈", price:8500},
+     opts:[{label:"4x5 · 1팩", sub:"가장 많이 담기는 사이즈", price:7900},
            {label:"3x5 · 1팩", sub:"알이 큰 사이즈", price:9900},
            {label:"3x4 · 1팩", sub:"선물용 큰 알", price:13800}],
      tags:["딸기"]}),
 
   P({id:"fig", name:"무화과", unit:"1kg", cats:["fruit"], img:"fig", grade:"A",
-     badges:[["국내산","dom"]], origin:"국내산", desc:"엄선한 품질보증 · 달콤한 무화과", price:7900, tags:["무화과"],
+     badges:[["국내산","dom"]], origin:"국내산", desc:"엄선한 품질보증 · 달콤한 무화과", price:5900, tags:["무화과"],
      tip:"냉장 1~2일 안에 드세요"}),
 
   P({id:"mango", name:"골드망고", unit:"4개", cats:["fruit"], img:"mango", grade:"home",
@@ -964,7 +968,7 @@ var PRODUCTS = [
      badges:[["선물용","gift"]], origin:"국내산", desc:"선물용 박스 포장", price:15000, tags:["감"]}),
 
   P({id:"hwanggeumhyang", name:"황금향", unit:"3kg", cats:["fruit"], img:"goldenhwang", grade:"A",
-     badges:[], origin:"제주산", desc:"새콤달콤 황금향", price:16800, tags:["귤 감귤"]}),
+     badges:[], origin:"제주산", desc:"새콤달콤 황금향", price:12800, tags:["귤 감귤"]}),
 
   P({id:"tangerine", name:"제주 귤", unit:"5kg", cats:["fruit"], img:"tangerine", grade:"home",
      ogrades:["home","A","A","B","B","B"],
@@ -979,13 +983,10 @@ var PRODUCTS = [
      tags:["귤 감귤"]}),
 
   P({id:"emperor", name:"중문 황제귤", unit:"5kg · M", cats:["fruit"], img:"tangerine", grade:"A",
-     badges:[["프리미엄","gift"]], origin:"제주 중문", desc:"중문 명품 귤 M 사이즈", price:45000, tags:["귤 감귤"]}),
+     badges:[["프리미엄","gift"]], origin:"제주 중문", desc:"중문 명품 귤 M 사이즈", price:36000, tags:["귤 감귤"]}),
 
   P({id:"newstein", name:"윤홍희 뉴스틴 포도", unit:"2kg", cats:["fruit"], img:"shine", grade:"A",
      badges:[], origin:"국내산", desc:"망고스틴 식감 · 당도 보증", price:15000, tags:["포도 샤인"]}),
-
-  P({id:"campbell", name:"켐벨포도", unit:"3kg", cats:["fruit"], img:"campbell", grade:"A",
-     badges:[], origin:"국내산", desc:"3kg 한 상자", price:20000, tags:["포도"]}),
 
   P({id:"bansee", name:"반시", unit:"2.5kg · M", cats:["fruit"], img:"persimmon", grade:"C",
      badges:[], origin:"국내산", desc:"M 사이즈 2.5kg", price:5000, tags:["감 홍시"]}),
@@ -997,9 +998,6 @@ var PRODUCTS = [
            {label:"3kg · A급", price:20000},
            {label:"4kg · 6수", price:20000}],
      tags:["포도 샤인머스켓"]}),
-
-  P({id:"banana", name:"바나나", unit:"1송이", cats:["fruit"], img:"banana", grade:"home",
-     badges:[], origin:"필리핀산", desc:"매일 들어오는 바나나", price:3500, tags:["바나나"]}),
 
   P({id:"pineapple", name:"파인애플", unit:"1통", cats:["fruit"], img:"pineapple", grade:"home",
      badges:[], origin:"필리핀산", desc:"1통 그대로", price:7500, tags:["파인애플"]}),
@@ -1029,10 +1027,11 @@ var PRODUCTS = [
 
   /* ── 신선 채소 ── */
   P({id:"cabbage", name:"배추", unit:"1망", cats:["veg"], img:"cabbage",
-     badges:[], origin:"국내산", desc:"김장 배추 1망", price:5500, tags:["배추 김장"],
+     badges:[], origin:"국내산", desc:"김장 배추 1망", price:4500, tags:["배추 김장"],
      tip:"김장 배추는 4일 전 예약하세요"}),
   P({id:"cheonggat", name:"청갓", unit:"1단", cats:["veg"], img:"cheonggat", badges:[], origin:"국내산", desc:"싱싱한 청갓", price:3000, tags:["갓"]}),
   P({id:"altari", name:"알타리", unit:"5단", cats:["veg"], img:"altari", badges:[], origin:"국내산", desc:"5단 묶음", price:9900, tags:["무 총각김치"]}),
+  P({id:"jjokpa", name:"흙쪽파", unit:"1단", cats:["veg"], img:"daepa", badges:[], origin:"국내산", desc:"흙 묻은 쪽파 1단", price:3000, tags:["쪽파 파 김장"]}),
   P({id:"daepa", name:"대파", unit:"1단", cats:["veg"], img:"daepa", badges:[], origin:"국내산", desc:"1단", price:2500, stock:10, tags:["파"], tip:"뿌리째 세워 두면 오래가요"}),
   P({id:"aehobak", name:"애호박", unit:"1개", cats:["veg"], img:"aehobak", badges:[], origin:"국내산", desc:"1개", price:1500, tags:["호박"]}),
   P({id:"buchu", name:"부추", unit:"1단", cats:["veg"], img:"buchu", badges:[], origin:"국내산", desc:"1단", price:3000, tags:["부추"]}),
@@ -1047,8 +1046,10 @@ var PRODUCTS = [
   P({id:"perilla", name:"깻잎", unit:"1봉지", cats:["veg"], img:"perilla", badges:[], origin:"국내산", desc:"1봉지", price:1500, tags:["깻잎"], tip:"씻지 말고 냉장 보관하세요"}),
 
   /* ── 계란 ── */
-  P({id:"egg-xl", name:"특란", unit:"1판 (30구)", cats:["egg"], img:"egg", badges:[], origin:"국내산", desc:"30구 1판", price:6500, stock:8, tags:["계란 달걀"], tip:"냉장고 안쪽 칸에 두세요"}),
-  P({id:"egg-l", name:"대란", unit:"1판 (30구)", cats:["egg"], img:"egg", badges:[], origin:"국내산", desc:"30구 1판", price:5000, tags:["계란 달걀"]})
+  P({id:"egg-xl", name:"특란", unit:"1판 (30구)", cats:["egg"], img:"egg", badges:[], origin:"국내산", desc:"30구 1판", price:6000, stock:8, tags:["계란 달걀"], tip:"냉장고 안쪽 칸에 두세요"}),
+  P({id:"egg-king", name:"판없는 왕란", unit:"1판 (30구)", cats:["egg"], img:"egg", grade:"home",
+     badges:[["특가","hot"]], origin:"국내산", desc:"판 없이 알만 담은 왕란 30구", price:6000, tags:["계란 달걀 왕란"],
+     tip:"냉장고 안쪽 칸에 두세요"})
 ];
 
 var CATS = [
@@ -1080,7 +1081,7 @@ var state = {
   filter: "all",
   q: "",
   view: "shop",      // shop | cart | checkout | done
-  form: {name:"", phone:"", addr:"", memo:"", pay:"card", agree:false},
+  form: {name:"", phone:"", addr:"", memo:"", pay:"card", agree:false, depositor:"", receiptType:"none", receiptNo:""},
   order: null,
   opt: null,         // {pid, oi, qty}
   couponDate: null,  // 포장 할인 마지막 사용일 (YYYY-MM-DD)
@@ -1095,8 +1096,8 @@ var SLOT_DEF = {
     {key:"today_pm", label:"오늘 오후 픽업",     sub:"오후 4시~7시에 가져가기", eta:"오늘 오후 픽업"}
   ],
   delivery_city: [
-    {key:"today_pm",    label:"오늘 오후 배달", sub:"오후 2시 이전 주문", eta:"오늘 오후 배달"},
-    {key:"tomorrow_am", label:"내일 오전 배달", sub:"2시 넘었어도 가능", eta:"내일 오전 배달"}
+    {key:"today_pm",    label:"오늘 오후 배달", sub:"낮 12시 이전 주문", eta:"오늘 오후 배달"},
+    {key:"tomorrow_am", label:"내일 오전 배달", sub:"낮 12시 넘었어도 접수", eta:"내일 오전 배달"}
   ],
   delivery_outer: [
     {key:"tomorrow_am",  label:"내일 오전 배송", sub:"오늘 주문 · 전날 발주", eta:"내일 오전 배송"},
@@ -1171,9 +1172,56 @@ function stockBadgeHtml(p){
   return '<span class="stockb' + (s <= 2 ? '' : ' soon') + '">오늘 ' + s + unitWord(p) + ' 남음</span>';
 }
 
+/* ── 낮 12시 마감 (한국 시간 Asia/Seoul 기준, 기기 시간대와 무관) ── */
+function kstDate(){
+  var d = new Date();
+  return new Date(d.getTime() + d.getTimezoneOffset() * 60000 + 9 * 3600000);
+}
+function deliveryClosed(){ return kstDate().getHours() >= 12; }
+var CLOSED_MSG = "오늘 당일 배달은 낮 12시에 마감되었어요. 지금 주문하시면 내일 오전 배송으로 접수됩니다. (매장 포장은 지금도 가능해요!)";
+function deliveryClosedBannerHtml(){
+  return '<div class="banner closed" id="closedBanner">'
+    + '<b><span class="bn-ico">⏰</span>오늘 배달은 낮 12시에 마감됐어요</b>'
+    + '<small>' + CLOSED_MSG + '</small>'
+    + '<div class="chips"><button data-mode="pickup">🏪 포장으로 바꾸기</button></div></div>';
+}
+function deliveryClosedNote(pad){
+  return '<div class="banner closed" style="margin:' + (pad ? '12px 0 0' : '10px 16px 0') + '">'
+    + '<b><span class="bn-ico">⏰</span>낮 12시 마감 · 내일 오전 배송으로 접수돼요</b>'
+    + '<small>' + CLOSED_MSG + '</small>'
+    + '<div class="chips"><button data-mode="pickup">🏪 포장으로 바꾸기</button></div></div>';
+}
+
 /* ── 받는 시간 선택 ── */
 function ctxKey(){ return state.mode === "pickup" ? "pickup" : "delivery_" + state.zone; }
-function slotList(){ return SLOT_DEF[ctxKey()] || SLOT_DEF.delivery_city; }
+function slotList(){
+  var list = SLOT_DEF[ctxKey()] || SLOT_DEF.delivery_city;
+  /* 낮 12시가 지나면 오늘 오후 배달은 받지 않고 내일 오전 배송으로 접수한다 */
+  if (ctxKey() === "delivery_city" && deliveryClosed()){
+    list = list.filter(function(s){ return s.key !== "today_pm"; });
+  }
+  return list;
+}
+/* ── 현금영수증 표기 ── */
+function receiptLabel(t){
+  if (t === "income") return "소득공제(휴대폰번호)";
+  if (t === "expense") return "지출증빙(사업자번호)";
+  return "";
+}
+function rcptHtml(){
+  var f = state.form, t = f.receiptType || "none";
+  function c(k, label){ return '<button data-rcpt="' + k + '"' + (t === k ? ' class="on"' : '') + ' aria-pressed="' + (t === k) + '">' + label + '</button>'; }
+  var h = '<div class="rcpt" id="rcptBox"><div class="rcpt-h"><b>🧾 현금영수증 신청 (선택)</b>'
+    + '<small>현금·계좌이체로 보내실 때 발급해 드려요 · 카드 결제는 자동 발급</small></div><div class="chips">'
+    + c("none", "안 함") + c("income", "소득공제 · 휴대폰번호") + c("expense", "지출증빙 · 사업자번호")
+    + '</div>';
+  if (t !== "none"){
+    h += '<div class="field"><label for="ckRcptNo">' + (t === "expense" ? "사업자번호" : "휴대폰번호") + '</label>'
+      + '<input id="ckRcptNo" inputmode="numeric" value="' + esc(f.receiptNo) + '" placeholder="' + (t === "expense" ? "123-45-67890" : "010-0000-0000") + '">'
+      + '<span class="fhint">현금영수증을 발급할 번호예요</span></div>';
+  }
+  return h + '</div>';
+}
 function curSlot(){
   var list = slotList(), want = state.slots[ctxKey()];
   for (var i=0;i<list.length;i++) if (list[i].key === want) return list[i];
@@ -1310,14 +1358,14 @@ function toast(msg){
 }
 
 /* ────────────────────────────────────────────────
-   5. 로그인 (시안)
+   5. 간편 로그인
    ──────────────────────────────────────────────── */
 function login(provider){
   state.user = {provider: provider, name: "김단골"};
   if (!state.form.name) state.form.name = "김단골";
   if (!state.form.phone) state.form.phone = "010-1234-5678";
   save();
-  toast(provider === "naver" ? "네이버로 로그인했어요 (시안)" : "카카오로 로그인했어요 (시안)");
+  toast(provider === "naver" ? "네이버로 로그인했어요" : "카카오로 로그인했어요");
   if (state.view === "checkout") renderCheckout();
 }
 function logout(){
@@ -1358,9 +1406,10 @@ function renderMode(){
       + slotBoxHtml(true)
       + '</div>';
   } else {
-    el.innerHTML = '<div class="banner deliv">'
+    el.innerHTML = (deliveryClosed() ? deliveryClosedBannerHtml() : '')
+      + '<div class="banner deliv">'
       + '<b><span class="bn-ico">🛵</span>무료배달 최소주문</b>'
-      + '<small>원주 시내 30,000원 이상 · 기업·태장·우산 50,000원 이상 · 오후 2시 마감</small>'
+      + '<small>원주 시내 30,000원 이상 · 기업·태장·우산 50,000원 이상 · 낮 12시 마감</small>'
       + '<div class="chips">'
       +   '<button data-zone="city"' + (state.zone === "city" ? ' class="on"' : '') + '>원주 시내권 <em>3만원 이상</em></button>'
       +   '<button data-zone="outer"' + (state.zone === "outer" ? ' class="on"' : '') + '>기업·태장·우산동 <em>5만원 이상</em></button>'
@@ -1683,7 +1732,10 @@ function renderCart(){
   h += '<p class="seghint">' + (state.mode === "pickup"
       ? "🏪 단구로 398 상가동 101호에서 바로 받아 가세요 · 최소주문 없음"
       : (state.zone === "city" ? "🛵 원주 시내권 · 30,000원 이상 무료배달" : "🚛 기업·태장·우산동 · 50,000원 이상 무료배달")) + '</p>';
-  if (state.mode === "delivery") h += zoneChipsHtml();
+  if (state.mode === "delivery"){
+    h += zoneChipsHtml();
+    if (deliveryClosed()) h += deliveryClosedNote(false);
+  }
   h += slotBoxHtml();
   h += '<div class="cartlist">';
   for (var i=0;i<state.cart.length;i++) h += cartRowHtml(state.cart[i]);
@@ -1705,7 +1757,7 @@ function renderCart(){
   h += '<div class="sumcard">' + sumRowsHtml() + '</div>';
   h += gbadgeHtml();
   if (lastOrder()) h += '<button class="reorder cart" id="reorderCart">🔁 지난번 시킨 거 그대로 담기</button>';
-  h += '<p class="note">시안 화면이라 실제 결제·배달은 이뤄지지 않아요. 포장 1,000원 할인 쿠폰은 15,000원 이상 주문에 하루 1회만 적용됩니다.</p>';
+  h += '<p class="note">포장 1,000원 할인 쿠폰은 15,000원 이상 주문에 하루 1회만 적용됩니다.</p>';
   body.innerHTML = h;
 
   var re = remaining(), soldP = hasSold();
@@ -1816,7 +1868,7 @@ var POLICIES = {
     body: '<p class="polmeta">시행일 2026년 11월 22일 · 훈이네과일야채 단구점</p>'
       + '<h4>제1조 (목적)</h4><p>이 약관은 훈이네과일야채 단구점(이하 “가게”)이 운영하는 소매 주문 화면(이하 “사이트”)에서 과일·채소·계란 등 신선식품을 주문하고 받는 데 필요한 조건과 절차를 정합니다.</p>'
       + '<h4>제2조 (상품과 가격)</h4><ul><li>표시 가격은 원화이며 부가세를 포함합니다.</li><li>신선식품은 입고 시세에 따라 가격이 바뀔 수 있고, 주문한 시점의 가격이 적용됩니다.</li><li>품절·입고 중단된 상품은 주문이 취소될 수 있으며, 이때는 고객센터로 먼저 연락드리고 결제 금액을 환불해 드립니다.</li></ul>'
-      + '<h4>제3조 (주문과 계약 성립)</h4><ul><li>주문서를 보내면 가게가 내용을 확인한 뒤 접수하며, 그때 계약이 성립합니다.</li><li>배달 주문은 오후 2시까지 접수된 건을 당일 또는 익일 배달합니다. 기업도시·태장·우산동은 전날 주문 시 다음날 오전에 배송합니다.</li><li>절임배추는 최소 4일 전에 주문해 주셔야 하며, 매주 금요일 배송·픽업만 가능합니다.</li><li>주문 내용과 다르거나 연락이 닿지 않으면 가게가 주문을 취소할 수 있습니다.</li></ul>'
+      + '<h4>제3조 (주문과 계약 성립)</h4><ul><li>주문서를 보내면 가게가 내용을 확인한 뒤 접수하며, 그때 계약이 성립합니다.</li><li>배달 주문은 낮 12시까지 접수된 건을 당일 또는 익일 배달합니다. 기업도시·태장·우산동은 전날 주문 시 다음날 오전에 배송합니다.</li><li>절임배추는 최소 4일 전에 주문해 주셔야 하며, 매주 금요일 배송·픽업만 가능합니다.</li><li>주문 내용과 다르거나 연락이 닿지 않으면 가게가 주문을 취소할 수 있습니다.</li></ul>'
       + '<h4>제4조 (결제)</h4><ul><li>신용·체크카드, 네이버페이, 카카오페이, 무통장입금으로 결제할 수 있습니다.</li><li>카드·간편결제는 전자지급결제대행사(PG)를 통해 처리되며, 가게는 카드번호 등 결제 정보를 저장하지 않습니다.</li><li>무통장입금은 입금이 확인된 뒤 준비를 시작합니다.</li></ul>'
       + '<h4>제5조 (배달과 수령)</h4><p>배달 권역·최소주문 금액·매장 픽업 시간은 <b>배송 및 교환·환불 정책</b>에 따릅니다. 주문서에 적어 주신 연락처로 배달 전에 연락드릴 수 있습니다.</p>'
       + '<h4>제6조 (취소·교환·환불)</h4><p>주문 취소, 교환, 환불은 <b>배송 및 교환·환불 정책</b>에서 정한 기준과 절차에 따릅니다.</p>'
@@ -1846,7 +1898,7 @@ var POLICIES = {
     title: "배송 및 교환·환불 정책",
     body: '<p class="polmeta">시행일 2026년 11월 22일 · 훈이네과일야채 단구점</p>'
       + '<h4>1. 매장 픽업(포장)</h4><ul><li>받는 곳: 강원특별자치도 원주시 단구로 398, 상가동2동 1층 101호</li><li>최소주문 없음 · 준비되면 바로 수령(보통 30분 이내) 또는 오늘 오후 픽업</li><li>15,000원 이상 포장 주문에는 1,000원 할인 쿠폰을 하루 1회 쓸 수 있습니다.</li></ul>'
-      + '<h4>2. 배달</h4><ul><li><b>원주 시내권</b>: 30,000원 이상 무료배달 · 오후 2시 이전 주문은 당일 또는 익일 배달</li><li><b>기업도시·태장·우산동</b>: 50,000원 이상 무료배달 · 전날 주문 시 다음날 오전 배송</li><li>최소주문 금액에 못 미치면 배달이 되지 않아 주문 버튼이 잠기고, 포장으로 바꾸는 안내가 나옵니다.</li><li>비·눈이나 도로 사정으로 늦어지면 먼저 연락드립니다.</li></ul>'
+      + '<h4>2. 배달</h4><ul><li><b>원주 시내권</b>: 30,000원 이상 무료배달 · 낮 12시 이전 주문은 당일 또는 익일 배달</li><li>낮 12시가 지나 주문하시면 다음날 오전 배송으로 접수됩니다. 매장 포장은 그날 바로 가능합니다.</li><li><b>기업도시·태장·우산동</b>: 50,000원 이상 무료배달 · 전날 주문 시 다음날 오전 배송</li><li>최소주문 금액에 못 미치면 배달이 되지 않아 주문 버튼이 잠기고, 포장으로 바꾸는 안내가 나옵니다.</li><li>비·눈이나 도로 사정으로 늦어지면 먼저 연락드립니다.</li></ul>'
       + '<h4>3. 신선식품 교환·환불</h4><p>과일·채소는 신선식품이라 받으신 날 상태를 확인해 주세요. 아래 경우에는 <b>사진 접수</b>로 알려 주시면 확인 후 <b>교환 또는 부분환불</b>로 보상해 드립니다.</p><ul><li>받은 날 상한·무른·곰팡이·파손 등 이상이 있는 경우</li><li>주문한 상품과 다르거나 수량이 모자란 경우</li><li>표시된 등급·규격과 현저히 다른 경우</li></ul>'
       + '<h4>4. 접수와 처리 절차</h4><ul><li>화면의 <b>📷 받은 상품 이상하면 사진 접수</b>를 눌러 사진(최대 3장)·품목·사유·연락처를 보내 주세요.</li><li>사장님이 사진을 확인한 뒤 연락드리고, 교환·부분환불·다음 주문 보상 중에서 알맞은 방법으로 처리합니다.</li><li>급하시면 고객센터 010-9142-1531로 전화 주세요. 접수번호(CL…)를 알려 주시면 바로 확인합니다.</li></ul>'
       + '<h4>5. 교환·환불이 어려운 경우</h4><ul><li>수령한 다음 날 이후에 알려 주신 경우(다만 보관 중 이상이 생긴 것이 확인되면 상담해 드립니다)</li><li>이미 드셨거나 조리하신 경우, 손질·보관을 잘못하신 경우</li><li>단순 변심으로 받으신 날 이후에 요청하신 경우</li><li>절임배추는 최소 4일 전 주문·금요일 배송·픽업 상품으로, 주문 후 단순 변심 환불은 어렵습니다(이상이 있으면 같은 기준으로 보상합니다).</li></ul>'
@@ -2072,15 +2124,13 @@ function renderOrderStrip(){
    13. 주문서
    ──────────────────────────────────────────────── */
 function loginBoxHtml(){
-  if (state.user){
+  /* 로그인 없이 주문한다 (개인정보처리방침 1항) — 주문자 정보는 아래에 직접 적는다 */
+  if (state.user && state.user.name){
     var lab = state.user.provider === "naver" ? "🟢 네이버" : "🟡 카카오";
     return '<div class="who">' + lab + ' ' + esc(state.user.name) + '님으로 주문 중'
       + '<button id="ckLogout">로그아웃</button></div>';
   }
-  return '<div class="snb">'
-    + '<button class="sns naver" data-login="naver">네이버로 3초 시작</button>'
-    + '<button class="sns kakao" data-login="kakao">카카오로 3초 시작</button>'
-    + '</div>';
+  return '';
 }
 function renderCheckout(){
   if (state.view !== "checkout") return;
@@ -2094,6 +2144,9 @@ function renderCheckout(){
     + '<div class="field" id="fPhone"><label for="ckPhone">휴대폰 번호</label>'
     +   '<input id="ckPhone" inputmode="tel" value="' + esc(f.phone) + '" placeholder="010-0000-0000" autocomplete="tel">'
     +   '<span class="err">전화번호를 정확히 입력해 주세요</span></div>'
+    + '<div class="field"><label for="ckDepositor">입금자명 (선택)</label>'
+    +   '<input id="ckDepositor" value="' + esc(f.depositor) + '" placeholder="주문자와 다를 때만 입력" autocomplete="off">'
+    +   '<span class="fhint">무통장입금으로 보낼 때 확인용이에요</span></div>'
     + recentCardHtml()
     + '</section>';
 
@@ -2102,6 +2155,7 @@ function renderCheckout(){
     + modeSegHtml();
   if (state.mode === "delivery"){
     h += zoneChipsHtml();
+    if (deliveryClosed()) h += deliveryClosedNote(true);
     if (remaining() > 0) h += '<div class="mincard" style="margin:12px 0 0"><b>' + z.short + ' 배달까지 ' + money(remaining()) + '원 남았어요</b>'
       + '<p>' + money(z.min) + '원부터 배달돼요. 포장은 최소주문 없이, 15,000원 넘으면 1,000원 쿠폰!</p>'
       + '<button data-mode="pickup">🏪 포장으로 변경하기</button></div>';
@@ -2138,16 +2192,16 @@ function renderCheckout(){
 
   h += '<div class="band"></div>'
     + '<section class="csec"><h3><span class="sn">4</span>결제 수단</h3>'
-    + '<p class="hint">신용·체크카드, 네이버페이·카카오페이로 간편하게 결제하세요.</p><div class="pays">';
+    + '<p class="hint">결제 수단을 골라 주세요. 주문서를 보내면 사장님이 확인한 뒤 결제를 안내드려요.</p><div class="pays">';
   for (var j=0;j<PAYS.length;j++){
     var py = PAYS[j];
     h += '<button class="paybtn' + (f.pay===py.key ? ' on' : '') + '" data-pay="' + py.key + '">'
       + '<span>' + py.icon + '</span>' + py.label + '</button>';
   }
-  h += '</div>'
+  h += '</div>' + rcptHtml()
     + '<div class="agree' + (f.agree ? '' : '') + '" id="agreeBox">'
     + '<input type="checkbox" id="agreeCk"' + (f.agree ? ' checked' : '') + '>'
-    + '<span><b>주문 내용을 확인했고 결제에 동의합니다.</b><br>시안 화면이라 실제 카드 승인·출금은 이뤄지지 않아요. 절임배추는 주문 후 환불이 어렵습니다.</span>'
+    + '<span><b>주문 내용을 확인했고 주문에 동의합니다.</b><br>주문서를 보내면 사장님이 확인한 뒤 연락드려요. 절임배추는 주문 후 환불이 어렵습니다.</span>'
     + '</div>'
     + '<p class="agreelinks"><button type="button" data-policy="terms">이용약관</button> · <button type="button" data-policy="privacy">개인정보처리방침</button> · <button type="button" data-policy="shipping">배송 및 교환·환불 정책</button>을 확인한 뒤 주문해 주세요.</p></section>';
 
@@ -2179,7 +2233,7 @@ function updatePayBtn(){
     btn.textContent = money(re) + "원 더 담으면 배달돼요";
   } else {
     btn.disabled = false;
-    btn.textContent = money(payable()) + "원 결제하기";
+    btn.textContent = money(payable()) + "원 주문하기";
   }
 }
 
@@ -2198,6 +2252,8 @@ function bindCheckout(){
   bindInput("ckPhone", "phone", "fPhone");
   bindInput("ckAddr", "addr", "fAddr");
   bindInput("ckMemo", "memo", "");
+  bindInput("ckDepositor", "depositor", "");
+  bindInput("ckRcptNo", "receiptNo", "");
 
   var ab = $("#agreeBox");
   if (ab) ab.addEventListener("click", function(e){
@@ -2221,6 +2277,10 @@ function pay(){
   if (digits.length < 9){ $("#fPhone").classList.add("bad"); bad = true; }
   if (state.mode === "delivery" && !f.addr.trim()){ $("#fAddr").classList.add("bad"); bad = true; }
   if (bad){ toast("주문자 정보를 확인해 주세요"); return; }
+  if (f.receiptType && f.receiptType !== "none" && String(f.receiptNo || "").replace(/[^0-9]/g, "").length < 10){
+    toast(f.receiptType === "expense" ? "현금영수증 사업자번호 10자리를 확인해 주세요" : "현금영수증 휴대폰번호를 확인해 주세요");
+    return;
+  }
 
   if (state.mode === "delivery" && remaining() > 0){
     toast(money(remaining()) + "원 더 담으면 배달돼요 · 포장은 바로 가능!");
@@ -2232,7 +2292,7 @@ function pay(){
   var payName = "";
   for (var i=0;i<PAYS.length;i++) if (PAYS[i].key === f.pay) payName = PAYS[i].label;
   btn.disabled = true;
-  btn.textContent = "결제 중…";
+  btn.textContent = "주문 접수 중…";
 
   var usedCoupon = pickupDiscount() > 0;
   var slot = curSlot();
@@ -2252,6 +2312,10 @@ function pay(){
       slot: slot.key, slotLabel: slot.label, eta: slot.eta,
       sub: subtotal(), disc: pickupDiscount(), pay: payName, total: payable(),
       name: f.name, phone: f.phone,
+      depositor: String(f.depositor || "").trim(),
+      receiptType: (f.receiptType || "none"),
+      receiptNo: (f.receiptType && f.receiptType !== "none") ? String(f.receiptNo || "").trim() : "",
+      receiptLabel: receiptLabel(f.receiptType),
       addr: state.mode === "delivery" ? f.addr : STORE.addr,
       memo: f.memo || "", items: items, pickle: hasPickle(),
       status: "received", statusAt: now.getTime()
@@ -2308,7 +2372,7 @@ function showDone(ord){
   var h = '<div class="dchk">✓</div>'
     + '<h1>주문이 접수됐어요</h1>'
     + '<p class="sub"><b>' + esc(o.name) + '</b>님, 주문 고맙습니다.<br>'
-    + '<span>시안 화면이라 실제 결제·배달은 이뤄지지 않아요.</span></p>';
+    + '<span>사장님이 확인하면 연락드리고 준비를 시작해요.</span></p>';
 
   h += '<div class="dtrack">'
     + '<span class="on">접수</span>'
@@ -2324,7 +2388,9 @@ function showDone(ord){
   }
   h += '<div class="drow"><span>받는 시간</span><b>' + esc(o.slotLabel || z.eta) + '</b></div>'
     + '<div class="drow"><span>진행 상태</span><b id="liveStatus">' + statusLabel(live) + '</b></div>'
-    + '<div class="drow"><span>결제 수단</span><b>' + esc(o.pay) + ' (시안)</b></div>'
+    + '<div class="drow"><span>결제 수단</span><b>' + esc(o.pay) + '</b></div>'
+    + (o.depositor ? '<div class="drow"><span>입금자명</span><b>' + esc(o.depositor) + '</b></div>' : '')
+    + (o.receiptNo ? '<div class="drow"><span>현금영수증</span><b>' + esc(o.receiptLabel || receiptLabel(o.receiptType)) + ' ' + esc(o.receiptNo) + '</b></div>' : '')
     + '<div class="drow"><span>상품 금액</span><b>' + money(o.sub) + '원</b></div>'
     + (o.disc > 0 ? '<div class="drow disc"><span>🎟️ 포장 할인 쿠폰</span><b>- ' + money(o.disc) + '원</b></div>' : '')
     + '<div class="drow big"><span>결제 금액</span><b>' + money(o.total) + '원</b></div>'
@@ -2344,7 +2410,7 @@ function showDone(ord){
     guide = "🏪 <b>포장 준비되면 문자로 알려 드려요.</b><br>단구로 398 상가동 101호 · 033-765-1531";
     if (o.disc > 0) guide += "<br>1,000원 포장 할인 쿠폰은 오늘 하루 1번 사용할 수 있어요.";
   } else if (o.zone === "city"){
-    guide = "🛵 <b>오후 2시 이전 주문은 당일 또는 익일 배달</b>이에요.<br>배달 전에 기사님이 " + esc(o.phone) + "로 연락드려요.";
+    guide = "🛵 <b>낮 12시 이전 주문은 당일 또는 익일 배달</b>이에요.<br>배달 전에 기사님이 " + esc(o.phone) + "로 연락드려요.";
   } else {
     guide = "🚛 <b>전날 발주 → 다음날 오전 배송</b>이에요.<br>배달 전에 기사님이 " + esc(o.phone) + "로 연락드려요.";
   }
@@ -2367,7 +2433,8 @@ function showDone(ord){
   });
   $("#doneOk").addEventListener("click", function(){
     state.cart = [];
-    state.form = {name: state.form.name, phone: state.form.phone, addr: "", memo: "", pay: state.form.pay, agree: false};
+    state.form = {name: state.form.name, phone: state.form.phone, addr: "", memo: "", pay: state.form.pay, agree: false,
+                  depositor: "", receiptType: "none", receiptNo: ""};
     save();
     renderAll();
     showView("shop");
@@ -2396,6 +2463,13 @@ function bind(){
 
   /* 구역 칩 · 받는 시간 칩 */
   $("#modeBanner").addEventListener("click", function(e){
+    var mb = e.target.closest("[data-mode]");
+    if (mb){
+      state.mode = mb.getAttribute("data-mode");
+      save(); renderAll();
+      toast("포장 주문으로 바꿨어요 · 지금 바로 준비해 드려요");
+      return;
+    }
     var b = e.target.closest("[data-zone]");
     if (b){
       state.zone = b.getAttribute("data-zone");
@@ -2556,6 +2630,13 @@ function bind(){
     if (lg){ login(lg.getAttribute("data-login")); return; }
     var payB = e.target.closest("[data-pay]");
     if (payB){ state.form.pay = payB.getAttribute("data-pay"); renderCheckout(); return; }
+    var rcB = e.target.closest("[data-rcpt]");
+    if (rcB){
+      state.form.receiptType = rcB.getAttribute("data-rcpt");
+      if (state.form.receiptType === "none") state.form.receiptNo = "";
+      renderCheckout();
+      return;
+    }
     var modeB = e.target.closest("[data-mode]");
     if (modeB){ state.mode = modeB.getAttribute("data-mode"); save(); renderAll(); return; }
     var zoneB = e.target.closest("[data-zone]");
@@ -2619,6 +2700,16 @@ function init(){
   });
   /* 다른 기기의 사장님·손님 화면과 공용 DB로 맞추기 (5초마다) */
   syncStart();
+  /* 화면을 켜 둔 채 낮 12시를 넘기면 배달 안내를 자동으로 바꾼다 */
+  var wasClosed = deliveryClosed();
+  setInterval(function(){
+    var c = deliveryClosed();
+    if (c === wasClosed) return;
+    wasClosed = c;
+    renderAll();
+    if (state.view === "checkout") renderCheckout();
+    if (c && state.mode === "delivery") toast("낮 12시가 지나 오늘 배달이 마감됐어요 · 포장은 지금도 가능해요");
+  }, 30000);
 }
 
 init();

@@ -76,6 +76,7 @@ input{font:inherit;color:inherit}
 .amitems{max-height:min(44vh,300px);overflow:auto;-webkit-overflow-scrolling:touch}
 .amit{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;width:100%;padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}
 .amit .slotline{flex:1 1 100%;font-size:11.5px;font-weight:800;color:var(--mint-d);letter-spacing:-.2px}
+.amit .payline{flex:1 1 100%;font-size:11.5px;font-weight:800;color:#8A5A00;letter-spacing:-.2px}
 .amit:active{background:#FFF5F4}
 .amit .md{flex:0 0 auto;font-size:11px;font-weight:800;padding:2px 6px;border-radius:6px;background:#EDF4FF;color:#265FBF;letter-spacing:-.2px}
 .amit .md.pickup{background:var(--amber-l);color:var(--amber)}
@@ -132,6 +133,10 @@ input{font:inherit;color:inherit}
 .orow span{flex:0 0 62px;color:var(--ink3);font-weight:700}
 .orow b{flex:1 1 auto;font-weight:800;color:var(--ink)}
 .orow b.slot{color:var(--mint-d)}
+.oflags{margin-top:2px;display:flex;flex-wrap:wrap;gap:6px}
+.oflags .flag{font-size:12px;font-weight:800;padding:5px 9px;border-radius:8px;letter-spacing:-.2px;border:1px solid}
+.oflags .flag.dep{background:#FFF6E5;color:#8A5A00;border-color:#F3D9A4}
+.oflags .flag.rcpt{background:#EEF4FF;color:#265FBF;border-color:#CFE0FF}
 .oitems{margin-top:10px;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:9px 0;display:flex;flex-direction:column;gap:5px}
 .oit{display:flex;justify-content:space-between;gap:8px;font-size:13px;letter-spacing:-.2px}
 .oit .n{flex:1 1 auto;color:var(--ink2)}
@@ -603,7 +608,13 @@ function renderBanner(){
         + '<span class="md' + (o.mode === "pickup" ? " pickup" : "") + '">' + (o.mode === "pickup" ? "🏪 포장" : "🛵 배달") + '</span>'
         + '<span class="meta"><b class="no">' + esc(o.no) + '</b> · ' + esc(o.name || "손님") + '</span>'
         + '<span class="amt">' + money(o.total || 0) + '원</span>'
-        + (o.slotLabel ? '<span class="slotline">⏰ ' + esc(o.slotLabel) + (o.memo ? ' · 📝 ' + esc(o.memo) : '') + '</span>' : '') + '</button>';
+        + (o.slotLabel ? '<span class="slotline">⏰ ' + esc(o.slotLabel) + (o.memo ? ' · 📝 ' + esc(o.memo) : '') + '</span>' : '')
+        + ((o.depositor || (o.receiptNo && o.receiptType && o.receiptType !== "none"))
+            ? '<span class="payline">' + (o.depositor ? '💰 입금자명 ' + esc(o.depositor) : '')
+              + (o.depositor && o.receiptNo ? ' · ' : '')
+              + (o.receiptNo && o.receiptType && o.receiptType !== "none" ? '🧾 현금영수증 ' + esc(rcptLabel(o)) + ' ' + esc(o.receiptNo) : '')
+              + '</span>' : '')
+        + '</button>';
     });
     h += '</div><div class="amact"><button class="ack" id="amAck" type="button">✅ 접수 확인 (알림 끄기)</button></div>'
       + '<div class="amhint">' + (alarm.on
@@ -886,12 +897,6 @@ var PRODUCTS = [
      badges:[["행사","hot"]], origin:"필리핀산", desc:"달콤한 감숙왕 3통", price:9900, tags:["파인애플"],
      tip:"뒤집어 하루 두면 더 달아져요"}),
 
-  P({id:"goldkiwi-10", name:"골드키위", unit:"10개", cats:["deal"], img:"kiwi", grade:"home",
-     badges:[["국내산","dom"],["행사","hot"]], origin:"국내산", desc:"10개 묶음 특가", price:5000, tags:["키위"]}),
-
-  P({id:"jujube", name:"사과대추", unit:"3팩", cats:["deal"], img:"jujube", grade:"C",
-     badges:[["당일소진","dd"]], origin:"국내산", desc:"당일소진 특가 · 소진 시 종료", price:9900, tags:["대추"]}),
-
   P({id:"daebong-15", name:"대봉감", unit:"15알", cats:["deal"], img:"daebong", grade:"C",
      badges:[["행사","hot"]], origin:"국내산", desc:"15알 행사 · 익혀 드세요", price:9900, tags:["감"]}),
 
@@ -906,13 +911,13 @@ var PRODUCTS = [
      ogrades:["home","A","A"],
      badges:[["오늘입고","fresh"]], origin:"국내산", desc:"향·당도 좋은 생딸기", stock:5,
      tip:"냉장 2시간 뒤 드시면 더 달아요",
-     opts:[{label:"4x5 · 1팩", sub:"가장 많이 담기는 사이즈", price:8500},
+     opts:[{label:"4x5 · 1팩", sub:"가장 많이 담기는 사이즈", price:7900},
            {label:"3x5 · 1팩", sub:"알이 큰 사이즈", price:9900},
            {label:"3x4 · 1팩", sub:"선물용 큰 알", price:13800}],
      tags:["딸기"]}),
 
   P({id:"fig", name:"무화과", unit:"1kg", cats:["fruit"], img:"fig", grade:"A",
-     badges:[["국내산","dom"]], origin:"국내산", desc:"엄선한 품질보증 · 달콤한 무화과", price:7900, tags:["무화과"],
+     badges:[["국내산","dom"]], origin:"국내산", desc:"엄선한 품질보증 · 달콤한 무화과", price:5900, tags:["무화과"],
      tip:"냉장 1~2일 안에 드세요"}),
 
   P({id:"mango", name:"골드망고", unit:"4개", cats:["fruit"], img:"mango", grade:"home",
@@ -925,7 +930,7 @@ var PRODUCTS = [
      badges:[["선물용","gift"]], origin:"국내산", desc:"선물용 박스 포장", price:15000, tags:["감"]}),
 
   P({id:"hwanggeumhyang", name:"황금향", unit:"3kg", cats:["fruit"], img:"goldenhwang", grade:"A",
-     badges:[], origin:"제주산", desc:"새콤달콤 황금향", price:16800, tags:["귤 감귤"]}),
+     badges:[], origin:"제주산", desc:"새콤달콤 황금향", price:12800, tags:["귤 감귤"]}),
 
   P({id:"tangerine", name:"제주 귤", unit:"5kg", cats:["fruit"], img:"tangerine", grade:"home",
      ogrades:["home","A","A","B","B","B"],
@@ -940,13 +945,10 @@ var PRODUCTS = [
      tags:["귤 감귤"]}),
 
   P({id:"emperor", name:"중문 황제귤", unit:"5kg · M", cats:["fruit"], img:"tangerine", grade:"A",
-     badges:[["프리미엄","gift"]], origin:"제주 중문", desc:"중문 명품 귤 M 사이즈", price:45000, tags:["귤 감귤"]}),
+     badges:[["프리미엄","gift"]], origin:"제주 중문", desc:"중문 명품 귤 M 사이즈", price:36000, tags:["귤 감귤"]}),
 
   P({id:"newstein", name:"윤홍희 뉴스틴 포도", unit:"2kg", cats:["fruit"], img:"shine", grade:"A",
      badges:[], origin:"국내산", desc:"망고스틴 식감 · 당도 보증", price:15000, tags:["포도 샤인"]}),
-
-  P({id:"campbell", name:"켐벨포도", unit:"3kg", cats:["fruit"], img:"campbell", grade:"A",
-     badges:[], origin:"국내산", desc:"3kg 한 상자", price:20000, tags:["포도"]}),
 
   P({id:"bansee", name:"반시", unit:"2.5kg · M", cats:["fruit"], img:"persimmon", grade:"C",
      badges:[], origin:"국내산", desc:"M 사이즈 2.5kg", price:5000, tags:["감 홍시"]}),
@@ -958,9 +960,6 @@ var PRODUCTS = [
            {label:"3kg · A급", price:20000},
            {label:"4kg · 6수", price:20000}],
      tags:["포도 샤인머스켓"]}),
-
-  P({id:"banana", name:"바나나", unit:"1송이", cats:["fruit"], img:"banana", grade:"home",
-     badges:[], origin:"필리핀산", desc:"매일 들어오는 바나나", price:3500, tags:["바나나"]}),
 
   P({id:"pineapple", name:"파인애플", unit:"1통", cats:["fruit"], img:"pineapple", grade:"home",
      badges:[], origin:"필리핀산", desc:"1통 그대로", price:7500, tags:["파인애플"]}),
@@ -990,10 +989,11 @@ var PRODUCTS = [
 
   /* ── 신선 채소 ── */
   P({id:"cabbage", name:"배추", unit:"1망", cats:["veg"], img:"cabbage",
-     badges:[], origin:"국내산", desc:"김장 배추 1망", price:5500, tags:["배추 김장"],
+     badges:[], origin:"국내산", desc:"김장 배추 1망", price:4500, tags:["배추 김장"],
      tip:"김장 배추는 4일 전 예약하세요"}),
   P({id:"cheonggat", name:"청갓", unit:"1단", cats:["veg"], img:"cheonggat", badges:[], origin:"국내산", desc:"싱싱한 청갓", price:3000, tags:["갓"]}),
   P({id:"altari", name:"알타리", unit:"5단", cats:["veg"], img:"altari", badges:[], origin:"국내산", desc:"5단 묶음", price:9900, tags:["무 총각김치"]}),
+  P({id:"jjokpa", name:"흙쪽파", unit:"1단", cats:["veg"], img:"daepa", badges:[], origin:"국내산", desc:"흙 묻은 쪽파 1단", price:3000, tags:["쪽파 파 김장"]}),
   P({id:"daepa", name:"대파", unit:"1단", cats:["veg"], img:"daepa", badges:[], origin:"국내산", desc:"1단", price:2500, stock:10, tags:["파"], tip:"뿌리째 세워 두면 오래가요"}),
   P({id:"aehobak", name:"애호박", unit:"1개", cats:["veg"], img:"aehobak", badges:[], origin:"국내산", desc:"1개", price:1500, tags:["호박"]}),
   P({id:"buchu", name:"부추", unit:"1단", cats:["veg"], img:"buchu", badges:[], origin:"국내산", desc:"1단", price:3000, tags:["부추"]}),
@@ -1008,8 +1008,10 @@ var PRODUCTS = [
   P({id:"perilla", name:"깻잎", unit:"1봉지", cats:["veg"], img:"perilla", badges:[], origin:"국내산", desc:"1봉지", price:1500, tags:["깻잎"], tip:"씻지 말고 냉장 보관하세요"}),
 
   /* ── 계란 ── */
-  P({id:"egg-xl", name:"특란", unit:"1판 (30구)", cats:["egg"], img:"egg", badges:[], origin:"국내산", desc:"30구 1판", price:6500, stock:8, tags:["계란 달걀"], tip:"냉장고 안쪽 칸에 두세요"}),
-  P({id:"egg-l", name:"대란", unit:"1판 (30구)", cats:["egg"], img:"egg", badges:[], origin:"국내산", desc:"30구 1판", price:5000, tags:["계란 달걀"]})
+  P({id:"egg-xl", name:"특란", unit:"1판 (30구)", cats:["egg"], img:"egg", badges:[], origin:"국내산", desc:"30구 1판", price:6000, stock:8, tags:["계란 달걀"], tip:"냉장고 안쪽 칸에 두세요"}),
+  P({id:"egg-king", name:"판없는 왕란", unit:"1판 (30구)", cats:["egg"], img:"egg", grade:"home",
+     badges:[["특가","hot"]], origin:"국내산", desc:"판 없이 알만 담은 왕란 30구", price:6000, tags:["계란 달걀 왕란"],
+     tip:"냉장고 안쪽 칸에 두세요"})
 ];;
 
 var STORE = { name: "훈이네과일야채", branch: "단구점", tel: "033-765-1531" };
@@ -1162,6 +1164,20 @@ function tick(){
 }
 
 /* ── 주문 목록 ──────────────────────────── */
+function rcptLabel(o){
+  if (o.receiptType === "income") return "소득공제";
+  if (o.receiptType === "expense") return "지출증빙";
+  return "";
+}
+function payFlagsHtml(o){
+  var h = "";
+  if (!o) return h;
+  if (o.depositor) h += '<span class="flag dep">💰 입금자명 ' + esc(o.depositor) + '</span>';
+  if (o.receiptNo && o.receiptType && o.receiptType !== "none"){
+    h += '<span class="flag rcpt">🧾 현금영수증 ' + esc(rcptLabel(o)) + ' ' + esc(o.receiptNo) + '</span>';
+  }
+  return h ? '<div class="oflags">' + h + '</div>' : "";
+}
 function statusLabel(o){
   if (o.status === "done") return "완료";
   if (o.status === "preparing") return o.mode === "pickup" ? "준비중" : "배달 출발";
@@ -1186,6 +1202,7 @@ function orderCardHtml(o){
   h += '<div class="orows">'
     + '<div class="orow"><span>받는 시간</span><b class="slot">' + esc(o.slotLabel || o.eta || "—") + '</b></div>'
     + '<div class="orow"><span>고객</span><b>' + esc(o.name) + ' · ' + esc(o.phone) + '</b></div>'
+    + payFlagsHtml(o)
     + (o.mode === "delivery"
         ? '<div class="orow"><span>배달 주소</span><b>' + esc(o.addr || "—") + '</b></div>'
         : '<div class="orow"><span>수령 장소</span><b>매장(단구로 398 상가동 101호)</b></div>')
@@ -1246,9 +1263,7 @@ function renderOrders(){
   if (!list.length){
     box.innerHTML = '<div class="oempty"><span class="em">🧾</span><b>' + (today.length ? "이 조건에 맞는 주문이 없어요" : "오늘 들어온 주문이 없어요") + '</b>'
       + '손님 화면에서 주문하면 여기에 바로 들어와요.'
-      + (today.length ? '' : '<br><button id="seedOrder">테스트 주문 하나 넣어 보기</button>') + '</div>';
-    var sb = $("#seedOrder");
-    if (sb) sb.addEventListener("click", seedOrder);
+      + '</div>';
     return;
   }
   box.innerHTML = list.map(orderCardHtml).join("");
@@ -1256,11 +1271,11 @@ function renderOrders(){
 function seedOrder(){
   var today = new Date();
   var items = [
-    {pid:"strawberry", oi:0, qty:2, name:"딸기", unit:"1팩", opt:"4x5 · 1팩", price:8500, sum:17000},
+    {pid:"strawberry", oi:0, qty:2, name:"딸기", unit:"1팩", opt:"4x5 · 1팩", price:7900, sum:15800},
     {pid:"perilla", oi:0, qty:1, name:"깻잎", unit:"1봉지", opt:"", price:1500, sum:1500},
     {pid:"daepa", oi:0, qty:1, name:"대파", unit:"1단", opt:"", price:2500, sum:2500}
   ];
-  var sub = 21000;
+  var sub = 19800;
   var ord = {
     no: "HN" + today.getFullYear() + pad(today.getMonth()+1) + pad(today.getDate()) + "-" + Math.floor(Math.random()*9000 + 1000),
     at: Date.now(), time: hhmm(Date.now()),
