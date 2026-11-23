@@ -737,6 +737,8 @@ function setAlarm(on, quiet){
   } else {
     stopRinging(); stopVoice(); flashTitle(false);
   }
+  alarm.sig = "";            /* 알림 배너 안내문도 방금 바뀐 소리 상태로 다시 그린다 */
+  renderBanner();
   refreshAlarmUI();
   ensureRinging();
   if (!quiet) toast(alarm.on ? "🔊 주문 알림음을 켰어요 (테스트 소리)" : "🔕 주문 알림음을 껐어요");
