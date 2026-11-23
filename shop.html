@@ -200,6 +200,9 @@ a{color:inherit}
 .bncard.need b{color:var(--ink2);font-size:14px}
 .bncard.need small{color:var(--ink3)}
 .bncard.need .bc-ico{opacity:.75}
+.bncard.off{background:var(--bg);border-color:#E4E6E8;cursor:default}
+.bncard.off b{color:var(--ink2);font-size:13.5px}
+.bncard.off small{color:var(--ink3)}
 .csec .bncard{width:100%;margin:12px 0 0}
 .srow.ev,.srow.ev b{color:#8A5A00}
 
@@ -533,8 +536,8 @@ a{color:inherit}
 
   <!-- 오픈 기념 이벤트 (11/24~11/29) -->
   <section class="openev" id="openEventBanner" aria-label="오픈 기념 이벤트 안내">
-    <b>🎉 오픈 기념 이벤트 (11/24~11/29) · 3만 원 이상 주문 시 🍌 바나나 1송이 100원! (시내 무료배달 포함)</b>
-    <small>3만 원 이상 담으면 장바구니에서 100원에 추가할 수 있어요 · 주문당 1송이 · 배달·포장 모두</small>
+    <b>🎉 오픈 기념 이벤트 (11/24~11/29) · 배달 3만 원 이상 주문 시 🍌 바나나 1송이 100원! (1인 1송이 한정)</b>
+    <small>3만 원 이상 배달 주문 시 장바구니에서 100원에 추가할 수 있어요 · 주문당 1송이 한정</small>
   </section>
 
   <div class="ordstrip" id="ordStrip" hidden></div>
@@ -712,9 +715,10 @@ var PICKUP_DISCOUNT = 1000;
 var PICKUP_MIN = 15000;
 var COUPON_KEY = "hoonie_retail_pickup_coupon_v1";
 
-/* 오픈 기념 이벤트 — 3만 원 이상 주문이면 바나나 1송이를 100원에 추가 (11/24~11/29)
+/* 오픈 기념 이벤트 — 3만 원 이상 '배달' 주문이면 바나나 1송이를 100원에 추가 (11/24~11/29, 주문당 1송이)
    일반 상품 합계(subtotal)만 보고 판단하고, 이벤트 바나나는 장바구니 줄이 아니라 state.banana 로 따로 담는다.
-   (바나나 행사 재고 8송이 제한과 섞이지 않게 하려는 것) */
+   (바나나 행사 재고 8송이 제한과 섞이지 않게 하려는 것)
+   포장(매장픽업) 주문에는 적용하지 않는다 — 포장으로 바꾸면 자동으로 뺀다. */
 var OPEN_EVENT = {
   from: "2026-11-24", to: "2026-11-29",
   min: 30000,
@@ -722,7 +726,9 @@ var OPEN_EVENT = {
   pid: "banana-event",
   name: "🍌 [오픈특가] 바나나 1송이",
   label: "🍌 [오픈특가] 바나나 1송이 100원 추가하기 (+100원)",
-  banner: "🎉 오픈 기념 이벤트 (11/24~11/29) · 3만 원 이상 주문 시 🍌 바나나 1송이 100원! (시내 무료배달 포함)"
+  offNote: "🍌 바나나 100원 이벤트는 3만 원 이상 배달 주문 시에만 적용돼요",
+  banner: "🎉 오픈 기념 이벤트 (11/24~11/29) · 배달 3만 원 이상 주문 시 🍌 바나나 1송이 100원! (1인 1송이 한정)",
+  bannerSub: "3만 원 이상 배달 주문 시 장바구니에서 100원에 추가할 수 있어요 · 주문당 1송이 한정"
 };
 
 /* 소매몰 ↔ 사장님 페이지가 함께 쓰는 저장소 (같은 주소에서 열면 바로 연동) */
@@ -1359,20 +1365,33 @@ function pickupDiscount(){
 }
 /* ── 오픈 기념 이벤트 바나나(100원) ─────────────────────────────
    eventBase() = 100원 이벤트 상품을 뺀 일반 상품 합계 (= 장바구니 합계)
-   eventReady() = 3만 원 이상 (배달·포장 모두, 주문당 1송이) */
+   eventReady() = 배달 주문 + 3만 원 이상 (주문당 1송이 · 포장에는 적용 안 함) */
 function eventBase(){ return subtotal(); }
 function eventGap(){ return Math.max(0, OPEN_EVENT.min - eventBase()); }
-function eventReady(){ return state.cart.length > 0 && eventBase() >= OPEN_EVENT.min; }
+function eventReady(){ return state.mode === "delivery" && state.cart.length > 0 && eventBase() >= OPEN_EVENT.min; }
 function bananaPay(){ return (state.banana && eventReady()) ? OPEN_EVENT.price : 0; }
-/* 3만 원 아래로 내려가면 이벤트 바나나를 자동으로 뺀다 */
+/* 조건이 안 맞으면 이벤트 바나나를 자동으로 뺀다 (3만 원 아래로 줄었거나 포장으로 바꾼 경우) */
 function syncBanana(quiet){
   if (state.banana && !eventReady()){
     state.banana = false;
     save();
-    if (!quiet) toast("3만 원 아래로 줄어서 바나나 100원 이벤트가 풀렸어요");
+    if (!quiet){
+      toast(state.mode !== "delivery"
+        ? "🍌 바나나 100원은 배달 주문에만 적용돼서 장바구니에서 뺐어요"
+        : "3만 원 아래로 줄어서 바나나 100원 이벤트가 풀렸어요");
+    }
     return true;
   }
   return false;
+}
+/* 배달 / 포장 전환 — 포장으로 바꾸면 100원 이벤트 바나나를 자동으로 뺀다 */
+function setMode(mode, quiet){
+  state.mode = (mode === "pickup") ? "pickup" : "delivery";
+  var dropped = syncBanana(true);
+  save();
+  renderAll();
+  if (dropped && !quiet) toast("🍌 바나나 100원은 배달 주문에만 적용돼서 장바구니에서 뺐어요");
+  return dropped;
 }
 function payable(){ return Math.max(0, subtotal() - pickupDiscount() + bananaPay()); }
 
@@ -1769,21 +1788,32 @@ function couponCardHtml(){
 /* ── 오픈 기념 이벤트 카드 (장바구니·주문서 공용) ── */
 function bananaEventHtml(){
   if (!state.cart.length) return "";
+  /* 포장(매장픽업) 주문 — 담을 수 없고 안내만 */
+  if (state.mode !== "delivery"){
+    return '<div class="bncard off" id="banCard">'
+      + '<div class="bc-t"><b>' + OPEN_EVENT.offNote + '</b>'
+      + '<small>오픈 기념 11/24~11/29 · 주문당 1송이 한정 · 배달로 바꾸면 100원에 담을 수 있어요</small></div>'
+      + '</div>';
+  }
   if (!eventReady()){
     return '<div class="bncard need" id="banCard">'
       + '<span class="bc-ico">🍌</span>'
       + '<div class="bc-t"><b>' + money(eventGap()) + '원만 더 담으면 바나나 1송이 100원에 추가할 수 있어요!</b>'
-      + '<small>오픈 기념 이벤트 11/24~11/29 · 3만 원 이상 주문에 주문당 1송이 (배달·포장 모두)</small></div>'
+      + '<small>오픈 기념 이벤트 11/24~11/29 · 배달 3만 원 이상 주문에 주문당 1송이 한정</small></div>'
       + '</div>';
   }
   var on = !!state.banana;
   return '<button type="button" class="bncard' + (on ? ' on' : '') + '" id="banCard" data-banana="toggle" role="checkbox" aria-checked="' + (on ? "true" : "false") + '">'
     + '<span class="bc-ico">🍌</span>'
     + '<div class="bc-t"><b>' + OPEN_EVENT.label + '</b>'
-    + '<small>' + (on ? "추가됐어요 · 결제 금액에 100원이 더해져요" : "3만 원 이상 주문에 주문당 1송이 · 오픈 기념 11/24~11/29") + '</small></div>'
+    + '<small>' + (on ? "추가됐어요 · 결제 금액에 100원이 더해져요 (주문당 1송이 한정)" : "배달 3만 원 이상 · 주문당 1송이 한정 · 오픈 기념 11/24~11/29") + '</small></div>'
     + '<span class="bc-ck" aria-hidden="true">' + (on ? "✓" : "") + '</span></button>';
 }
 function toggleBanana(){
+  if (state.mode !== "delivery"){
+    toast(OPEN_EVENT.offNote);
+    return;
+  }
   if (!eventReady()){
     toast("3만 원 이상 담으면 바나나 1송이를 100원에 추가할 수 있어요 (" + money(eventGap()) + "원 남음)");
     return;
@@ -2553,9 +2583,7 @@ function bind(){
   $("#modeTabs").addEventListener("click", function(e){
     var b = e.target.closest("[data-mode]");
     if (!b) return;
-    state.mode = b.getAttribute("data-mode");
-    save();
-    renderAll();
+    setMode(b.getAttribute("data-mode"));
     if (state.view === "cart") renderCart();
   });
 
@@ -2563,9 +2591,10 @@ function bind(){
   $("#modeBanner").addEventListener("click", function(e){
     var mb = e.target.closest("[data-mode]");
     if (mb){
-      state.mode = mb.getAttribute("data-mode");
-      save(); renderAll();
-      toast("포장 주문으로 바꿨어요 · 지금 바로 준비해 드려요");
+      var mbDropped = setMode(mb.getAttribute("data-mode"), true);
+      toast(state.mode === "pickup"
+        ? (mbDropped ? "포장으로 바꿨어요 · 바나나 100원은 배달 전용이라 뺐어요" : "포장 주문으로 바꿨어요 · 지금 바로 준비해 드려요")
+        : "배달 주문으로 바꿨어요");
       return;
     }
     var b = e.target.closest("[data-zone]");
@@ -2631,7 +2660,7 @@ function bind(){
   /* 장바구니 화면 */
   $("#cartBody").addEventListener("click", function(e){
     var modeB = e.target.closest("[data-mode]");
-    if (modeB){ state.mode = modeB.getAttribute("data-mode"); save(); renderAll(); return; }
+    if (modeB){ setMode(modeB.getAttribute("data-mode")); return; }
     var zoneB = e.target.closest("[data-zone]");
     if (zoneB){ state.zone = zoneB.getAttribute("data-zone"); save(); renderAll(); return; }
     var slotB = e.target.closest("[data-slot]");
@@ -2738,7 +2767,7 @@ function bind(){
       return;
     }
     var modeB = e.target.closest("[data-mode]");
-    if (modeB){ state.mode = modeB.getAttribute("data-mode"); save(); renderAll(); return; }
+    if (modeB){ setMode(modeB.getAttribute("data-mode")); renderCheckout(); return; }
     var zoneB = e.target.closest("[data-zone]");
     if (zoneB){ state.zone = zoneB.getAttribute("data-zone"); save(); renderAll(); return; }
     var slotB = e.target.closest("[data-slot]");
