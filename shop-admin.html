@@ -48,6 +48,49 @@ input{font:inherit;color:inherit}
 .tabs button.on .num{background:rgba(255,255,255,.25);color:#fff}
 .tabs button:not(.on) .num{background:#E6E8EA;color:#6B7075}
 
+/* ── 새 주문 알림음 (배민 사장님앱 스타일) ── */
+.alarmwrap{display:flex;align-items:stretch;gap:6px;padding:0 12px 10px}
+.alarmbtn{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:10px;height:56px;padding:0 12px;border-radius:12px;border:2px solid #E1E4E7;background:#F6F7F8;text-align:left;transition:background .18s,border-color .18s,box-shadow .18s}
+.alarmbtn .ic{flex:0 0 auto;font-size:23px;line-height:1;opacity:.55;filter:grayscale(1);transition:opacity .18s}
+.alarmbtn .tx{flex:1 1 auto;min-width:0}
+.alarmbtn .tx b{display:block;font-size:15.5px;font-weight:800;letter-spacing:-.5px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.alarmbtn .tx i{display:block;margin-top:1px;font-size:11.5px;font-style:normal;font-weight:700;color:var(--ink3);letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.alarmbtn .sw{flex:0 0 auto;width:50px;height:29px;border-radius:999px;background:#C9CED2;position:relative;transition:background .18s}
+.alarmbtn .sw::after{content:"";position:absolute;top:3px;left:3px;width:23px;height:23px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.28);transition:left .18s}
+.alarmbtn.on{background:linear-gradient(180deg,#E9F9F8,#D8F2F0);border-color:var(--mint);box-shadow:0 2px 10px rgba(42,193,188,.18)}
+.alarmbtn.on .ic{opacity:1;filter:none;animation:bellNudge 3s ease-in-out infinite}
+.alarmbtn.on .tx b{color:var(--mint-d)}
+.alarmbtn.on .tx i{color:#0B7C77}
+.alarmbtn.on .sw{background:var(--mint)}
+.alarmbtn.on .sw::after{left:24px}
+@keyframes bellNudge{0%,88%,100%{transform:rotate(0)}91%{transform:rotate(-13deg)}94%{transform:rotate(11deg)}97%{transform:rotate(-6deg)}}
+.keepbtn{flex:0 0 56px;width:56px;height:56px;border-radius:12px;border:2px solid #E1E4E7;background:#F6F7F8;font-size:20px;display:inline-flex;align-items:center;justify-content:center;opacity:.6;transition:background .18s,border-color .18s,opacity .18s}
+.keepbtn.on{border-color:#E7A93C;background:var(--amber-l);opacity:1}
+
+/* ── 새 주문 배너 ── */
+.alarmmodal{position:fixed;left:0;right:0;top:0;z-index:60;display:flex;justify-content:center;padding:6px 10px 0;pointer-events:none}
+.amcard{pointer-events:auto;width:100%;max-width:560px;background:#fff;border:2.5px solid var(--red);border-radius:16px;box-shadow:0 12px 36px rgba(0,0,0,.24);overflow:hidden;animation:amIn .2s ease-out}
+.amhead{display:flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:11px 14px;font-size:15px;font-weight:800;letter-spacing:-.4px}
+.amhead .bell{font-size:20px;line-height:1;display:inline-block;animation:bellRing .9s ease-in-out infinite}
+.amhead .n{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:#fff;color:var(--red);font-size:12.5px;font-weight:800}
+.amitems{max-height:min(44vh,300px);overflow:auto;-webkit-overflow-scrolling:touch}
+.amit{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;width:100%;padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}
+.amit .slotline{flex:1 1 100%;font-size:11.5px;font-weight:800;color:var(--mint-d);letter-spacing:-.2px}
+.amit:active{background:#FFF5F4}
+.amit .md{flex:0 0 auto;font-size:11px;font-weight:800;padding:2px 6px;border-radius:6px;background:#EDF4FF;color:#265FBF;letter-spacing:-.2px}
+.amit .md.pickup{background:var(--amber-l);color:var(--amber)}
+.amit .meta{flex:1 1 auto;min-width:0;color:var(--ink2);font-weight:700;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.amit .meta .no{color:var(--ink);font-weight:800;letter-spacing:-.3px}
+.amit .amt{flex:0 0 auto;font-size:15px;font-weight:800;letter-spacing:-.4px}
+.amact{padding:11px 12px 5px}
+.amact .ack{width:100%;height:52px;border-radius:12px;background:var(--red);color:#fff;font-size:16.5px;font-weight:800;letter-spacing:-.5px}
+.amact .ack:active{background:#C6352D}
+.amhint{padding:0 14px 11px;font-size:11.5px;color:var(--ink3);font-weight:700;text-align:center;letter-spacing:-.2px;line-height:1.5}
+@keyframes bellRing{0%,60%,100%{transform:rotate(0)}10%,30%,50%{transform:rotate(14deg)}20%,40%{transform:rotate(-14deg)}}
+@keyframes amIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+.ocard.isnew{border-left-color:var(--red)!important;box-shadow:0 0 0 3px rgba(232,69,60,.14),var(--sh)}
+.ocard.isnew .ono::after{content:"NEW";font-size:10px;font-weight:800;color:#fff;background:var(--red);border-radius:5px;padding:1.5px 5px;margin-left:6px;vertical-align:1px;letter-spacing:.4px}
+
 /* ── 요약 ────────────────────────────────── */
 .sums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 16px 0}
 .sum{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:center}
@@ -197,6 +240,14 @@ input{font:inherit;color:inherit}
       <a class="shoplink" href="shop.html" target="_blank" rel="noopener">손님 화면</a>
     </div>
   </div>
+  <div class="alarmwrap">
+    <button class="alarmbtn" id="alarmBtn" type="button" aria-pressed="false" aria-label="주문 알림음 켜기/끄기">
+      <span class="ic" id="alarmIc">🔕</span>
+      <span class="tx"><b id="alarmTitle">주문 알림 꺼짐</b><i id="alarmSub">여기를 눌러 소리 켜기</i></span>
+      <span class="sw" aria-hidden="true"></span>
+    </button>
+    <button class="keepbtn" id="keepBtn" type="button" aria-pressed="false" aria-label="화면 꺼짐 방지" title="화면이 꺼지지 않게 유지 (포스기·태블릿)">🌙</button>
+  </div>
   <div class="tabs" id="tabs">
     <button data-tab="orders" class="on">🔔 오늘 주문 <span class="num" id="tabOrderNum">0</span></button>
     <button data-tab="claims">📷 사진 접수 <span class="num" id="tabClaimNum">0</span></button>
@@ -252,6 +303,7 @@ input{font:inherit;color:inherit}
 </main>
 
 </div>
+<div class="alarmmodal" id="alarmModal" hidden></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -271,7 +323,7 @@ var SB_URL  = "https://hiulxicbowkffoxjtvye.supabase.co";
 var SB_KEY  = "sb_publishable_89p69vS6pSVQBJfImjKMrw__mvxKVg3";
 var SB_CATALOG = "retail_catalog";
 var SB_POLL_MS = 5000;
-var sbTimer = null;
+var sbTimer = null, pollWorker = null;
 
 function sbOn(){
   return !!(window.fetch && window.JSON && /^https?:$/.test(location.protocol));
@@ -356,6 +408,7 @@ function pullOrders(){
     list.sort(function(a, b){ return (b.at || 0) - (a.at || 0); });
     writeOrders(list);
     renderOrders();
+    checkNewOrders(list);
   }).catch(function(){});
 }
 function pushOrderStatus(no, next){
@@ -412,8 +465,344 @@ function pushClaimStatus(no, next){
   }).catch(function(){});
 }
 
+/* ── 새 주문 알림음 · 화면 알림 (배민 사장님앱 스타일) ─────────
+   브라우저는 사장님이 한 번 눌러야 소리를 허락한다(자동재생 차단).
+   5초마다 주문을 받아 오면서 처음 보는 '접수' 주문이 있으면 확인할 때까지 울린다.
+   ※ 소리는 mp3 파일 없이 Web Audio로 만든다(딩동~ 딩동~). */
+var ALARM_KEY    = "hoonie_retail_alarm_v1";
+var RING_MS      = 12000;               /* 접수 확인 전 반복 간격 */
+var ALARM_WINDOW = 30 * 60 * 1000;      /* 이보다 오래된 미확인 주문은 조용히 지나간다 */
+var alarm = {
+  on: false, seeded: false, ack: {}, pending: {}, ctx: null, sig: "",
+  timer: null, lastRing: 0, titleTimer: null, baseTitle: document.title
+};
+var keepWanted = false, wakeLock = null;
+
+function alarmRead(){
+  try {
+    var d = JSON.parse(localStorage.getItem(ALARM_KEY) || "{}") || {};
+    alarm.on = !!d.on;
+    alarm.seeded = !!d.seeded;
+    if (d.ack && typeof d.ack === "object") alarm.ack = d.ack;
+  } catch(e){}
+}
+function alarmSave(){
+  try {
+    var ack = alarm.ack, keys = Object.keys(ack);
+    if (keys.length > 200){
+      keys.sort(function(a, b){ return (ack[b] || 0) - (ack[a] || 0); });
+      for (var i = 200; i < keys.length; i++) delete ack[keys[i]];
+    }
+    localStorage.setItem(ALARM_KEY, JSON.stringify({on: alarm.on, seeded: alarm.seeded, ack: ack}));
+  } catch(e){}
+}
+
+/* ── 소리: Web Audio 차임벨 ── */
+function ensureAudio(){
+  try {
+    if (!alarm.ctx){
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      alarm.ctx = new AC();
+    }
+    if (alarm.ctx.state === "suspended" && alarm.ctx.resume){
+      alarm.ctx.resume().catch(function(){});
+    }
+    return true;
+  } catch(e){ return false; }
+}
+function audioRunning(){ return !!(alarm.ctx && alarm.ctx.state === "running"); }
+function bellAt(t0, freq, dur, vol){
+  var ctx = alarm.ctx, g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t0);
+  g.gain.exponentialRampToValueAtTime(vol, t0 + 0.012);
+  g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+  g.connect(ctx.destination);
+  var parts = [[1, 1], [2, 0.32], [3.01, 0.15], [4.17, 0.06]];
+  for (var i = 0; i < parts.length; i++){
+    var o = ctx.createOscillator(), pg = ctx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(freq * parts[i][0], t0);
+    pg.gain.value = parts[i][1];
+    o.connect(pg); pg.connect(g);
+    o.start(t0); o.stop(t0 + dur + 0.06);
+  }
+}
+function bellPattern(pairs){
+  var ctx = alarm.ctx;
+  if (!ctx) return;
+  var base = ctx.currentTime + 0.03, n = pairs || 2;
+  for (var k = 0; k < n; k++){
+    var b = base + k * 0.85;          /* 딩-동~ */
+    bellAt(b, 1046.50, 0.50, 0.42);
+    bellAt(b + 0.20, 783.99, 0.95, 0.44);
+  }
+}
+function playChime(pairs){
+  if (!alarm.on) return;
+  if (!ensureAudio()) return;
+  var now = Date.now();
+  if (now - alarm.lastRing < 800) return;   /* 소리 겹침 방지 */
+  alarm.lastRing = now;
+  var ctx = alarm.ctx;
+  if (ctx.state === "suspended" && ctx.resume){
+    ctx.resume().then(function(){ bellPattern(pairs); }).catch(function(){});
+  } else {
+    bellPattern(pairs);
+  }
+}
+function sayOrder(){
+  try {
+    if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
+    var u = new SpeechSynthesisUtterance("새 주문이 들어왔습니다");
+    u.lang = "ko-KR"; u.rate = 1.02; u.pitch = 1.04; u.volume = 1;
+    var vs = window.speechSynthesis.getVoices() || [];
+    for (var i = 0; i < vs.length; i++){
+      if (/^ko/i.test(vs[i].lang || "")){ u.voice = vs[i]; break; }
+    }
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  } catch(e){}          /* 음성 미지원 브라우저에서도 벨소리는 그대로 울린다 */
+}
+function stopVoice(){
+  try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e){}
+}
+
+/* ── 새 주문 감지 ── */
+function pendingNos(){
+  var out = [];
+  for (var k in alarm.pending) if (alarm.pending[k]) out.push(k);
+  return out;
+}
+function pendingOrders(){
+  var map = {};
+  state.orders.forEach(function(o){ if (o && o.no) map[o.no] = o; });
+  var out = pendingNos().map(function(no){
+    return map[no] || {no: no, name: "주문", total: 0, mode: "pickup"};
+  });
+  out.sort(function(a, b){ return (b.at || 0) - (a.at || 0); });
+  return out;
+}
+function renderBanner(){
+  var box = $("#alarmModal");
+  if (!box) return;
+  var list = pendingOrders();
+  if (!list.length){
+    box.hidden = true; box.innerHTML = ""; alarm.sig = "";
+    flashTitle(false);
+    return;
+  }
+  var sig = list.map(function(o){ return o.no; }).join(",");
+  if (sig !== alarm.sig){
+    alarm.sig = sig;
+    var h = '<div class="amcard" role="alertdialog" aria-live="assertive" aria-label="새 주문 알림">'
+      + '<div class="amhead"><span class="bell">🔔</span>새 주문 <span class="n">' + list.length + '</span>건이 들어왔어요</div>'
+      + '<div class="amitems">';
+    list.forEach(function(o){
+      h += '<button class="amit" type="button" data-amno="' + esc(o.no) + '" title="이 주문만 확인">'
+        + '<span class="md' + (o.mode === "pickup" ? " pickup" : "") + '">' + (o.mode === "pickup" ? "🏪 포장" : "🛵 배달") + '</span>'
+        + '<span class="meta"><b class="no">' + esc(o.no) + '</b> · ' + esc(o.name || "손님") + '</span>'
+        + '<span class="amt">' + money(o.total || 0) + '원</span>'
+        + (o.slotLabel ? '<span class="slotline">⏰ ' + esc(o.slotLabel) + (o.memo ? ' · 📝 ' + esc(o.memo) : '') + '</span>' : '') + '</button>';
+    });
+    h += '</div><div class="amact"><button class="ack" id="amAck" type="button">✅ 접수 확인 (알림 끄기)</button></div>'
+      + '<div class="amhint">' + (alarm.on
+          ? "확인을 누르기 전까지 12초마다 다시 울려요"
+          : "🔕 지금은 소리가 꺼져 있어요 — 위의 알림 버튼을 누르면 소리로도 알려드려요")
+      + '</div></div>';
+    box.innerHTML = h;
+  }
+  box.hidden = false;
+  flashTitle(true);
+}
+function markAck(no){
+  if (!no) return false;
+  var had = !!alarm.pending[no];
+  alarm.ack[no] = Date.now();
+  delete alarm.pending[no];
+  alarmSave();
+  return had;
+}
+function ackOrder(no){
+  if (!no) return;
+  var had = markAck(no);
+  alarmSync();
+  if (state.tab !== "orders") setTab("orders");
+  var card = document.querySelector('.ocard[data-no="' + String(no).replace(/["\\]/g, "") + '"]');
+  if (card && card.scrollIntoView) card.scrollIntoView({behavior: "smooth", block: "center"});
+  if (had) toast("주문 " + no + " 접수 확인했어요");
+}
+function ackAll(){
+  var nos = pendingNos();
+  if (!nos.length) return;
+  var now = Date.now();
+  nos.forEach(function(no){ alarm.ack[no] = now; delete alarm.pending[no]; });
+  alarmSave();
+  stopRinging(); stopVoice();
+  alarmSync();
+  toast(nos.length + "건 접수 확인 완료 — 알림을 멈췄어요");
+}
+function ensureRinging(){
+  if (!alarm.on || !pendingNos().length){ stopRinging(); return; }
+  if (alarm.timer) return;
+  alarm.timer = setInterval(function(){
+    if (!pendingNos().length){ stopRinging(); return; }
+    playChime();
+  }, RING_MS);
+}
+function stopRinging(){
+  if (alarm.timer){ clearInterval(alarm.timer); alarm.timer = null; }
+}
+function flashTitle(on){
+  if (on){
+    if (alarm.titleTimer) return;
+    var flip = false;
+    alarm.titleTimer = setInterval(function(){
+      flip = !flip;
+      document.title = flip ? "🔔 새 주문!" : "🔔 새 주문 " + pendingNos().length + "건";
+    }, 1500);
+    document.title = "🔔 새 주문!";
+  } else {
+    if (alarm.titleTimer) clearInterval(alarm.titleTimer);
+    alarm.titleTimer = null;
+    document.title = alarm.baseTitle;
+  }
+}
+function raiseAlarm(fresh){
+  if (!fresh || !fresh.length) return;
+  if (alarm.on){
+    playChime();
+    setTimeout(sayOrder, 1900);
+  }
+  renderBanner();
+  refreshAlarmUI();
+  ensureRinging();
+  if (state.tab === "orders") renderOrders();
+}
+function checkNewOrders(list){
+  list = list || state.orders || [];
+  var now = Date.now();
+  if (!alarm.seeded){
+    /* 처음 켠 기기: 지금까지의 주문은 '이미 본 것'으로 두고 새로 들어오는 것만 알린다 */
+    alarm.seeded = true;
+    list.forEach(function(o){ if (o && o.no) alarm.ack[o.no] = now; });
+    alarmSave();
+    refreshAlarmUI();
+    return;
+  }
+  var fresh = [], touched = false;
+  list.forEach(function(o){
+    if (!o || !o.no) return;
+    var st = o.status || "received";
+    if (st !== "received"){
+      if (!alarm.ack[o.no]){ alarm.ack[o.no] = now; touched = true; }
+      if (alarm.pending[o.no]){ delete alarm.pending[o.no]; touched = true; }
+      return;
+    }
+    if (alarm.ack[o.no]) return;
+    var at = Number(o.at || 0);
+    if (at && now - at > ALARM_WINDOW){ alarm.ack[o.no] = now; touched = true; return; }
+    if (!alarm.pending[o.no]){ alarm.pending[o.no] = true; fresh.push(o); touched = true; }
+  });
+  if (touched) alarmSave();
+  if (fresh.length) raiseAlarm(fresh);
+  else if (pendingNos().length){ renderBanner(); refreshAlarmUI(); ensureRinging(); }
+  else { refreshAlarmUI(); }
+}
+function alarmSync(){
+  renderBanner();
+  refreshAlarmUI();
+  ensureRinging();
+  if (state.tab === "orders") renderOrders();
+}
+
+/* ── 토글 · 화면 꺼짐 방지 ── */
+function setAlarm(on, quiet){
+  alarm.on = !!on;
+  alarmSave();
+  if (alarm.on){
+    ensureAudio();
+    playChime(1);                 /* 켤 때 테스트 '딩동' 한 번 */
+  } else {
+    stopRinging(); stopVoice(); flashTitle(false);
+  }
+  refreshAlarmUI();
+  ensureRinging();
+  if (!quiet) toast(alarm.on ? "🔊 주문 알림음을 켰어요 (테스트 소리)" : "🔕 주문 알림음을 껐어요");
+}
+function refreshAlarmUI(){
+  var btn = $("#alarmBtn");
+  if (!btn) return;
+  var n = pendingNos().length;
+  btn.classList.toggle("on", alarm.on);
+  btn.setAttribute("aria-pressed", alarm.on ? "true" : "false");
+  if ($("#alarmIc")) $("#alarmIc").textContent = alarm.on ? "🔊" : "🔕";
+  if (alarm.on){
+    $("#alarmTitle").textContent = "주문 알림 켜짐";
+    $("#alarmSub").textContent = "실시간 감시 중"
+      + (audioRunning() ? "" : " · 🔈 눌러서 소리 켜기")
+      + (n ? " · 새 주문 " + n + "건" : "");
+  } else {
+    $("#alarmTitle").textContent = "주문 알림 꺼짐";
+    $("#alarmSub").textContent = "여기를 눌러 소리 켜기" + (n ? " · 새 주문 " + n + "건" : "");
+  }
+  var kb = $("#keepBtn");
+  if (kb) kb.classList.toggle("on", !!wakeLock);
+  if (kb) kb.textContent = wakeLock ? "☀️" : "🌙";
+}
+function canWake(){ return !!(navigator.wakeLock && navigator.wakeLock.request); }
+function requestWake(){
+  if (!canWake()){ toast("이 브라우저는 화면 꺼짐 방지를 지원하지 않아요"); return; }
+  keepWanted = true;
+  navigator.wakeLock.request("screen").then(function(lock){
+    wakeLock = lock;
+    try { lock.addEventListener("release", function(){ wakeLock = null; refreshAlarmUI(); }); } catch(e){}
+    refreshAlarmUI();
+    toast("☀️ 화면이 꺼지지 않게 고정했어요");
+  }).catch(function(){
+    keepWanted = false;
+    refreshAlarmUI();
+    toast("화면 꺼짐 방지를 켜지 못했어요 (화면이 보일 때만 가능)");
+  });
+}
+function releaseWake(){
+  keepWanted = false;
+  if (wakeLock){ try { wakeLock.release(); } catch(e){} wakeLock = null; }
+  refreshAlarmUI();
+  toast("화면 꺼짐 방지를 해제했어요");
+}
+function toggleWake(){ if (wakeLock || keepWanted) releaseWake(); else requestWake(); }
+
+function alarmBoot(){
+  var top = document.querySelector(".top"), modal = $("#alarmModal");
+  function fitBanner(){
+    if (modal && top) modal.style.top = Math.max(0, top.getBoundingClientRect().bottom) + "px";
+  }
+  fitBanner();
+  window.addEventListener("resize", fitBanner);
+  if (alarm.on) ensureAudio();
+  refreshAlarmUI();
+  ensureRinging();
+  document.addEventListener("visibilitychange", function(){
+    if (document.hidden) return;
+    fitBanner();
+    refreshAlarmUI();
+    if (keepWanted && !wakeLock) requestWake();
+    if (pendingNos().length) playChime();
+  });
+  document.addEventListener("pointerdown", function(){
+    if (alarm.on && !audioRunning()) ensureAudio();
+  }, true);
+  document.addEventListener("keydown", function(){
+    if (alarm.on && !audioRunning()) ensureAudio();
+  }, true);
+  checkNewOrders(state.orders);
+}
+
 function syncPullAll(){
-  if (!sbOn() || document.hidden) return;
+  if (!sbOn()) return;
+  /* 알림이 켜져 있으면 화면이 가려져 있어도 주문을 계속 받아 온다 */
+  if (document.hidden && !alarm.on) return;
   pullCatalog();
   pullOrders();
   pullClaims();
@@ -421,10 +810,27 @@ function syncPullAll(){
 function syncStart(){
   if (!sbOn()) return;
   syncPullAll();
-  clearInterval(sbTimer);
-  sbTimer = setInterval(syncPullAll, SB_POLL_MS);
+  startPoll();
   document.addEventListener("visibilitychange", syncPullAll);
   window.addEventListener("online", syncPullAll);
+}
+/* 화면이 가려져도 5초 폴링이 밀리지 않도록 웹워커 타이머로 돌린다 */
+function startPoll(){
+  stopPoll();
+  try {
+    var src = "var t=0;onmessage=function(e){if(t)clearInterval(t);if(e.data>0)t=setInterval(function(){postMessage(1)},e.data);};";
+    var url = URL.createObjectURL(new Blob([src], {type: "application/javascript"}));
+    var w = new Worker(url);
+    w.onmessage = syncPullAll;
+    w.postMessage(SB_POLL_MS);
+    pollWorker = w;
+  } catch(e){
+    sbTimer = setInterval(syncPullAll, SB_POLL_MS);
+  }
+}
+function stopPoll(){
+  if (pollWorker){ try { pollWorker.terminate(); } catch(e){} pollWorker = null; }
+  if (sbTimer){ clearInterval(sbTimer); sbTimer = null; }
 }
 
 var IMG = {
@@ -774,7 +1180,7 @@ function filteredOrders(){
 }
 function orderCardHtml(o){
   var st = o.status || "received";
-  var h = '<article class="ocard st-' + st + '" data-no="' + esc(o.no) + '">';
+  var h = '<article class="ocard st-' + st + (alarm.pending[o.no] ? ' isnew' : '') + '" data-no="' + esc(o.no) + '">';
   h += '<div class="ohead"><b class="ono">' + esc(o.no) + '</b><span class="otime">' + esc(o.time || hhmm(o.at)) + '</span>'
     +  '<span class="obadge ' + (o.mode === "pickup" ? "pickup" : "delivery") + '">' + (o.mode === "pickup" ? "🏪 포장" : "🛵 배달") + '</span>'
     +  '<span class="ost ' + st + '">' + statusLabel(o) + '</span></div>';
@@ -870,9 +1276,11 @@ function seedOrder(){
   writeOrders(list);
   pushOrder(ord);
   renderOrders();
+  checkNewOrders(list);
   toast("테스트 주문을 넣었어요");
 }
 function setStatus(no, next){
+  if (next !== "received") markAck(no);   /* 상태를 바꾸면 새 주문 알림은 끝난 것 */
   var list = readOrders();
   for (var i=0;i<list.length;i++){
     if (list[i].no === no){
@@ -884,6 +1292,7 @@ function setStatus(no, next){
   writeOrders(list);
   pushOrderStatus(no, next);
   renderOrders();
+  renderBanner(); refreshAlarmUI(); ensureRinging();
   toast(next === "preparing" ? "준비 시작으로 바꿨어요" : (next === "done" ? "완료 처리했어요" : "접수로 되돌렸어요"));
 }
 
@@ -1064,6 +1473,13 @@ function setTab(t){
 
 /* ── 이벤트 ─────────────────────────────── */
 function bind(){
+  $("#alarmBtn").addEventListener("click", function(){ setAlarm(!alarm.on); });
+  $("#keepBtn").addEventListener("click", toggleWake);
+  $("#alarmModal").addEventListener("click", function(e){
+    var row = e.target.closest("[data-amno]");
+    if (row){ ackOrder(row.getAttribute("data-amno")); return; }
+    if (e.target.closest("#amAck")) ackAll();
+  });
   $("#tabs").addEventListener("click", function(e){
     var b = e.target.closest("[data-tab]");
     if (b) setTab(b.getAttribute("data-tab"));
@@ -1200,7 +1616,7 @@ function bind(){
   /* 손님 화면에서 주문이 들어오면 바로 새로고침 */
   window.addEventListener("storage", function(e){
     if (!e.key) return;
-    if (e.key === ORDERS_KEY){ state.orders = readOrders(); if (state.tab === "orders") renderOrders(); }
+    if (e.key === ORDERS_KEY){ state.orders = readOrders(); if (state.tab === "orders") renderOrders(); checkNewOrders(state.orders); }
     else if (e.key === CATALOG_KEY){ state.catalog = readCatalog().items; if (state.tab === "products") renderProducts(); renderOrders(); }
     else if (e.key === CLAIM_KEY){ state.claims = readClaims(); renderClaimNums(); if (state.tab === "claims") renderClaims(); }
   });
@@ -1210,6 +1626,7 @@ function init(){
   state.catalog = readCatalog().items;
   state.orders = readOrders();
   state.claims = readClaims();
+  alarmRead();
   /* 배포본(htmlpreview)에서는 상대 경로가 깨지므로 손님 화면 주소를 직접 계산한다 */
   var link = document.querySelector(".shoplink");
   if (link && location.hostname.indexOf("htmlpreview.github.io") > -1){
@@ -1220,6 +1637,7 @@ function init(){
   renderOrders();
   renderClaimNums();
   bind();
+  alarmBoot();          /* 알림 토글·새 주문 감지 준비 (첫 화면 주문은 '이미 본 것' 처리) */
   syncStart();          /* 손님 화면·공용 DB와 5초마다 맞추기 */
 }
 
