@@ -790,12 +790,11 @@ function alarmBoot(){
     if (keepWanted && !wakeLock) requestWake();
     if (pendingNos().length) playChime();
   });
-  document.addEventListener("pointerdown", function(){
-    if (alarm.on && !audioRunning()) ensureAudio();
-  }, true);
-  document.addEventListener("keydown", function(){
-    if (alarm.on && !audioRunning()) ensureAudio();
-  }, true);
+  function unlockAudio(){
+    if (alarm.on && !audioRunning()){ ensureAudio(); setTimeout(refreshAlarmUI, 220); }
+  }
+  document.addEventListener("pointerdown", unlockAudio, true);
+  document.addEventListener("keydown", unlockAudio, true);
   checkNewOrders(state.orders);
 }
 
