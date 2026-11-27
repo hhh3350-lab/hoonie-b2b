@@ -173,7 +173,7 @@ function orderCardHtml(o){
   h += rowHtml("받는 날", esc(o.slotLabel || o.eta || "—"), "", "");
   if (o.bizNo) h += rowHtml("사업자", esc(o.bizNo), "", o.bizNo);
   if (o.receiptNo){
-    h += rowHtml("현금영수증", esc((o.receiptLabel || o.receiptType || "") + " " + o.receiptNo), "", o.receiptNo);
+    h += rowHtml("증빙", esc((o.receiptLabel || o.receiptType || "") + " " + o.receiptNo + (o.taxEmail ? " · " + o.taxEmail : "")), "", o.receiptNo);
   }
   if (o.depositor) h += rowHtml("입금자명", esc(o.depositor), "", "");
   h += '</div>';
