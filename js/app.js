@@ -474,6 +474,13 @@ function submitOrder(){
     showGate(null, BLOCKED_MSG);
     return;
   }
+  /* 사장님 허락 명단에 없는 사업자는 주문도 받지 않습니다 */
+  if (!bizApproved(state.biz.bizNo)){
+    var pend = state.biz;
+    showGate(pend, false);
+    gatePending(pend);
+    return;
+  }
   if (!canOrder()){ toast(shortGapText() || "최소주문금액을 확인해 주세요"); return; }
   var f = readForm();
   if (!validate(f)) return;
@@ -762,6 +769,8 @@ function init(){
     });
   } else {
     showGate(biz, false);
+    /* 승인 대기 중이던 기기면 안내를 다시 보여 줍니다 */
+    if (biz && biz.pending && bizChecksumOk(biz.bizNo)) gatePending(biz);
   }
 }
 
