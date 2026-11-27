@@ -3,114 +3,116 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#FAF6EF">
-<title>훈이네과일야채 · 원주 반곡점 | 사장님 관리</title>
-<meta name="description" content="훈이네과일야채 반곡점 사장님 관리 — 아침 7시 단가 확정, 출고 회차별 주문 보드, A4 거래명세표 일괄 인쇄, 거래처 승인·미수 정산.">
-<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0F172A">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%A5%AC%3C/text%3E%3C/svg%3E">
+<title>훈이네과일야채 반곡점 | 카페·식당 납품 사장님 페이지</title>
+<meta name="description" content="식자재몰(식당·카페 대용량) 사장님 페이지 — 주문 확인, 배달 상태 변경, 이용 제한 사업자 관리.">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="preconnect" href="https://hiulxicbowkffoxjtvye.supabase.co" crossorigin>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232E6B3B'/%3E%3Ctext x='32' y='44' font-size='34' font-weight='800' text-anchor='middle' fill='%23fff' font-family='Apple SD Gothic Neo,Malgun Gothic,sans-serif'%3E훈%3C/text%3E%3C/svg%3E">
-<link rel="preload" as="script" href="assets/app.js?v=20261124">
-<link rel="stylesheet" href="assets/app.css?v=20261124">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/base.css?v=20261127-cafe1">
+<link rel="stylesheet" href="css/admin.css?v=20261127-cafe1">
 </head>
-<body class="mode-admin">
-<header class="head" id="head">
-  <div class="wrap head-in">
-    <div class="brand">
-      <span class="brand-mark" aria-hidden="true">훈</span>
-      <div class="brand-txt">
-        <strong>훈이네과일야채</strong>
-        <span>반곡점 · 원주 시내 야채·식자재 B2B</span>
-      </div>
+<body class="locked">
+
+<!-- ══ 로그인 화면 ═══════════════════════════════════
+     로그인 전에는 이 화면만 보이고, 주문·차단 명단은 하나도 불러오지 않습니다.
+     아이디·비밀번호는 코드에 넣지 않고 여기서 입력한 값만 Supabase 에 확인합니다. -->
+<section class="login" id="loginGate">
+  <div class="lcard">
+    <div class="lbrand"><span class="lb-mark" aria-hidden="true">🥬</span>
+      <b>훈이네과일야채</b><span class="lb-branch">반곡점</span><span class="lb-tag">납품</span>
     </div>
-
-    
-        <div class="head-act">
-      <span class="admin-chip">사장님</span>
-      <a class="top-link" href="index.html">← 거래처 발주 화면</a>
-    </div>
-      </div>
-</header>
-
-<main id="main">
-  
-
-    <!-- ══════════════ 5. 사장님 관리 ══════════════ -->
-  <section id="viewAdmin" class="view" role="tabpanel" aria-labelledby="tabAdmin" hidden>
-    <div class="wrap">
-      <div class="admin-head">
-        <h1>사장님 관리</h1>
-        <p>출고 회차별 주문 보드 · 아침 7시 단가 확정 · 거래처 미수·잔액 · 재입고 알림까지 한곳에서 처리합니다.<br>
-        <span class="muted">시안이므로 비밀번호가 없고, 바뀐 값은 이 브라우저(localStorage)에만 저장됩니다.</span></p>
-      </div>
-
-      <nav class="adm-tabs" role="tablist" aria-label="사장님 관리 메뉴">
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="orders" aria-selected="true">주문현황 <span class="cnt" id="claimBadge" hidden>0</span></button>
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="prices" aria-selected="false">아침 7시 단가 확정</button>
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="clients" aria-selected="false">거래처·미수</button>
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="restock" aria-selected="false">재입고 <span class="cnt" id="alertBadge" hidden>0</span></button>
-        <button role="tab" class="adm-tab" data-act="adm-tab" data-tab="settings" aria-selected="false">설정</button>
-      </nav>
-
-      <div class="panel" id="admOrders"></div>
-      <div class="panel" id="admPrices" hidden></div>
-      <div class="panel" id="admClients" hidden></div>
-      <div class="panel" id="admRestock" hidden></div>
-      <div class="panel" id="admSettings" hidden></div>
-    </div>
-  </section>
-  </main>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-brand">
-          <span class="brand-mark" aria-hidden="true">훈</span>
-          <div><b>훈이네과일야채</b><span>반곡점 · 야채와 식자재 도매</span></div>
-        </div>
-        <p style="margin-top:12px;line-height:1.7">원주 시내 식당에 야채·식자재를 배달합니다. 전날 발주하면 다음 날 아침 7시 시세로 단가를 확정해 1차 08:00부터 순서대로 배달합니다.</p>
-        <div class="foot-links">
-          
-                    <a href="index.html">거래처 발주 화면 열기 →</a>
-                  </div>
-      </div>
-      <div>
-        <h3>배달·정산 안내</h3>
-        <ul>
-          <li>· 원주 시내권 배달 · 최소 주문 <span id="footMin">50,000</span>원 이상 주문 가능 (<span id="footFee">무료배송</span>)</li>
-          <li>· 배달 1차 08:00 · 2차 11:00 · 3차 13:00~14:00 (각 30분 전 마감)</li>
-          <li>· 사업자등록증 없이 간편 가입 · 사장님 승인 후 이용</li>
-          <li>· 결제: 외상 또는 즉시 결제(계좌이체) · 거래처 약정에 따름</li>
-          <li>· 전표는 A4 거래명세표로 발행</li>
-        </ul>
-      </div>
-      <div>
-        <h3>사업자 정보</h3>
-        <dl class="biz" id="footBiz"></dl>
-      </div>
-    </div>
-    <p class="foot-note">본 사이트는 제작 시안입니다. 실제 배달·정산은 매장 확인 후 처리되며, 표시된 단가와 배송 조건은 샘플입니다.<br>© 2026 훈이네과일야채 반곡점.</p>
+    <h1>사장님 페이지</h1>
+    <p class="lsub">식자재 주문 확인·배달 상태·이용 제한 사업자 관리는<br>로그인한 사장님만 볼 수 있어요.</p>
+    <form id="loginForm" autocomplete="on" novalidate>
+      <label class="lfield"><span>아이디(이메일)</span>
+        <input id="loginEmail" type="email" inputmode="email" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="admin@example.com" required>
+      </label>
+      <label class="lfield"><span>비밀번호</span>
+        <input id="loginPassword" type="password" autocomplete="current-password" placeholder="비밀번호를 입력해 주세요" required>
+      </label>
+      <label class="lkeep"><input id="loginKeep" type="checkbox" checked><span>로그인 유지</span></label>
+      <p class="lmsg" id="loginMsg" hidden></p>
+      <button class="lbtn" id="loginBtn" type="submit">로그인</button>
+    </form>
+    <p class="lfoot">손님 화면(식자재 주문)은 로그인 없이 그대로 열립니다.<br><a href="./">식자재 주문 화면 열기</a></p>
   </div>
-</footer>
-
-
-
-<div class="scrim" id="scrim"></div>
-
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
-  <div class="drawer-in" id="drawerInner"></div>
-</aside>
-
-<section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-  <div class="modal-in" id="modalInner"></div>
 </section>
 
-<div id="printRoot"></div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="app">
 
-<script>window.__HOONIE_MODE="admin";</script>
-<script src="assets/app.js?v=20261124"></script>
+<header class="top">
+  <div class="trow">
+    <div class="tleft">
+      <div class="brand">훈이네과일야채 <span>반곡점</span> <em>납품</em></div>
+      <div class="sub">사장님 페이지 · <b id="today">—</b> <span id="clock">—</span></div>
+    </div>
+    <div class="topr">
+      <a class="shoplink" href="./" target="_blank" rel="noopener">주문 화면</a>
+      <button class="logoutbtn" id="logoutBtn" type="button">로그아웃</button>
+    </div>
+  </div>
+
+  <div class="ntfy">
+    <div class="ntfy-head"><span class="ni" aria-hidden="true">🔔</span>
+      <span class="nt"><b>새 주문 알림 주제</b><i>소매몰과 따로 — 식자재 주문만 옵니다</i></span></div>
+    <div class="ntfy-row">
+      <code id="ntfyTopic">hoonie-dangu-bulk-914288</code>
+      <button class="ntfy-copy" id="ntfyCopy" type="button">복사</button>
+    </div>
+    <p class="ntfy-hint">폰의 <b>ntfy 앱</b>에서 이 주제를 구독하면 새 주문이 올 때 알림이 울립니다. (앱 주소: <b>ntfy.sh</b>)</p>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button data-tab="orders" class="on">🔔 주문 <span class="num" id="tabOrderNum">0</span></button>
+    <button data-tab="blocked">🚫 차단 사업자 <span class="num" id="tabBlockNum">0</span></button>
+  </div>
+</header>
+
+<main id="tabOrders">
+  <div class="sums">
+    <div class="sum hot"><b id="sumToday">0</b><span>오늘 주문</span></div>
+    <div class="sum"><b id="sumSales">0원</b><span>오늘 금액</span></div>
+    <div class="sum amber"><b id="sumNew">0</b><span>새 주문</span></div>
+  </div>
+  <div class="filters" id="filters">
+    <button data-f="all" class="on">전체 <em>0</em></button>
+    <button data-f="today">오늘 <em>0</em></button>
+    <button data-f="received">🆕 새 주문 <em>0</em></button>
+    <button data-f="delivering">🛵 배달중 <em>0</em></button>
+    <button data-f="done">✅ 완료 <em>0</em></button>
+    <button data-f="canceled">✕ 취소 <em>0</em></button>
+  </div>
+  <div class="syncbar">
+    <button id="refreshBtn" type="button">🔄 새로고침</button>
+    <span id="syncTime">—</span>
+  </div>
+  <div class="olist" id="orderList"></div>
+  <p class="foot">새 주문은 손님 화면(식자재 주문)에서 들어옵니다. <b>배달중 → 완료</b>로 상태를 바꾸면 이 목록과 DB에 바로 저장됩니다(사장님 폰과 매장 화면이 같은 상태를 봅니다).<br>이용을 막을 사업자는 <b>🚫 사업자 차단</b>을 누르면 그 번호로는 입장·주문이 막힙니다. <b>🔄 새로고침</b>을 누르면 바로 최신 목록을 받아 옵니다.</p>
+</main>
+
+<main id="tabBlocked" hidden>
+  <section class="addbox">
+    <h2>차단 사업자 등록</h2>
+    <p class="addhint">사업자등록번호를 10자리로 적으면 그 사업자는 입장 게이트에서 바로 막힙니다. (하이픈은 있어도 그대로 적어도 됩니다)</p>
+    <div class="afield"><label for="blkNo">사업자등록번호</label>
+      <input id="blkNo" type="text" inputmode="numeric" maxlength="12" placeholder="000-00-00000" autocomplete="off"></div>
+    <div class="afield"><label for="blkName">상호 <i>선택</i></label>
+      <input id="blkName" type="text" maxlength="40" placeholder="예) ○○김밥" autocomplete="off"></div>
+    <div class="afield"><label for="blkReason">사유 <i>선택</i></label>
+      <input id="blkReason" type="text" maxlength="60" placeholder="예) 입금 미확인 반복" autocomplete="off"></div>
+    <p class="aerr" id="blkErr" hidden></p>
+    <button class="abtn" id="blkAdd" type="button">차단 목록에 추가</button>
+  </section>
+  <div class="blist" id="blockList"></div>
+  <p class="foot">차단은 되돌릴 수 있어요 — 목록에서 <b>해제</b>를 누르면 다시 입장할 수 있습니다. 차단된 사업자가 입장하면 “이용이 제한된 사업자” 안내와 함께 매장 번호가 표시됩니다.</p>
+</main>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="js/core.js?v=20261127-cafe1"></script>
+<script src="js/admin.js?v=20261127-cafe1"></script>
 </body>
 </html>
