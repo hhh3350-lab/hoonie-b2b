@@ -115,3 +115,11 @@
 .prow.sold .pthumb{filter:grayscale(1);opacity:.55}
 .prow.sold .pname,.prow.sold .pprice{color:#94A3B8}
 .psold{flex:0 0 auto;height:34px;line-height:34px;padding:0 12px;border-radius:10px;background:#E2E8F0;color:#64748B;font-size:13px;font-weight:800}
+
+/* 가격 보기 승인 대기 */
+.gate-pending{background:rgba(253,230,138,.12);border:1.5px solid rgba(253,230,138,.55);border-radius:13px;padding:12px 13px;margin-top:16px}
+.gate-pending b{font-weight:800;color:#FDE68A;letter-spacing:-.2px}
+.gate-pending > b{display:block;font-size:13.5px}
+.gate-pending p{margin:6px 0 0;font-size:12.5px;font-weight:700;color:#F1F5E9;line-height:1.6;letter-spacing:-.2px}
+.gate-pending [data-pend-name]{color:#fff;font-weight:800}
+.gp-call{display:block;margin-top:10px;padding:10px 12px;border-radius:10px;background:#FDE68A;color:#173B2A;font-size:13px;font-weight:800;text-align:center;text-decoration:none}
