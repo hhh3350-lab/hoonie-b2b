@@ -5,7 +5,7 @@
 
 var BIZ_KEY = "hoonie_bulk_biz_v1";
 var NTS_W = [1, 3, 7, 1, 3, 7, 1, 3, 5];
-var BLOCKED_MSG = "이용이 제한된 사업자입니다. 매장(033-765-1531)으로 문의해 주세요.";
+var BLOCKED_MSG = "이용이 제한된 사업자입니다. 매장(010-7778-1573)으로 문의해 주세요.";
 
 var gateFile = null;
 
