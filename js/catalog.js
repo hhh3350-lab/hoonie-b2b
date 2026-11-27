@@ -70,7 +70,8 @@ var USES = [
 
 /* 🍓 딸기·베리 — 반곡점 주력. 크기별로 쓰임새를 적어 카페에서 고르기 쉽게 */
 var BERRIES = [
-  { id: "berry-3x4", name: "딸기 대과 (3×4)", unit: "1팩 · 케이크 토핑용", price: 12500, img: "strawberry", badge: "케이크 추천", use: ["cake"], desc: "모양이 고르고 큼직해 홀케이크·쇼트케이크 위에 올리기 좋아요" },
+  { id: "berry-schi-1kg", name: "스치딸기", unit: "1kg", price: 22000, img: "strawberry", badge: "도매가", use: ["drink", "cake"], desc: "딸기라떼·딸기청·생과일주스·잼용으로 알뜰하게" },
+  { id: "berry-3x4", name: "딸기 3×4", unit: "500g 1팩", price: 12000, img: "strawberry", badge: "도매가", use: ["cake"], desc: "모양이 고르고 큼직해 홀케이크·쇼트케이크 위에 올리기 좋아요" },
   { id: "berry-3x5", name: "딸기 중과 (3×5)", unit: "1팩 · 생크림·타르트", price: 9900, img: "strawberry", use: ["cake", "drink"], desc: "타르트·생크림 케이크 속, 컵과일에 알맞은 크기" },
   { id: "berry-4x5", name: "딸기 소과 (4×5)", unit: "1팩 · 라떼·청·주스", price: 7200, img: "strawberry", badge: "인기", use: ["drink"], desc: "딸기라떼·딸기청·생과일주스용으로 가성비 좋아요" },
   { id: "berry-box-2kg", name: "딸기 업소용", unit: "1박스 · 2kg", price: 39000, img: "strawberry", badge: "업소추천", use: ["cake", "drink"], desc: "겨울 시즌 · 디저트·음료 대량 사용" },
@@ -213,3 +214,12 @@ BULK_VEGETABLES.forEach(function(p){
   else { p.cat = "veg"; p.use = BRUNCH_VEG.indexOf(p.id) > -1 ? ["brunch", "kitchen"] : ["kitchen"]; }
   PRODUCTS.push(p);
 });
+
+/* ── 지금 파는 품목 (2026-11-27 밤 사장님: 도매가 딸기 2가지만 열고 나머지는 모두 품절) ──
+   다시 열 품목은 이 목록에 id 를 넣으면 됩니다. */
+var ON_SALE = ["berry-schi-1kg", "berry-3x4"];
+PRODUCTS.forEach(function(p){ p.soldout = ON_SALE.indexOf(p.id) < 0; });
+/* 파는 품목이 각 구분 맨 위에 오게 (같은 구분 안에서 순서만 바꿈) */
+PRODUCTS = PRODUCTS.map(function(p, i){ return { p: p, i: i }; })
+  .sort(function(a, b){ return (a.p.soldout - b.p.soldout) || (a.i - b.i); })
+  .map(function(x){ return x.p; });
