@@ -9,9 +9,9 @@
 <meta name="description" content="원주 반곡동 훈이네과일야채 반곡점 카페·식당 납품. 케이크·디저트용 딸기(대·중·소과), 음료·에이드 과일, 야채·계란·두부를 5만 원 이상 원주 시내 무료배달 · 낮 12시 마감 · 다음날 아침 배달.">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/base.css?v=20261127-green1">
-<link rel="stylesheet" href="css/bulk.css?v=20261127-green1">
-<link rel="stylesheet" href="css/cafe.css?v=20261127-green1">
+<link rel="stylesheet" href="css/base.css?v=20261127-approve1">
+<link rel="stylesheet" href="css/bulk.css?v=20261127-approve1">
+<link rel="stylesheet" href="css/cafe.css?v=20261127-approve1">
 </head>
 <body>
 <div class="app">
@@ -28,7 +28,7 @@
     <section class="gate-card" aria-labelledby="gateTitle">
       <p class="gate-kicker">카페 · 식당 납품</p>
       <h1 id="gateTitle">사장님 전용 납품가</h1>
-      <p class="gate-sub">케이크·디저트 <b>카페</b>와 식당 사장님을 위한 딸기·과일·야채 납품몰입니다.<br> 상호와 사업자등록번호만 확인하면 납품 가격이 바로 열려요.</p>
+      <p class="gate-sub">케이크·디저트 <b>카페</b>와 식당 사장님을 위한 딸기·과일·야채 납품몰입니다.<br> 상호와 사업자등록번호를 남기시면 매장에서 확인한 뒤 납품 가격을 열어 드려요.</p>
       <ul class="gate-facts">
         <li>5만 원 이상 무료배달</li>
         <li>오픈 전 아침 배달</li>
@@ -38,6 +38,12 @@
       <div class="gate-blocked" id="gateBlocked" role="alert" hidden>
         <b>입장이 제한된 사업자예요</b>
         <p>이용이 제한된 사업자입니다. 매장(033-765-1531)으로 문의해 주세요.</p>
+      </div>
+
+      <div class="gate-pending" id="gatePending" role="status" hidden>
+        <b>⏳ 승인 대기 중이에요</b>
+        <p><span data-pend-name></span><br>매장에서 확인한 뒤 가격을 열어 드려요. 허락되면 이 화면에서 다시 <b>사업자 확인하고 가격 보기</b>를 눌러 주세요.</p>
+        <a class="gp-call" href="tel:033-765-1531">📞 빨리 받으려면 전화 주세요 · 033-765-1531</a>
       </div>
 
       <form id="gateForm" novalidate>
@@ -331,9 +337,9 @@
 <div class="toast" id="toast"></div>
 </div>
 
-<script src="js/core.js?v=20261127-green1"></script>
-<script src="js/catalog.js?v=20261127-green1"></script>
-<script src="js/gate.js?v=20261127-green1"></script>
-<script src="js/app.js?v=20261127-green1"></script>
+<script src="js/core.js?v=20261127-approve1"></script>
+<script src="js/catalog.js?v=20261127-approve1"></script>
+<script src="js/gate.js?v=20261127-approve1"></script>
+<script src="js/app.js?v=20261127-approve1"></script>
 </body>
 </html>
