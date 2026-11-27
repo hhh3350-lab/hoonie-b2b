@@ -3,236 +3,338 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#FAF6EF">
-<title>훈이네과일야채 · 원주 반곡점 | 야채·식자재 B2B 발주</title>
-<meta name="description" content="원주 시내 식당에 야채·식자재를 배달하는 훈이네과일야채 반곡점 B2B 발주. 전날 발주하고 아침 7시 단가 확정, 1차 08:00·2차 11:00·3차 13:00~14:00 배달. 최소 주문 5만 원·원주 시내 무료배송, A4 거래명세표.">
+<meta name="theme-color" content="#4C0519">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8D%93%3C/text%3E%3C/svg%3E">
+<title>훈이네과일야채 반곡점 | 카페·식당 딸기·과일 납품</title>
+<meta name="description" content="원주 반곡동 훈이네과일야채 반곡점 카페·식당 납품. 케이크·디저트용 딸기(대·중·소과), 음료·에이드 과일, 야채·계란·두부를 5만 원 이상 원주 시내 무료배달 · 낮 12시 마감 · 다음날 아침 배달.">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="preconnect" href="https://hiulxicbowkffoxjtvye.supabase.co" crossorigin>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232E6B3B'/%3E%3Ctext x='32' y='44' font-size='34' font-weight='800' text-anchor='middle' fill='%23fff' font-family='Apple SD Gothic Neo,Malgun Gothic,sans-serif'%3E훈%3C/text%3E%3C/svg%3E">
-<link rel="preload" as="script" href="assets/app.js?v=20261124">
-<link rel="stylesheet" href="assets/app.css?v=20261124">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/base.css?v=20261127-cafe1">
+<link rel="stylesheet" href="css/bulk.css?v=20261127-cafe1">
+<link rel="stylesheet" href="css/cafe.css?v=20261127-cafe1">
 </head>
-<body class="mode-client">
-<header class="head" id="head">
-  <div class="wrap head-in">
-    <div class="brand">
-      <span class="brand-mark" aria-hidden="true">훈</span>
-      <div class="brand-txt">
-        <strong>훈이네과일야채</strong>
-        <span>반곡점 · 원주 시내 야채·식자재 B2B</span>
+<body>
+<div class="app">
+
+<!-- ══ 사업자 전용 입장 게이트 ═══════════════════ -->
+<main id="viewGate">
+  <div class="gate">
+    <div class="gate-brand">
+      <span class="gb-mark" aria-hidden="true">🍓</span>
+      <span class="gb-txt"><b>훈이네과일야채</b><span>반곡점</span></span>
+      <span class="gb-badge">사업자 전용</span>
+    </div>
+
+    <section class="gate-card" aria-labelledby="gateTitle">
+      <p class="gate-kicker">카페 · 식당 납품</p>
+      <h1 id="gateTitle">사장님 전용 납품가</h1>
+      <p class="gate-sub">케이크·디저트 <b>카페</b>와 식당 사장님을 위한 딸기·과일·야채 납품몰입니다.<br> 상호와 사업자등록번호만 확인하면 납품 가격이 바로 열려요.</p>
+      <ul class="gate-facts">
+        <li>5만 원 이상 무료배달</li>
+        <li>오픈 전 아침 배달</li>
+        <li>낮 12시 마감</li>
+      </ul>
+
+      <div class="gate-blocked" id="gateBlocked" role="alert" hidden>
+        <b>입장이 제한된 사업자예요</b>
+        <p>이용이 제한된 사업자입니다. 매장(033-765-1531)으로 문의해 주세요.</p>
       </div>
-    </div>
 
-        <div class="head-act" id="headMine" hidden>
-      <button class="client-chip" data-act="my-open" title="내 가게 정보">
-        <span class="cc-n" id="ccName">내 가게</span>
-        <span aria-hidden="true">▾</span>
-      </button>
-      <button class="cart-btn" data-act="cart-open" aria-label="발주 바구니 열기">
-        <span aria-hidden="true" class="cart-i">🧺</span><span class="g-t">바구니</span>
-        <span class="cart-cnt" id="cartCnt" hidden>0</span>
-      </button>
-    </div>
-    <div class="head-act" id="headGuest" hidden>
-      <button class="client-in" data-act="login-open">로그인</button>
-      <button class="client-in is-sub" data-act="signup-open">가입</button>
-    </div>
+      <form id="gateForm" novalidate>
+        <div class="gfield">
+          <label for="gName">상호 (가게 이름) <i class="req">필수</i></label>
+          <input id="gName" type="text" maxlength="40" autocomplete="organization" placeholder="예) 반곡동 딸기케이크" aria-describedby="gNameErr">
+          <p class="gerr" id="gNameErr" hidden></p>
+        </div>
 
-    <nav class="modes" id="navModes" role="tablist" aria-label="이용 메뉴">
-      <button role="tab" class="mode" data-act="go" data-route="b2b" id="tabB2B" aria-selected="true" aria-controls="viewB2B"><i aria-hidden="true">🥬</i>발주하기</button>
-      <button role="tab" class="mode" data-act="go" data-route="orders" id="tabOrders" aria-selected="false" aria-controls="viewOrders"><i aria-hidden="true">📋</i>발주 내역</button>
-      <button role="tab" class="mode" data-act="go" data-route="stmt" id="tabStmt" aria-selected="false" aria-controls="viewStmt"><i aria-hidden="true">🧾</i>거래명세표</button>
-    </nav>
-        
+        <div class="gfield">
+          <label for="gNo">사업자등록번호 <i class="req">필수</i></label>
+          <input id="gNo" type="text" inputmode="numeric" maxlength="12" autocomplete="off" spellcheck="false" placeholder="000-00-00000" aria-describedby="gNoErr">
+          <p class="gerr" id="gNoErr" hidden></p>
+        </div>
+
+        <div class="gfield">
+          <label for="gCert">사업자등록증 첨부 <i class="opt">선택</i></label>
+          <input id="gCert" class="gfile" type="file" accept="image/*" aria-describedby="gCertErr">
+          <label class="gfilebtn" id="gFileBtn" for="gCert">
+            <span class="gf-ico" aria-hidden="true">📷</span>
+            <span class="gf-txt"><b>사진 올리기 (안 해도 돼요)</b><span>확인이 필요할 때만 가게에서 따로 여쭤봐요</span></span>
+          </label>
+          <div class="gprev" id="gPrev" hidden>
+            <img id="gPrevImg" alt="사업자등록증 미리보기" width="46" height="46">
+            <span class="gp-txt"><b id="gFileName"></b><span id="gFileSize"></span></span>
+            <button type="button" class="gp-del" id="gFileDel" aria-label="첨부한 사진 지우기">✕</button>
+          </div>
+          <p class="gerr" id="gCertErr" hidden></p>
+        </div>
+
+        <button class="gate-go" id="gateGo" type="submit">사업자 확인하고 가격 보기</button>
+      </form>
+
+      <a class="gate-retail" id="gateRetail" href="https://huns-fruit.github.io/">
+        <span class="gr-txt"><b>일반몰로 이동</b><span>가정용 소매 주문은 일반몰에서 해 주세요</span></span>
+        <span class="gr-go" aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <p class="gate-note">사업자등록증 사진은 이 기기에서 확인용으로만 보고 서버에 올리지 않습니다.<br>상호와 사업자등록번호만 이 기기에 저장됩니다.</p>
   </div>
-</header>
-
-<main id="main">
-    <!-- ══════════════ 0. 로그인 (내 가게 1곳만) ══════════════ -->
-  <section id="viewLogin" class="view" role="tabpanel" aria-label="거래처 로그인" hidden>
-    <div class="wrap">
-      <div class="login-card">
-        <div class="lg-ico" aria-hidden="true">🔐</div>
-        <h1>우리 가게로 들어가기</h1>
-        <p>가입할 때 적은 <b>상호명</b>과 <b>전화번호</b>를 넣어 주세요.</p>
-        <div class="fields">
-          <div class="field"><label for="lgName">상호명</label><input id="lgName" placeholder="예: 우리가게식당" autocomplete="organization"></div>
-          <div class="field"><label for="lgPhone">전화번호</label><input id="lgPhone" data-act="lg-phone" inputmode="tel" placeholder="010-0000-0000" autocomplete="tel"></div>
-        </div>
-        <button class="btn btn-primary btn-block" data-act="login" style="height:54px;font-size:17px;margin-top:12px">로그인</button>
-        <p class="lg-alt">아직 거래처가 아니세요? <button type="button" data-act="signup-open">거래처 가입</button></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════ 1. 발주 (단가표) ══════════════ -->
-  <section id="viewB2B" class="view" role="tabpanel" aria-labelledby="tabB2B" hidden>
-    <div class="wrap">
-      <!-- 배달 선택 — 날짜 · 회차를 큰 버튼으로 -->
-      <div class="setup" id="orderSetup">
-        <div class="su-block">
-          <div class="su-label">배달 날짜</div>
-          <div class="su-dates" id="dateChips" role="group" aria-label="배달 날짜"></div>
-        </div>
-        <div class="su-block">
-          <div class="su-label">배달 시간</div>
-          <div class="su-rounds" id="orderRounds" role="group" aria-label="배달 시간"></div>
-        </div>
-        <div class="su-foot">
-          <p class="su-note" id="suNote"></p>
-          <button class="su-signup" data-act="signup-open" id="suSignup">＋ 거래처 가입</button>
-        </div>
-      </div>
-
-      <!-- 어제 주문 그대로 담기 (배달 선택 바로 아래 큰 버튼) -->
-      <div id="reorderBox"></div>
-
-      <!-- ★ 내 즐겨찾기 (손님이 고정한 품목 · 맨 위에서 바로 담기) -->
-      <div id="favBox"></div>
-
-      <div id="orderBlock"></div>
-
-      <!-- 최근 발주 진행 상태 (① 접수 → ② 단가 확정 → ③ 배달 출발 → ④ 배송 완료) -->
-      <div id="liveProgress"></div>
-
-      <div class="list-head">
-        <h2 id="listTitle">단가표</h2>
-        <span class="pmode" id="priceMode"></span>
-      </div>
-      <div id="priceNotice"></div>
-
-      <div class="psearch">
-        <span class="ps-ico" aria-hidden="true">🔍</span>
-        <input id="prodSearch" data-act="prod-search" type="search" inputmode="search" autocomplete="off"
-               placeholder="품목 이름 검색 (예: 대파, 양파)" aria-label="품목 이름 검색">
-        <button class="ps-clear" data-act="prod-clear" aria-label="검색어 지우기" hidden>✕</button>
-      </div>
-
-      <div class="chips" id="catChips" role="group" aria-label="품목 분류"></div>
-      <div class="plist" id="prodList"></div>
-
-      <p class="fineprint">
-        🕖 지금 보이는 금액은 <b>참고가</b>이고, <b>아침 7시 확정 단가</b>로 정산됩니다.<br>
-        🚚 원주 시내 <b>5만 원 이상 무료배송</b> · 최소 주문 <b><span id="fineMin">50,000</span>원</b> · 배달 <b>1차 08:00 · 2차 11:00 · 3차 13:00~14:00</b><br>
-        🔐 <b>거래처 전용</b> · 사업자등록증 없이 <b>간편 가입</b>, 사장님 <b>승인 후</b> 이용 · 결제는 <b>외상 또는 즉시결제</b> · 미수 잔액이 오래 남으면 발주가 잠깁니다.
-      </p>
-    </div>
-  </section>
-
-  <!-- ══════════════ 2. 발주서 (체크아웃) ══════════════ -->
-  <section id="viewCheckout" class="view" role="tabpanel" aria-label="발주서 작성" hidden>
-    <div class="page-head">
-      <div class="wrap ph-inner">
-        <button class="back-btn" data-act="co-back" aria-label="단가표로 돌아가기">←</button>
-        <div class="grow">
-          <h1>발주서 작성</h1>
-          <p>배달 회차와 거래처 정보를 확인하고 발주를 넣어요</p>
-        </div>
-      </div>
-    </div>
-    <div class="wrap co-wrap" id="coBody"></div>
-  </section>
-
-  <!-- ══════════════ 3. 주문현황 ══════════════ -->
-  <section id="viewOrders" class="view" role="tabpanel" aria-labelledby="tabOrders" hidden>
-    <div class="wrap">
-      <div class="admin-head">
-        <h1>주문현황</h1>
-        <p><b id="ordersClient">거래처</b> 님의 발주 내역입니다. 단가 확정 전 주문은 <b>참고가</b>로 표시되고, 아침 7시에 확정가로 다시 계산됩니다.</p>
-      </div>
-      <div id="ordersSummary"></div>
-      <div class="row between" style="margin:12px 0 8px;flex-wrap:wrap;gap:8px">
-        <div class="row" id="orderFilters" role="group" aria-label="진행 상태" style="flex-wrap:wrap"></div>
-      </div>
-      <div id="orderList"></div>
-    </div>
-  </section>
-
-  <!-- ══════════════ 4. 거래명세표 ══════════════ -->
-  <section id="viewStmt" class="view" role="tabpanel" aria-labelledby="tabStmt" hidden>
-    <div class="wrap">
-      <div class="admin-head">
-        <h1>거래명세표</h1>
-        <p><b id="stmtClient">거래처</b> 님의 미수·잔액과 전표입니다. 전표는 <b>A4 용지 그대로</b> 폰에서 보실 수 있습니다.</p>
-      </div>
-      <div id="stmtBalance"></div>
-      <div id="stmtMonth"></div>
-      <div class="row between" style="margin:16px 0 8px">
-        <h2 style="font-size:16px">발행 전표</h2>
-        <span class="small" id="stmtCount"></span>
-      </div>
-      <div id="stmtList"></div>
-    </div>
-  </section>
-  
-  
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-brand">
-          <span class="brand-mark" aria-hidden="true">훈</span>
-          <div><b>훈이네과일야채</b><span>반곡점 · 야채와 식자재 도매</span></div>
-        </div>
-        <p style="margin-top:12px;line-height:1.7">원주 시내 식당에 야채·식자재를 배달합니다. 전날 발주하면 다음 날 아침 7시 시세로 단가를 확정해 1차 08:00부터 순서대로 배달합니다.</p>
-        <div class="foot-links">
-                    <button type="button" data-act="go" data-route="b2b">단가표</button>
-          <button type="button" data-act="go" data-route="orders">발주 내역</button>
-          <button type="button" data-act="go" data-route="stmt">거래명세표</button>
-                    
-        </div>
-      </div>
-      <div>
-        <h3>배달·정산 안내</h3>
-        <ul>
-          <li>· 원주 시내권 배달 · 최소 주문 <span id="footMin">50,000</span>원 이상 주문 가능 (<span id="footFee">무료배송</span>)</li>
-          <li>· 배달 1차 08:00 · 2차 11:00 · 3차 13:00~14:00 (각 30분 전 마감)</li>
-          <li>· 사업자등록증 없이 간편 가입 · 사장님 승인 후 이용</li>
-          <li>· 결제: 외상 또는 즉시 결제(계좌이체) · 거래처 약정에 따름</li>
-          <li>· 전표는 A4 거래명세표로 발행</li>
-        </ul>
-      </div>
-      <div>
-        <h3>사업자 정보</h3>
-        <dl class="biz" id="footBiz"></dl>
-      </div>
-    </div>
-    <p class="foot-note">본 사이트는 제작 시안입니다. 실제 배달·정산은 매장 확인 후 처리되며, 표시된 단가와 배송 조건은 샘플입니다.<br>© 2026 훈이네과일야채 반곡점.</p>
+<!-- ══ 상품 화면 ═════════════════════════════════ -->
+<main id="viewShop" hidden>
+  <div class="topbar" role="note">
+    <p><b>🍓 카페·식당 납품 전용</b><span class="tb-sep">·</span>가정용은 <a href="https://huns-fruit.github.io/">일반몰</a>을 이용해 주세요</p>
   </div>
-</footer>
-
-<!-- 하단 발주 바 -->
-<div class="actionbar" id="actionbar" aria-live="polite">
-  <div class="wrap ab-inner">
-    <div class="ab-info">
-      <div class="ab-line">
-        <span class="ab-cnt" id="abCnt">0품목</span>
-        <span class="ab-amt" id="abAmt">0<small>원</small></span>
+  <header class="hd">
+    <div class="hd-row">
+      <div class="hd-brand">
+        <span class="hd-name">훈이네과일야채</span>
+        <span class="hd-branch">반곡점</span>
+        <span class="hd-bulk">카페·식당 납품</span>
       </div>
-      <div class="ab-hint" id="abHint">최소 주문 50,000원부터 발주할 수 있어요</div>
-      <div class="ab-prog" id="abProgress" hidden><i></i></div>
+      <a class="hd-call" href="tel:0337651531" aria-label="가게 전화 걸기"><span class="hc-ico" aria-hidden="true">📞</span> 전화</a>
     </div>
-    <button class="ab-btn" id="abBtn" data-act="checkout">발주서 작성</button>
+    <div class="hd-bizbar">
+      <span class="hdb-txt"><span class="hdb-ok" aria-hidden="true">✓</span> <b id="hdBizName">사업자 확인</b> · 사업자 확인됨</span>
+      <button type="button" class="hdb-change" id="bizChange">사업자 변경</button>
+    </div>
+    <div class="hd-search">
+      <span class="hd-ico" aria-hidden="true">🔍</span>
+      <input id="q" type="search" inputmode="search" enterkeyhint="search" autocapitalize="off" autocomplete="off" placeholder="품목 검색 (예: 딸기, 레몬, 양상추)" aria-label="품목 검색">
+      <button class="hd-clear" id="qClear" type="button" aria-label="검색어 지우기" hidden>✕</button>
+    </div>
+  </header>
+
+  <section class="hero cafe">
+    <div class="hero-card">
+      <span class="hero-tag">🍓 케이크·디저트 카페 납품</span>
+      <h1>오늘 들어온 딸기,<br><b>크기별로</b> 골라 받으세요</h1>
+      <p class="hero-sub">원주 반곡동 매장에서 매일 고른 딸기·과일을 카페 오픈 전 아침에 배달해 드려요.</p>
+      <img class="hero-berry" src="img/fruit/strawberry.webp" alt="" aria-hidden="true" width="132" height="132">
+      <div class="sizes" role="list">
+        <button type="button" class="size" data-cat-go="berry" role="listitem"><b>대과 3×4</b><span>케이크 토핑</span></button>
+        <button type="button" class="size" data-cat-go="berry" role="listitem"><b>중과 3×5</b><span>생크림·타르트</span></button>
+        <button type="button" class="size" data-cat-go="berry" role="listitem"><b>소과 4×5</b><span>라떼·청·주스</span></button>
+      </div>
+      <ul class="facts">
+        <li><span class="fi" aria-hidden="true">🛵</span><div><b>5만 원 이상 무료배달</b><span>원주 시내 · 품목 합산</span></div></li>
+        <li><span class="fi" aria-hidden="true">⏰</span><div><b>오픈 전 아침 배달</b><span>오전 7~9시부터</span></div></li>
+        <li><span class="fi" aria-hidden="true">🔁</span><div><b>정기 납품 가능</b><span>매주 같은 요일로</span></div></li>
+        <li><span class="fi" aria-hidden="true">📞</span><div><b>없는 품목도 구해요</b><span>전화로 편하게</span></div></li>
+      </ul>
+      <div class="cutoff" id="cutoffNote">낮 12시 마감</div>
+    </div>
+  </section>
+
+  <div class="reobox" id="reorderBox" hidden></div>
+
+  <section class="usesec" aria-label="쓰임새로 찾기">
+    <p class="use-t">쓰임새로 찾기</p>
+    <div class="usechips" id="useChips"></div>
+  </section>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="상품 구분">
+    <button type="button" data-cat="berry" class="on" role="tab">🍓 딸기 <em>6</em></button>
+    <button type="button" data-cat="fruit" role="tab">🍊 과일 <em>25</em></button>
+    <button type="button" data-cat="veg" role="tab">🥬 야채 <em>70</em></button>
+    <button type="button" data-cat="daily" role="tab">🥚 계란·두부 <em>6</em></button>
+  </nav>
+
+  <section class="listsec">
+    <div class="lhead"><h2 id="listTitle">딸기·베리</h2><span class="n" id="listCount">6개 품목</span></div>
+    <div id="list"></div>
+    <div class="empty" id="empty" hidden></div>
+  </section>
+
+  <div class="band"></div>
+
+  <section class="guide">
+    <h3>주문 안내</h3>
+    <ol class="steps">
+      <li><b>담기</b><span>팩·박스 단위로 담고, 지난 주문은 한 번에 다시 담을 수 있어요.</span></li>
+      <li><b>주문서 작성</b><span>상호 · 담당자 · 배달 주소 · 받는 날짜와 시간을 적어 주세요.</span></li>
+      <li><b>무통장입금</b><span>입금이 확인되면 준비해서 배달을 시작합니다.</span></li>
+    </ol>
+    <dl class="cond">
+      <dt>배달 권역</dt><dd>원주 시내권만 배달합니다. 시외·기업도시 등은 <a href="tel:0337651531">033-765-1531</a>로 문의해 주세요.</dd>
+      <dt>최소주문</dt><dd>품목 구분 없이 합쳐서 50,000원 이상이면 원주 시내 무료배달</dd>
+      <dt>마감</dt><dd>낮 12시 · 이후 주문은 그 다음날 아침 배달 · 일요일은 배달 쉼</dd>
+      <dt>정기 납품</dt><dd>매주 같은 요일로 받으시려면 주문서에서 <b>정기 납품</b>을 체크해 주세요. 가게에서 전화로 일정을 맞춰 드려요.</dd>
+      <dt>결제</dt><dd>무통장입금 (NH농협은행 302-1803-5017-81 · 예금주 황관훈)</dd>
+    </dl>
+    <p class="gnote">가격은 입고 시세에 따라 달라질 수 있고, 주문하신 시점의 가격이 적용됩니다. 사진은 상품 이해를 돕기 위한 예시입니다.</p>
+  </section>
+
+  <!-- 사업자 정보 · 약관 -->
+  <footer class="pgfoot">
+    <h3>사업자 정보</h3>
+    <dl class="pf-dl">
+      <dt>상호</dt><dd>훈이네과일야채</dd>
+      <dt>대표자</dt><dd>황관훈</dd>
+      <dt>사업자등록번호</dt><dd>421-28-01608</dd>
+      <dt>사업장 주소</dt><dd>강원특별자치도 원주시 단구로 398, 단관청솔3차아파트 상가동2동 1층 101호 (단구동)</dd>
+      <dt>고객센터</dt><dd><a href="tel:+821091421531">010-9142-1531</a> · <a href="mailto:hhh3350@naver.com">hhh3350@naver.com</a></dd>
+      <dt>통신판매업 신고번호</dt><dd>제 2026-강원원주-02474 호</dd>
+    </dl>
+    <div class="pf-links">
+      <button type="button" data-policy="terms">이용약관</button>
+      <button type="button" data-policy="privacy">개인정보처리방침</button>
+      <button type="button" class="wide" data-policy="shipping">배송 및 교환·환불 정책</button>
+    </div>
+    <p class="pf-note">훈이네과일야채 반곡점(원주 반곡동 아이파크 앞)은 매장에서 직접 고른 딸기·과일·채소를 카페·식당에 납품합니다.</p>
+    <p class="pf-copy">© 2026 훈이네과일야채 반곡점</p>
+  </footer>
+</main>
+
+<!-- ══ 장바구니 ══════════════════════════════════ -->
+<main class="view" id="viewCart" hidden>
+  <header class="page-hd">
+    <button class="ph-back" id="cartBack" type="button" aria-label="상품으로 돌아가기">←</button>
+    <b>장바구니</b>
+  </header>
+  <div id="cartBody"></div>
+  <div class="pfoot"><button class="cta" id="toCheckout" type="button">품목을 담아 주세요</button></div>
+</main>
+
+<!-- ══ 주문서 ════════════════════════════════════ -->
+<main class="view" id="viewCheckout" hidden>
+  <header class="page-hd">
+    <button class="ph-back" id="ckBack" type="button" aria-label="장바구니로 돌아가기">←</button>
+    <b>주문서 작성</b>
+    <span class="ph-step">무통장입금</span>
+  </header>
+
+  <div class="ckbody">
+    <section class="card">
+      <h2 class="sec-t">주문 상품</h2>
+      <div id="ckLines" class="cklines"></div>
+      <div class="cktot">
+        <div class="srow"><span>상품 합계</span><b id="ckSub">0원</b></div>
+        <div class="srow"><span>배달비</span><b>무료 (원주 시내권)</b></div>
+        <div class="srow tot"><span>결제 금액</span><b id="ckTotal">0원</b></div>
+      </div>
+    </section>
+
+    <div id="ckMin"></div>
+
+    <section class="card">
+      <h2 class="sec-t">가게 정보</h2>
+      <div class="field">
+        <label for="fShop">상호 (가게 이름) <i class="req">필수</i></label>
+        <input id="fShop" type="text" autocomplete="organization" placeholder="예) 반곡동 딸기케이크" maxlength="40">
+      </div>
+      <div class="field">
+        <label for="fBizNo">사업자등록번호</label>
+        <input id="fBizNo" type="text" readonly placeholder="사업자 확인 후 자동 입력">
+        <span class="fhint">입장할 때 확인한 번호예요. 다른 사업자로 바꾸려면 위의 <b>사업자 변경</b>을 눌러 주세요.</span>
+      </div>
+      <div class="field">
+        <label for="fManager">담당자 이름 <i class="req">필수</i></label>
+        <input id="fManager" type="text" autocomplete="name" placeholder="예) 김철수" maxlength="20">
+      </div>
+      <div class="field">
+        <label for="fPhone">연락처 <i class="req">필수</i></label>
+        <input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" maxlength="20">
+        <span class="fhint">배달 전에 연락드릴 수 있는 번호로 적어 주세요.</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="sec-t">배달 정보</h2>
+      <div class="field">
+        <label for="fAddr">배달 주소 <i class="req">필수</i></label>
+        <textarea id="fAddr" rows="2" placeholder="예) 원주시 반곡동 000, ○○카페 1층" maxlength="120"></textarea>
+        <span class="fhint">원주 시내권만 배달합니다. 시외는 033-765-1531로 문의해 주세요.</span>
+      </div>
+      <div class="field">
+        <label for="fDate">받는 날짜 <i class="req">필수</i></label>
+        <input id="fDate" type="date">
+        <span class="fhint" id="fDateHint">낮 12시 마감</span>
+      </div>
+      <div class="field">
+        <label for="fTime">받는 시간 <i class="req">필수</i></label>
+        <select id="fTime"></select>
+      </div>
+      <div class="field">
+        <label for="fMemo">요청사항 <i class="opt">선택</i></label>
+        <textarea id="fMemo" rows="2" placeholder="예) 새벽 6시 이전에 놓아 주세요 / 뒷문으로" maxlength="200"></textarea>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="sec-t">정기 납품 <i class="opt">선택</i></h2>
+      <label class="agree regchk"><input type="checkbox" id="fRegular"><span>매주 같은 요일에 <b>정기적으로 받고 싶어요</b><br><small>가게에서 전화로 품목·일정을 맞춰 드려요</small></span></label>
+      <div class="regdays" id="regDays" hidden><button type="button" data-rday="월" aria-pressed="false">월</button><button type="button" data-rday="화" aria-pressed="false">화</button><button type="button" data-rday="수" aria-pressed="false">수</button><button type="button" data-rday="목" aria-pressed="false">목</button><button type="button" data-rday="금" aria-pressed="false">금</button><button type="button" data-rday="토" aria-pressed="false">토</button></div>
+    </section>
+
+    <section class="card">
+      <h2 class="sec-t">현금영수증 · 입금</h2>
+      <div class="field">
+        <label for="fReceipt">현금영수증 <i class="opt">선택</i></label>
+        <select id="fReceipt">
+          <option value="none">발급하지 않음</option>
+          <option value="expense">사업자번호 (지출증빙)</option>
+          <option value="income">휴대폰번호 (소득공제)</option>
+        </select>
+      </div>
+      <div class="field" id="receiptNoBox" hidden>
+        <label for="fReceiptNo">사업자번호 / 휴대폰번호</label>
+        <input id="fReceiptNo" type="text" inputmode="numeric" placeholder="사업자번호 10자리">
+      </div>
+      <div class="field">
+        <label for="fDepositor">입금자명 <i class="opt">선택</i></label>
+        <input id="fDepositor" type="text" placeholder="상호와 같으면 비워 두세요" maxlength="30">
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="sec-t">결제</h2>
+      <p class="payhint">🏦 지금은 <b>무통장입금</b>만 받아요. 주문서를 보내고 아래 계좌로 입금해 주세요.</p>
+      <div id="ckBank"></div>
+    </section>
+
+    <label class="agree" id="agreeBox">
+      <input type="checkbox" id="fAgree">
+      <span>주문 내용과 <b>최소주문 5만 원 · 낮 12시 마감 · 원주 시내 배달 · 일요일 배달 쉼</b> 조건을 확인했어요.</span>
+    </label>
+    <p class="paywarn" id="payWarn" hidden></p>
+  </div>
+
+  <div class="pfoot"><button class="cta" id="payBtn" type="button">0원 주문하기</button></div>
+</main>
+
+<!-- ══ 주문 완료 ═════════════════════════════════ -->
+<main class="view" id="viewDone" hidden>
+  <div class="done" id="doneBody"></div>
+</main>
+
+<!-- 하단 장바구니 바 -->
+<button class="cartbar" id="cartbar" type="button" hidden aria-label="장바구니 보기">
+  <span class="in">
+    <span class="cb-badge" id="cbBadge">0</span>
+    <span class="cb-label" id="cbLabel">장바구니 보기</span>
+    <span class="cb-amt" id="cbAmt">0원</span>
+    <span class="cb-go" aria-hidden="true">›</span>
+  </span>
+</button>
+
+<!-- 약관 · 정책 -->
+<div class="sheet" id="sheetPolicy" aria-hidden="true">
+  <div class="dim" data-close-policy></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="polTitle">
+    <div class="shead"><b id="polTitle">이용약관</b><button type="button" class="x" data-close-policy aria-label="닫기">✕</button></div>
+    <div class="sbody"><div class="polbody" id="polBody"></div></div>
+    <div class="sfoot"><button type="button" class="cta" data-close-policy>확인했어요</button></div>
   </div>
 </div>
 
-<div class="scrim" id="scrim"></div>
+<div class="toast" id="toast"></div>
+</div>
 
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
-  <div class="drawer-in" id="drawerInner"></div>
-</aside>
-
-<section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-  <div class="modal-in" id="modalInner"></div>
-</section>
-
-<div id="printRoot"></div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script>window.__HOONIE_MODE="client";</script>
-<script src="assets/app.js?v=20261124"></script>
+<script src="js/core.js?v=20261127-cafe1"></script>
+<script src="js/catalog.js?v=20261127-cafe1"></script>
+<script src="js/gate.js?v=20261127-cafe1"></script>
+<script src="js/app.js?v=20261127-cafe1"></script>
 </body>
 </html>
