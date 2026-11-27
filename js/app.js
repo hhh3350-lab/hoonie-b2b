@@ -296,7 +296,8 @@ function kstDate(offsetDays){
 function kstHour(){
   return new Date(Date.now() + 9 * 3600000).getUTCHours();
 }
-function cutoffPassed(){ return kstHour() >= 12; }
+/* 2026-11-27 사장님: 오늘 주문하면 내일 배달 — 마감은 밤 12시 (그날 안에만 주문하면 다음날 받음) */
+function cutoffPassed(){ return false; }
 function weekdayOf(ymd){ var p = String(ymd || "").split("-"); return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])).getDay(); }
 function isNoDeliveryDay(ymd){ return NO_DELIVERY_DAYS.indexOf(weekdayOf(ymd)) > -1; }
 function earliestDate(){
@@ -313,9 +314,7 @@ function dateLabel(ymd){
 }
 function cutoffLabel(){
   var e = dateLabel(earliestDate());
-  return cutoffPassed()
-    ? "오늘 낮 12시 주문이 마감됐어요 · 지금 주문하면 " + e + " 아침 배달"
-    : "낮 12시 마감 · 지금 주문하면 " + e + " 아침 배달";
+  return "밤 12시 마감 · 지금 주문하면 " + e + " 아침 배달";
 }
 var TIMES = [
   { v: "07-09", label: "오전 7~9시 (오픈 전)" },
@@ -353,9 +352,7 @@ function renderCheckout(){
   var min = earliestDate();
   dIn.min = min;
   if (!dIn.value || dIn.value < min) dIn.value = min;
-  $("#fDateHint").textContent = cutoffPassed()
-    ? "낮 12시가 지났어요 · " + dateLabel(min) + "부터 받을 수 있어요 (일요일은 배달 쉼)"
-    : "낮 12시 이전 주문은 " + dateLabel(min) + " 아침 배달이에요 (일요일은 배달 쉼)";
+  $("#fDateHint").textContent = "오늘 주문하면 " + dateLabel(min) + " 아침에 받을 수 있어요 (일요일은 배달 쉼)";
 
   if (!$("#fTime").value) $("#fTime").value = "07-09";
 
@@ -385,6 +382,7 @@ function readForm(){
     time: fieldVal("#fTime"),
     memo: fieldVal("#fMemo"),
     receiptType: fieldVal("#fReceipt") || "none",
+    taxEmail: fieldVal("#fTaxEmail"),
     receiptNo: fieldVal("#fReceiptNo"),
     depositor: fieldVal("#fDepositor"),
     regular: !!( $("#fRegular") && $("#fRegular").checked ),
@@ -393,7 +391,8 @@ function readForm(){
   };
 }
 function receiptLabel(t){
-  if (t === "expense") return "지출증빙(사업자번호)";
+  if (t === "invoice") return "계산서(면세)";
+  if (t === "expense") return "현금영수증 지출증빙(사업자번호)";
   if (t === "income") return "소득공제(휴대폰번호)";
   return "";
 }
@@ -424,7 +423,7 @@ function validate(f){
   if (!ok && firstBad){
     firstBad.focus();
     toast((firstBad === $("#fDate") && f.date && isNoDeliveryDay(f.date)) ? "일요일은 배달이 쉬어요 · 다른 날을 골라 주세요" : firstBad === $("#fReceiptNo")
-      ? (f.receiptType === "expense" ? "사업자번호 10자리를 확인해 주세요" : "현금영수증 휴대폰번호를 확인해 주세요")
+      ? (f.receiptType === "income" ? "현금영수증 휴대폰번호를 확인해 주세요" : "사업자번호 10자리를 확인해 주세요")
       : "주문 정보를 확인해 주세요");
   }
   return ok;
@@ -433,7 +432,7 @@ function saveCustomer(f){
   try {
     localStorage.setItem(CUST_KEY, JSON.stringify({
       shop: f.shop, manager: f.manager, phone: f.phone, addr: f.addr,
-      receiptType: f.receiptType, receiptNo: f.receiptNo, depositor: f.depositor
+      receiptType: f.receiptType, receiptNo: f.receiptNo, taxEmail: f.taxEmail, depositor: f.depositor
     }));
   } catch (e) {}
 }
@@ -447,6 +446,7 @@ function loadCustomer(){
   if (d.addr) $("#fAddr").value = d.addr;
   if (d.receiptType) $("#fReceipt").value = d.receiptType;
   if (d.receiptNo) $("#fReceiptNo").value = d.receiptNo;
+  if (d.taxEmail && $("#fTaxEmail")) $("#fTaxEmail").value = d.taxEmail;
   if (d.depositor) $("#fDepositor").value = d.depositor;
   toggleReceipt();
 }
@@ -454,7 +454,11 @@ function toggleReceipt(){
   var t = fieldVal("#fReceipt") || "none";
   var box = $("#receiptNoBox");
   box.hidden = (t === "none");
-  if (t === "expense"){
+  var lb = $("#fReceiptNoLabel");
+  if (lb) lb.textContent = (t === "income") ? "휴대폰번호" : "사업자번호";
+  var em = $("#taxEmailBox");
+  if (em) em.hidden = (t !== "invoice");
+  if (t === "invoice" || t === "expense"){
     $("#fReceiptNo").placeholder = "사업자번호 10자리";
     $("#fReceiptNo").inputMode = "numeric";
     /* 확인한 사업자번호를 그대로 채워 둡니다 */
@@ -530,6 +534,7 @@ function placeOrder(f){
     receiptType: f.receiptType,
     receiptNo: (f.receiptType !== "none" ? String(f.receiptNo || "").replace(/[^0-9]/g, "") : ""),
     receiptLabel: receiptLabel(f.receiptType),
+    taxEmail: (f.receiptType === "invoice" ? String(f.taxEmail || "").trim() : ""),
     /* 사업자 확인 정보 — 가벼운 값만 넣습니다 (사진 데이터는 보내지 않음) */
     bizNo: state.biz.bizNo,
     bizCertName: state.biz.bizCertName,
@@ -583,7 +588,7 @@ function renderDone(ord, saved){
     + '<div class="drow"><span>연락처</span><b>' + esc(ord.phone) + '</b></div>'
     + '<div class="drow"><span>배달 주소</span><b>' + esc(ord.addr) + '</b></div>'
     + (ord.memo ? '<div class="drow"><span>요청사항</span><b>' + esc(ord.memo) + '</b></div>' : '')
-    + (ord.receiptNo ? '<div class="drow"><span>현금영수증</span><b>' + esc(ord.receiptLabel) + ' ' + esc(ord.receiptNo) + '</b></div>' : '')
+    + (ord.receiptNo ? '<div class="drow"><span>증빙</span><b>' + esc(ord.receiptLabel) + ' ' + esc(ord.receiptNo) + (ord.taxEmail ? ' · ' + esc(ord.taxEmail) : '') + '</b></div>' : '')
     + '<div class="ditems">';
   ord.items.forEach(function(it){
     h += '<div class="dit"><span>' + esc(it.name) + ' <i>' + esc(it.unit) + '</i> × ' + it.qty + '</span>'
@@ -598,7 +603,7 @@ function renderDone(ord, saved){
     + '<a class="ghost" href="tel:' + esc(STORE.tel.replace(/[^0-9]/g, '')) + '">가게에 전화하기 (' + esc(STORE.tel) + ')</a>'
     + '</div>'
     + '<p class="dfoot">입금자명을 상호(가게 이름)와 같게 적어 주세요.<br>'
-    + '낮 12시 마감 · 5만 원 이상 원주 시내 무료배달 · 문의 ' + esc(STORE.cs) + '</p>';
+    + '밤 12시 마감(오늘 주문 → 내일 배달) · 5만 원 이상 원주 시내 무료배달 · 문의 ' + esc(STORE.cs) + '</p>';
   $("#doneBody").innerHTML = h;
 }
 
@@ -611,7 +616,7 @@ var POLICIES = {
     body: '<p class="polmeta">시행일 2026년 11월 26일 · 훈이네과일야채 반곡점 카페·식당 납품</p>'
       + '<h4>제1조 (목적)</h4><p>이 약관은 훈이네과일야채 반곡점(이하 “가게”)이 운영하는 식자재 주문 화면(이하 “사이트”)에서 카페·식당 등 사업자가 딸기·과일·채소를 납품받기 위해 주문하고 받는 데 필요한 조건과 절차를 정합니다.</p>'
       + '<h4>제2조 (상품과 가격)</h4><ul><li>표시 가격은 원화이며 부가세를 포함합니다.</li><li>신선식품은 입고 시세에 따라 가격이 바뀔 수 있고, 주문한 시점의 가격이 적용됩니다.</li><li>품목·규격·수량은 입고 사정에 따라 달라질 수 있으며, 이때는 고객센터로 먼저 연락드리고 금액을 조정하거나 환불해 드립니다.</li></ul>'
-      + '<h4>제3조 (주문과 계약 성립)</h4><ul><li>주문서를 보내면 가게가 내용을 확인한 뒤 접수하며, 그때 계약이 성립합니다.</li><li>배달은 원주 시내권만 가능하며, 낮 12시까지 접수된 주문은 다음날 오전 배달을 원칙으로 합니다. 낮 12시 이후 주문은 그 다음날 오전으로 접수됩니다.</li><li>주문 내용과 다르거나 연락이 닿지 않으면 가게가 주문을 취소할 수 있습니다.</li></ul>'
+      + '<h4>제3조 (주문과 계약 성립)</h4><ul><li>주문서를 보내면 가게가 내용을 확인한 뒤 접수하며, 그때 계약이 성립합니다.</li><li>배달은 원주 시내권만 가능하며, 그날 밤 12시까지 접수된 주문은 다음날 오전 배달을 원칙으로 합니다. 일요일에 받는 날이 걸리면 월요일 오전으로 접수됩니다.</li><li>주문 내용과 다르거나 연락이 닿지 않으면 가게가 주문을 취소할 수 있습니다.</li></ul>'
       + '<h4>제4조 (최소주문금액)</h4><p>배달 주문은 품목 구분 없이 합쳐서 50,000원 이상부터 가능하며, 원주 시내권은 배달비가 무료입니다.</p>'
       + '<h4>제5조 (결제)</h4><ul><li>현재는 무통장입금(계좌입금)만 이용할 수 있습니다. 입금이 확인된 뒤 상품 준비와 배달이 시작됩니다.</li><li>가게는 카드번호 등 결제 정보를 저장하지 않습니다.</li></ul>'
       + '<h4>제6조 (배달과 수령)</h4><p>배달 권역·최소주문금액·배달 시간은 <b>배송 및 교환·환불 정책</b>에 따릅니다. 주문서에 적어 주신 담당자 연락처로 배달 전에 연락드릴 수 있습니다.</p>'
@@ -628,7 +633,7 @@ var POLICIES = {
     body: '<p class="polmeta">시행일 2026년 11월 26일 · 훈이네과일야채 반곡점 카페·식당 납품</p>'
       + '<p>훈이네과일야채 반곡점(이하 “가게”)은 식자재 주문·배달과 문의 응대에 꼭 필요한 정보만 받고 아래와 같이 처리합니다.</p>'
       + '<h4>1. 받는 정보</h4><ul><li><b>주문 시(필수)</b> 상호(가게 이름), 담당자 이름, 휴대폰번호, 배달 주소, 받는 날짜·시간, 주문 품목·수량·금액, 요청사항</li><li><b>선택</b> 입금자명, 현금영수증 발급용 사업자번호 또는 휴대폰번호</li><li>광고·추적을 위한 쿠키나 위치정보는 받지 않습니다. 로그인 없이 주문할 수 있습니다.</li></ul>'
-      + '<h4>2. 쓰는 목적</h4><ul><li>주문 접수·준비·배달 안내</li><li>주문 상태 안내와 문의 응대</li><li>현금영수증 발급과 거래 기록 보관(법령이 요구하는 범위)</li></ul><p>받은 정보를 위 목적 밖으로 쓰거나 광고 발송에 이용하지 않습니다.</p>'
+      + '<h4>2. 쓰는 목적</h4><ul><li>주문 접수·준비·배달 안내</li><li>주문 상태 안내와 문의 응대</li><li>계산서·현금영수증 발급과 거래 기록 보관(법령이 요구하는 범위)</li></ul><p>받은 정보를 위 목적 밖으로 쓰거나 광고 발송에 이용하지 않습니다.</p>'
       + '<h4>3. 보관과 파기</h4><ul><li>목적을 다한 정보는 지체 없이 파기합니다.</li><li>다만 전자상거래법에 따라 계약·청약철회 기록 5년, 대금결제·공급 기록 5년, 소비자 불만·분쟁 처리 기록 3년은 보관합니다.</li><li>전자 파일은 복구할 수 없게 삭제하고, 종이 문서는 분쇄합니다.</li></ul>'
       + '<h4>4. 다른 사람에게 주는 경우</h4><ul><li>원칙적으로 본인 동의 없이 제3자에게 제공하지 않습니다.</li><li>배달 담당 기사에게 상호·연락처·주소를 배달에 필요한 만큼만 알려 드립니다.</li><li>법령에 따라 수사기관 등이 적법하게 요청하는 경우에는 제공할 수 있습니다.</li></ul>'
       + '<h4>5. 처리를 맡기는 곳(위탁)</h4><p>주문 기록 보관을 클라우드 서버(Supabase Inc., 미국)에 위탁합니다. 정보는 암호화된 통신(HTTPS)으로 전송되어 저장되며, 보관 기간은 위 3항과 같습니다.</p>'
@@ -643,7 +648,7 @@ var POLICIES = {
     body: '<p class="polmeta">시행일 2026년 11월 26일 · 훈이네과일야채 반곡점 카페·식당 납품</p>'
       + '<h4>1. 배달 권역</h4><ul><li>배달은 <b>원주 시내권만</b> 가능합니다. 시외·기업도시 등은 전화(033-765-1531)로 문의해 주세요.</li><li>배달비는 무료이며 최소주문금액만 확인합니다.</li></ul>'
       + '<h4>2. 최소주문금액</h4><ul><li>품목 구분 없이 합쳐서 <b>50,000원 이상</b>이면 원주 시내 무료배달</li><li>최소주문금액에 못 미치면 주문 버튼이 잠깁니다.</li></ul>'
-      + '<h4>3. 마감과 배달 시간</h4><ul><li><b>낮 12시 마감</b>입니다. 낮 12시 이전 주문은 다음날 아침 배달을 원칙으로 합니다.</li><li><b>일요일은 배달하지 않습니다.</b> 일요일에 받는 날짜는 고를 수 없습니다.</li><li>낮 12시 이후 주문은 그 다음날 오전으로 접수됩니다.</li><li>주문서에서 받는 날짜와 시간(오전·오후)을 고를 수 있으며, 가게 사정에 따라 전화로 조정할 수 있습니다.</li><li>비·눈이나 도로 사정으로 늦어지면 먼저 연락드립니다.</li></ul>'
+      + '<h4>3. 마감과 배달 시간</h4><ul><li><b>밤 12시 마감</b>입니다. 오늘 주문하면 다음날 아침 배달을 원칙으로 합니다.</li><li><b>일요일은 배달하지 않습니다.</b> 일요일에 받는 날짜는 고를 수 없습니다.</li><li>주문서에서 받는 날짜와 시간(오전·오후)을 고를 수 있으며, 가게 사정에 따라 전화로 조정할 수 있습니다.</li><li>비·눈이나 도로 사정으로 늦어지면 먼저 연락드립니다.</li></ul>'
       + '<h4>4. 신선식품 교환·환불</h4><p>과일·채소는 신선식품이라 받으신 날 상태를 확인해 주세요. 아래 경우에는 받은 날 고객센터로 알려 주시면 확인 후 <b>교환 또는 부분환불</b>로 보상해 드립니다.</p><ul><li>받은 날 상한·무른·곰팡이·파손 등 이상이 있는 경우</li><li>주문한 품목과 다르거나 수량이 모자란 경우</li><li>표시된 규격과 현저히 다른 경우</li></ul>'
       + '<h4>5. 교환·환불이 어려운 경우</h4><ul><li>수령한 다음 날 이후에 알려 주신 경우(다만 보관 중 이상이 생긴 것이 확인되면 상담해 드립니다)</li><li>이미 조리하셨거나 손질·보관을 잘못하신 경우</li><li>단순 변심으로 받으신 날 이후에 요청하신 경우</li></ul>'
       + '<h4>6. 환불 방법과 기한</h4><ul><li>무통장입금: 환불 계좌를 받아 3영업일 안에 보내 드립니다.</li><li>부분 환불은 실제 입금하신 금액을 기준으로 계산합니다.</li></ul>'
@@ -724,7 +729,7 @@ function applyBizToForm(biz){
   if (shop && biz.bizName) shop.value = biz.bizName;
   var bno = $("#fBizNo");
   if (bno) bno.value = biz.bizNo || "";
-  if (fieldVal("#fReceipt") === "expense"){
+  if (fieldVal("#fReceipt") === "invoice" || fieldVal("#fReceipt") === "expense"){
     var rn = $("#fReceiptNo");
     if (rn && !String(rn.value || "").trim()) rn.value = bizDigits(biz.bizNo);
   }
