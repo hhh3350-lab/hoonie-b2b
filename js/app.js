@@ -19,7 +19,7 @@ function loadCart(){
   if (raw && typeof raw === "object"){
     for (var id in raw){
       var p = byId(id), n = Math.floor(Number(raw[id]));
-      if (p && n > 0) cart[id] = Math.min(n, 99);
+      if (p && !p.soldout && n > 0) cart[id] = Math.min(n, 99);
     }
   }
   state.cart = cart;
@@ -31,7 +31,7 @@ function cartLines(){
   var out = [];
   for (var id in state.cart){
     var p = byId(id);
-    if (p && state.cart[id] > 0) out.push({ p: p, qty: state.cart[id], sum: p.price * state.cart[id] });
+    if (p && !p.soldout && state.cart[id] > 0) out.push({ p: p, qty: state.cart[id], sum: p.price * state.cart[id] });
   }
   return out;
 }
@@ -59,6 +59,7 @@ function shortGapText(){
 function addToCart(id, delta){
   var p = byId(id);
   if (!p) return;
+  if (p.soldout && (delta == null || delta > 0)){ toast("지금은 품절이에요 · 전화로 물어봐 주세요"); return; }
   var n = (state.cart[id] || 0) + (delta == null ? 1 : delta);
   if (n <= 0) delete state.cart[id];
   else state.cart[id] = Math.min(n, 99);
@@ -124,8 +125,8 @@ function stepperHtml(id, qty, cls){
     + '</div>';
 }
 function prodRowHtml(p){
-  var qty = state.cart[p.id] || 0;
-  return '<article class="prow" data-pid="' + esc(p.id) + '">'
+  var qty = p.soldout ? 0 : (state.cart[p.id] || 0);
+  return '<article class="prow' + (p.soldout ? ' sold' : '') + '" data-pid="' + esc(p.id) + '">'
     + thumbHtml(p)
     + '<div class="pleft">'
     +   '<p class="punit">' + esc(p.unit) + '</p>'
@@ -133,7 +134,9 @@ function prodRowHtml(p){
     +   (p.desc ? '<p class="pdesc">' + esc(p.desc) + '</p>' : '')
     +   '<div class="pbottom">'
     +     '<div class="pprice">' + money(p.price) + '<span>원</span></div>'
-    +     (qty
+    +     (p.soldout
+        ? '<span class="psold">품절</span>'
+        : qty
         ? stepperHtml(p.id, qty)
         : '<button type="button" class="padd" data-add>담기</button>')
     +   '</div>'
@@ -206,7 +209,7 @@ function lastOrderItems(){
   var d = null;
   try { d = JSON.parse(localStorage.getItem(LAST_KEY) || "null"); } catch (e) { d = null; }
   if (!d || !Array.isArray(d.items)) return [];
-  return d.items.filter(function(it){ return it && byId(it.pid) && Number(it.qty) > 0; });
+  return d.items.filter(function(it){ return it && byId(it.pid) && !byId(it.pid).soldout && Number(it.qty) > 0; });
 }
 function renderReorder(){
   var box = $("#reorderBox");
