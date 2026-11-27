@@ -40,6 +40,9 @@ var NTFY_TOPIC = "hoonie-dangu-bulk-914288";
    사장님이 사장님 페이지에서 등록한 번호는 DB(bulk_blocked_biz)에 쌓이고
    checkBizBlocked() 가 이 명단과 함께 확인합니다. */
 var BLOCKED_BIZ = [];
+/* 가격 보기 허락 명단 — 사장님이 허락한 사업자등록번호만 가격이 열립니다 (2026-11-27 사장님 요청)
+   형식: "123-45-67890" 또는 숫자 10자리. 명단에 없는 번호는 "승인 대기" 화면이 뜨고 사장님 휴대폰(ntfy)으로 요청 알림이 갑니다. */
+var APPROVED_BIZ = [];
 
 function isoAt(ts){ return new Date(ts || Date.now()).toISOString(); }
 
@@ -242,6 +245,20 @@ function pushNewOrderAlert(ord){
       body: body
     }).catch(function(){});
   } catch (e) {}     /* 알림 실패가 주문을 막지 않습니다 */
+}
+
+/* ── 가격 보기 요청 알림 (ntfy) — 허락 명단에 없는 사업자가 확인을 누르면 사장님께 알립니다 ── */
+function pushBizRequestAlert(rec){
+  try {
+    if (!rec || !window.fetch) return;
+    fetch(NTFY_URL, {
+      method: "POST",
+      headers: { "Title": "Hoonie Bangok Price Request", "Priority": "high", "Tags": "key,strawberry" },
+      body: "[반곡점 가격보기 요청] " + rec.bizName + " · " + rec.bizNo
+        + (rec.bizCertAttached ? " · 사업자등록증 사진 있음" : " · 사진 없음")
+        + "\n허락하려면 Claude 에게 이 번호를 알려 주세요."
+    }).catch(function(){});
+  } catch (e) {}
 }
 
 /* ── 계좌번호 복사 ── */
