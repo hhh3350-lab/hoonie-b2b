@@ -44,11 +44,43 @@ function bizBlocked(v){
   return false;
 }
 
-/* 저장된 확인 기록이 쓸 만한지 (번호 체크섬까지 다시 봅니다) */
+/* 사장님이 허락한 사업자인지 (core.js APPROVED_BIZ) */
+function bizApproved(v){
+  var d = bizDigits(v);
+  if (d.length !== 10 || typeof APPROVED_BIZ === "undefined" || !APPROVED_BIZ) return false;
+  for (var i = 0; i < APPROVED_BIZ.length; i++){
+    if (bizDigits(APPROVED_BIZ[i]) === d) return true;
+  }
+  return false;
+}
+
+/* 저장된 확인 기록이 쓸 만한지 (번호 체크섬 + 사장님 허락까지 다시 봅니다) */
 function bizRecordOk(rec){
   return !!(rec && typeof rec === "object"
     && String(rec.bizName || "").trim().length > 0
-    && bizChecksumOk(rec.bizNo));
+    && bizChecksumOk(rec.bizNo)
+    && bizApproved(rec.bizNo));
+}
+
+/* 승인 대기 안내 — 같은 번호로는 이 기기에서 한 번만 사장님께 알림을 보냅니다 */
+var REQ_KEY = "hoonie_bangok_bizreq_v1";
+function gatePending(rec){
+  var box = $("#gatePending");
+  if (!box) return;
+  var b = box.querySelector("[data-pend-name]");
+  if (b) b.textContent = (rec && rec.bizName ? rec.bizName : "") + (rec && rec.bizNo ? " · " + rec.bizNo : "");
+  box.hidden = false;
+}
+function gatePendingOff(){ var box = $("#gatePending"); if (box) box.hidden = true; }
+function requestApproval(rec){
+  var sent = {};
+  try { sent = JSON.parse(localStorage.getItem(REQ_KEY) || "{}") || {}; } catch (e) { sent = {}; }
+  var d = bizDigits(rec.bizNo);
+  if (!sent[d]){
+    pushBizRequestAlert(rec);
+    sent[d] = Date.now();
+    try { localStorage.setItem(REQ_KEY, JSON.stringify(sent)); } catch (e) {}
+  }
 }
 function loadBiz(){
   try { return JSON.parse(localStorage.getItem(BIZ_KEY) || "null"); } catch (e) { return null; }
@@ -164,6 +196,7 @@ function showGate(rec, blockedMsg){
   gateErr("#gCertErr", "");
   if (blockedMsg) gateBlocked(blockedMsg);
   else gateBlockedOff();
+  gatePendingOff();
 
   window.scrollTo(0, 0);
 }
@@ -226,6 +259,16 @@ function gateSubmit(e){
       bizCertAttached: !!file,
       verifiedAt: new Date().toISOString()
     };
+    /* 사장님이 허락하지 않은 번호는 가격을 열지 않고 승인 대기로 둡니다 */
+    if (!bizApproved(digits)){
+      rec.pending = true;
+      saveBiz(rec);
+      requestApproval(rec);
+      gatePending(rec);
+      var pb = $("#gatePending");
+      if (pb && pb.scrollIntoView) pb.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
     saveBiz(rec);
     enterShop(rec, true);
   });
