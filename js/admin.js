@@ -8,7 +8,8 @@ var POLL_MS = 15000;
 var state = {
   orders: [], blocked: [],
   filter: "all", tab: "orders",
-  confirm: {}, busy: {}
+  confirm: {}, busy: {},
+  slotEdit: null, slotDraft: null   /* 받는 날 바꾸기 — 열려 있는 주문 id · 고르던 값 */
 };
 
 var pollTimer = null, clockTimer = null, syncAt = 0;
@@ -150,6 +151,9 @@ function actsHtml(o){
   if (st !== "canceled" && st !== "done"){
     h += '<button class="warn" type="button" data-act="canceled" data-id="' + esc(o._id) + '">✕ 취소</button>';
   }
+  if (st !== "canceled" && st !== "done" && state.slotEdit !== o._id){
+    h += '<button class="ghost" type="button" data-act="slot" data-id="' + esc(o._id) + '">📅 받는 날 바꾸기</button>';
+  }
   if (o.bizNo) h += '<button class="dang" type="button" data-act="block" data-id="' + esc(o._id) + '">🚫 사업자 차단</button>';
   h += '<button class="dang" type="button" data-act="delete" data-id="' + esc(o._id) + '">🗑 삭제</button>';
   return h;
@@ -170,7 +174,8 @@ function orderCardHtml(o){
     h += rowHtml("연락처", '<a class="v" href="tel:' + esc(tel) + '">' + esc(o.phone) + '</a>', o.phone, o.phone);
   }
   if (o.addr) h += rowHtml("배달주소", esc(o.addr), "", o.addr);
-  h += rowHtml("받는 날", esc(o.slotLabel || o.eta || "—"), "", "");
+  h += rowHtml("받는 날", esc(o.slotLabel || o.eta || "—")
+    + (o.slotPrev && o.slotPrev !== o.slotLabel ? ' <i class="oprev">(바꿈 · 원래 ' + esc(o.slotPrev) + ')</i>' : ''), "", "");
   if (o.bizNo) h += rowHtml("사업자", esc(o.bizNo), "", o.bizNo);
   if (o.receiptNo){
     h += rowHtml("증빙", esc((o.receiptLabel || o.receiptType || "") + " " + o.receiptNo + (o.taxEmail ? " · " + o.taxEmail : "")), "", o.receiptNo);
@@ -188,6 +193,7 @@ function orderCardHtml(o){
   }
   h += '<div class="ototal"><span>결제 금액 (무통장입금)</span><b>' + money(o.total || 0) + '원</b></div>';
   if (o.memo) h += '<p class="omemo">📝 ' + esc(o.memo) + '</p>';
+  if (state.slotEdit === o._id) h += slotEditorHtml(o);
   h += '<div class="oacts">' + actsHtml(o) + '</div>';
   h += '</article>';
   return h;
@@ -234,6 +240,81 @@ function renderBlocked(){
   var h = "";
   state.blocked.forEach(function(b){ h += blockedCardHtml(b); });
   box.innerHTML = h;
+}
+
+/* ── 받는 날 바꾸기 (2026-11-27 사장님 요청) ──
+   손님과 전화로 날짜를 다시 맞췄을 때 주문의 받는 날·시간을 고칩니다. 원래 날짜는 slotPrev 로 남겨 둡니다. */
+var A_TIMES = [
+  { v: "07-09", label: "오전 7~9시 (오픈 전)" },
+  { v: "09-11", label: "오전 9~11시" },
+  { v: "11-13", label: "오전 11시~오후 1시" },
+  { v: "13-15", label: "오후 1~3시" },
+  { v: "15-17", label: "오후 3~5시" },
+  { v: "call",  label: "시간 협의 (전화로)" }
+];
+function aTimeLabel(v){ for (var i = 0; i < A_TIMES.length; i++) if (A_TIMES[i].v === v) return A_TIMES[i].label; return ""; }
+function aDateLabel(ymd){
+  var p = String(ymd || "").split("-");
+  if (p.length !== 3) return "";
+  var d = new Date(Date.UTC(Number(p[0]), Number(p[1]) - 1, Number(p[2])));
+  return (d.getUTCMonth() + 1) + "월 " + d.getUTCDate() + "일(" + ["일", "월", "화", "수", "목", "금", "토"][d.getUTCDay()] + ")";
+}
+function addDaysYmd(ymd, n){
+  var p = String(ymd).split("-");
+  var d = new Date(Date.UTC(Number(p[0]), Number(p[1]) - 1, Number(p[2]) + n));
+  return d.getUTCFullYear() + "-" + pad2(d.getUTCMonth() + 1) + "-" + pad2(d.getUTCDate());
+}
+function slotGuessTime(o){
+  if (o.deliverTime) return o.deliverTime;
+  var lb = String(o.slotLabel || "");
+  for (var i = 0; i < A_TIMES.length; i++) if (lb.indexOf(A_TIMES[i].label) > -1) return A_TIMES[i].v;
+  return "07-09";
+}
+function slotEditorHtml(o){
+  var dr = state.slotDraft || {};
+  var tomorrow = addDaysYmd(todayYmd(), 1);
+  var dv = dr.date || tomorrow, tv = dr.time || slotGuessTime(o);
+  var opts = A_TIMES.map(function(t){
+    return '<option value="' + t.v + '"' + (t.v === tv ? " selected" : "") + '>' + esc(t.label) + '</option>';
+  }).join("");
+  return '<div class="slotedit">'
+    + '<b>📅 받는 날 바꾸기</b>'
+    + '<div class="se-quick">'
+    +   '<button type="button" data-act="slotday" data-day="' + todayYmd() + '" data-id="' + esc(o._id) + '">오늘</button>'
+    +   '<button type="button" data-act="slotday" data-day="' + tomorrow + '" data-id="' + esc(o._id) + '">내일 ' + esc(aDateLabel(tomorrow)) + '</button>'
+    + '</div>'
+    + '<div class="se-row"><input type="date" class="se-date" value="' + esc(dv) + '">'
+    + '<select class="se-time">' + opts + '</select></div>'
+    + '<div class="se-acts"><button type="button" class="ok" data-act="slotsave" data-id="' + esc(o._id) + '">저장</button>'
+    + '<button type="button" class="ghost" data-act="slotcancel" data-id="' + esc(o._id) + '">닫기</button></div>'
+    + '</div>';
+}
+function saveSlot(o, ymd, tv){
+  if (!o || state.busy[o._id]) return;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(ymd || ""))){ toast("날짜를 골라 주세요"); return; }
+  var label = aDateLabel(ymd) + " " + aTimeLabel(tv);
+  var extra = {
+    slotLabel: label, eta: label,
+    deliverDate: ymd, deliverTime: tv,
+    slot: "bulk_" + String(ymd).replace(/-/g, ""),
+    slotPrev: o.slotPrev || o.slotLabel || "",
+    slotChangedAt: Date.now()
+  };
+  markBusy(o._id, true);
+  sbCall(SB_ORDERS + "?id=eq." + encodeURIComponent(o._id), {
+    method: "PATCH",
+    headers: { "Prefer": "return=minimal" },
+    body: JSON.stringify({ data: orderPayload(o, extra), updated_at: new Date().toISOString() })
+  }).then(function(){
+    for (var k in extra) o[k] = extra[k];
+    markBusy(o._id, false);
+    state.slotEdit = null; state.slotDraft = null;
+    renderOrders();
+    toast((o.shopName || o.no) + " · 받는 날을 " + label + "로 바꿨어요");
+  }).catch(function(){
+    markBusy(o._id, false);
+    toast("날짜를 바꾸지 못했어요. 잠시 뒤 다시 눌러 주세요");
+  });
 }
 
 /* ── 상태 변경 · 삭제 ───────────────────────── */
@@ -355,9 +436,29 @@ function bindApp(){
     var o = null;
     for (var i = 0; i < state.orders.length; i++) if (state.orders[i]._id === id){ o = state.orders[i]; break; }
     if (!o) return;
+    if (act === "slot"){ state.slotEdit = o._id; state.slotDraft = null; renderOrders(); return; }
+    if (act === "slotcancel"){ state.slotEdit = null; state.slotDraft = null; renderOrders(); return; }
+    if (act === "slotday"){
+      var card0 = t.closest(".ocard"), di = card0 && card0.querySelector(".se-date");
+      if (di) di.value = t.getAttribute("data-day");
+      state.slotDraft = { date: di ? di.value : t.getAttribute("data-day"), time: card0 && card0.querySelector(".se-time") ? card0.querySelector(".se-time").value : "" };
+      return;
+    }
+    if (act === "slotsave"){
+      var card = t.closest(".ocard");
+      saveSlot(o, card && card.querySelector(".se-date") ? card.querySelector(".se-date").value : "", card && card.querySelector(".se-time") ? card.querySelector(".se-time").value : "07-09");
+      return;
+    }
     if (act === "block"){ blockFromOrder(o); return; }
     if (act === "delete"){ deleteOrder(o); return; }
     setStatus(o, act);
+  });
+
+  /* 받는 날 고르던 값 — 15초 새로고침에도 지워지지 않게 */
+  $("#orderList").addEventListener("change", function(e){
+    var card = e.target.closest ? e.target.closest(".slotedit") : null;
+    if (!card) return;
+    state.slotDraft = { date: card.querySelector(".se-date").value, time: card.querySelector(".se-time").value };
   });
 
   $("#blockList").addEventListener("click", function(e){
