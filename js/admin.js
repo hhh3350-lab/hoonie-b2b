@@ -611,8 +611,28 @@ function doLogin(){
   });
 }
 
+/* ── 관리자 명단 (2026-11-29 보안 강화) ──
+   명단에 있는 이메일(또는 Supabase app_metadata.role = "admin")만 들어온다.
+   명단에 없는 계정은 주문을 하나도 불러오지 않고 바로 로그아웃시킨다. */
+var ADMIN_EMAILS = ["admin@huns-fruit.kr", "hhh3350@naver.com"];
+function jwtClaims(tok){
+  try {
+    var p = String(tok || "").split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    while (p.length % 4) p += "=";
+    return JSON.parse(decodeURIComponent(escape(atob(p))));
+  } catch(e){ return {}; }
+}
+function isAllowedAdmin(){
+  var s = authReadSession();
+  var c = jwtClaims(s && s.access_token);
+  var email = String(c.email || (s && s.email) || "").toLowerCase();
+  var app = c.app_metadata || {};
+  return ADMIN_EMAILS.indexOf(email) > -1 || app.role === "admin";
+}
+
 function bootAdmin(){
   if (booted) return;
+  if (!isAllowedAdmin()){ endAuth("이 계정은 관리자 페이지 권한이 없어요. 사장님께 문의해 주세요."); return; }
   booted = true;
   unlockApp();
   bindApp();
